@@ -1,0 +1,316 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+%phone_con{
+    position: absolute;
+    width: 356px;
+    left: 29px;
+}
+%phone_art{
+    width: 417px;
+    margin: 0 auto;
+    height: 844px;
+    background: url(../../../img/phone.png) scroll no-repeat center;
+    position: relative;
+    .phone_nav{
+        @extend %phone_con;
+        bottom: 107px;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .phone_head{
+        @extend %phone_con;
+        @include clearfix();
+        height: 40px;
+        top: 123px;
+        .head_btn{
+            width: 70px;
+            min-height: 40px;
+            float: left;
+            span{
+                color: #fff;
+                display: block;
+                padding-top: 11px;
+                line-height: 1;
+                font-size: 14px;
+                cursor: pointer;
+            }
+            .back{
+                padding-top: 8px;
+                padding-left: 15px;
+                padding-bottom: 8px;
+                margin-right: 20px;
+                cursor: pointer;
+                .ic{
+                    font-style: normal;
+                    display: block;
+                    @include sprite($icon-app_back);
+                }
+            }
+        }
+        .head_tit{
+            width: 356px - 140px;
+            float: left;
+            span{
+                color: #fff;
+                font-size: 16px;
+                line-height: 1;
+                padding-top: 10px;
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+    .phone_content{
+        @extend %phone_con;
+        height: 525px;
+        top: 162px;
+        overflow-y: auto;
+        @include content-scroll();
+        .tab{
+            @include clearfix();
+            background: #f8f8f8;
+            padding: 12px 0;
+            @include otw();
+            li{
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+                padding: 0;
+                span{
+                    background: #d7d7d7;
+                    display: block;
+                    min-width: 26px;
+                    height: 14px;
+                    margin: 0 14px;
+                    line-height: 14px;
+                    text-align: center;
+                    &.active{
+                        background: #f8f8f8;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .banner{
+            position: relative;
+            height: 170px;
+            background-color: #ccc;
+            overflow: hidden;
+            .bg{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.3);
+            }
+            img{
+                width: 100%;
+                height: auto;
+            }
+            .tit{
+                position: absolute;
+                bottom: 34px;
+                height: 22px;
+                line-height: 22px;
+                padding: 0 15px;
+                font-size: 15px;
+                color: #fff;
+                width: 100%;
+                @include otw();
+            }
+            .bott{
+                @include clearfix();
+                padding: 0 15px;
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                width: 100%;
+                .bott_l{
+                    float: left;
+                    .read{
+                        display: inline-block;
+                        vertical-align: middle;
+                        @include sprite($icon-app_read);
+                    }
+                    .share{
+                        display: inline-block;
+                        vertical-align: middle;
+                        @include sprite($icon-app_share);
+                        margin-left: 10px;
+                    }
+                    span{
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 12px;
+                        color: #fff;
+                    }
+                }
+                .bott_r{
+                    float: right;
+                    overflow: hidden;
+                    padding-top: 8px;
+                    span{
+                        float: left;
+                        width: 6px;
+                        height: 6px;
+                        margin: 0 2px;
+                        border-radius: 50%;
+                        background: #aaa;
+                        &.active{
+                            background: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .list{
+            padding: 12px 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ebebeb;
+            cursor: pointer;
+
+            &:hover{
+                background: #f6f6f6;
+            }
+            .t{
+                @include clearfix();
+                .t_l{
+                    float: left;
+                    width: 220px;
+                    min-height: 20px;
+                    max-height: 76px;
+                    color: #2b333b;
+                    font-size: 16px;
+                    @include motw;
+                    word-break: break-all;
+                }
+                .t_r{
+                    width: 110px;
+                    height: 75px;
+                    background-color: #ccc;
+                    float: right;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+            .b{
+                padding-top: 4px;
+                @include clearfix();
+                .b_time{
+                    float: left;
+                    color: #bfbfbf;
+                    font-size: 12px;
+                }
+                .b_r{
+                    float: right;
+                    padding-right: 4px;
+                    span{
+                        font-size: 12px;
+                        color: #bfbfbf;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                    .read{
+                        display: inline-block;
+                        vertical-align: middle;
+                        @include sprite($icon-app_read_gray);
+                        margin-left: 10px;
+                    }
+                    .share{
+                        display: inline-block;
+                        vertical-align: middle;
+                        @include sprite($icon-app_share_gray);
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .phone_content_detail{
+        @extend %phone_con;
+        @include content-scroll();
+        height: 574px;
+        top: 163px;
+        overflow-y: auto;
+        .art_tit{
+            padding: 10px;
+            font-size: 17px;
+            line-height: 1.4;
+            text-align: justify;
+            color: #2b333b;
+            @include motw;
+            word-break: break-all;
+        }
+        .art_sour{
+            padding: 0 10px;
+            font-size: 12px;
+            line-height: 1;
+            color: #868686;
+            .sour{
+                margin-right: 6px;
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 150px;
+                height: 15px;
+                line-height: 15px;
+                @include otw();
+            }
+            .time{
+                display: inline-block;
+                vertical-align: middle;
+                height: 15px;
+                line-height: 15px;
+            }
+            .read{
+                float: right;
+                vertical-align: middle;
+                height: 15px;
+                line-height: 15px;
+            }
+        }
+        .art_con{
+            text-align: justify;
+            padding: 10px;
+            padding-top: 20px;
+            color: #868686;
+            line-height: 1.5;
+            font-size: 15px;
+            word-break: break-all;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+        .art_video{
+            height: 294px;
+            background: #ddd;
+            position: relative;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: auto;
+            }
+            .video_play{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -21px;
+                margin-top: -21px;
+                display: block;
+                border: 0;
+                outline: 0;
+                background-color: transparent;
+                @include sprite($icon-play);
+            }
+        }
+    }
+}

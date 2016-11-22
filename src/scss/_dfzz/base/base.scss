@@ -1,0 +1,79 @@
+
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$app-ipt-placeholder:#bfbfbf !default;
+$a-color:$font-color-primary;
+
+html{
+    height: 100%;
+}
+body{
+    font-family: "Microsoft YaHei";
+    height: 100%;
+    min-width: $screenMinWidth;
+    min-height: $screenMinHeight;
+    position: relative;
+    overflow: auto;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+hr{
+    border: 0;
+    border-top: 1px solid #eee;
+    height: 0;
+    margin: 0;
+}
+a{
+    color: $a-color;
+    display: inline-block;
+    &:focus,&:hover{
+        color: darken($a-color, 15%);
+        text-decoration: none;
+    }
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+input[type="number"]{
+    -moz-appearance:textfield;
+}
+
+
+input,
+textarea{
+    &::-webkit-input-placeholder {
+        color: $app-ipt-placeholder;
+    }
+    &:-moz-placeholder {
+        color: $app-ipt-placeholder;
+    }
+    &::-moz-placeholder {
+        color: $app-ipt-placeholder;
+    }
+    &:-ms-input-placeholder {
+        color: $app-ipt-placeholder;
+    }
+}
+
+.hide{
+    display: none !important;
+}
+.clearfix:after{
+    content: "";
+    display: block;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+    line-height: 0;
+    clear: both;
+}

@@ -1,0 +1,40 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal-cutpic{
+    .modal-header{
+        .modal-title{
+            float: left;
+        }
+        .loading{
+            width: 16px;
+            height: 16px;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+            background: url(../../../img/loading.gif) scroll no-repeat center;
+            background-size: contain;
+            opacity: 0.5;
+        }
+        .msg{
+            float: left;
+            font-size: 14px;
+            color: #fd9e24;
+            margin-bottom: 0;
+            margin-top: 12px;
+            margin-left: 10px;
+        }
+    }
+    .modal-body{
+        position: relative;
+        min-height: 250px;
+        .cutpic{
+            max-width: 100%;
+        }
+        .jcrop-active{
+            margin: 0 auto;
+        }
+    }
+}

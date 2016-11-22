@@ -1,0 +1,91 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <h2 class="modal-tit">
+        推广奖励
+    </h2>
+    <ul class="modal-display-board">
+        <li class="item">
+            <a href="javascript:void(0);">
+                <p class="t">{{500 | number : 0}}</p>
+                <p class="b">邀请用户总数</p>
+            </a>
+        </li>
+        <li class="item">
+            <a href="javascript:void(0);">
+                <p class="t">{{600 | number : 0}}</p>
+                <p class="b">邀请用户总数</p>
+            </a>
+        </li>
+        <li class="item">
+            <a href="javascript:void(0);">
+                <p class="t">{{700 | number : 0}}</p>
+                <p class="b">邀请用户总数</p>
+            </a>
+        </li>
+        <li class="item">
+            <a href="javascript:void(0);" class="active">
+                <span>显示全部</span>
+            </a>
+        </li>
+    </ul>
+    <div class="modal-table-box">
+        <table class="modal-table">
+            <thead>
+                <tr>
+                    <th>交易时间</th>
+                    <th>内容</th>
+                    <th>类型</th>
+                    <th>金额/U币数量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                </tr>
+                <tr>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                </tr>
+                <tr>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                </tr>
+                <tr>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                    <td>651465461</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata">
+            没有数据
+        </div>
+        <div class="modal-pagination">
+            <ul uib-pagination
+            ng-change="pageChanged()"
+            items-per-page="pageSize"
+            num-pages="numPages"
+            total-items="totalItems"
+            ng-model="currentPage"
+            max-size="maxSize"
+            boundary-links="true"
+            rotate="true"
+            first-text="&laquo;"
+            last-text="&raquo;"
+            previous-text="&lsaquo;"
+            next-text="&rsaquo;"></ul>
+            <div class="pageTo">
+                <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+            </div>
+        </div>
+    </div>
+
+</div>

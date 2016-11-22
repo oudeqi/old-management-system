@@ -1,0 +1,115 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+%app-button{
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 3px;
+    height: 38px;
+    color: #fff;
+    border: 0;
+    padding: 0 20px;
+    &:hover{
+        opacity: 0.8;
+    }
+    &:disabled{
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+.app-button{
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 3px;
+    height: 38px;
+    color: #555;
+    border: 1px solid #bbb;
+    padding: 0 20px;
+    font-size: 15px;
+    background-color: #fff;
+    &:hover{
+        background-color: #ccc;
+        color: #fff;
+    }
+    &:disabled{
+        background-color: #ccc;
+        cursor: not-allowed;
+        color: #fff;
+        opacity: 0.5;
+    }
+}
+.app-button-sm{
+    @extend .app-button;
+    height: 34px;
+    padding: 0 30px;
+}
+
+.app-button-default{
+    background-color: $bg-color-default;
+    @extend %app-button;
+}
+.app-button-primary{
+    background-color: $bg-color-primary;
+    @extend %app-button;
+}
+.app-button-warning{
+    background-color: $bg-color-warning;
+    @extend %app-button;
+}
+
+.app-button-default-sm{
+    background-color: $bg-color-default;
+    @extend %app-button;
+    height: 34px;
+    padding: 0 30px;
+    font-size: 14px;
+}
+.app-button-primary-sm{
+    background-color: $bg-color-primary;
+    @extend %app-button;
+    height: 34px;
+    padding: 0 30px;
+    font-size: 14px;
+}
+.app-button-warning-sm{
+    background-color: $bg-color-warning;
+    @extend %app-button;
+    height: 34px;
+    padding: 0 30px;
+    font-size: 14px;
+}
+
+.app-download_xls_btn{
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 3px;
+    height: 38px;
+    line-height: 38px;
+    width: 140px;
+    color: #fff;
+    border: 0;
+    padding: 0;
+    background-color: #007cfb;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    font-size: 15px;
+    &:hover{
+        opacity: 0.8;
+        color: #fff;
+    }
+    button{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+}

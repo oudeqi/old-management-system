@@ -1,0 +1,48 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="content">
+        <div class="form_row">
+            <div class="tit">
+                <span>开抢时间：</span>
+            </div>
+            <div class="cont">
+                <div class="form_date">
+                    <input type="text" ng-model="beginTime" date-time-picker placeholder="选择日期">
+                    <button type="button" class="ipt_addon date-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form_row">
+            <div class="tit">
+                <span>投放金额：</span>
+            </div>
+            <div class="cont">
+                <input class="form_ipt" type="number" placeholder="请输入整数" ng-model="totalMoney">
+            </div>
+        </div>
+        <div class="form_row">
+            <div class="tit">
+                <span>红包个数：</span>
+            </div>
+            <div class="cont">
+                <input class="form_ipt" type="number" placeholder="请输入整数" ng-model="count">
+            </div>
+        </div>
+        <div class="form_row">
+            <div class="cont">
+                <p class="tip" ng-show="totalMoney && count">单个红包均价 <span>{{totalMoney/count | number:2}}</span> 元</p>
+            </div>
+        </div>
+        <div class="form_row padd_t">
+            <div class="cont">
+                <button ng-show="!msg" ng-click="ok()" class="app-button-primary" type="button" name="button">确认</button>
+                <button ng-show="msg" ng-click="cancel()" class="app-button-default" type="button" name="button">关闭</button>
+                <span class="msg" ng-show="msg">{{msg}}</span>
+                <span class="err" ng-show="err">{{err}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#app-container{
+    height: 100%;
+    min-height: 100%;
+}

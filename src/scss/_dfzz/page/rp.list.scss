@@ -1,0 +1,35 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#rp-list{
+    position: relative;
+    .app-filter{
+        .r{
+            .app-input-search{
+                margin-right: 8px;
+            }
+        }
+    }
+    .app-display-board{
+        .l{
+            float: left;
+            width: 50%;
+            .inner{
+                .item{
+                    width: 25%;
+                }
+            }
+        }
+        .r{
+            float: left;
+            width: 50%;
+            .inner{
+                .item{
+                    width: 25%;
+                }
+            }
+        }
+    }
+}

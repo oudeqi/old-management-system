@@ -1,0 +1,162 @@
+<div id="finance_list">
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
+    <div class="app-filter">
+        <a href="javascript:void(0);" class="app-download_xls_btn">
+            <span>导出</span>
+            <button type="button" id="downloadify_finance"></button>
+        </a>
+    </div>
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>夺宝收入</th>
+                    <th>U币收入</th>
+                    <th>微信收入</th>
+                    <th>微信交易笔数</th>
+                    <th>支付宝收入</th>
+                    <th>支付宝交易笔数</th>
+                    <th>总收入</th>
+                    <th>提现支出</th>
+                    <th>盈利</th>
+                    <th>待提现金额</th>
+                    <th>活跃账户结余</th>
+                    <th>用户消耗U币</th>
+                    <th>用户充值U币数</th>
+                    <th>充值U币优惠比例</th>
+                    <th>充值U币人数</th>
+                    <th>U币账号结余</th>
+                    <th>U币充值补贴</th>
+                    <th>U币红包补贴</th>
+                    <th>任务支出</th>
+                    <th>免费红包支出</th>
+                    <th>新用户注册补贴</th>
+                    <th>站长邀请补贴</th>
+                    <th>U币广告支出</th>
+                    <th>运营支出</th>
+                    <th>内部抢红包收入</th>
+                    <th>抢红包比例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list" ng-show="list">
+                    <td>{{item.date}}</td>
+                    <td>{{item.gemFeeIncome}}</td>
+                    <td>{{item.ucoinFeeIncome}}</td>
+                    <td>{{item.weixinIncome}}</td>
+                    <td>{{item.weixinIncomeCount}}</td>
+                    <td>{{item.aliPayIncome}}</td>
+                    <td>{{item.aliPayIncomeCount}}</td>
+                    <td>{{item.allIncome}}</td>
+                    <td>{{item.convertCashOut}}</td>
+                    <td>{{item.balance}}</td>
+                    <td>{{item.waitCash}}</td>
+                    <td>{{item.allUserBalance}}</td>
+                    <td>{{item.dayConsumeUCoin}}</td>
+                    <td>{{item.ucoinPament}}</td>
+                    <td>{{item.uPamentScale}}</td>
+                    <td>{{item.dayUCoinUser}}</td>
+                    <td>{{item.allUserUCoinBalance}}</td>
+                    <td>{{item.appUcoinRechargeOut}}</td>
+                    <td>{{item.appUcoinRpOut}}</td>
+                    <td>{{item.appTaskOut}}</td>
+                    <td>{{item.appRpOut}}</td>
+                    <td>{{item.newUserUcoinOut}}</td>
+                    <td>{{item.inveteUserUcoinOut}}</td>
+                    <td>{{item.appAdUcoinOut}}</td>
+                    <td>{{item.appAllOut}}</td>
+                    <td>{{item.appRpIn}}</td>
+                    <td>{{item.inUserScale}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div id="download_finance_list" ng-show="false">
+        <table>
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>夺宝收入</th>
+                    <th>U币收入</th>
+                    <th>微信收入</th>
+                    <th>微信交易笔数</th>
+                    <th>支付宝收入</th>
+                    <th>支付宝交易笔数</th>
+                    <th>总收入</th>
+                    <th>提现支出</th>
+                    <th>盈利</th>
+                    <th>待提现金额</th>
+                    <th>活跃账户结余</th>
+                    <th>用户消耗U币</th>
+                    <th>用户充值U币数</th>
+                    <th>充值U币优惠比例</th>
+                    <th>充值U币人数</th>
+                    <th>U币账号结余</th>
+                    <th>U币充值补贴</th>
+                    <th>U币红包补贴</th>
+                    <th>任务支出</th>
+                    <th>免费红包支出</th>
+                    <th>新用户注册补贴</th>
+                    <th>站长邀请补贴</th>
+                    <th>U币广告支出</th>
+                    <th>运营支出</th>
+                    <th>内部抢红包收入</th>
+                    <th>抢红包比例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in downloadList">
+                    <td>{{item.date}}</td>
+                    <td>{{item.gemFeeIncome}}</td>
+                    <td>{{item.ucoinFeeIncome}}</td>
+                    <td>{{item.weixinIncome}}</td>
+                    <td>{{item.weixinIncomeCount}}</td>
+                    <td>{{item.aliPayIncome}}</td>
+                    <td>{{item.aliPayIncomeCount}}</td>
+                    <td>{{item.allIncome}}</td>
+                    <td>{{item.convertCashOut}}</td>
+                    <td>{{item.balance}}</td>
+                    <td>{{item.waitCash}}</td>
+                    <td>{{item.allUserBalance}}</td>
+                    <td>{{item.dayConsumeUCoin}}</td>
+                    <td>{{item.ucoinPament}}</td>
+                    <td>{{item.uPamentScale}}</td>
+                    <td>{{item.dayUCoinUser}}</td>
+                    <td>{{item.allUserUCoinBalance}}</td>
+                    <td>{{item.appUcoinRechargeOut}}</td>
+                    <td>{{item.appUcoinRpOut}}</td>
+                    <td>{{item.appTaskOut}}</td>
+                    <td>{{item.appRpOut}}</td>
+                    <td>{{item.newUserUcoinOut}}</td>
+                    <td>{{item.inveteUserUcoinOut}}</td>
+                    <td>{{item.appAdUcoinOut}}</td>
+                    <td>{{item.appAllOut}}</td>
+                    <td>{{item.appRpIn}}</td>
+                    <td>{{item.inUserScale}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

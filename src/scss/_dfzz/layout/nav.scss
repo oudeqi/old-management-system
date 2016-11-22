@@ -1,0 +1,132 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$nav-width: 80px !default;
+$nav-font-size: 12px !default;
+$nav-bg-color: #394047 !default;
+$nav-act-bg-color: #2d3237 !default;
+
+#app-nav{
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: $nav-width;
+    background: $nav-bg-color;
+    .head-pic{
+        padding: 10px;
+        position: relative;
+        .inner{
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            background-color: #222;
+            a{
+                display: block;
+                outline: 0;
+                img{
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+            }
+
+        }
+        .app-badge{
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+    }
+    .list{
+        .item{
+            a{
+                display: block;
+                text-align: center;
+                width: 100%;
+                padding: 15px 0;
+                text-decoration: none;
+                color: #848484;
+                border-left: 3px solid $nav-bg-color;
+                padding-right: 3px;
+                .icon{
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .icon-home{
+                    @include sprite($icon-nav-home);
+                }
+                .icon-art{
+                    @include sprite($icon-nav-art);
+                }
+                .icon-ads{
+                    @include sprite($icon-nav-ads);
+                }
+                .icon-rp{
+                    @include sprite($icon-nav-rp);
+                }
+                .icon-ly{
+                    @include sprite($icon-nav-ly);
+                }
+                .icon-tgzx{
+                    @include sprite($icon-nav-tgzx);
+                }
+                .icon-finance{
+                    @include sprite($icon-nav-finance);
+                }
+                .txt{
+                    display: block;
+                    width: 100%;
+                    line-height: 1;
+                    font-size: $nav-font-size;
+                    padding-top: 8px;
+                }
+                &.active{
+                    color: $bg-color-primary;
+                    background-color: $nav-act-bg-color;
+                    border-left: 3px solid $bg-color-primary;
+                    .icon-home{
+                        @include sprite($icon-nav-home-act);
+                    }
+                    .icon-art{
+                        @include sprite($icon-nav-art-act);
+                    }
+                    .icon-ads{
+                        @include sprite($icon-nav-ads-act);
+                    }
+                    .icon-rp{
+                        @include sprite($icon-nav-rp-act);
+                    }
+                    .icon-ly{
+                        @include sprite($icon-nav-ly-act);
+                    }
+                    .icon-tgzx{
+                        @include sprite($icon-nav-tgzx-act);
+                    }
+                    .icon-finance{
+                        @include sprite($icon-nav-finance-act);
+                    }
+                }
+                &:hover{
+                    opacity: 0.5;
+                }
+                &.active:hover{
+                    opacity: 1;
+                }
+            }
+
+        }
+    }
+    .local{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 12px;
+        padding: 20px 10px;
+    }
+}

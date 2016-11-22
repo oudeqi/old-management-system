@@ -1,0 +1,46 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$app-ipt-border-radus:3px !default;
+$app-ipt-border-color: #d7d7d7 !default;
+$app-ipt-bg-color:#fff !default;
+$app-ipt-height:38px !default;
+$app-ipt-width: 200px !default;
+
+#art-list{
+    position: relative;
+    .app-filter{
+        .l{
+            .app-input-date{
+                margin-left: 5px;
+            }
+        }
+        .r{
+            .app-input-search{
+                margin-right: 8px;
+            }
+        }
+    }
+    .app-display-board{
+        .l{
+            float: left;
+            width: 60%;
+            .inner{
+                .item{
+                    width: 25%;
+                }
+            }
+        }
+        .r{
+            float: left;
+            width:40%;
+            .inner{
+                .item{
+                    width: 33.33%;
+                }
+            }
+        }
+    }
+}

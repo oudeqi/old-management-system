@@ -1,0 +1,27 @@
+{
+  "name": "user",
+  "description": "",
+  "main": "gulpfile.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "3.3.7",
+    "angular-local-storage": "^0.4.0",
+    "angular-ui-router": "^0.3.1",
+    "ui-bootstrap": "^2.1.4",
+    "angular-file-upload": "^2.3.4",
+    "Jcrop": "jcrop#^2.0.4",
+    "smalot-bootstrap-datetimepicker": "smalot/bootstrap-datetimepicker#^2.3.11",
+    "umeditor": "^1.2.2",
+    "animate.css": "daneden/animate.css#^3.5.2",
+    "Downloadify": "dcneiner/Downloadify#^0.2.1"
+  }
+}

@@ -1,0 +1,330 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal-rpcheck {
+    .modal-dialog{
+        min-width: 1000px;
+        .modal-body{
+            position: relative;
+            padding: 0;
+            @include clearfix();
+            .close{
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                z-index: 1000;
+                border: 0;
+                opacity: 0.5;
+                @include sprite($icon-modal-close);
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+            .l{
+                float: left;
+                width: 60%;
+                .inner{
+                    width: 417px;
+                    position: relative;
+                    height: 700px;
+                    margin: 0 auto;
+                    .arrow{
+                        position: absolute;
+                        display: block;
+                        margin-top: -15px;
+                        border: 0;
+                        top: 50%;
+                        opacity: .6;
+                        cursor: pointer;
+                        background-color: transparent;
+                        &:hover{
+                            opacity: .8;
+                        }
+                        &:disabled{
+                            cursor: not-allowed;
+                            opacity: .4;
+                        }
+                    }
+                    .arrow-l{
+                        left: -40px;
+                        @include sprite($icon-arrow-l);
+                    }
+                    .arrow-r{
+                        right: -40px;
+                        @include sprite($icon-arrow-r);
+                    }
+                    .phone{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .phone-step1.rpluck{
+                        background: url(../../../img/phone-rp-luck.jpg) scroll no-repeat center;
+                        background-size: cover;
+                    }
+                    .phone-step1.rpordinary{
+                        background: url(../../../img/phone-rp-ordinary.jpg) scroll no-repeat center;
+                        background-size: cover;
+                    }
+                    .phone-step1.rpvip{
+                        background: url(../../../img/phone-rp-vip.jpg) scroll no-repeat center;
+                        background-size: cover;
+                    }
+                    .phone-step1 {
+                        .logo{
+                            position: absolute;
+                            top: 150px;
+                            left: 46px;
+                            cursor: pointer;
+                            border-radius: 4px;
+                            overflow: hidden;
+                            @include sprite($icon-add-pic);
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                display: block;
+                            }
+                        }
+                        .tit{
+                            font-size:14px;
+                            color:#ffffff;
+                            line-height:1.5;
+                            position: absolute;
+                            top: 171px;
+                            left: 170px;
+                            width: 180px;
+                            height: 40px;
+                            text-align: left;
+                            @include motw();
+                        }
+                        .name{
+                            position: absolute;
+                            top: 244px;
+                            line-height: 1.5;
+                            left: 118px;
+                            width: 185px;
+                            font-size:14px;
+                            color:#bfbfbf;
+                            @include otw();
+                        }
+                        .ub{
+                            position: absolute;
+                            top: 244px;
+                            line-height: 1.5;
+                            left: 300px;
+                            width: 50px;
+                            text-align: right;
+                            font-size:14px;
+                            color:#fd9e24;
+                            @include otw();
+                        }
+                    }
+                    .phone-step2 {
+                        background: url(../../../img/phone-rp-tpl-page1.png) scroll no-repeat center;
+                        background-size: cover;
+                        .bg{
+                            background: url(../../../img/phone-rp-tpl-page1.png) scroll no-repeat center;
+                            background-size: cover;
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 2;
+                        }
+                        .img-content{
+                            width: 359px;
+                            height: 638px;
+                            position: absolute;
+                            top: 29px;
+                            left: 27px;
+                            z-index: 1;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .content{
+                            width: 359px;
+                            height: 638px;
+                            position: absolute;
+                            top: 29px;
+                            left: 27px;
+                            z-index: 3;
+                            .desc1{
+                                text-align: center;
+                                padding: 0 30px;
+                                width: 100%;
+                                position: absolute;
+                                left: 0;
+                                top: 32px;
+                                span{
+                                    display: inline-block;
+                                    font-size:14px;
+                                    max-width: 100%;
+                                    color:#ffffff;
+                                    line-height: 1;
+                                    padding: 5px 20px;
+                                    background-color: rgba(0,0,0,.5);
+                                    border-radius: 4px;
+                                    @include otw();
+                                }
+                            }
+                            .desc2{
+                                text-align: center;
+                                padding: 0 30px;
+                                width: 100%;
+                                position: absolute;
+                                left: 0;
+                                font-size:24px;
+                                color:#d5363b;
+                                line-height:1;
+                                top: 80px;
+                                @include otw();
+                            }
+                            .desc3{
+                                text-align: center;
+                                padding: 0 30px;
+                                width: 100%;
+                                position: absolute;
+                                left: 0;
+                                height: 52px;
+                                font-size:20px;
+                                line-height: 1.2;
+                                color:#ffffff;
+                                top: 472px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                @include motw();
+                            }
+                            .desc4{
+                                opacity:0.69;
+                                text-align: center;
+                                padding: 0 30px;
+                                width: 100%;
+                                position: absolute;
+                                left: 0;
+                                font-size:14px;
+                                color:#ffffff;
+                                top: 525px;
+                                @include otw();
+                            }
+                        }
+                    }
+                    .phone-step3{
+                        background: url(../../../img/phone-rp-tpl-page2-1.png) scroll no-repeat center;
+                        background-size: cover;
+                        .content-2{
+                            width: 360px;
+                            padding: 0 10px;
+                            height: 570px;
+                            z-index: 3;
+                            position: absolute;
+                            top: 101px;
+                            left: 26px;
+                            overflow-x: hidden;
+                            overflow-y: auto;
+                            background: #fff;
+                            @include content-scroll(4px);
+                            .atc-head{
+                                font-size:18px;
+                                padding-top: 20px;
+                                line-height: 1.5;
+                                color:#2b333b;
+                                text-align:left;
+                            }
+                            .atc-name{
+                                padding: 6px 0;
+                                @include clearfix();
+                                .logo{
+                                    width: 30px;
+                                    height: 30px;
+                                    border-radius: 50%;
+                                    float: left;
+                                    overflow: hidden;
+                                    border: 1px solid #ebebeb;
+                                    img{
+                                        width: 100%;
+                                        height: auto;
+                                        display: block;
+                                    }
+                                }
+                                .name{
+                                    font-size: 12px;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    margin-left: 5px;
+                                    float: left;
+                                    color: #595959;
+                                }
+                                .time{
+                                    font-size: 12px;
+                                    height: 30px;
+                                    line-height: 30px;
+                                    margin-left: 5px;
+                                    float: right;
+                                    color: #595959;
+                                }
+                            }
+                            .atc-con{
+                                font-size:14px;
+                                color:#848689;
+                                line-height:1;
+                                text-align:left;
+                                p{
+                                    margin: 5px 0;
+                                }
+                                img{
+                                    width: 100%;
+                                    height: auto;
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .r{
+                float: left;
+                width: 40%;
+                .content{
+                    padding-top: 100px;
+                    padding-right: 20px;
+                    padding-bottom: 20px;
+                    position: relative;
+                    height: 700px;
+                    .content-row{
+                        margin-bottom: 20px;
+                        .row-label{
+                            display: inline-block;
+                            vertical-align: middle;
+                            font-size: 15px;
+                            font-weight: bold;
+                            width: 84px;
+                            color: #555;
+                        }
+                        .row-val{
+                            display: inline-block;
+                            vertical-align: middle;
+                            font-size: 15px;
+                            color: #666;
+                            b{
+                                color: #007cfb;
+                            }
+                        }
+                    }
+                    .btn-box{
+                        position: absolute;
+                        left: 0;
+                        bottom: 60px;
+                        text-align: left;
+                        font-size: 15px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

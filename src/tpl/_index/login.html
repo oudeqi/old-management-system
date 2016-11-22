@@ -1,0 +1,43 @@
+<div class="modal_content">
+    <div class="modal">
+        <div class="modal_header opra_lg">
+            <div class="opra">
+                <a class="back" href="javascript:void(0);" ui-sref="secl">
+                    <i class="icon"></i>
+                    <span>返回</span>
+                </a>
+            </div>
+            <h2 class="tit">{{ loginTit[loginType] }}</h2>
+            <div class="opra">
+                <a class="link" href="javascript:void(0);" ui-sref="forget">忘记密码？</a>
+            </div>
+        </div>
+        <div class="modal_body">
+            <form class="form" name="login" novalidate ng-submit="userLogin()">
+                <div class="form_row">
+                    <div class="login_ipt_box">
+                        <i class="icon user"></i>
+                        <input type="number" ng-model="phoneNumber" required placeholder="请输入手机号码">
+                    </div>
+                </div>
+                <div class="form_row sm_mar_b">
+                    <div class="login_ipt_box">
+                        <i class="icon pwd"></i>
+                        <input type="password" ng-model="password" required placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form_row">
+                    <label>
+                        <input type="checkbox" ng-model="remember">
+                        记住账号
+                    </label>
+                    <p class="msg">
+                        <!-- <a href="javascript:void(0);">未开通权限立即入驻</a> -->
+                        <span ng-show="errMsg">{{errMsg}}</span>
+                    </p>
+                </div>
+                <button class="form_btn" ng-disabled="login.$invalid || loading" type="submit">{{btnTxt}}</button>
+            </form>
+        </div>
+    </div>
+</div>

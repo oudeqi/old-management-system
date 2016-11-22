@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h3 class="modal-title">图片裁剪</h3>
+    <div class="loading" ng-show="loading"></div>
+    <p class="msg" ng-show="msg && !loading">{{msg}}</p>
+</div>
+<div class="modal-body">
+    <img class="cutpic" ng-src="{{imgSrc}}" onload="angular.element(this).scope().imgOnload(this)">
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="ok()">确定</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">取消</button>
+</div>

@@ -1,0 +1,8 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.edui-editor-body .edui-body-container{
+    @include content-scroll();
+}

@@ -1,0 +1,82 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$app-ipt-border-radus:3px !default;
+$app-ipt-border-color: #d7d7d7 !default;
+$app-ipt-bg-color:#fff !default;
+$app-ipt-height:38px !default;
+$app-ipt-width: 200px !default;
+
+%app-input-box{
+    display: inline-block;
+    vertical-align: middle;
+    overflow: visible;
+    @include clearfix();
+}
+%app-input{
+    height: $app-ipt-height;
+    border: 1px solid $app-ipt-border-color;
+    border-radius: $app-ipt-border-radus 0 0 $app-ipt-border-radus;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 15px;
+    background-color: $app-ipt-bg-color;
+    float: left;
+
+}
+
+%app-input-addon{
+    width: $app-ipt-height;
+    height: $app-ipt-height;
+    border: 1px solid $app-ipt-border-color;
+    border-left: 0;
+    background-color: #f0f0f0;
+    float: left;
+    &:hover{
+        background-color: #e0e0e0;
+    }
+}
+
+.app-input-date{
+    @extend %app-input-box;
+    input.input{
+        width: $app-ipt-width - $app-ipt-height;
+        @extend %app-input;
+    }
+    .input-clear{
+        font-size:12px;
+        border-right: 1px solid $app-ipt-border-color;
+        @extend %app-input-addon;
+        border-radius: 0;
+    }
+    .input-addon{
+        font-size:14px;
+        @extend %app-input-addon;
+        outline: 0;
+        border-radius: 0 $app-ipt-border-radus $app-ipt-border-radus 0;
+    }
+}
+
+//输入框
+.app-input{
+    @extend %app-input-box;
+    input.input{
+        width: $app-ipt-width;
+        @extend %app-input;
+    }
+}
+// 搜索框
+.app-input-search{
+    @extend %app-input-box;
+    input.input{
+        width: $app-ipt-width;
+        @extend %app-input;
+    }
+    .input-addon{
+        font-size:16px;
+        @extend %app-input-addon;
+        border-radius: 0 $app-ipt-border-radus $app-ipt-border-radus 0;
+    }
+}

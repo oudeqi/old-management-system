@@ -1,0 +1,11 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+
+#app-main{
+    margin-left: 80px;
+    min-height: 100%;
+    background: #ebebeb;
+}

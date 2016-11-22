@@ -1,0 +1,24 @@
+.ads_launch{
+    .page_top{
+        background: #fff;
+        text-align: right;
+        padding: 16px 0;
+        padding-right: 20px;
+    }
+    .page_list{
+        margin: 18px;
+        background: #fff;
+        border-radius: 4px;
+        img{
+            width: auto;
+            height: 80px;
+        }
+        .app-table thead tr th{
+            padding: 12px 30px;
+        }
+        .app-table tbody tr td{
+            vertical-align: middle;
+            padding: 10px 30px;
+        }
+    }
+}

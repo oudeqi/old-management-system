@@ -1,0 +1,18 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.app-badge{
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 10px;
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #fb4747;
+    border-radius: 10px;
+}

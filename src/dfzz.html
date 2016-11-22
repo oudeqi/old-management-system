@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>用户后台</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
+        <link rel="stylesheet" href="editor/themes/default/css/umeditor.css">
+        <!-- build:css css/_dfzz/lib/lib.css -->
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="../bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"/>
+        <link rel="stylesheet" href="../bower_components/Jcrop/css/Jcrop.css"/>
+        <!-- endbuild -->
+
+        <!-- build:css css/_dfzz/app/app.css -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
+        <link rel="stylesheet" href="css/_dfzz/base/base.css">
+        <link rel="stylesheet" href="css/_dfzz/component/alert.css">
+        <link rel="stylesheet" href="css/_dfzz/component/badge.css">
+        <link rel="stylesheet" href="css/_dfzz/component/button.css">
+        <link rel="stylesheet" href="css/_dfzz/component/cutpic-modal.css">
+        <link rel="stylesheet" href="css/_dfzz/component/display-board.css">
+        <link rel="stylesheet" href="css/_dfzz/component/editor.css">
+        <link rel="stylesheet" href="css/_dfzz/component/filter.css">
+        <link rel="stylesheet" href="css/_dfzz/component/input.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal-cutpic.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.artcheck.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.common.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.confirm.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.copyrp.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.cutpic.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.lookewm.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.lunchset.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.rpcheck.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.tgtjdetail.css">
+        <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
+        <link rel="stylesheet" href="css/_dfzz/component/select.css">
+        <link rel="stylesheet" href="css/_dfzz/component/table.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
+        <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
+        <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/finance.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/rp.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/rp.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/setting.css">
+        <link rel="stylesheet" href="css/_dfzz/page/tgtj.list.css">
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        <script type="text/javascript" src="editor/third-party/jquery.min.js"></script>
+        <script type="text/javascript" src="editor/umeditor.config.js"></script>
+        <script type="text/javascript" src="editor/umeditor.js"></script>
+        <script type="text/javascript" src="editor/lang/zh-cn/zh-cn.js"></script>
+
+        <!-- build:js js/_dfzz/lib.js -->
+        <script type="text/javascript" src="../bower_components/Downloadify/js/downloadify.min.js"></script>
+        <script type="text/javascript" src="../bower_components/Downloadify/js/swfobject.js"></script>
+        <script type="text/javascript" src="../bower_components/Jcrop/js/Jcrop.js"></script>
+        <script type="text/javascript" src="../bower_components/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="../bower_components/smalot-bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+        <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script type="text/javascript" src="../bower_components/ui-bootstrap/dist/ui-bootstrap-tpls-2.2.0.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-file-upload/dist/angular-file-upload.js"></script>
+        <!-- endbuild -->
+
+
+        <!-- build:js js/_dfzz/app.js -->
+        <!-- inject:js -->
+        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
+        <script src="js/_dfzz/app.js"></script>
+        <script src="js/_dfzz/filter/filters.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
+        <script src="js/_dfzz/ctrl/tgtj.list.js"></script>
+        <script src="js/_dfzz/ctrl/setting.js"></script>
+        <script src="js/_dfzz/ctrl/rp.put.js"></script>
+        <script src="js/_dfzz/ctrl/rp.list.js"></script>
+        <script src="js/_dfzz/ctrl/modal.tgtjdetail.js"></script>
+        <script src="js/_dfzz/ctrl/modal.rpcheck.js"></script>
+        <script src="js/_dfzz/ctrl/modal.lunchset.js"></script>
+        <script src="js/_dfzz/ctrl/modal.lookewm.js"></script>
+        <script src="js/_dfzz/ctrl/modal.cutpic.js"></script>
+        <script src="js/_dfzz/ctrl/modal.copyrp.js"></script>
+        <script src="js/_dfzz/ctrl/modal.confirm.js"></script>
+        <script src="js/_dfzz/ctrl/modal.artcheck.js"></script>
+        <script src="js/_dfzz/ctrl/finance.list.js"></script>
+        <script src="js/_dfzz/ctrl/art.put.js"></script>
+        <script src="js/_dfzz/ctrl/art.list.js"></script>
+        <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+        <!-- endinject -->
+        <!-- endbuild -->
+    </head>
+    <body ng-app="uoudo.dfzz">
+        <!--
+            <div class="app-input-data">
+                <input class="input" type="text" placeholder="红包投日期">
+                <button class="input-addon" type="button">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            <div class="app-input">
+                <input class="input" ng-model="xxx" type="text" placeholder="个">
+            </div>
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字">
+                <button class="input-addon" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+            <button class="app-button-default" type="button">发布红包</button>
+            <button class="app-button-primary" type="button">发布红包</button>
+            <button class="app-button-warning" type="button">发布红包</button>
+        -->
+        <div id="app-container" ng-cloak>
+            <div id="app-nav">
+                <div class="head-pic" ng-mouseenter="navMouseover(0)" ng-mouseleave="navMouseleave()">
+                    <span class="app-badge" ng-show="false">10</span>
+                    <div class="inner">
+                        <a href="javascript:void(0);" ui-sref="head_setting">
+                            <img ng-src="{{headIconUrl}}" alt="" />
+                            <!-- img/head-pic.jpg -->
+                        </a>
+                    </div>
+                </div>
+                <ul class="list">
+                    <!-- <li class="item">
+                        <a href="javascript:void(0);" ng-mouseenter="navMouseover(1)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-home"></i>
+                            <span class="txt">首页</span>
+                        </a>
+                    </li> -->
+                    <li class="item" ng-if="permission.menu_info === '1'">
+                        <a href="javascript:void(0);" ui-sref="art_put" ng-class="{'active':mainNav==='art'}" ng-mouseenter="navMouseover(2)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-art"></i>
+                            <span class="txt">文章管理</span>
+                        </a>
+                    </li>
+                    <li class="item" ng-if="permission.menu_rp === '1'">
+                        <a href="javascript:void(0);" ui-sref="rp_put" ng-class="{'active':mainNav==='rp'}" ng-mouseenter="navMouseover(4)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-rp"></i>
+                            <span class="txt">红包管理</span>
+                        </a>
+                    </li>
+                    <!-- <li class="item">
+                        <a href="javascript:void(0);" ng-mouseenter="navMouseover(5)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-ly"></i>
+                            <span class="txt">留言管理</span>
+                        </a>
+                    </li> -->
+                    <li class="item" ng-if="permission.menu_invite === '1'">
+                        <a href="javascript:void(0);" ui-sref="tgtj_list" ng-class="{'active':mainNav==='tgtj'}"  ng-mouseenter="navMouseover(6)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-tgzx"></i>
+                            <span class="txt">推广中心</span>
+                        </a>
+                    </li>
+                    <li class="item" ng-if="permission.button_start_ad === '1'">
+                        <a href="javascript:void(0);" ui-sref="ads_launch" ng-class="{'active':mainNav==='ads'}" ng-mouseenter="navMouseover(3)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-ads"></i>
+                            <span class="txt">广告管理</span>
+                        </a>
+                    </li>
+                    <li class="item" ng-if="permission.menu_day_report === '1'">
+                        <a href="javascript:void(0);" ui-sref="finance_list" ng-class="{'active':mainNav==='finance'}" ng-mouseenter="navMouseover(7)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-finance"></i>
+                            <span class="txt">财务管理</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="local">
+                    {{ siteName || nickName }}
+                </div>
+            </div>
+            <div id="app-main" ui-view></div>
+            <div id="sub-nav-head" ng-mouseenter="navMouseover(0)" ng-mouseleave="navMouseleave()" ng-show="currNav === 0">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="head_setting" ui-sref-active="active">资料设置</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref-active="active">移动端下载</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref-active="active">
+                            消息提醒<span class="app-badge" ng-show="false">10</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref-active="active">提交反馈</a>
+                    </li>
+                </ul>
+                <div class="other">
+                    <div class="other-item">
+                        <a href="javascript:void(0);">
+                            <i class="icon help"></i>
+                            <span class="txt">帮助</span>
+                        </a>
+                    </div>
+                    <div class="other-item">
+                        <a href="javascript:void(0);">
+                            <i class="icon gw"></i>
+                            <span class="txt">官网</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="logout">
+                    <a href="javascript:void(0);" ng-click="logout()">退出登录</a>
+                </div>
+            </div>
+            <div id="sub-nav-home" ng-mouseenter="navMouseover(1)" ng-mouseleave="navMouseleave()" ng-show="currNav === 1">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <h1>home</h1>
+            </div>
+            <div id="sub-nav-art" ng-mouseenter="navMouseover(2)" ng-mouseleave="navMouseleave()" ng-show="currNav === 2">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="art_put" ui-sref-active="active">文章发布</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="art_list" ui-sref-active="active">文章列表</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="sub-nav-ads" ng-mouseenter="navMouseover(3)" ng-mouseleave="navMouseleave()" ng-show="currNav === 3">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="ads_launch" ui-sref-active="active">启动页广告</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="sub-nav-rp" ng-mouseenter="navMouseover(4)" ng-mouseleave="navMouseleave()" ng-show="currNav === 4">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="rp_put" ui-sref-active="active">红包发布</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="rp_list" ui-sref-active="active">红包列表</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="sub-nav-ly" ng-mouseenter="navMouseover(5)" ng-mouseleave="navMouseleave()" ng-show="currNav === 5">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <h1>留言</h1>
+            </div>
+            <div id="sub-nav-tgzx" ng-mouseenter="navMouseover(6)" ng-mouseleave="navMouseleave()" ng-show="currNav === 6">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="tgtj_list" ui-sref-active="active">推广统计</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="sub-nav-finance" ng-mouseenter="navMouseover(7)" ng-mouseleave="navMouseleave()" ng-show="currNav === 7">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="finance_list" ui-sref-active="active">财务统计</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </body>
+</html>

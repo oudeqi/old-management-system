@@ -1,0 +1,35 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.app-alert{
+    position: absolute;
+    width: 100%;
+    top: -40px;
+    left: 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    .inner{
+        text-align: center;
+        padding: 0 80px;
+        background: $bg-color-info;
+        color: #fff;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 3px;
+        &.info{
+            background: $bg-color-info;
+        }
+        &.warning{
+            background: $bg-color-warning;
+        }
+    }
+    &.active{
+        top: 0;
+    }
+
+}

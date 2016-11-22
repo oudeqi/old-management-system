@@ -1,0 +1,99 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="phone" ng-show="step === 1">
+        <div class="phone_head">
+            <div class="head_btn"></div>
+            <div class="head_tit">
+                <span>{{siteName}}2台</span>
+            </div>
+            <div class="head_btn">
+                <span>切换城市</span>
+            </div>
+        </div>
+        <div class="phone_nav">
+            <img ng-src="./img/app-nav.png" alt="" />
+        </div>
+        <div class="phone_content">
+            <ul class="tab">
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span class="active">{{infoTypeName || "##"}}</span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+            </ul>
+            <div class="banner">
+                <div class="bg"></div>
+                <img ng-show="top == '1'" ng-src="{{previewUrl}}" alt="" />
+                <div class="tit" ng-show="top == '1'">
+                    {{title}}
+                </div>
+                <div class="bott">
+                    <div class="bott_l">
+                        <i class="read"></i>
+                        <span>9231</span>
+                        <i class="share"></i>
+                        <span>12万</span>
+                    </div>
+                    <div class="bott_r">
+                        <span></span><span></span>
+                        <span class="active"></span>
+                        <span></span><span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list" ng-click="step = 2">
+                <div class="t">
+                    <div class="t_l">
+                        {{title}}
+                    </div>
+                    <div class="t_r">
+                        <img ng-src="{{littleUrl}}" alt="" />
+                    </div>
+                </div>
+                <div class="b">
+                    <div class="b_time">
+                        2016/05/15 11:20
+                    </div>
+                    <div class="b_r">
+                        <i class="read"></i>
+                        <span>9231</span>
+                        <i class="share"></i>
+                        <span>12万</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="phone" ng-show="step === 2">
+        <div class="phone_head">
+            <div class="head_btn">
+                <div class="back animated bounceIn" ng-click="step = 1">
+                    <i class="ic"></i>
+                </div>
+            </div>
+            <div class="head_tit">
+                <span>详情</span>
+            </div>
+            <div class="head_btn"></div>
+        </div>
+        <div class="phone_content_detail">
+            <div class="art_video" ng-show="template === 1">
+                <video ng-src="{{videoUrl}}" width="356" height="294" poster="{{imageUrl}}" controls="controls">
+                    您的浏览器不支持 video 标签。
+                </video>
+                <!-- <img ng-src="{{imageUrl}}" alt="" /> -->
+                <!-- <button class="video_play" type="button" name="button"></button> -->
+            </div>
+            <div class="art_tit">
+                {{title}}
+            </div>
+            <div class="art_sour">
+                <span class="sour">{{sellerName}}</span>
+                <span class="time">2016-06-31 20:11</span>
+                <span class="read">阅读:2000</span>
+            </div>
+            <div class="art_con" ng-bind-html="content"></div>
+        </div>
+    </div>
+</div>

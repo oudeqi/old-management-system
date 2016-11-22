@@ -1,0 +1,16 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.app-filter{
+    margin: 0 $content-edge-width $component-edge-distance;
+    padding-top: $component-edge-distance;
+    overflow: hidden;
+    .l{
+        float: left;
+    }
+    .r{
+        float: right;
+    }
+}

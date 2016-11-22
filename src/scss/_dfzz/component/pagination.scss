@@ -1,0 +1,70 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$pagination-color:$font-color-default;
+$pagination-act-bg-color: $bg-color-primary;
+$pagination-act-border-color: $bg-color-primary;
+
+.app-pagination{
+    text-align: right;
+    padding: 0 15px;
+    margin: $component-edge-distance $content-edge-width;
+    background: #fff;
+    border-radius: 4px;
+    line-height: 1;
+    font-size: 0;
+    .pagination,
+    .pageTo{
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+    }
+    .pageTo{
+        width: 70px;
+        margin-left: 10px;
+        input{
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            width: 100%;
+            margin: 0;
+            background: #fff;
+            padding: 0 5px;
+            height: 34px;
+            color: #337ab7;
+            line-height: 1.4;
+        }
+    }
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.pagination>li>a, .pagination>li>span{
+    color: $pagination-color;
+}
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover{
+    background-color:$pagination-act-bg-color;
+    border-color: $pagination-act-border-color;
+}
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>li>span:focus,
+.pagination>li>span:hover {
+    color: $pagination-color;
+    background-color: #eee;
+    border-color: #ddd;
+}

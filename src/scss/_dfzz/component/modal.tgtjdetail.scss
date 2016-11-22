@@ -1,0 +1,13 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal-table {
+    .modal-dialog{
+        .modal-content{
+            background-color: #f8f8f8;
+            overflow: hidden;
+        }
+    }
+}

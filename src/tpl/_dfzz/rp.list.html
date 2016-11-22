@@ -1,0 +1,139 @@
+<div id="rp-list">
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
+    <div class="app-filter">
+        <div class="l">
+            <div class="app-input-date">
+                <input class="input" type="text" ng-change="getList()" ng-model="putDate" date-picker placeholder="红包投放日期">
+                <button class="input-clear" type="button" ng-click="putDate=null;getList()">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <button class="input-addon" type="button">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+        </div>
+        <div class="r">
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+            <button class="app-button-primary" type="button" ng-click="rpPut()">发布红包</button>
+        </div>
+    </div>
+    <div class="app-display-board" ng-show="report">
+        <div class="l">
+            <div class="inner">
+                <div class="item">
+                    <!-- * status 1待审核，2已投放，3已经拒绝，4已下线 0所有 -->
+                    <a href="javascript:void(0);" ng-click="changeStatus(1)" ng-class="{'active':status === 1}">
+                        <p class="t">{{report.waitVerify | number : 0}}</p>
+                        <p class="b">待审核</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeStatus(2)" ng-class="{'active':status === 2}">
+                        <p class="t">{{report.onLine | number : 0}}</p>
+                        <p class="b">已投放</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeStatus(3)" ng-class="{'active':status === 3}">
+                        <p class="t">{{report.refuse | number : 0}}</p>
+                        <p class="b">已拒绝</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeStatus(4)" ng-class="{'active':status === 4}">
+                        <p class="t">{{report.offLine | number : 0}}</p>
+                        <p class="b">已下线</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="inner">
+                <div class="item">
+                    <!-- * type 1 手气红包，2vip红包，3大众红包 0所有 -->
+                    <a href="javascript:void(0);" ng-click="changeType(1)" ng-class="{'active':type === 1}">
+                        <p class="t">{{report.uCoinRpCount | number : 0}}</p>
+                        <p class="b">手气红包</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(2)" ng-class="{'active':type === 2}">
+                        <p class="t">{{report.vipRpCount | number : 0}}</p>
+                        <p class="b">VIP红包</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(3)" ng-class="{'active':type === 3}">
+                        <p class="t">{{report.generalRpCount | number : 0}}</p>
+                        <p class="b">大众红包</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeAll(0,0)" ng-class="{'active':type === 0 && status === 0}">
+                        <span>显示全部</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>红包ID</th>
+                    <th>红包标题</th>
+                    <th>红包类型</th>
+                    <th>开抢时间</th>
+                    <th>红包数量</th>
+                    <th>红包总金额</th>
+                    <th>红包状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list" ng-show="list">
+                    <td>{{item.id}}</td>
+                    <td>{{item.introduce1}}</td>
+                    <td>{{item.typeName}}</td>
+                    <td>{{item.beginTime | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.count | number : 0}}</td>
+                    <td>{{item.totalMoney | currency : "￥" : 2}}</td>
+                    <td>{{item.statusName}}</td>
+                    <td>
+                        <a href="javascript:void(0);" ng-click="check(item)">查看</a>
+                        <a href="javascript:void(0);" ng-click="copy(item)">复制</a>
+                        <a href="javascript:void(0);" ng-click="modify(item)" ng-show="item.status === 1 || item.status === 3">修改</a>
+                        <a href="javascript:void(0);" ng-click="del(item)" ng-show="item.status === 1 || item.status === 3">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

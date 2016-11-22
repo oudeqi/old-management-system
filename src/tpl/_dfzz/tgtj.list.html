@@ -1,0 +1,128 @@
+<div id="tg_list">
+    <div class="app-filter">
+        <div class="l">
+            <span class="icon-ewm"></span>
+            <a class="txt_1" href="javascript:void(0);" ng-click="lookEwm()">查看推广二维码</a>
+            <span class="icon-people"></span>
+            <span class="txt_2">邀请成功 <i>{{report.allSuccessUser}}</i> 人</span>
+        </div>
+        <div class="r">
+            <div class="app-input-date">
+                <input class="input" type="text" ng-change="getList()" ng-model="putDate" date-picker placeholder="选择注册时间">
+                <button class="input-clear" type="button" ng-click="putDate=null;getList()">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <button class="input-addon" type="button">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入用户昵称" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 展板 -->
+    <div class="app-display-board" ng-show="report">
+        <div class="l">
+            <div class="inner">
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(0)" ng-class="{'active':type === 0}">
+                        <p class="t">{{report.allUser | number : 0}}</p>
+                        <p class="b">邀请用户总数</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(1)" ng-class="{'active':type === 1}">
+                        <p class="t">{{report.todaySuccessUser | number : 0}}</p>
+                        <p class="b">今日新增</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(2)" ng-class="{'active':type === 2}">
+                        <p class="t">{{report.weekSuccessUser | number : 0}}</p>
+                        <p class="b">7日新增</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(3)" ng-class="{'active':type === 3}">
+                        <p class="t">{{report.allSuccessUcoinUser | number : 0}}</p>
+                        <p class="b">U币玩家数量</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="inner">
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.allSuccessUser*20 | currency : "" : 1}} U</p>
+                        <p class="b">新用户注册U币奖励</p>
+                    </a>
+                </div>
+                <!-- <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(2)" ng-class="{'active':type === 2}">
+                        <p class="t">{{report.vipRpCount | number : 0}}</p>
+                        <p class="b">U币充值提成</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(3)" ng-class="{'active':type === 3}">
+                        <p class="t">{{report.generalRpCount | number : 0}}</p>
+                        <p class="b">夺宝提出</p>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- 表格 -->
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>用户昵称</th>
+                    <th>手机号码</th>
+                    <th>注册时间</th>
+                    <th>审核状态</th>
+                    <th>U币玩家</th>
+                    <th>新注册奖励</th>
+                    <th>U币提成</th>
+                    <th>夺宝提成(元)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list" ng-show="list" ng-click="detail(item)">
+                    <td>{{item.nickName}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.uCoinUser}}</td>
+                    <td>{{item.regGift | currency : "￥" : 2}}</td>
+                    <td>{{item.uCoinGift | currency : "￥" : 2}}</td>
+                    <td>{{item.gemGift | currency : "￥" : 2}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

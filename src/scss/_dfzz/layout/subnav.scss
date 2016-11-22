@@ -1,0 +1,129 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$sub-nav-width: 140px !default;
+
+%sub-nav{
+    position: fixed;
+    top: 0;
+    left: 80px;
+    height: 100%;
+    min-height: $screenMinHeight;
+    width: $sub-nav-width;
+    z-index: 1000;
+    background:#f8f8f8;
+    box-shadow:0px 2px 12px 0px rgba(0,0,0,0.2);
+    .top-logo{
+        background: #fff;
+        padding: 26px 0;
+        text-align: center;
+        img{
+            width: 108px;
+            height: auto;
+        }
+    }
+}
+
+#sub-nav-head,
+#sub-nav-home,
+#sub-nav-art,
+#sub-nav-ads,
+#sub-nav-rp,
+#sub-nav-ly,
+#sub-nav-tgzx,
+#sub-nav-finance,
+#sub-nav-treasure{
+    @extend %sub-nav;
+}
+
+// #sub-nav-head{
+//     display: block !important;
+// }
+
+#sub-nav-rp,
+#sub-nav-head,
+#sub-nav-ads,
+#sub-nav-tgzx,
+#sub-nav-art,
+#sub-nav-finance,
+#sub-nav-treasure{
+    .list{
+        .item{
+            a{
+                padding: 16px 0;
+                padding-left: 30px;
+                text-align: left;
+                background: #f8f8f8;
+                display: block;
+                color: $font-color-default;
+                text-decoration: none;
+                position: relative;
+                &:hover{
+                    background-color: #ebebeb;
+                }
+                &.active{
+                    background: $bg-color-primary;
+                    color: #fff;
+                }
+                .app-badge{
+                    position: absolute;
+                    top: 19px;
+                    right: 20px;
+                }
+            }
+        }
+    }
+    .other{
+        border-top: 1px solid #d7d7d7;
+        border-bottom: 1px solid #d7d7d7;
+        padding: 0 20px;
+        @include clearfix();
+        .other-item{
+            float: left;
+            width: 50%;
+            height: 60px;
+            a{
+                text-decoration: none;
+                display: block;
+                color: $font-color-default;
+                .icon{
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    margin: 0 auto;
+                }
+                .help{
+                    @include sprite($icon-help);
+                    margin-top: 13px;
+                }
+                .gw{
+                    @include sprite($icon-gw);
+                    margin-top: 12px;
+                }
+                .txt{
+                    display: block;
+                    text-align: center;
+                }
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+
+        }
+    }
+    .logout{
+        border-bottom: 1px solid #d7d7d7;
+        padding: 16px 0;
+        text-align: left;
+        padding-left: 30px;
+        a{
+            color: #FD9E24;
+            text-decoration: none;
+            &:hover{
+                opacity: .7;
+            }
+        }
+    }
+}

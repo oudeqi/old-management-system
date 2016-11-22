@@ -1,0 +1,355 @@
+<div id="rp-put">
+    <!-- <button type="button" name="button" ng-click="xx()">xx</button> -->
+    <div class="tab" ng-show="putstep === 1">
+        <div class="tab-head">
+            <div class="tab-head-item" ng-click="changeRpType(2)" ng-class="{'active':rp.vip===2}">手气红包</div>
+            <!--  ng-click="changeRpType(1)" -->
+            <div class="tab-head-item not-allowed" ng-class="{'active':rp.vip===1}">VIP红包</div>
+            <div class="tab-head-item" ng-click="changeRpType(0)" ng-class="{'active':rp.vip===0}">大众红包</div>
+        </div>
+        <div class="tab-content">
+            <div class="l">
+                <div class="phone-rp" ng-class="{'phone-rp-luck':rp.vip===2,'phone-rp-vip':rp.vip===1,'phone-rp-ordinary':rp.vip===0}">
+                    <div class="business-logo">
+                        <img ng-show="rp.logo" ng-src="{{rp.logo}}" alt="" />
+                    </div>
+                    <div class="rp-tit">{{rp.introduce1}}</div>
+                    <div class="business-name" ng-show="rp.name">{{rp.name}}的现金红包</div>
+                    <div class="ub" ng-show="rp.vip===2">{{rp.uCoin}}<span>U</span></div>
+                </div>
+            </div>
+            <div class="r">
+                <form class="rp-form" name="Step1Form" novalidate ng-submit="next(1)">
+                    <div class="form-row">
+                        <label class="form-label">红包标题：</label>
+                        <input class="form-input" type="text" name="tit" ng-model="rp.introduce1" required placeholder="请输入红包标题">
+                        <span class="form-err-msg" ng-show="Step1Form.tit.$dirty && Step1Form.tit.$invalid">红包标题不能为空</span>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">投放品牌：</label>
+                        <input class="form-input" type="text" name="name" ng-model="rp.name" required placeholder="宣传品牌">
+                        <span class="form-err-msg" ng-show="Step1Form.name.$dirty && Step1Form.name.$invalid">请填写宣传品牌</span>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">品牌标志：</label>
+                        <input type="file" clean-file-value accept="image/*" class="hide" id="uploadLogo" nv-file-select="" uploader="uploadLogo" />
+                        <div class="form-pic-view" ng-show="rp.logo" style="background-image: url({{ rp.logo }});">
+                            <button class="pic-del" type="button" name="button" ng-click="rp.logo=''"></button>
+                        </div>
+                        <input class="form-addpic" ng-click="clickAddLogo()" ng-hide="rp.logo" type="button">
+                        <span class="form-tip" ng-show="!!uploadLogo.queue[0].progress">{{uploadLogo.queue[0].progress}} %</span>
+                        <span class="form-err-msg" ng-show="uploadLogo.queue[0].isError">上传失败，请重试！</span>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">红包类型：</label>
+                        <label class="form-radio">
+                            <input type="radio" ng-model="rp.type" value="1">
+                            <span>随机红包</span>
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" ng-model="rp.type" value="2">
+                            <span>等额红包</span>
+                        </label>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===2">
+                        <label class="form-label" for="">所需U币：</label>
+                        <select class="form-select" ng-model="rp.uCoin">
+                            <option value="1">1 U</option>
+                            <option value="2">2 U</option>
+                            <option value="5">5 U</option>
+                            <option value="10">10 U</option>
+                            <option value="20">20 U</option>
+                            <option value="50">50 U</option>
+                        </select>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===2">
+                        <label class="form-label" for="">红包比例：</label>
+                        <select class="form-select" ng-model="rp.rate">
+                            <option value="0.8">0.8</option>
+                            <option value="0.9">0.9</option>
+                            <option value="1">1</option>
+                            <option value="1.025">1.025</option>
+                            <option value="1.05">1.05</option>
+                            <option value="1.1">1.1</option>
+                            <option value="1.2">1.2</option>
+                            <option value="1.3">1.3</option>
+                            <option value="1.4">1.4</option>
+                            <option value="1.5">1.5</option>
+                        </select>
+                        <span class="form-msg">单个红包均价 <b>{{rp.uCoin * rp.rate * 0.1 | currency:"":2}}</b>元</span>
+                    </div>
+
+                    <div class="form-row" ng-show="rp.vip===2">
+                        <label class="form-label" for="">单期个数：</label>
+                        <input class="form-input" type="number" name="stageNumber" min="1" ng-model="rp.stageNumber" placeholder="个">
+                        <span class="form-err-msg" ng-show="Step1Form.stageNumber.$dirty && Step1Form.stageNumber.$invalid">请填写单期个数</span>
+                        <span class="form-msg" ng-hide="Step1Form.stageNumber.$invalid">
+                            每期 <b>{{rp.uCoin * rp.rate * 0.1 * rp.stageNumber | currency:"":2}}</b> 元
+                        </span>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===2">
+                        <label class="form-label" for="">红包期数：</label>
+                        <input class="form-input" type="number" min="1" name="rounds" placeholder="期" ng-model="rp.rounds">
+                        <span class="form-err-msg" ng-show="Step1Form.rounds.$dirty && Step1Form.rounds.$invalid">请填写红包期数</span>
+                        <span class="form-msg" ng-hide="Step1Form.rounds.$invalid">
+                            共发放 <b>{{rp.stageNumber * rp.rounds}}</b> 个红包&nbsp;&nbsp;
+                            合计： <b>{{rp.uCoin * rp.rate * 0.1 * rp.stageNumber * rp.rounds | currency:"":2}}</b> 元
+                        </span>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===2 && rp.uCoin && rp.stageNumber && rp.rounds">
+                        <label class="form-label" for="">投放统计：</label>
+                        <span class="form-msg">
+                            收入<b>{{rp.uCoin * rp.stageNumber * rp.rounds * 0.1 | currency:"￥":2}}</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="form-msg">
+                            支出<b>{{rp.uCoin * rp.rate * 0.1 * rp.stageNumber * rp.rounds | currency:"￥":2}}</b>&nbsp;&nbsp;
+                        </span>
+                        <span class="form-msg">
+                            补贴<b>{{rp.uCoin*rp.rate*0.1*rp.stageNumber*rp.rounds-rp.uCoin*rp.stageNumber*rp.rounds*0.1 | currency:"￥":2}}</b>
+                        </span>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===0 || rp.vip===1">
+                        <label class="form-label">投放金额：</label>
+                        <input class="form-input" type="number" ng-model="rp.totalMoney" placeholder="投放金额50~200000">
+                        <span class="form-msg">单个红包最低均价0.1元</span>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===0 || rp.vip===1">
+                        <label class="form-label">红包个数：</label>
+                        <input class="form-input" type="number" ng-model="rp.count" placeholder="个">
+                        <span class="form-msg" ng-show="rp.count && rp.totalMoney">单个红包均价 <b>{{rp.totalMoney/rp.count | currency:"":2}}</b> 元</span>
+                    </div>
+                    <div class="form-row" ng-show="rp.vip===0 || rp.vip===1">
+                        <label class="form-label">开抢时间：</label>
+                        <div class="form-date">
+                            <input class="date-input" type="text" ng-model="rp.beginTime" date-time-picker disabled-start-date="startDisabledEnd" placeholder="选择日期">
+                            <button type="button" class="date-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <div class="form-row" ng-show="rp.vip===0 || rp.vip===1">
+                        <label class="form-label">结束时间：</label>
+                        <div class="form-date">
+                            <input class="date-input" type="text" ng-model="rp.endTime" date-time-picker disabled-start-date="endDisabledEnd" placeholder="选择日期">
+                            <button type="button" class="date-addon">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </div>
+                    </div> -->
+                    <div class="form-row">
+                        <label class="form-label">投放模板：</label>
+                        <label class="form-radio">
+                            <input type="radio" ng-model="rp.templateType" value="2">
+                            <span>图文模板</span>
+                        </label>
+                        <!-- <label class="form-radio">
+                            <input type="radio" ng-model="rp.templateType" value="1">
+                            <span>视频模板</span>
+                        </label> -->
+                    </div>
+                    <hr class="hr-SM">
+                    <div class="form-row">
+                        <input class="form-nextBtn" ng-disabled="!rp.introduce1 || !rp.name || !rp.logo || step1Invalid" type="submit" value="下一步">
+                        <!-- ng-disabled="Step1Form.$invalid || !rp.logo || step1Invalid" -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="rp-tpl-textImg" ng-show="putstep === 2">
+        <div class="l">
+            <div class="phone-tpl-page1">
+                <div class="img-content">
+                    <img ng-show="rp.template.imgList.length" ng-src="{{rp.template.imgList[TplCurrImg]}}" alt="" />
+                </div>
+                <div class="content">
+                    <div class="desc1" ng-show="rp.name">
+                        <span>{{rp.name}}的现金红包</span>
+                    </div>
+                    <div class="desc2" ng-show="rp.stageNumber">{{rp.stageNumber}}个红包共{{rp.uCoin*rp.stageNumber*rp.rate*0.1 | number:2}}元</div>
+                    <div class="desc3" ng-show="rp.introduce1">{{rp.introduce1}}</div>
+                    <div class="desc4" ng-show="rp.stageNumber">本期剩余{{rp.stageNumber}}个红包</div>
+                </div>
+                <div class="bg"></div>
+            </div>
+        </div>
+        <div class="r">
+            <form class="rp-form" name="Step2Form" novalidate ng-submit="next(1)">
+                <div class="form-row">
+                    <label class="form-label">模板类型：</label>
+                    <label class="form-radio">
+                        <span ng-show="rp.templateType == 2">图文模板</span>
+                        <span ng-show="rp.templateType == 1">视频模板</span>
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="">红包大图：</label>
+                    <div class="form-pic-view" ng-repeat="img in rp.template.imgList" ng-click="setTplImgView($index)" style="background-image: url({{img}});">
+                        <button class="pic-del" type="button" name="button" ng-click="delTplImg($index)"></button>
+                    </div><!-- delTplImg() -->
+                    <input type="file" clean-file-value accept="image/*" class="hide" id="uploadBigImg" nv-file-select="" uploader="uploadBigImg" />
+                    <input class="form-addpic" ng-click="clickAddBigImg()" ng-hide="rp.template.imgList.length>4" type="button">
+                    <span class="form-tip" ng-show="!!uploadBigImg.queue[0].progress">{{uploadLogo.queue[0].progress}} %</span>
+                    <span class="form-err-msg" ng-show="uploadBigImg.queue[0].isError">上传失败，请重试！</span>
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="">分享小图：</label>
+                    <div class="form-pic-view" ng-show="rp.shareImg" style="background-image: url({{ rp.shareImg }});">
+                        <button class="pic-del" type="button" name="button" ng-click="rp.shareImg=''"></button>
+                    </div>
+                    <input type="file" clean-file-value accept="image/*" class="hide" id="uploadShareIcon" nv-file-select="" uploader="uploadShareIcon" />
+                    <input class="form-addpic" ng-click="clickAddShareIcon()" ng-hide="rp.shareImg" type="button">
+                    <span class="form-tip" ng-show="!!uploadShareIcon.queue[0].progress">{{uploadShareIcon.queue[0].progress}} %</span>
+                    <span class="form-err-msg" ng-show="uploadShareIcon.queue[0].isError">上传失败，请重试！</span>
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="">分享摘要：</label>
+                    <textarea class="form-textarea" ng-model="rp.introduction" placeholder="选填，没有填写将自动抓取文章文字前45个字符"></textarea>
+                </div>
+                <hr class="hr-MD">
+                <div class="form-row">
+                    <button class="form-prevBtn" type="button" name="button" ng-click="next(-1)">上一步</button>
+                    <input class="form-nextBtn2" type="submit" ng-disabled="Step2Form.$invalid || !rp.template.imgList.length || !rp.shareImg" value="下一步">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="rp-tpl-textImg" ng-show="putstep === 3">
+        <div class="l">
+            <div class="phone-tpl-page2">
+                <!-- <div class="content">
+                    <div class="picbox">
+                        <img ng-show="rp.template.imageUrl" ng-src="{{rp.template.imageUrl}}" alt="" />
+                    </div>
+                    <div class="atc-tit" ng-show="rp.introduce1">{{rp.introduce1}}</div>
+                    <div class="atc-author">作者：{{author}}</div>
+                    <div class="subscribe">
+                        <span>订阅</span>
+                    </div>
+                    <div class="atc-cont" ng-bind-html="rpTplsContent"></div>
+                    <div class="goods-info">
+                        <div class="ll"></div>
+                        <div class="rr">
+                            <div class="t">
+                                Kisslink改变了您的WIFI连接方式！吻路由K1
+                            </div>
+                            <div class="b">
+                                <div class="lll">
+                                    <span>￥60.00</span>
+                                    <span>起</span>
+                                </div>
+                                <div class="buybtn">立即购买</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reward">
+                        <span class="rewardbtn">赏</span>
+                    </div>
+                </div> -->
+                <div class="content-2">
+                    <div class="atc-head">{{rp.introduce1}}</div>
+                    <div class="atc-name">
+                        <div class="logo">
+                            <img ng-src="{{rp.logo}}" alt="" />
+                        </div>
+                        <div class="name">{{rp.name}}</div>
+                        <div class="time">{{ now | date : 'yyyy-MM-dd HH:mm'}}</div>
+                    </div>
+                    <div class="atc-con" ng-bind-html="rpTplsContent"></div>
+                </div>
+                <div class="bg"></div>
+            </div>
+        </div>
+        <div class="r">
+            <form class="rp-form" name="Step3Form" novalidate ng-submit="rpPut()">
+                <!-- <div class="form-row">
+                    <label class="form-label" for="">文章顶图：</label>
+                    <div class="form-pic-view" ng-show="rp.template.imageUrl" style="background-image: url({{ rp.template.imageUrl }});">
+                        <button class="pic-del" type="button" name="button" ng-click="rp.template.imageUrl=''"></button>
+                    </div>
+                    <input type="file" clean-file-value accept="image/*" class="hide" id="uploadAtcTop" nv-file-select="" uploader="uploadAtcTop" />
+                    <input class="form-addpic" ng-click="clickAddAtcTop()" ng-hide="rp.template.imageUrl" type="button">
+                    <span class="form-tip" ng-show="!!uploadAtcTop.queue[0].progress">{{uploadAtcTop.queue[0].progress}} %</span>
+                    <span class="form-err-msg" ng-show="uploadAtcTop.queue[0].isError">上传失败，请重试！</span>
+                </div> -->
+                <div class="form-row">
+                    <label class="form-label" for="">文章内容：</label>
+                    <div class="form-editor">
+                        <app-editor-mu ng-model="rp.template.content"></app-editor-mu>
+                    </div>
+                </div>
+                <!-- <div class="form-row">
+                    <label class="form-label" for="">商品小图：</label>
+                    <input class="form-addpic" type="button">
+                    <span class="form-tip">支持jpg/png格式，RGB模式，200*200 72dpi</span>
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="">商品标题：</label>
+                    <input class="form-input" type="text" name="name" placeholder="请输入红包标题">
+                    <span class="form-err-msg">红包标题不能为空</span>
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="">商品价格：</label>
+                    <input class="form-input" type="text" name="name" placeholder="请输入红包标题">
+                    <label class="form-radio">
+                        <input type="radio" checked name="goodsprice" value="">
+                        <span>元</span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="goodsprice" value="">
+                        <span>起</span>
+                    </label>
+                    <span class="form-err-msg">红包标题不能为空</span>
+                </div>
+                <div class="form-row">
+                    <label class="form-label" for="">商品链接：</label>
+                    <input class="form-input" type="text" name="name" placeholder="http://">
+                    <span class="form-err-msg">红包标题不能为空</span>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">打赏功能：</label>
+                    <label class="form-radio">
+                        <input type="radio" checked name="rprewardfn" value="">
+                        <span>开启</span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="rprewardfn" value="">
+                        <span>关闭</span>
+                    </label>
+                </div> -->
+                <!-- <hr class="hr-SM"> -->
+                <div class="form-row">
+                    <button class="form-prevBtn" type="button" name="button" ng-click="next(-1)">上一步</button>
+                    <input class="form-nextBtn2" type="submit" value="发布" ng-disabled="Step3Form.$invalid || !rp.template.content">
+                    <!--  || !rp.template.imageUrl -->
+                    <span class="loading" ng-show="rpPutLoading"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="rp-last-step" ng-show="putstep === 4 && putRpResult === 1">
+        <div class="result-succ"></div>
+        <div class="result-desc">
+            红包提交成功
+        </div>
+        <div class="result-tip">
+                提交的红包审核通过后才能在客户端显示
+        </div>
+        <div class="result-btn">
+            <button class="btn1" type="button" name="button" ng-click="cleanAndRefresh()">确认</button>
+        </div>
+    </div>
+    <div class="rp-last-step" ng-show="putstep === 4 && putRpResult === 0">
+        <div class="result-fail"></div>
+        <div class="result-desc">
+            {{errMessage}}
+        </div>
+        <div class="result-tip">
+                请返回重新编辑此手气红包
+        </div>
+        <div class="result-btn">
+            <button class="btn1" type="button" name="button" ng-click="retry()">重试</button>
+            <button class="btn2" type="button" name="button" ng-click="cleanAndRefresh()">清除缓存</button>
+        </div>
+    </div>
+</div>

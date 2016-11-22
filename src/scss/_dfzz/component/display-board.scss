@@ -1,0 +1,85 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+
+$display-board-act-color:$font-color-primary;
+$display-board-item-height:90px !default;
+
+
+%display-board-inner{
+    background: #fff;
+    padding: 20px 10px;
+    border-radius: 4px;
+    font-size: 0;
+    @include clearfix();
+    .item{
+        float: left;
+        height: $display-board-item-height;
+        font-size: 15px;
+        position: relative;
+        text-align: center;
+        a{
+            color: #686868;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: auto;
+            .t{
+                font-size: 32px;
+                line-height: 1.5;
+                padding-top: 10px;
+                margin: 0;
+            }
+            .b{
+                font-size: 14px;
+                margin: 0;
+            }
+            span{
+                font-size: 18px;
+                line-height: $display-board-item-height;
+            }
+            &:hover{
+                opacity: 0.85;
+            }
+            &.active{
+                .t,span{
+                    color: $display-board-act-color;
+                }
+            }
+        }
+        &:after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 1px;
+            background: #d7d7d7;
+        }
+        &:first-child:after{
+            width: 0;
+        }
+    }
+}
+
+.app-display-board{
+    overflow: hidden;
+    margin: 0 $content-edge-width;
+    .l{
+        float: left;
+        .inner{
+            margin-right: 7px;
+            @extend %display-board-inner;
+        }
+    }
+    .r{
+        float: left;
+        .inner{
+            margin-left: 7px;
+            @extend %display-board-inner;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+$app-ipt-border-radus:3px !default;
+$app-ipt-border-color: #d7d7d7 !default;
+$app-ipt-bg-color:#fff !default;
+$app-ipt-height:38px !default;
+$app-ipt-width: 200px !default;
+
+.app-select{
+    display: inline-block;
+    vertical-align: middle;
+    overflow: visible;
+    select{
+        border: 1px solid $app-ipt-border-color;
+        height: $app-ipt-height;
+        border-radius: $app-ipt-border-radus;
+        min-width: 100px;
+        padding-left: 5px;
+        font-size: 15px;
+        background-color: $app-ipt-bg-color;
+
+    }
+}

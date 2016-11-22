@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>用户后台</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
+        <!-- build:css css/_index/app/app.css -->
+        <!-- inject:css -->
+        <link rel="stylesheet" href="css/_index/page/index.css">
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        <!-- build:js js/_index/lib.js -->
+        <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script type="text/javascript" src="../bower_components/angular-file-upload/dist/angular-file-upload.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js js/_index/app.js -->
+        <!-- inject:js -->
+        <script src="js/_index/tpl/index.tpl.js"></script>
+        <script src="js/_index/app.js"></script>
+        <script src="js/_index/ctrl/secl-type.js"></script>
+        <script src="js/_index/ctrl/ruzhu.js"></script>
+        <script src="js/_index/ctrl/reg.js"></script>
+        <script src="js/_index/ctrl/login.js"></script>
+        <script src="js/_index/ctrl/forget.js"></script>
+        <!-- endinject -->
+        <!-- endbuild -->
+    </head>
+    <body ng-app="uoudo.index">
+        <div class='container'>
+        	<div class='layout'>
+        		<div id='header'>
+        		    <div class="l">
+        		        <h1>
+                            <a href="javascript:void(0);">
+                                <img src="./img/logo@2x.png" alt="有读" />
+                            </a>
+                            <span>本地资讯 尽在2台</span>
+                        </h1>
+        		    </div>
+                    <div class="r">
+                        <span>客户端下载</span>
+                        <a href="javascript:void(0);"><i class="android"></i></a>
+                        <a href="javascript:void(0);"><i class="ios"></i></a>
+                        <button type="button" name="button">返回官网</button>
+                    </div>
+        		</div>
+                <div ui-view></div>
+        		<div class='layout_footer'></div>
+        	</div>
+        	<div id='footer'>
+        	    <div class="inner">
+                    <ul class="addr">
+                        <li class="c1">
+                            蜀ICP备15028211号  四川云聚互动信息技术有限公司
+                        </li>
+                        <li class="c2">
+                            邮箱： <a href="Mailto:kefu@uoolle.com">kefu@uoolle.com</a>
+                        </li>
+                        <li class="c1">
+                            法律声明：© 2015-2016 uoolle.com 版权所有
+                        </li>
+                        <li class="c2">
+                            地址：成都市高新区天府三街新希望国际B座2801室
+                        </li>
+                        <li class="c3">
+                            <a href="javascript:void(0);" class="sina">
+                                <i></i><span>微博关注</span>
+                            </a>
+                            <a href="javascript:void(0);" class="wechat">
+                                <i></i><span>微信公众号关注</span>
+                            </a>
+                        </li>
+                    </ul>
+        	    </div>
+        	</div>
+        </div>
+    </body>
+</html>

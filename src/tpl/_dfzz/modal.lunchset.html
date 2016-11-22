@@ -1,0 +1,29 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="content">
+        <h3>广告标题</h3>
+        <div class="ipt_box">
+            <input type="text" ng-keyup="checkTit()" placeholder="输入广告标题" ng-model="title">
+            <p class="err" ng-show="titMsg">{{titMsg}}</p>
+        </div>
+        <h3>广告链接</h3>
+        <div class="ipt_box">
+            <input type="text" ng-keyup="checkurl()" placeholder="http(s)://" ng-model="url">
+            <p class="err" ng-show="urlMsg">{{urlMsg}}</p>
+        </div>
+        <h3>上传广告图片</h3>
+        <p class="tip">jpg格式750*1100 150kb以内</p>
+        <div class="picview" ng-show="image">
+            <button class="delpic" ng-show="!succMsg" ng-click="image = ''"></button>
+            <img ng-src="{{image}}" alt="" />
+        </div>
+        <button ng-show="!image" class="addpic" ng-click="upload()"></button>
+        <input ng-show="false" clean-file-value type="file" accept="image/*" id="uploadLunchPic" nv-file-select="" uploader="uploadLunchPic" />
+        <div class="msg_box">
+            <p class="msg" ng-show="succMsg">{{succMsg}}</p>
+            <p class="err" ng-show="errMsg">{{errMsg}}</p>
+        </div>
+        <button class="app-button-primary" type="button" ng-show="!succMsg" ng-click="ok()" name="button">确认</button>
+        <button class="app-button-default" type="button" ng-show="succMsg" ng-click="cancel()" name="button">关闭</button>
+    </div>
+</div>

@@ -1,0 +1,692 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+%rp-form{
+    padding-top: 60px;
+    padding-right: 20px;
+    hr.hr-SM{
+        margin: 30px 0;
+        margin-bottom: 25px;
+    }
+    hr.hr-MD{
+        margin: 35px 0;
+        margin-bottom: 30px;
+    }
+    .form-row{
+        margin-bottom: 20px;
+        .form-label{
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size:$font-size-lg;
+            color:$font-color-default;
+            margin-right: 10px;
+            margin-bottom: 0;
+            width: 80px;
+        }
+        .form-date{
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0;
+            .date-input{
+                width: 200px - 36px;
+                border: 1px solid #ebebeb;
+                border-right: 1px solid #f8f8f8;
+                border-radius: 3px 0 0 3px;
+                background-color: #f8f8f8;
+                height: 36px;
+                margin: 0;
+                padding: 0 4px;
+                font-size:$font-size-lg;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .date-addon{
+                font-size:$font-size-lg;
+                width: 36px;
+                height: 36px;
+                display: inline-block;
+                vertical-align: middle;
+                border: 1px solid #e0e0e0;
+                border-radius: 0 3px 3px 0;
+                background-color: #f0f0f0;
+                &:hover{
+                    background-color: #e0e0e0;
+                }
+            }
+        }
+        .form-editor{
+            margin-top: 6px;
+            width: 360px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .form-input{
+            width: 200px;
+            border: 1px solid #ebebeb;
+            border-radius: 3px;
+            background-color: #f8f8f8;
+            height: 36px;
+            margin: 0;
+            padding: 0 4px;
+            font-size:$font-size-lg;
+            margin-right: 10px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .form-pic-view{
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            width: 42px;
+            height: 42px;
+            border-radius: 4px;
+            background-color: #ddd;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            margin-right: 10px;
+            .pic-del{
+                @include sprite($icon-del);
+                position: absolute;
+                top: -6px;
+                right: -6px;
+                border: 0;
+                margin: 0;
+                padding: 0;
+                border-radius: 10px;
+            }
+        }
+        .form-textarea{
+            background:#f8f8f8;
+            border:1px solid #ebebeb;
+            border-radius:3px;
+            width:339px;
+            height:100px;
+            display: inline-block;
+            vertical-align: top;
+            padding: 4px 8px;
+            resize: none;
+        }
+        .form-addpic{
+            @include sprite($icon-add-pic);
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            border: 0;
+        }
+        %form-tip{
+            font-size:$font-size-xs;
+            color:#bfbfbf;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .form-tip{
+            @extend %form-tip;
+        }
+        .form-tip-block{
+            @extend %form-tip;
+            display: block;
+            margin-left: 90px;
+            padding-top: 4px;
+        }
+        .form-msg{
+            font-size:$font-size-md;
+            display: inline-block;
+            vertical-align: middle;
+            color:#bfbfbf;
+            b{
+                color: $bg-color-primary;
+                opacity: 0.8;
+                font-weight: normal;
+            }
+        }
+        .form-err-msg{
+            font-size:$font-size-md;
+            color: $bg-color-warning;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .form-radio{
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: normal;
+            font-size: $font-size-lg;
+            margin-right: 20px;
+            cursor: pointer;
+            margin-bottom: 0;
+            input[type="radio"]{
+                display: inline-block;
+                vertical-align: middle;
+                width: 20px;
+                height: 20px;
+                outline: 0;
+                margin: 0;
+                padding: 0;
+            }
+            span{
+                display: inline-block;
+                vertical-align: middle;;
+            }
+        }
+        .form-select{
+            height: 36px;
+            line-height: 36px;
+            border: 1px solid #ebebeb;
+            border-radius: 3px;
+            background-color: #f8f8f8;
+            min-width: 100px;
+            margin-right: 10px;
+        }
+        .form-nextBtn{
+            @include app-btn($bg-color-primary);
+            margin-left: 90px;
+            &:disabled{
+                @include btn-disabled();
+            }
+        }
+        .form-prevBtn{
+            @include app-btn($bg-color-default);
+            &:disabled{
+                @include btn-disabled();
+            }
+        }
+        .form-nextBtn2{
+            @include app-btn($bg-color-primary);
+            margin-left: 20px;
+            &:disabled{
+                @include btn-disabled();
+            }
+        }
+        .loading{
+            display: inline-block;
+            vertical-align: middle;
+            width: 18px;
+            height: 18px;
+            background: url(../../../img/loading.gif) scroll no-repeat center;
+            background-size: 100%;
+            margin-left: 10px;
+            opacity: 0.5;
+        }
+    }
+}
+
+#rp-put{
+    padding: 50px 20px 50px 20px;
+    .tab .tab-head{
+        width: 65%;
+        height: 36px;
+        text-align: center;
+        float: right;
+        font-size: 0;
+        .tab-head-item{
+            height: 100%;
+            display: inline-block;
+            font-size: 16px;
+            line-height: 36px;
+            margin: 0 10px;
+            padding: 0 40px;
+            background: #d7d7d7;
+            border-radius: 6px 6px 0 0;
+            color: #fff;
+            cursor: pointer;
+            &.active{
+                background: #fff;
+                color: $font-color-default;
+            }
+            &.not-allowed{
+                cursor: not-allowed;
+            }
+        }
+    }
+    .tab .tab-content{
+        clear: right;
+        background: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+        @include clearfix();
+        .l{
+            float: left;
+            width: 45%;
+            .phone-rp{
+                width: 417px;
+                position: relative;
+                height: 700px;
+                margin: 0 auto;
+                &.phone-rp-luck{
+                    background: url(../../../img/phone-rp-luck.jpg) scroll no-repeat center;
+                    background-size: cover;
+                }
+                &.phone-rp-vip{
+                    background: url(../../../img/phone-rp-vip.jpg) scroll no-repeat center;
+                    background-size: cover;
+                }
+                &.phone-rp-ordinary{
+                    background: url(../../../img/phone-rp-ordinary.jpg) scroll no-repeat center;
+                    background-size: cover;
+                }
+                .business-logo{
+                    position: absolute;
+                    top: 150px;
+                    left: 46px;
+                    cursor: pointer;
+                    @include sprite($icon-add-pic);
+                    border-radius: 4px;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                    }
+                }
+                .rp-tit{
+                    font-size:$font-size-md;
+                    color:#ffffff;
+                    line-height:1.5;
+                    position: absolute;
+                    top: 171px;
+                    left: 170px;
+                    width: 180px;
+                    height: 40px;
+                    text-align: left;
+                    @include motw;
+                }
+                .business-name{
+                    position: absolute;
+                    top: 244px;
+                    line-height: 1.5;
+                    left: 118px;
+                    width: 185px;
+                    font-size:14px;
+                    color:#bfbfbf;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .ub{
+                    position: absolute;
+                    top: 244px;
+                    line-height: 1.5;
+                    left: 300px;
+                    width: 50px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    text-align: right;
+                    font-size:$font-size-md;
+                    color:#fd9e24;
+                }
+            }
+        }
+        .r{
+            float: left;
+            width: 55%;
+            @extend %rp-form;
+        }
+    }
+    .rp-tpl-textImg{
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fff;
+        @include clearfix();
+        .l{
+            float: left;
+            width: 45%;
+            .phone-tpl-page1{
+                width: 417px;
+                height: 700px;
+                position: relative;
+                margin: 0 auto;
+                %content{
+                    // background: #333;
+                    width: 359px;
+                    height: 638px;
+                    position: absolute;
+                    top: 29px;
+                    left: 27px;
+                }
+                .img-content{
+                    @extend %content;
+                    z-index: 1;
+                    background: #ccc;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .content{
+                    @extend %content;
+                    z-index: 3;
+                    %desc{
+                        text-align: center;
+                        padding: 0 30px;
+                        width: 100%;
+                        position: absolute;
+                        left: 0;
+                    }
+                    .desc1{
+                        @extend %desc;
+                        top: 32px;
+                        span{
+                            display: inline-block;
+                            font-size:$font-size-md;
+                            max-width: 100%;
+                            color:#ffffff;
+                            line-height: 1;
+                            padding: 5px 20px;
+                            background-color: rgba(0,0,0,.5);
+                            border-radius: 4px;
+                            @include otw;
+                        }
+                    }
+                    .desc2{
+                        @extend %desc;
+                        @include otw;
+                        font-size:24px;
+                        color:#d5363b;
+                        line-height:1;
+                        top: 80px;
+                    }
+                    .desc3{
+                        @extend %desc;
+                        @include motw;
+                        height: 52px;
+                        font-size:20px;
+                        line-height: 1.2;
+                        color:#ffffff;
+                        top: 472px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .desc4{
+                        opacity:0.69;
+                        @extend %desc;
+                        @include otw;
+                        font-size:$font-size-sm;
+                        color:#ffffff;
+                        top: 525px;
+                    }
+                }
+                .bg{
+                    background: url(../../../img/phone-rp-tpl-page1.png) scroll no-repeat center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                }
+            }
+            .phone-tpl-page2{
+                // width: 418px;
+                // height: 844px;
+                // position: relative;
+                // margin: 0 auto;
+                // margin-top: 50px;
+                // margin-bottom: 50px;
+                width: 417px;
+                height: 720px;
+                position: relative;
+                margin: 0 auto;
+                .content{
+                    width: 361px;
+                    height: 638px;
+                    z-index: 3;
+                    position: absolute;
+                    top: 102px;
+                    left: 27px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    background: #fff;
+                    @include content-scroll();
+                    .picbox{
+                        height: 200px;
+                        width: 100%;
+                        background: #aaa;
+                        overflow: hidden;
+                        img{
+                            width: 100%;
+                            height: auto;
+                            display: block;
+                        }
+                    }
+                    .atc-tit{
+                        font-size:18px;
+                        padding-top: 20px;
+                        line-height: 1.5;
+                        color:$font-color-default;
+                        text-align:center;
+                    }
+                    .atc-author{
+                        text-align: center;
+                        font-size: 13px;
+                        line-height: 1.5;
+                        padding-top: 6px;
+                    }
+                    .subscribe{
+                        text-align: center;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        span{
+                            background-color: $bg-color-primary;
+                            color: #fff;
+                            font-size: 13px;
+                            border-radius: 4px;
+                            line-height: 1;
+                            padding: 2px 4px;
+                        }
+                    }
+                    .atc-cont{
+                        font-size:14px;
+                        color:#848689;
+                        line-height:1;
+                        text-align:left;
+                        p{
+                            margin: 5px 0;
+                        }
+                        img{
+                            width: 100%;
+                            height: auto;
+                            display: block;
+                        }
+                    }
+                    .goods-info{
+                        padding: 9px 12px;
+                        background: #f8f8f8;
+                        @include clearfix();
+                        .ll{
+                            float: left;
+                            width: 66px;
+                            height: 66px;
+                            background: #aaa;
+                        }
+                        .rr{
+                            margin-left: 66px;
+                            height: 66px;
+                            padding-left: 6px;
+                            .t{
+                                font-size:15px;
+                                color:#555;
+                                line-height: 1.35;
+                                @include motw;
+                            }
+                            .b{
+                                font-size: 0;
+                                margin-top: 3px;
+                                .lll{
+                                    font-size:15px;
+                                    color:#555;
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    width: 190px;
+                                    @include otw;
+                                }
+                                .buybtn{
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    background: red;
+                                    color: #fff;
+                                    font-size: 12px;
+                                    width: 70px;
+                                    height: 22px;
+                                    line-height: 22px;
+                                    border-radius: 4px;
+                                    color: #fff;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                    .reward{
+                        text-align: center;
+                        padding: 10px 0;
+                        .rewardbtn{
+                            display: inline-block;
+                            font-size: 26px;
+                            width: 56px;
+                            height: 56px;
+                            line-height: 52px;
+                            border-radius: 50%;
+                            border: 1px solid #ddd;
+                            color: $bg-color-info;
+                        }
+                    }
+                }
+                .content-2{
+                    width: 360px;
+                    padding: 0 10px;
+                    height: 578px;
+                    z-index: 3;
+                    position: absolute;
+                    // top: 172px;
+                    top: 102px;
+                    left: 27px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    background: #fff;
+                    @include content-scroll();
+                    .atc-head{
+                        font-size:18px;
+                        padding-top: 20px;
+                        line-height: 1.5;
+                        color:$font-color-default;
+                        text-align:left;
+                    }
+                    .atc-name{
+                        padding: 6px 0;
+                        @include clearfix();
+                        .logo{
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            float: left;
+                            overflow: hidden;
+                            border: 1px solid #ebebeb;
+                            img{
+                                width: 100%;
+                                height: auto;
+                                display: block;
+                            }
+                        }
+                        .name{
+                            font-size: 12px;
+                            height: 30px;
+                            line-height: 30px;
+                            margin-left: 5px;
+                            float: left;
+                            color: #595959;
+                        }
+                        .time{
+                            font-size: 12px;
+                            height: 30px;
+                            line-height: 30px;
+                            margin-left: 5px;
+                            float: right;
+                            color: #595959;
+                        }
+                    }
+                    .atc-con{
+                        font-size:14px;
+                        color:#848689;
+                        line-height:1;
+                        text-align:left;
+                        p{
+                            margin: 5px 0;
+                        }
+                        img{
+                            width: 100%;
+                            height: auto;
+                            display: block;
+                        }
+                    }
+                }
+                .bg{
+                    // background: url(../../../img/phone-rp-tpl-page2.png) scroll no-repeat center;
+                    background: url(../../../img/phone-rp-tpl-page2-1.png) scroll no-repeat center;
+                    background-size: cover;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                }
+            }
+        }
+        .r{
+            float: left;
+            width: 55%;
+            @extend %rp-form;
+        }
+    }
+    .rp-last-step{
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fff;
+        margin-top: 20px;
+        padding: 130px 0;
+        %resultPic{
+            width:65px;
+            height:65px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+        .result-succ{
+            @extend %resultPic;
+            @include sprite($icon-opra-succ);
+        }
+        .result-fail{
+            @extend %resultPic;
+            @include sprite($icon-opra-fail);
+        }
+        .result-desc{
+            text-align: center;
+            margin-bottom: 20px;
+            font-size:30px;
+            color:$font-color-default;
+            line-height: 1;
+        }
+        .result-tip{
+            text-align: center;
+            margin-bottom: 50px;
+            font-size:18px;
+            color:#848689;
+            line-height: 1;
+        }
+        .result-btn{
+            text-align: center;
+            .btn1{
+                margin: 0 10px;
+                @include app-btn($bg-color-primary);
+            }
+            .btn2{
+                margin: 0 10px;
+                @include app-btn($bg-color-default);
+            }
+        }
+    }
+}

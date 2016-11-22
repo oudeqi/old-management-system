@@ -1,0 +1,103 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+@import "../../helpers/_extend";
+
+.modal-copyrp{
+    .modal-dialog{
+        width: 500px;
+        .content{
+            padding-top: 70px;
+            padding-bottom: 30px;
+            .form_row{
+                margin-bottom: 24px;
+                font-size: 15px;
+                color:#2b333b;
+                overflow: visible;
+                &.padd_t{
+                    padding-top: 30px;
+                }
+                .tit{
+                    float: left;
+                    width: 140px;
+                    text-align: right;
+                    margin: 0;
+                    font-weight: bold;
+                    padding-top: 6px;
+                }
+                .cont{
+                    margin: 0;
+                    margin-left: 140px;
+                    padding-left: 20px;
+                    min-height: 20px;
+                    &.otw{
+                        @include otw;
+                    }
+                    %ipt_focus{
+                        outline: 0;
+                        &:focus{
+                            border:1px solid lighten($font-color-primary,25%);
+                        }
+                    }
+                    .tip{
+                        font-size: 14px;
+                        color: #686868;
+                        span{
+                            color: $font-color-primary;
+                        }
+                    }
+                    .msg{
+                        font-size: 14px;
+                        color: $font-color-primary;
+                        margin-left: 15px;
+                    }
+                    .err{
+                        font-size: 14px;
+                        color: $font-color-info;
+                        margin-left: 15px;
+                    }
+                    .form_date{
+                        display: table;
+                        input{
+                            width: 163px;
+                            height: 36px;
+                            border: 1px solid #d7d7d7;
+                            border-right: 0;
+                            border-radius: 2px 0 0 2px;
+                            outline: 0;
+                            padding: 0 5px;
+                            font-size: inherit;
+                            font-family: inherit;
+                            display: table-cell;
+                            vertical-align: middle;
+                            @extend %ipt_focus;
+                        }
+                        .ipt_addon{
+                            font-size: 15px;
+                            width: 36px;
+                            height: 36px;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 0 2px 2px 0;
+                            background-color: #f0f0f0;
+                            display: table-cell;
+                            vertical-align: middle;
+                            outline: 0;
+                        }
+                    }
+                    .form_ipt{
+                        width: 199px;
+                        height: 36px;
+                        border: 1px solid #d7d7d7;
+                        border-radius: 2px;
+                        padding: 0 5px;
+                        font-size: inherit;
+                        font-family: inherit;
+                        @extend %ipt_focus;
+                    }
+                }
+            }
+        }
+
+    }
+}
