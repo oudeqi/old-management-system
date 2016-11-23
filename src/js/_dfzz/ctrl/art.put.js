@@ -277,7 +277,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             var pushTime = null;
             if($scope.pushTime){
                 pushTime = $scope.pushTime + ":00";
-                pushTime = new Date(pushTime).getTime()
+                pushTime = new Date(pushTime).getTime();
             }
             $http.post(constant.APP_HOST+'/v1/aut/info/publish',{
                 deleteId:$scope.deleteId,

@@ -191,7 +191,13 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/finance_list",
             templateUrl: "./tpl/_dfzz/finance.list.html",
             controller: 'finance_list',
+        })
+        .state('treasure_put', {
+            url: "/treasure_put",
+            templateUrl: "./tpl/_dfzz/treasure.put.html",
+            controller: 'treasure_put',
         });
+
 
 
 

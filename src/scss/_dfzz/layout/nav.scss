@@ -77,6 +77,9 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-finance{
                     @include sprite($icon-nav-finance);
                 }
+                .icon-treasure{
+                    @include sprite($icon-nav-treasure);
+                }
                 .txt{
                     display: block;
                     width: 100%;
@@ -108,6 +111,9 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-finance{
                         @include sprite($icon-nav-finance-act);
+                    }
+                    .icon-treasure{
+                        @include sprite($icon-nav-treasure-act);
                     }
                 }
                 &:hover{

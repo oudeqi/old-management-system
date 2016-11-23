@@ -1,0 +1,207 @@
+<div class="treasure_put_form">
+    <div class="inner">
+        <div class="l">
+            <div class="phone" ng-show="step === 1">
+                <div class="phone_head">
+                    <div class="head_btn"></div>
+                    <div class="head_tit">
+                        <span>夺宝</span>
+                    </div>
+                    <div class="head_btn"></div>
+                </div>
+                <div class="phone_nav">
+                    <img src="./img/app-nav.png" alt="" />
+                </div>
+                <div class="phone_content">
+                    <div class="banner">
+                        <div class="bg"></div>
+                        <img ng-src="" alt="" />
+                        <div class="tit">
+                            请输入文章标题
+                        </div>
+                        <div class="phone-progress">
+    						<span class="desc">夺宝进度 80%</span>
+    						<div class="bar">
+    							<div class="bar-inner"></div>
+    						</div>
+    					</div>
+                    </div>
+                    <div class="banner-botom">
+						<div class="left">
+							<div class="t">总需人次，剩余 <span>1</span> 人次</div>
+							<div class="b">￥<span>1</span></div>
+						</div>
+						<div class="right">
+							<button>立即夺宝</button>
+						</div>
+					</div>
+                </div>
+            </div>
+            <div class="phone" ng-show="step === 2">
+                <div class="phone_head">
+                    <div class="head_btn">
+                        <div class="back animated bounceIn" ng-click="step = 1">
+                            <i class="ic"></i>
+                        </div>
+                    </div>
+                    <div class="head_tit">
+                        <span>奖品详情</span>
+                    </div>
+                    <div class="head_btn"></div>
+                </div>
+                <div class="phone_nav">
+                    <img src="./img/app-nav.png" alt="" />
+                </div>
+                <div class="phone_content">
+                    <div class="banner">
+                        <img ng-src="" alt="" />
+                    </div>
+                    <div class="base_info">
+						<div class="txt_1">
+							第01期 zxczx
+						</div>
+						<div class="txt_2">
+						    请输入描述...
+						</div>
+						<div class="bar">
+							<div class="bar_inner"></div>
+						</div>
+						<div class="bar_bott">
+							<div class="ll">总需20人次</div>
+							<div class="rr">距离揭晓还需1人次</div>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="form_row">
+                <div class="tit">
+                    <span>商品名称：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" placeholder="请输入...">
+                    <span class="err">请输入商品名称</span>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>所属类别：</span>
+                </div>
+                <div class="cont">
+                    <select class="select_type">
+                        <option value="0" selected="selected">不推荐</option>
+                        <option value="28">综艺</option>
+                        <option value="29">萌物</option>
+                        <option value="30">时事</option>
+                        <option value="31">美食</option>
+                        <option value="32">体育</option>
+                        <option value="33">游戏</option>
+                        <option value="34">音乐</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>夺宝期数：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" placeholder="请输入...">
+                    <span class="err">请输入...</span>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>上传封面：</span>
+                </div>
+                <div class="cont">
+                    <div class="pic_view" >
+                        <img ng-src="{{}}" alt="" />
+                        <button class="delpic" type="button"></button>
+                    </div>
+                    <button class="add_pic_btn" type="button" name="button"></button>
+                    <!-- <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadPic" nv-file-select="" uploader="uploadPic" /> -->
+                    <!-- <span class="tip" ng-show="(!picUploadErr && !uploadPic.queue[0].progress && !noPreviewUrl) && !shareImg">支持jpg格式，850*405 72dpi</span>
+                    <span class="tip" ng-show="!!uploadPic.queue[0].progress">{{uploadVideo.queue[0].progress}} %</span> -->
+                    <!-- <span class="tip" ng-show="shareImg">上传成功</span>
+                    <span class="err" ng-show="(picUploadErr || noPreviewUrl) && !shareImg">{{picUploadErr || "请上传文章封面图"}}</span> -->
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>设置标题：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" placeholder="请输入...">
+                    <span class="err">请输入...</span>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>商品价格：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" placeholder="请输入...">
+                    <span class="err">请输入...</span>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>单次金额：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" placeholder="请输入...">
+                    <span class="err">请输入...</span>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>轮播图片：</span>
+                </div>
+                <div class="cont">
+                    <div class="pic_view">
+                        <img ng-src="{{}}" alt="" />
+                        <button class="delpic" type="button"></button>
+                    </div>
+                    <button class="add_pic_btn" type="button" name="button"></button>
+                    <!-- <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadPic" nv-file-select="" uploader="uploadPic" /> -->
+                    <!-- <span class="tip" ng-show="(!picUploadErr && !uploadPic.queue[0].progress && !noPreviewUrl) && !shareImg">支持jpg格式，850*405 72dpi</span>
+                    <span class="tip" ng-show="!!uploadPic.queue[0].progress">{{uploadVideo.queue[0].progress}} %</span> -->
+                    <!-- <span class="tip" ng-show="shareImg">上传成功</span>
+                    <span class="err" ng-show="(picUploadErr || noPreviewUrl) && !shareImg">{{picUploadErr || "请上传文章封面图"}}</span> -->
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>添加描述：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" placeholder="请输入...">
+                    <span class="err">请输入...</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>奖品详情：</span>
+                </div>
+                <div class="cont">
+                    <app-editor-mu ng-model="content"></app-editor-mu>
+                </div>
+                <p class="err_block">请编辑文章内容</p>
+            </div>
+            <div class="form_row">
+                <div class="tit"></div>
+                <div class="cont">
+                    <button class="app-button-default" ng-show="artEdit" type="button" ng-click="putNew()">发布新文章</button>
+                    <button class="app-button-primary" type="button" ng-click="putArticle()">提交</button>
+                    <button class="app-button-default" ng-show="!artEdit" type="button" ng-click="putNew()">重置</button>
+                    <!-- <button class="app-button-default" ng-click="showInfo()" type="button" ng-show="true">测试</button> -->
+                    <i class="loading" ng-show="loading"></i>
+                    <span class="err" ng-show="errMsg">{{errMsg}}</span>
+                    <span class="succ" ng-show="succMsg">{{succMsg}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

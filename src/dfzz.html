@@ -15,6 +15,12 @@
 
         <!-- build:css css/_dfzz/app/app.css -->
         <!-- inject:css -->
+        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
+        <link rel="stylesheet" href="css/_dfzz/base/base.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -36,12 +42,6 @@
         <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
-        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
-        <link rel="stylesheet" href="css/_dfzz/base/base.css">
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
@@ -50,6 +50,7 @@
         <link rel="stylesheet" href="css/_dfzz/page/rp.put.css">
         <link rel="stylesheet" href="css/_dfzz/page/setting.css">
         <link rel="stylesheet" href="css/_dfzz/page/tgtj.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
         <!-- endinject -->
         <!-- endbuild -->
 
@@ -76,8 +77,9 @@
         <!-- inject:js -->
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
+        <script src="js/_dfzz/ctrl/treasure.put.js"></script>
         <script src="js/_dfzz/ctrl/tgtj.list.js"></script>
         <script src="js/_dfzz/ctrl/setting.js"></script>
         <script src="js/_dfzz/ctrl/rp.put.js"></script>
@@ -170,6 +172,12 @@
                         <a href="javascript:void(0);" ui-sref="finance_list" ng-class="{'active':mainNav==='finance'}" ng-mouseenter="navMouseover(7)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-finance"></i>
                             <span class="txt">财务管理</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-treasure"></i>
+                            <span class="txt">夺宝管理</span>
                         </a>
                     </li>
 
@@ -285,7 +293,16 @@
                     </li>
                 </ul>
             </div>
-
+            <div id="sub-nav-treasure" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()" ng-show="currNav === 8">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_put" ui-sref-active="active">发布夺宝</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>
