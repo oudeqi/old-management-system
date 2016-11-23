@@ -45,15 +45,15 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
         $rootScope.siteName = localStorageService.get('userInfo').siteName;
         //状态，1 需要编辑，2审核中 不可编辑，3 审核成功 不可编辑，4，审核失败，可以编辑
         $rootScope.status = localStorageService.get('userInfo').status;
-        if($rootScope.status === 1){
-            $rootScope.statusMsg = "你的资料不完整，请完善资料";
-        }else if($rootScope.status === 2){
-            $rootScope.statusMsg = "你的资料正在审核中，请等待";
-        }else if($rootScope.status === 4){
-            $rootScope.statusMsg = "你的资料审核失败，请完善资料";
-        }else{
-            $rootScope.statusMsg = "";
-        }
+        // if($rootScope.status === 1){
+        //     $rootScope.statusMsg = "你的资料不完整，请完善资料";
+        // }else if($rootScope.status === 2){
+        //     $rootScope.statusMsg = "你的资料正在审核中，请等待";
+        // }else if($rootScope.status === 4){
+        //     $rootScope.statusMsg = "你的资料审核失败，请完善资料";
+        // }else{
+        //     $rootScope.statusMsg = "";
+        // }
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
         // $rootScope.permission.menu_rp = "0";
 
@@ -84,24 +84,26 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
             console.log(toState);
             // 状态，1 需要编辑，2审核中 不可编辑，3 审核成功 不可编辑，4，审核失败，可以编辑
-            if($rootScope.status === 1 && toState.name !== "head_setting"){
-                // 资料不完整
-                $rootScope.statusMsg = "你的资料不完整，请完善资料";
-                event.preventDefault();
-                $state.go("head_setting",{},{reload:true});
-            }
-            if($rootScope.status === 2 && toState.name !== "head_setting"){
-                //资料审核中
-                $rootScope.statusMsg = "你的资料正在审核中，请等待";
-                event.preventDefault();
-                $state.go("head_setting",{},{reload:true});
-            }
-            if($rootScope.status === 4 && toState.name !== "head_setting"){
-                // 资料审核失败
-                $rootScope.statusMsg = "你的资料审核失败，请完善资料";
-                event.preventDefault();
-                $state.go("head_setting",{},{reload:true});
-            }
+            // if($rootScope.status === 1 && toState.name !== "head_setting"){
+            //     // 资料不完整
+            //     $rootScope.statusMsg = "你的资料不完整，请完善资料";
+            //     event.preventDefault();
+            //     $state.go("head_setting",{},{reload:true});
+            // }
+            // if($rootScope.status === 2 && toState.name !== "head_setting"){
+            //     //资料审核中
+            //     $rootScope.statusMsg = "你的资料正在审核中，请等待";
+            //     event.preventDefault();
+            //     $state.go("head_setting",{},{reload:true});
+            // }
+            // if($rootScope.status === 4 && toState.name !== "head_setting"){
+            //     // 资料审核失败
+            //     $rootScope.statusMsg = "你的资料审核失败，请完善资料";
+            //     event.preventDefault();
+            //     $state.go("head_setting",{},{reload:true});
+            // }
+
+
             if(toState.name.split("_")[0] === "art" && $rootScope.permission.menu_info === "0"){
                 console.log("无发布文章权限");
                 event.preventDefault();
