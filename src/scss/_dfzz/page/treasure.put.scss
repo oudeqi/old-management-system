@@ -468,6 +468,9 @@
                         font-family: inherit;
                         margin-right: 10px;
                         @extend %ipt_focus;
+                        &.has_err{
+                            border: 1px solid $font-color-warning;
+                        }
                     }
                     .form_date{
                         display: table;

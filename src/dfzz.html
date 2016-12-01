@@ -50,6 +50,7 @@
         <link rel="stylesheet" href="css/_dfzz/page/rp.put.css">
         <link rel="stylesheet" href="css/_dfzz/page/setting.css">
         <link rel="stylesheet" href="css/_dfzz/page/tgtj.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
         <!-- endinject -->
         <!-- endbuild -->
@@ -75,15 +76,16 @@
 
         <!-- build:js js/_dfzz/app.js -->
         <!-- inject:js -->
+        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
-        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/treasure.put.js"></script>
+        <script src="js/_dfzz/ctrl/treasure.list.js"></script>
         <script src="js/_dfzz/ctrl/tgtj.list.js"></script>
         <script src="js/_dfzz/ctrl/setting.js"></script>
         <script src="js/_dfzz/ctrl/rp.put.js"></script>
         <script src="js/_dfzz/ctrl/rp.list.js"></script>
+        <script src="js/_dfzz/ctrl/modal.treasurecheck.js"></script>
         <script src="js/_dfzz/ctrl/modal.tgtjdetail.js"></script>
         <script src="js/_dfzz/ctrl/modal.rpcheck.js"></script>
         <script src="js/_dfzz/ctrl/modal.lunchset.js"></script>
@@ -96,6 +98,7 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -300,6 +303,9 @@
                 <ul class="list">
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="treasure_put" ui-sref-active="active">发布夺宝</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_list" ui-sref-active="active">夺宝列表</a>
                     </li>
                 </ul>
             </div>

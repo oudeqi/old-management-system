@@ -1,0 +1,147 @@
+<div class="treasure_list">
+    <div class="app-filter">
+        <div class="l">
+            筛选：
+            <div class="app-input-date">
+                <input class="input" type="text" ng-change="getList()" ng-model="startTime" date-picker placeholder="投放日期">
+                <button class="input-clear" type="button" ng-click="startTime=null;getList()">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <button class="input-addon" type="button">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            至
+            <div class="app-input-date">
+                <input class="input" type="text" ng-change="getList()" ng-model="endTime" date-picker placeholder="投放日期">
+                <button class="input-clear" type="button" ng-click="endTime=null;getList()">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <button class="input-addon" type="button">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
+            <div class="app-select">
+                <select ng-model="type" ng-change="getList()" ng-options="t.name for t in types track by t.id"></select>
+            </div>
+            <div class="app-select">
+                <select ng-model="status" ng-change="getList()" ng-options="s.name for s in allStatus track by s.id"></select>
+            </div>
+        </div>
+        <div class="r">
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+            <button class="app-button-primary" type="button" ng-click="treasurePut()">发布夺宝</button>
+        </div>
+    </div>
+
+    <div class="treasure_list_table">
+        <div class="inner">
+            <div class="treasure_list_table_head" ng-class="{'min_width':!!treasureList.length}">
+                <div class="col col_1" ng-class="{'hasDate':!!treasureList.length}">商品信息</div>
+                <div class="col col_2">商品类别</div>
+                <div class="col col_3">发布时间</div>
+                <div class="col col_4">当前期数/总期数</div>
+                <div class="col col_5">剩余期数</div>
+                <div class="col col_6">下一期价格（人次）</div>
+                <div class="col col_7">夺宝状态</div>
+                <div class="col col_8">操作</div>
+            </div>
+            <!-- 夺宝列表项 -->
+            <div class="treasure_list_table_item" ng-repeat="item in treasureList">
+                <div class="col col_1" ng-class="{'hasDate':!!treasureList.length}">
+                    <div class="pic_box">
+                        <a href="javascript:void(0);" ng-click="treasureCheck(item)">
+                            <img ng-src="{{item.previewUrl}}" alt="">
+                        </a>
+                    </div>
+                    <div class="btn_box">
+                        <p>
+                            <a class="link" href="javascript:void(0);" ng-click="treasureCheck(item)">{{item.title}}</a>
+                        </p>
+                        <p><a class="btn btn-default" href="javascript:void(0);">查看期数列表</a></p>
+                    </div>
+                </div>
+                <div class="col col_2">{{item.labelName}}</div>
+                <div class="col col_3">
+                    <div class="notpassed" ng-if="item.status == 1 && permission.menu_gem_verify == '1'">
+                        <p>未发布</p>
+                        <a class="btn btn-warning" href="" ng-click="pass(item)">通过审核</a>
+                    </div>
+                    <div class="passed" ng-if="item.status != 1">
+                        <p>{{item.startTime | date : "yyyy-MM-dd"}}</p>
+                        <span>{{item.startTime | date : "HH:mm:ss"}}</span>
+                    </div>
+                    <div class="no_permission" ng-if="item.status == 1 && !permission.menu_gem_verify">
+                       <p>未发布</p>
+                    </div>
+                </div>
+                <div class="col col_4">{{item.nowStageNo}}/{{item.stageNumber}} 期</div>
+                <div class="col col_5">
+                    <div class="online" ng-if="item.status != 4">
+                        <p>{{item.stageRest2}}期</p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="item.stageRest" ng-keypress="kSetRestStage(item,$event)" placeholder="剩余期数">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="setRestStage(item)">修改</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="offline" ng-if="item.status == 4">{{item.stageRest2}}期</div>
+                </div>
+                <div class="col col_6">
+                    <div class="online" ng-if="item.status != 4">
+                        <p>￥{{item.number}}</p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="item.number2" ng-keypress="kSetPrice(item,$event)" placeholder="修改价格">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="setPrice(item)">确认</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="offline" ng-if="item.status == 4">￥{{item.number}}</div>
+                </div>
+                <div class="col col_7">
+                    <div class="state" ng-if="item.status == 1">审核中</div>
+                    <div class="state" ng-if="item.status == 2 && permission.menu_gem_verify == '0'">进行中</div>
+                    <div class="changeState" ng-if="item.status == 2 && permission.menu_gem_verify == '1'">
+                        <p>进行中</p>
+                        <a class="btn btn-danger" href="" ng-click="offLine(item)">下线</a>
+                    </div>
+                    <div class="state" ng-if="item.status == 3 && permission.menu_gem_verify == '0'">夺宝已结束</div>
+                    <div class="changeState" ng-if="item.status == 3 && permission.menu_gem_verify == '1'">
+                         <p>夺宝已结束</p>
+                        <a class="btn btn-default" href="" ng-click="onLine(item)">重新上线</a>
+                    </div>
+                     <div class="state" ng-if="item.status == 4">已下线</div>
+                </div>
+                <div class="col col_8">
+                    <a ng-if="item.status == '1'" class="btn btn-default" href="javascript:void(0);">编辑商品</a>
+                </div>
+            </div>
+        </div>
+        <div class="treasure_list_table_noData" ng-show="!treasureList.length">没有数据</div>
+    </div>
+    <div class="app-pagination" ng-show="!!treasureList.length">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

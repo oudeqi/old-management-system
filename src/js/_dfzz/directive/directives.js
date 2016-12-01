@@ -115,7 +115,7 @@ angular.module('uoudo.dfzz')
                             angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
         				    angular.element(document).find("#"+_editorId).find("img").css({"width":"100%"});
                         });
-                    }, 0);
+                    }, 30);
                 });
                 ueditorController.$render = function() {
                     $timeout(function() {

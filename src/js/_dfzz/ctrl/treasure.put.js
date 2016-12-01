@@ -16,34 +16,51 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
     	}).error(function(data){});
 
         $scope.showInfo = function(){
-            console.log("goodsName:"+$scope.treasure.goodsName);
-            console.log($scope.treasure.treasureType);
-            console.log("stageNumber:"+$scope.treasure.stageNumber);
-            console.log("previewUrl:"+$scope.treasure.previewUrl);
-            console.log("title:"+$scope.treasure.title);
-            console.log("number:"+$scope.treasure.number);
-            console.log("onceMoney:"+$scope.treasure.onceMoney);
-            console.log($scope.treasure.imgList);
-            console.log("remarks:"+$scope.treasure.remarks);
-            console.log("goodsInfo:"+$scope.treasure.goodsInfo);
+            // console.log("goodsName:"+$scope.treasure.goodsName);
+            // console.log($scope.treasure.treasureType);
+            // console.log("stageNumber:"+$scope.treasure.stageNumber);
+            // console.log("previewUrl:"+$scope.treasure.previewUrl);
+            // console.log("title:"+$scope.treasure.title);
+            // console.log("number:"+$scope.treasure.number);
+            // console.log("onceMoney:"+$scope.treasure.onceMoney);
+            // console.log($scope.treasure.imgList);
+            // console.log("remarks:"+$scope.treasure.remarks);
+            // console.log("goodsInfo:"+$scope.treasure.goodsInfo);
+            console.log(localStorageService.get('treasure.put'));
         };
-        $scope.treasure = {};
-        $scope.treasure.goodsName = "";//夺宝名称
-        $scope.treasure.treasureType =  {//夺宝所属类别
-			id:0,
-			name:"全部"
-		};
-        $scope.treasure.stageNumber = "";//夺宝总期数
-        $scope.treasure.previewUrl = "";//夺宝封面
-        $scope.treasure.title = "";//夺宝标题
-        $scope.treasure.number = "";//商品价格
-        $scope.treasure.onceMoney = 1;//单次金额
-        $scope.treasure.imgList = [];//存放banner
-        $scope.treasure.remarks = "";//商品描述
-        $scope.treasure.goodsInfo = "";//奖品详情
+
+        if(localStorageService.get('treasure.put')){
+            $scope.treasure = localStorageService.get('treasure.put');
+        }else{
+            $scope.treasure = {};
+            $scope.treasure.goodsName = "";//夺宝名称
+            $scope.treasure.treasureType =  {//夺宝所属类别
+    			id:0,
+    			name:"全部"
+    		};
+            $scope.treasure.stageNumber = "";//夺宝总期数
+            $scope.treasure.previewUrl = "";//夺宝封面
+            $scope.treasure.title = "";//夺宝标题
+            $scope.treasure.number = "";//商品价格
+            $scope.treasure.onceMoney = 1;//单次金额
+            $scope.treasure.imgList = [];//存放banner
+            $scope.treasure.remarks = "";//商品描述
+            $scope.treasure.goodsInfo = "";//奖品详情
+        }
+
         $scope.$watch("treasure.goodsInfo",function(nv,ov){
             $scope.goodsInfo = $sce.trustAsHtml(nv);
         });
+        $scope.$watch('treasure',function(){
+            localStorageService.set('treasure.put',$scope.treasure);
+            if($scope.treasure.previewUrl){
+                $scope.noPreviewUrl = false;
+            }
+            if($scope.treasure.imgList.length > 0){
+                $scope.noImgList = false;
+            }
+        },true);
+
 
 
         //裁剪封面图片
@@ -83,7 +100,7 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
                     console.info('模态框取消: ' + new Date());
                 });
             }else{
-
+                $scope.picUploadErr = "上传图片出错";
             }
         };
         $scope.delFM = function(){
@@ -99,7 +116,7 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
             removeAfterUpload : true,
             formData :[{token:localStorageService.get('token')}]
         });
-        uploadBanner.onAfterAddingFile = function(fileItem) {
+        uploadBanner.onAfterAddingFile = function(fileItem){
             fileItem.alias="file";
             $scope.uploadBanner.queue[0].upload();
         };
@@ -128,16 +145,118 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
                     console.info('模态框取消: ' + new Date());
                 });
             }else{
-
+                $scope.picUploadErr = "上传图片出错";
             }
         };
         $scope.delBanner = function(index){
             $scope.treasure.imgList.splice(index,1);
         };
 
+        $scope.putNew = function(){
+            localStorageService.remove('treasure.put');
+            $state.go("treasure_put",{},{reload:true});
+        };
 
+        // 验证表单
+        $scope.validate = function(){
+            // 商品名称-----------------------------
+            if(!$scope.treasure.goodsName){
+                $scope.noGoodsName = true;
+                return false;
+            }else{
+                $scope.noGoodsName = false;
+            }
+            // 夺宝期数-------------------------------
+            if(!$scope.treasure.stageNumber || $scope.treasure.stageNumber<1){
+                $scope.noStageNumber = true;
+                return false;
+            }else{
+                $scope.noStageNumber = false;
+            }
+            // 夺宝封面-------------------------------
+            if(!$scope.treasure.previewUrl){
+                $scope.noPreviewUrl = true;
+                return false;
+            }else{
+                $scope.noPreviewUrl = false;
+            }
+            // 设置标题-------------------------------
+            if(!$scope.treasure.title){
+                $scope.noTitle = true;
+                return false;
+            }else{
+                $scope.noTitle = false;
+            }
+            // 商品价格-------------------------------
+            if(!$scope.treasure.number || $scope.treasure.number<1){
+                $scope.noNumber = true;
+                return false;
+            }else{
+                $scope.noNumber = false;
+            }
+            // 轮播图片-------------------------------
+            if($scope.treasure.imgList.length === 0){
+                $scope.noImgList = true;
+                return false;
+            }else{
+                $scope.noImgList = false;
+            }
+            // 商品描述-------------------------------
+            if(!$scope.treasure.remarks){
+                $scope.noRemarks = true;
+                return false;
+            }else{
+                $scope.noRemarks = false;
+            }
+            // 奖品详情-------------------------------
+            if(!$scope.treasure.goodsInfo){
+                $scope.noGoodsInfo = true;
+                return false;
+            }else{
+                $scope.noGoodsInfo = false;
+            }
+            return true;
+        };
 
-
+        $scope.loading = false;
+        $scope.treasurePut = function(){
+            if($scope.validate()){
+                $scope.loading = true;
+                $http.post(constant.APP_HOST+'v1/aut/gemSet',{
+                    goodsName:$scope.treasure.goodsName,
+                    labelId:$scope.treasure.treasureType.id,
+                    stageNumber:$scope.treasure.stageNumber,
+                    previewUrl:$scope.treasure.previewUrl,
+                    title:$scope.treasure.title,
+                    number:$scope.treasure.number,
+                    onceMoney:$scope.treasure.onceMoney,
+                    imgList:$scope.treasure.imgList,
+                    remarks:$scope.treasure.remarks,
+                    goodsInfo:$scope.treasure.goodsInfo,
+                 },{
+         			headers:{
+         				'Authorization':localStorageService.get("token")
+         			}
+         		}).success(function(data){
+                    console.log(data);
+                    $scope.loading = false;
+                    if(data.errMessage){
+                        $scope.errMsg = data.errMessage;
+                        $scope.succMsg = "";
+                    }else{
+                        $scope.errMsg = "";
+                        $scope.succMsg = "夺宝发布成功";
+                        $timeout(function(){
+                            localStorageService.remove('treasure.put');
+                            $state.go("treasure_put",{},{reload:true});
+                        },1000);
+                    }
+                }).error(function(data){
+                    $scope.loading = false;
+                    $scope.errMsg = "夺宝发布失败！";
+                });
+            }
+        };
     }
 ]);
 app.factory('treasure_types',['$http','constant','localStorageService',

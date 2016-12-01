@@ -1,0 +1,183 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.treasure_list{
+    background: #fff;
+    padding-bottom: 5px;
+    .app-filter{
+        padding-top: 30px;
+        margin-bottom: 0;
+        .app-select{
+            margin-left: 8px;
+            select{
+                min-width: 110px;
+            }
+        }
+        .app-input-search{
+            margin-right: 4px;
+        }
+    }
+    .app-pagination{
+        margin-top: 5px;
+    }
+    %cols{
+        &.col_1{
+            width: 150px;
+            text-align: left;
+            &.hasDate{
+                width: 352px;
+            }
+        }
+        &.col_2{
+            width: 120px;
+        }
+        &.col_3{
+            width: 120px;
+        }
+        &.col_4{
+            width: 130px;
+        }
+        &.col_5{
+            width: 160px;
+        }
+        &.col_6{
+            width: 160px;
+        }
+        &.col_7{
+            width: 120px;
+        }
+        &.col_8{
+            width: 120px;
+            border-right: 0;
+        }
+    }
+    .treasure_list_table{
+        margin: 18px;
+        margin-top: 30px;
+        margin-bottom: 0;
+        .inner{
+            width: 100%;
+            overflow: auto;
+            @include content-scroll(6px);
+        }
+        .treasure_list_table_noData{
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .treasure_list_table_head{
+            background-color: #f8f8f8;
+            font-size: 15px;
+            color: #000;
+            line-height: 1;
+            padding: 14px 0;
+            text-align: center;
+            @include clearfix();
+            &.min_width{
+                min-width: 1284px;
+            }
+            .col{
+                float: left;
+                @extend %cols;
+                &.col_1{
+                    padding-left: 10px;
+                }
+            }
+        }
+        .treasure_list_table_item{
+            min-width: 1284px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 102px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            text-align: center;
+            @include clearfix();
+            .col{
+                border-right: 1px solid #eee;
+                padding: 10px;
+                height: 102px;
+                float: left;
+                @extend %cols;
+                &.col_1{
+                    @include clearfix();
+                    .pic_box{
+                        width: 160px;
+                        height: 80px;
+                        border-radius: 3px;
+                        overflow: hidden;
+                        float: left;
+                        img{
+                            width: 100%;
+                            height: auto;
+                            display: block;
+                        }
+                    }
+                    .btn_box{
+                        float: left;
+                        width: 160px;
+                        height: 80px;
+                        margin-left: 10px;
+                        p{
+                            margin-bottom: 5px;
+                            max-height: 40px;
+                            min-height: 30px;
+                            overflow: hidden;
+                            .link{
+                                @include motw;
+                                outline: 0;
+                            }
+                        }
+                    }
+                }
+                &.col_2{
+                    line-height: 80px;
+                }
+                &.col_3{
+                    .notpassed{
+                        padding-top: 6px;
+                    }
+                    .passed{
+                        padding-top: 20px;
+                        p{
+                            margin-bottom: 4px;
+                        }
+                    }
+                    .no_permission{
+                        line-height: 80px;
+                        p{
+                            margin: 0;
+                        }
+                    }
+                }
+                &.col_4{
+                    line-height: 80px;
+                }
+                &.col_5,&.col_6{
+                    .online{
+                        padding-top: 6px;
+                        .input-group{
+                            width: 138px;
+                        }
+                    }
+                    .offline{
+                        line-height: 80px;
+                    }
+                }
+                &.col_7{
+                    .state{
+                        line-height: 80px;
+                    }
+                    .changeState{
+                        padding-top: 6px;
+                    }
+                }
+                &.col_8{
+                    line-height: 80px;
+                }
+            }
+        }
+    }
+}
