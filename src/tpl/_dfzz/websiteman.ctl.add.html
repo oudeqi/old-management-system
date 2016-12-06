@@ -1,0 +1,126 @@
+<div id="websiteman_ctl_add">
+    <div class="app-filter">
+    	<div class="nav-left">	
+	    	<ol class="breadcrumb">
+	    		<a ui-sref="websiteman_ctl"><i class="data-addon"></i></a>
+			  <li><a ui-sref="websiteman_ctl">站长管理</a></li>
+			  <!-- <li><a href="#">Library</a></li> -->
+			  <li class="active">{{website_iseditinfo}}</li>
+			</ol>
+		</div>
+    </div>
+
+
+    <div class="app-display-board">
+	    <div class="r">
+	    	<div class="form_row">
+	    	<div class="cont-one"><span>【站点信息】</span></div>		
+	    	</div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>开通站点：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt input-width-one" type="text" ng-model="webadd_obj.siteName" ng-focus="step = 1" placeholder="请填写业务联系人">
+                    <span class="err" ng-show="noTit">请填写业务联系人</span>
+                    {{webadd_obj.website}}
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>站长姓名：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt input-width-one" type="text" ng-model="webadd_obj.name" ng-focus="step = 2" placeholder="请填写站长姓名">
+                    <span class="err" ng-show="noTit">请填写站长姓名</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>联系号码：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="number" ng-model="webadd_obj.phoneNumber" ng-focus="step = 2" placeholder="请填写站长联系号码">
+                    <span class="err" ng-show="noTit">请填写站长联系号码</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>绑定账号：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" ng-model="webadd_obj.appPhone" ng-focus="step = 2" placeholder="请填写绑定的2台账号">
+                    <span class="err" ng-show="noTit">请填写绑定的2台账号</span>
+                </div>
+            </div>
+
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>微信号码：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt input-width-two" type="text" ng-model="webadd_obj.weixin" ng-focus="step = 2" placeholder="请填写微信号">
+                    <span class="err" ng-show="noTit">请填写微信号</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>开通权限：</span>
+                </div>
+                <div class="cont">
+                    <label class="radio_label">
+                        <input type="checkbox" value="0" ng-change="step = 1" ng-model="webadd_obj.privilegeInvite">
+                        <i class="icon"></i>
+                        <span>用户推广</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="checkbox" value="1" ng-change="step = 1" ng-model="webadd_obj.privilegeInfo">
+                        <i class="icon"></i>
+                        <span>编辑推广</span>
+                    </label>
+                </div>
+            </div>
+
+	    	<div class="form_row">
+	    	<div class="cont-one"><span>【工作人员信息】</span></div>		
+	    	</div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>申请部门：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt input-width-one" type="text" ng-model="webadd_obj.applyDept" ng-focus="step = 1" placeholder="请填写部门">
+                    <span class="err" ng-show="noTit">请填写部门</span>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>业务联系人：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt input-width-one" type="text" ng-model="webadd_obj.applyUser" ng-focus="step = 1" placeholder="请填写业务联系人">
+                    <span class="err" ng-show="noTit">请填写业务联系人</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit"></div>
+                <div class="cont">
+                    <button class="app-button-primary" type="button" ng-click="webfun_go()">确认</button>
+                    <button class="app-button-default" type="button" ng-click="webfun_no()">取消</button>
+                    <i class="loading" ng-show="loading"></i>
+                    <span class="err" ng-show="info_err">{{info_err_ct}}</span>
+                    <span class="succ" ng-show="info_succ">{{info_succ_ct}}</span>
+                </div>
+            </div>
+
+
+	    </div>
+    </div>
+
+</div>
