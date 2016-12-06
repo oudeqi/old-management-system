@@ -19,12 +19,10 @@
         			.data-addon {
         					position:relative;
 			            	float:left;
-			            	top:.5rem;
+			            	top:.4rem;
 			            	margin:0 1rem 0 0;
-                			width:2rem;
-                			height:2rem;
-                			background-image:url("../../../img/bread-back.png");
-                			background-size:cover;
+                            @include sprite($icon-bread-back);   
+
             			}
 
         		}
@@ -33,7 +31,6 @@
         	}
         }
     .app-display-board {
-    	width:100%;
     	.r{
             width: 100%;
             background-color:#ffffff;

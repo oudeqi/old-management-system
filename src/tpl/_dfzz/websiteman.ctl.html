@@ -81,8 +81,8 @@
                      <td>{{item.applyInfo}}</td>
                 	<td>
                 		<a href="javascript:void(0);" ng-click="info_change(item)" ng-show="item.status==1">修改</a>
-                        <a href="javascript:void(0);" ng-click="info_auth(item)" ng-show="item.status==2">权限管理</a>
-                        <a href="javascript:void(0);" ng-click="info_dredge(item)" ng-show="item.status==1">通过</a>
+                        <a href="javascript:void(0);" ng-click="info_auth(item)" ng-show="item.status==2 && permission.button_site_audit==1">权限管理</a>
+                        <a href="javascript:void(0);" ng-click="info_dredge(item)" ng-show="item.status==1 && permission.button_site_audit==1">通过</a>
                 	</td>
                 </tr>
             </tbody>
