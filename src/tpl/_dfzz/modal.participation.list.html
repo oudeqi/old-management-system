@@ -1,0 +1,53 @@
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">本期所有参与记录</h3>
+    </div>
+    <div class="modal-body">
+        <div class="app-modal-table-cont">
+            <div class="table-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>IP</th>
+                            <th>参与次数</th>
+                            <th>参与时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in list" ng-show="!!list.length">
+                            <td>{{item.nickName}}</td>
+    		 				<td>{{item.ipAddress}} （{{item.address}}）</td>
+    		 				<td>{{item.buyCount}}</td>
+    		 				<td>{{item.createTime | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="nodata" ng-show="!list.length">
+                没有数据
+            </div>
+            <div class="app-modal-pagination" ng-show="!!list.length">
+                <ul uib-pagination
+                ng-change="pageChanged()"
+                items-per-page="pageSize"
+                num-pages="numPages"
+                total-items="totalItems"
+                ng-model="currentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+                <div class="pageTo">
+                    <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</div>

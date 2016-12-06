@@ -1,6 +1,6 @@
 var app = angular.module('uoudo.dfzz');
-app.controller('treasure_list',['$scope','$http','constant','localStorageService','FileUploader','$uibModal','$state','$timeout','$sce','$filter','treasure_types',
-    function($scope,$http,constant,localStorageService,FileUploader,$uibModal,$state,$timeout,$sce,$filter,treasure_types){
+app.controller('treasure_list',['$scope','$http','constant','localStorageService','$uibModal','$state','$timeout','$sce','treasure_types',
+    function($scope,$http,constant,localStorageService,$uibModal,$state,$timeout,$sce,treasure_types){
 
         $scope.treasurePut = function(){
             $state.go('treasure_put',{},{reload:true});
@@ -104,7 +104,7 @@ app.controller('treasure_list',['$scope','$http','constant','localStorageService
 
             });
         };
-        $scope.getList();
+        // $scope.getList();
         $scope.pageChanged = function(){
             console.log("page to "+$scope.currentPage);
             $scope.getList();
@@ -125,7 +125,9 @@ app.controller('treasure_list',['$scope','$http','constant','localStorageService
             $scope.getList();
         };
 
+        // 夺宝预览
         $scope.treasureCheck = function(item){
+            console.log(item);
             $http.get(constant.APP_HOST+'/v1/aut/gemSet/goods/info',{
     			headers:{
     				'Authorization':localStorageService.get('token')
@@ -158,7 +160,218 @@ app.controller('treasure_list',['$scope','$http','constant','localStorageService
     		.error(function(data){});
         };
 
+        // 通过审核
+        $scope.pass = function(item){
+            console.log(item);
+            var confirm = {
+                tit : "确认通过审核吗？",
+                content : "通过审核后夺宝立即生效"
+            };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+            $scope.hasMsg = false;
+            $scope.warning = false;
+            // 无用
+            modalInstance.result.then(function () {
+                $http.post(constant.APP_HOST + '/v1/aut/gemSet/publish',{
+                    id:item.id
+                },{
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    }
+                }).success(function(data){
+                    console.log(data);
+                    $scope.hasMsg = true;
+                    if(!data.errMessage){
+                        $scope.msg = "操作成功！";
+                        $scope.warning = false;
+                        item.status = 2;
+    					item.startTime = data.data.startTime;
+                    }else{
+                        $scope.msg = "操作失败！";
+                        $scope.warning = true;
+                    }
+                    $timeout(function(){
+                        $scope.hasMsg = false;
+                    },1000);
+                }).error(function(data){
+                    $scope.hasMsg = true;
+                    $scope.warning = true;
+                    $scope.msg = "操作失败！";
+                    $timeout(function(){
+                        $scope.hasMsg = false;
+                    },1000);
+                });
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+    	};
+
+        //修改剩余期数
+        $scope.setRestStage = function(item,e){
+            if(!e || (e && e.keyCode == 13)){
+                console.log(item);
+                if((typeof item.nowStageNo).toLowerCase() === "string"){
+                    item.nowStageNo = 0;
+                }
+                $http.post(constant.APP_HOST+'/v1/aut/gemSet/update/stage',{
+                    id:item.id,
+                    stageNumber:item.nowStageNo + parseInt(item.stageRest)
+                 },{
+                    headers:{
+                        'Authorization':localStorageService.get("token")
+                    }
+                }).success(function(data){
+                    console.log(data);
+                    if(!data.errMessage){
+                        item.stageNumber = item.nowStageNo + parseInt(item.stageRest);
+                        item.stageRest2  = item.stageNumber - item.nowStageNo;
+                        item.stageRest = "";
+                    }
+                }).error(function(data){});
+            }
+    	};
+
+        //修改下一期价格
+        $scope.setPrice = function(item,e){
+            if(!e || (e && e.keyCode == 13)){
+                console.log(item);
+                $http.post(constant.APP_HOST+'/v1/aut/gemSet/update/number',{
+                    id:item.id,
+                    number:parseInt(item.number2)
+                 },{
+                    headers:{
+                        'Authorization':localStorageService.get("token")
+                    }
+                }).success(function(data){
+    				if(!data.errMessage){
+                        item.number = parseInt(item.number2);
+    					item.number2 = "";
+    				}
+    			}).error(function(data){
+    				console.error(data);
+    			});
+            }
+    	};
+
+        //下线
+        $scope.offLine = function(item){
+            var confirm = {
+                tit : "确认下线该商品吗？",
+                content : "下线之后商品不能抢夺！"
+            };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+    		modalInstance.result.then(function (data) {
+                $http.post(constant.APP_HOST + '/v1/aut/gemSet/offLine',{
+                    id:item.id
+                },{
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    }
+                }).success(function(data){
+    				if(!data.errMessage){
+    					item.status = 4;
+    				}
+    			}).error(function(data){});
+    		}, function () {
+    			console.info('模态框取消: ' + new Date());
+    		});
+        };
+
+        //上线
+        $scope.onLine = function(item){
+            var confirm = {
+                tit : "确认上线该商品吗？",
+                content : "上线之后商品立即生效！"
+            };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+            modalInstance.result.then(function (data) {
+                $http.post(constant.APP_HOST + '/v1/aut/gemSet/onLine',{
+                    id:item.id
+                },{
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    }
+                }).success(function(data){
+        			if(!data.errMessage){
+        				item.status = 2;
+        			}
+        		}).error(function(data){});
+    		}, function () {
+    			console.info('模态框取消: ' + new Date());
+    		});
+        };
+
+        //编辑
+    	$scope.edit = function(item){
+            $http.get(constant.APP_HOST+"/v1/aut/gemSet",{
+               headers:{
+                   'Authorization': localStorageService.get("token")
+               },
+               params:{
+                   id:item.id
+               }
+           }).success(function(data){
+               console.log(data);
+               if(!data.errMessage){
+                   $scope.treasure = {};
+                   $scope.treasure.id = item.id;
+                   $scope.treasure.goodsName = data.data.goodsName;//夺宝名称
+                   $scope.treasure.treasureType =  {//夺宝所属类别
+               			id:data.data.labelId,
+               			name:data.data.labelName
+               		};
+                   $scope.treasure.stageNumber = data.data.stageNumber;//夺宝总期数
+                   $scope.treasure.previewUrl = data.data.previewUrl;//夺宝封面
+                   $scope.treasure.title = data.data.title;//夺宝标题
+                   $scope.treasure.number = data.data.number;//商品价格
+                   $scope.treasure.onceMoney = data.data.onceMoney;//单次金额
+                   $scope.treasure.imgList = data.data.imgList;//存放banner
+                   $scope.treasure.remarks = data.data.remarks;//商品描述
+                   $scope.treasure.goodsInfo = data.data.goodsInfo;//奖品详情
+                   localStorageService.set('treasure.put',$scope.treasure);
+                   $state.go("treasure_put",{},{reload:true});
+               }
+           }).error(function(data){
+
+           });
 
 
+    	};
     }
 ]);

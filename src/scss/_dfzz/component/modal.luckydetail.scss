@@ -1,0 +1,44 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal_luckyInfo{
+    .modal-content{
+        overflow: hidden;
+    }
+    .picbox{
+        position: relative;
+        height: 120px;
+        background-size: cover;
+        background-position: center;
+        font-size: 18px;
+        .txtCon{
+            position: absolute;
+            padding-top: 15px;
+            padding-left: 30px;
+            border-radius: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 300;
+            p{
+                margin-bottom: 8px;
+                color: #fff;
+                @include otw();
+            }
+        }
+        &:after{
+            content: " ";
+            display: block;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 200;
+            background-color: rgba(0,0,0,0.3);
+        }
+    }
+}

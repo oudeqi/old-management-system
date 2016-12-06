@@ -189,10 +189,10 @@
             <div class="form_row">
                 <div class="tit"></div>
                 <div class="cont">
-                    <button class="app-button-default" ng-show="artEdit" type="button" ng-click="putNew()">发布新文章</button>
+                    <button class="app-button-default" ng-show="treasure.id" type="button" ng-click="putNew()">发布新夺宝</button>
                     <button class="app-button-primary" type="button" ng-click="treasurePut()">提交</button>
-                    <button class="app-button-default" ng-show="!artEdit" type="button" ng-click="putNew()">重置</button>
-                    <button class="app-button-default" ng-click="showInfo()" type="button" ng-show="true">测试</button>
+                    <button class="app-button-default" ng-show="!treasure.id" type="button" ng-click="putNew()">重置</button>
+                    <!-- <button class="app-button-default" ng-click="showInfo()" type="button" ng-show="true">测试</button> -->
                     <i class="loading" ng-show="loading"></i>
                     <span class="err" ng-show="errMsg">{{errMsg}}</span>
                     <span class="succ" ng-show="succMsg">{{succMsg}}</span>

@@ -55,6 +55,7 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
             $rootScope.statusMsg = "";
         }
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
+        $rootScope.permission.menu_gem_verify = "1";
         // $rootScope.permission.menu_rp = "0";
 
         // 二级导航切换
@@ -201,6 +202,16 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/treasure_list",
             templateUrl: "./tpl/_dfzz/treasure.list.html",
             controller: 'treasure_list',
+        })
+        .state('treasure_list_stage', {
+            url: "/treasure_list/:treasureId",
+            templateUrl: "./tpl/_dfzz/treasure.list.stage.html",
+            controller: 'treasure_list_stage',
+        })
+        .state('treasure_lucky', {
+            url: "/treasure_lucky",
+            templateUrl: "./tpl/_dfzz/treasure.luckylist.html",
+            controller: 'treasure_lucky',
         });
 
 

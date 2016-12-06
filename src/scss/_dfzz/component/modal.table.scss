@@ -1,0 +1,64 @@
+.app-modal-table{
+    .app-modal-table-cont{
+        padding: 0 15px;
+        .nodata{
+            text-align: center;
+            background-color: #f8f8f8;
+            padding: 10px;
+        }
+        .table-box{
+            min-height: 300px;
+            table{
+                width: 100%;
+                border: 0;
+                text-align: center;
+                th{
+                    text-align: center;
+                    padding: 15px;
+                    background: #fff;
+                    font-size: 15px;
+                    color: #2b333b;
+                }
+                td{
+                    padding: 10px;
+                    color: #686868;
+                    font-size: 15px;
+                }
+                & tr:nth-child(odd) {
+                    background-color: #f8f8f8;
+                }
+                & tr:nth-child(even) {
+                    background-color: #fff;
+                }
+            }
+        }
+        .app-modal-pagination{
+            text-align: right;
+            padding: 0;
+            background: #fff;
+            border-radius: 4px;
+            line-height: 1;
+            font-size: 0;
+            .pagination,.pageTo{
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 14px;
+                margin-left: 10px;
+            }
+            .pageTo{
+                width: 70px;
+                input{
+                    border: 1px solid #ddd;
+                    border-radius: 3px;
+                    width: 100%;
+                    margin: 0;
+                    background: #fff;
+                    padding: 0 5px;
+                    height: 34px;
+                    color: #337ab7;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+}
