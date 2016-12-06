@@ -193,6 +193,16 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/finance_list",
             templateUrl: "./tpl/_dfzz/finance.list.html",
             controller: 'finance_list',
+        })
+        .state('websiteman_ctl',{
+            url:"/websiteman_ctl", //站长管理
+            templateUrl:"./tpl/_dfzz/websiteman.ctl.html",
+            controller:'websiteman_ctl',
+        })
+        .state('websiteman_ctl_add',{
+           url:"/websiteman_ctl_add",
+            templateUrl:"./tpl/_dfzz/websiteman.ctl.add.html",
+            controller:"websiteman_ctl_add"
         });
 
 

@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h4 class="modal-title">权限管理</h4>
+</div>
+<div class="modal-body">
+  <div class="cont">
+    <label class="radio_label">
+        <input type="checkbox" value="1" ng-change="step = 1" ng-model="privilegeInvite">
+        <i class="icon"></i>
+        <span>用户推广</span>
+    </label>
+    <label class="radio_label">
+        <input type="checkbox" value="1" ng-change="step = 1" ng-model="privilegeInfo">
+        <i class="icon"></i>
+        <span>编辑推广</span>
+    </label>
+</div>
+</div>
+<div class="modal-footer">
+    <button class="app-button-primary-sm" type="button" ng-click="ok()">确认</button>
+    <button class="app-button-default-sm modal-button" type="button" ng-click="cancel()">取消</button>
+</div>
