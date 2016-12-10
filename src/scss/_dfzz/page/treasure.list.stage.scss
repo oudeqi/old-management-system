@@ -1,0 +1,60 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.treasure_list_stage{
+    .app-table-box .app-table tbody tr td{
+        vertical-align: middle;
+    }
+    .app-filter{
+        .app-input-search{
+            margin-right: 8px;
+        }
+    }
+    .current_status{
+        background-color: #fff;
+        padding: 20px 10px;
+        @include clearfix();
+        li{
+            float: left;
+            width: 25%;
+            .cont{
+                margin: 0 10px;
+                border-radius: 3px;
+                height: 100px;
+                color: #fff;
+                .t{
+                    font-size: 30px;
+                    line-height: 1.3;
+                    margin: 0;
+                    padding: 10px 16px;
+                    padding-top: 14px;
+                }
+                .b{
+                    font-size: 16px;
+                    margin: 0;
+                    padding: 0 16px;
+                    line-height: 1;
+                }
+                .notStart{
+                    padding: 0 16px;
+                    font-size: 30px;
+                    line-height: 100px;
+                }
+            }
+            .cont_currsta{
+                background-color: #5bb4d8;
+            }
+            .cont_currpeo{
+                background-color: #4fc2b9;
+            }
+            .cont_remainpeo{
+                background-color: #f47564;
+            }
+            .cont_starttm{
+                background-color: #7a85a2;
+            }
+        }
+    }
+}

@@ -277,7 +277,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             var pushTime = null;
             if($scope.pushTime){
                 pushTime = $scope.pushTime + ":00";
-                pushTime = new Date(pushTime).getTime()
+                pushTime = new Date(pushTime).getTime();
             }
             $http.post(constant.APP_HOST+'/v1/aut/info/publish',{
                 deleteId:$scope.deleteId,
@@ -301,14 +301,14 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
      			}
      		}).success(function(data){
                 console.log(data);
+                $scope.loading = false;
                 if(data.errMessage){
                     $scope.errMsg = data.errMessage;
                     $scope.succMsg = "";
-                    $scope.loading = false;
+
                 }else{
                     $scope.errMsg = "";
                     $scope.succMsg = "文章发布成功";
-                    $scope.loading = false;
                     $timeout(function(){
                         localStorageService.remove('art.put');
                         $state.go("art_put",{},{reload:true});

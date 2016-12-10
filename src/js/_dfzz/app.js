@@ -55,6 +55,7 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
         //     $rootScope.statusMsg = "";
         // }
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
+        // $rootScope.permission.menu_gem_verify = "1";
         // $rootScope.permission.menu_rp = "0";
 
         // 二级导航切换
@@ -184,6 +185,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl: "./tpl/_dfzz/tgtj.list.html",
             controller: 'tgtj',
         })
+        .state('tgtj_promoter', {
+            url: "/tgtj_promoter",
+            templateUrl: "./tpl/_dfzz/tgtj.promoter.html",
+            controller: 'tgtj_promoter',
+        })
         .state('ads_launch', {
             url: "/ads_launch",
             templateUrl: "./tpl/_dfzz/ads.launch.html",
@@ -193,7 +199,28 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/finance_list",
             templateUrl: "./tpl/_dfzz/finance.list.html",
             controller: 'finance_list',
+        })
+        .state('treasure_put', {
+            url: "/treasure_put",
+            templateUrl: "./tpl/_dfzz/treasure.put.html",
+            controller: 'treasure_put',
+        })
+        .state('treasure_list', {
+            url: "/treasure_list",
+            templateUrl: "./tpl/_dfzz/treasure.list.html",
+            controller: 'treasure_list',
+        })
+        .state('treasure_list_stage', {
+            url: "/treasure_list/:treasureId",
+            templateUrl: "./tpl/_dfzz/treasure.list.stage.html",
+            controller: 'treasure_list_stage',
+        })
+        .state('treasure_lucky', {
+            url: "/treasure_lucky",
+            templateUrl: "./tpl/_dfzz/treasure.luckylist.html",
+            controller: 'treasure_lucky',
         });
+
 
 
 

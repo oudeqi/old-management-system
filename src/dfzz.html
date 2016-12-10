@@ -26,15 +26,21 @@
         <link rel="stylesheet" href="css/_dfzz/component/filter.css">
         <link rel="stylesheet" href="css/_dfzz/component/input.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal-cutpic.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.addpromoter.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.artcheck.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.checklogistics.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.common.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.confirm.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.copyrp.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.cutpic.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.lookewm.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.luckydetail.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.lunchset.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.rpcheck.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.sendgoods.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.table.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.tgtjdetail.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.treasurecheck.css">
         <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
@@ -51,6 +57,14 @@
         <link rel="stylesheet" href="css/_dfzz/page/setting.css">
         <link rel="stylesheet" href="css/_dfzz/page/tgtj.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/tgtj.promoter.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.list.stage.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.lucky.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.luckylist.css">
+        <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add.css">
+        <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.css">
         <!-- endinject -->
         <!-- endbuild -->
 
@@ -79,22 +93,34 @@
         <script src="js/_dfzz/app.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
         <script src="js/_dfzz/directive/directives.js"></script>
+        <script src="js/_dfzz/ctrl/treasure.put.js"></script>
+        <script src="js/_dfzz/ctrl/treasure.luckylist.js"></script>
+        <script src="js/_dfzz/ctrl/treasure.list.stage.js"></script>
+        <script src="js/_dfzz/ctrl/treasure.list.js"></script>
+        <script src="js/_dfzz/ctrl/tgtj.promoter.js"></script>
         <script src="js/_dfzz/ctrl/tgtj.list.js"></script>
         <script src="js/_dfzz/ctrl/setting.js"></script>
         <script src="js/_dfzz/ctrl/rp.put.js"></script>
         <script src="js/_dfzz/ctrl/rp.list.js"></script>
+        <script src="js/_dfzz/ctrl/modal.treasurecheck.js"></script>
         <script src="js/_dfzz/ctrl/modal.tgtjdetail.js"></script>
+        <script src="js/_dfzz/ctrl/modal.sendgoods.js"></script>
         <script src="js/_dfzz/ctrl/modal.rpcheck.js"></script>
+        <script src="js/_dfzz/ctrl/modal.participation.list.js"></script>
         <script src="js/_dfzz/ctrl/modal.lunchset.js"></script>
+        <script src="js/_dfzz/ctrl/modal.luckydetail.js"></script>
         <script src="js/_dfzz/ctrl/modal.lookewm.js"></script>
         <script src="js/_dfzz/ctrl/modal.cutpic.js"></script>
         <script src="js/_dfzz/ctrl/modal.copyrp.js"></script>
         <script src="js/_dfzz/ctrl/modal.confirm.js"></script>
+        <script src="js/_dfzz/ctrl/modal.checklogistics.js"></script>
         <script src="js/_dfzz/ctrl/modal.artcheck.js"></script>
+        <script src="js/_dfzz/ctrl/modal.addpromoter.js"></script>
         <script src="js/_dfzz/ctrl/finance.list.js"></script>
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -137,13 +163,13 @@
                             <span class="txt">首页</span>
                         </a>
                     </li> -->
-                    <li class="item" ng-if="permission.menu_info === '1'">
+                    <li class="item" ng-if="permission.menu_info == '1'">
                         <a href="javascript:void(0);" ui-sref="art_put" ng-class="{'active':mainNav==='art'}" ng-mouseenter="navMouseover(2)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-art"></i>
                             <span class="txt">文章管理</span>
                         </a>
                     </li>
-                    <li class="item" ng-if="permission.menu_rp === '1'">
+                    <li class="item" ng-if="permission.menu_rp == '1'">
                         <a href="javascript:void(0);" ui-sref="rp_put" ng-class="{'active':mainNav==='rp'}" ng-mouseenter="navMouseover(4)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-rp"></i>
                             <span class="txt">红包管理</span>
@@ -155,22 +181,28 @@
                             <span class="txt">留言管理</span>
                         </a>
                     </li> -->
-                    <li class="item" ng-if="permission.menu_invite === '1'">
+                    <li class="item" ng-if="permission.menu_invite == '1'">
                         <a href="javascript:void(0);" ui-sref="tgtj_list" ng-class="{'active':mainNav==='tgtj'}"  ng-mouseenter="navMouseover(6)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-tgzx"></i>
                             <span class="txt">推广中心</span>
                         </a>
                     </li>
-                    <li class="item" ng-if="permission.button_start_ad === '1'">
+                    <li class="item" ng-if="permission.button_start_ad == '1'">
                         <a href="javascript:void(0);" ui-sref="ads_launch" ng-class="{'active':mainNav==='ads'}" ng-mouseenter="navMouseover(3)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-ads"></i>
                             <span class="txt">广告管理</span>
                         </a>
                     </li>
-                    <li class="item" ng-if="permission.menu_day_report === '1'">
+                    <li class="item" ng-if="permission.menu_day_report == '1'">
                         <a href="javascript:void(0);" ui-sref="finance_list" ng-class="{'active':mainNav==='finance'}" ng-mouseenter="navMouseover(7)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-finance"></i>
                             <span class="txt">财务管理</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-treasure"></i>
+                            <span class="txt">夺宝管理</span>
                         </a>
                     </li>
 
@@ -274,6 +306,9 @@
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="tgtj_list" ui-sref-active="active">推广统计</a>
                     </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="tgtj_promoter" ui-sref-active="active">推广员管理</a>
+                    </li>
                 </ul>
             </div>
             <div id="sub-nav-finance" ng-mouseenter="navMouseover(7)" ng-mouseleave="navMouseleave()" ng-show="currNav === 7">
@@ -286,7 +321,22 @@
                     </li>
                 </ul>
             </div>
-
+            <div id="sub-nav-treasure" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()" ng-show="currNav === 8">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_put" ui-sref-active="active">发布夺宝</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_list" ui-sref-active="active">夺宝列表</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="treasure_lucky" ui-sref-active="active">中奖列表</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>

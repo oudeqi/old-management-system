@@ -1,0 +1,111 @@
+<div class="treasure_lucky">
+    <div class="app-filter">
+        <div class="r">
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="中奖人名/中奖号码" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+            <div class="app-select">
+                <select ng-change="getList()" ng-options="s as s.name for s in status track by s.id" ng-model="selectedStatus"></select>
+            </div>
+        </div>
+    </div>
+    <div class="app-display-board" ng-show="report">
+        <div class="l">
+            <div class="inner">
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.allStage || 0}}</p>
+                        <p class="b">开奖总期数</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.allUserCount || 0}}</p>
+                        <p class="b">参与总人数</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.waitReceive || 0}}</p>
+                        <p class="b">未领取</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.received || 0}}</p>
+                        <p class="b">未发货</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.arrive || 0}}</p>
+                        <p class="b">已发货</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);">
+                        <p class="t">{{report.complete || 0}}</p>
+                        <p class="b">已完成</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>收货地址</th>
+                    <th>商品名</th>
+                    <th>期数</th>
+                    <th>中奖时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list" ng-show="list">
+                    <td>{{item.userInfo || "无"}}</td>
+                    <td>
+                        <a ng-click="detail(item)">{{item.title}}</a>
+                    </td>
+                    <td>{{item.stageNo}}期</td>
+
+                    <td>{{item.announceTime | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                    <td>
+                        <span ng-if="item.status == 1">未领取</span>
+                        <span ng-if="item.status == 2">未发货</span>
+                        <span ng-if="item.status == 3">已发货</span>
+                        <span ng-if="item.status == 4">已完成</span>
+                    </td>
+                    <td>
+                        <a ng-if="item.status == 2" ng-click="sendGoods(item)">去办理</a>
+                        <a ng-if="item.status >= 3" ng-click="checkLogistics(item)">查看物流</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

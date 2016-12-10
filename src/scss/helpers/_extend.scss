@@ -31,6 +31,9 @@
             width: 70px;
             min-height: 40px;
             float: left;
+            &:hover{
+                transform: scale(0.8);
+            }
             span{
                 color: #fff;
                 display: block;

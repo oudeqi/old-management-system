@@ -85,7 +85,7 @@ angular.module('uoudo.dfzz')
     return {
         restrict: 'E',
         transclude:true,
-        replace: false,
+        replace: true,
         require: '?ngModel',
         scope: {},
         link: function(scope, element, attrs, ueditorController) {
@@ -103,6 +103,7 @@ angular.module('uoudo.dfzz')
                 "color":"#686868"
             });
             angular.element(document).find(".edui-container").css("box-shadow","0 0 0");
+            angular.element(document).find(".edui-container").css("text-align","justify");
             angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
             angular.element(document).find(".edui-container .edui-body-container").css("width","100%");
 
@@ -114,7 +115,7 @@ angular.module('uoudo.dfzz')
                             angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
         				    angular.element(document).find("#"+_editorId).find("img").css({"width":"100%"});
                         });
-                    }, 0);
+                    }, 30);
                 });
                 ueditorController.$render = function() {
                     $timeout(function() {

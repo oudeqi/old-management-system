@@ -1,0 +1,43 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="content">
+        <div class="section">
+            <div class="tit">商品信息</div>
+            <p class="info">{{sendGoodsInfo.data.title || "无"}}</p>
+        </div>
+        <div class="section">
+            <div class="tit">送货地址</div>
+            <ul class="addr">
+                <li>地址：{{sendGoodsInfo.data.address || "无"}}</li>
+                <li>收件人：{{sendGoodsInfo.data.name || "无"}}</li>
+                <li>联系电话：{{sendGoodsInfo.data.phone || "无"}}</li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="tit">选择物流</div>
+            <ul class="logistics" ng-show="!selected">
+                <li ng-repeat="item in sendGoodsInfo.data.mailTypeList">
+                    <label>
+                        <input type="radio" ng-model="mailType.type" ng-change="showMail()" value="{{item.type}}">
+                        {{item.name}}
+                    </label>
+                </li>
+            </ul>
+            <div class="ipt_area" ng-show="!selected">
+                <div class="app-input">
+                    <input class="input" ng-model="mailNumber" type="text" placeholder="请输入运单号码">
+                </div>
+                <button class="app-button-primary" ng-click="confirm()" type="button">确认</button>
+            </div>
+            <div class="confirm_area" ng-show="selected">
+                <p class="confirm_info">物流：{{mailName}}，运单号：{{mailNumber}}</p>
+                <div class="btn_box">
+                    <a class="yes" ng-click="submit()" href="javascript:void(0);">再次确认?</a>
+                    <a class="no" ng-click="redo()" href="javascript:void(0);">重新选择</a>
+                    <span class="err" ng-show="err">{{err || "出错啦。。。"}}</span>
+                </div>
+                <p class="msg_box" ng-show="succ">{{succ}}</p>
+            </div>
+        </div>
+    </div>
+</div>

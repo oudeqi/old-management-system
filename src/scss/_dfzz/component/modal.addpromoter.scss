@@ -1,0 +1,78 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+@import "../../helpers/_extend";
+
+.modal_addpromoter{
+    .modal-dialog{
+        width: 480px;
+        .content{
+            padding: 40px;
+            padding-top: 30px;
+            padding-bottom: 35px;
+            h3{
+                margin: 0;
+                font-size: 16px;
+                text-align: center;
+                font-weight: bold;
+                padding: 10px;
+            }
+            %ipt_focus{
+                outline: 0;
+                &:focus{
+                    border:1px solid lighten($font-color-primary,25%);
+                }
+            }
+            .ipt_row{
+                &.mar_t{
+                    margin-top: 35px;
+                }
+                margin: 20px 0;
+                label{
+                    display: block;
+                    margin-bottom: 6px;
+                }
+                input[type="text"],
+                input[type="number"]{
+                    width: 100%;
+                    height: 36px;
+                    border: 1px solid #d7d7d7;
+                    border-radius: 2px;
+                    padding: 0 5px;
+                    font-size: inherit;
+                    font-family: inherit;
+                    @extend %ipt_focus;
+                    &.err{
+                        border:1px solid $font-color-info;
+                    }
+                }
+                textarea{
+                    width: 100%;
+                    height: 100px;
+                    border: 1px solid #d7d7d7;
+                    border-radius: 2px;
+                    padding: 3px 5px;
+                    font-size: inherit;
+                    font-family: inherit;
+                    resize: none;
+                    @extend %ipt_focus;
+                }
+                input[type="submit"]{
+                    margin-right: 20px;
+                }
+                .err{
+                    color: $font-color-info;
+                }
+                .msg{
+                    color: $font-color-primary;
+                }
+            }
+            .app-button-primary,
+            .app-button-default{
+                padding: 0 50px;
+            }
+
+        }
+    }
+}
