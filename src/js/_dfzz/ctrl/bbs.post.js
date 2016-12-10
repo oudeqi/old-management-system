@@ -19,7 +19,7 @@ app.controller('bbs_post',['$scope','$uibModal','FileUploader','constant','local
         }
 
         $scope.top=null;
-        $scope.inhtml='删除成功';
+        $scope.inhtml='';
         $scope.show=false;
         $scope.this_page=1;
         $scope.pageTo=null;
