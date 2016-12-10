@@ -17,6 +17,10 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="css/_dfzz/base/animate.css">
         <link rel="stylesheet" href="css/_dfzz/base/base.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -26,6 +30,7 @@
         <link rel="stylesheet" href="css/_dfzz/component/filter.css">
         <link rel="stylesheet" href="css/_dfzz/component/input.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal-cutpic.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.addpromoter.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.artcheck.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.checklogistics.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.common.css">
@@ -37,24 +42,26 @@
         <link rel="stylesheet" href="css/_dfzz/component/modal.lunchset.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.rpcheck.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.sendgoods.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.show.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.showpic.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.table.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.tgtjdetail.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.treasurecheck.css">
         <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/bbs.post.css">
+        <link rel="stylesheet" href="css/_dfzz/page/bbs.post.edit.css">
+        <link rel="stylesheet" href="css/_dfzz/page/bbs.pub.css">
         <link rel="stylesheet" href="css/_dfzz/page/finance.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/rp.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/rp.put.css">
         <link rel="stylesheet" href="css/_dfzz/page/setting.css">
         <link rel="stylesheet" href="css/_dfzz/page/tgtj.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/tgtj.promoter.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.list.stage.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.lucky.css">
@@ -100,6 +107,7 @@
         <script src="js/_dfzz/ctrl/rp.list.js"></script>
         <script src="js/_dfzz/ctrl/modal.tgtjdetail.js"></script>
         <script src="js/_dfzz/ctrl/modal.rpcheck.js"></script>
+        <script src="js/_dfzz/ctrl/modal.pic.js"></script>
         <script src="js/_dfzz/ctrl/modal.lunchset.js"></script>
         <script src="js/_dfzz/ctrl/modal.lookewm.js"></script>
         <script src="js/_dfzz/ctrl/modal.cutpic.js"></script>
@@ -108,6 +116,9 @@
         <script src="js/_dfzz/ctrl/modal.confirm.auth.js"></script>
         <script src="js/_dfzz/ctrl/modal.artcheck.js"></script>
         <script src="js/_dfzz/ctrl/finance.list.js"></script>
+        <script src="js/_dfzz/ctrl/bbs.pub.js"></script>
+        <script src="js/_dfzz/ctrl/bbs.post.js"></script>
+        <script src="js/_dfzz/ctrl/bbs.post.edit.js"></script>
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
@@ -190,12 +201,28 @@
                         </a>
                     </li>
                     <!--站长管理-->
-                    <li class="item" ng-if="permission.menu_day_report == '1'">
+                    <li class="item" ng-if="permission.menu_site_apply == '1'">
                         <a href="javascript:void(0);" ui-sref="websiteman_ctl" ng-class="{'active':mainNav==='websiteman'}" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()">
-                            <i class="icon icon-finance"></i>
+                            <i class="icon icon-websiteman"></i>
                             <span class="txt">站长管理</span>
                         </a>
                     </li>
+                    <!--社区管理-->
+                    <li class="item" ng-if="permission.menu_group=='1'">
+                        <a href="javascript:void(0);" ui-sref="bbs_pub" ng-class="{'active':mainNav==='bbs'}" ng-mouseenter="navMouseover(10)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-bbs"></i>
+                            <span class="txt">社区管理</span>
+                        </a>
+                    </li>
+
+                    <!--圈子管理-->
+                    <li class="item" ng-if="true">
+                        <a href="javascript:void(0);" ui-sref="cir_pub" ng-class="{'active':mainNav==='cir'}" ng-mouseenter="navMouseover(12)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-cir"></i>
+                            <span class="txt">圈子管理</span>
+                        </a>
+                    </li>
+
 
                 </ul>
                 <div class="local">
@@ -311,7 +338,7 @@
             </div>
 
 
-            <div id="sub-nav-rp" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()" ng-show="currNav === 8">
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(8)" ng-mouseleave="navMouseleave()" ng-show="currNav === 8">
                 <div class="top-logo">
                     <img src="img/subnav_logo.png" alt="" />
                 </div>
@@ -322,6 +349,41 @@
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="websiteman_ctl_add" ui-sref-active="active">新增站点</a>
                     </li>
+                </ul>
+            </div>
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(10)" ng-mouseleave="navMouseleave()" ng-show="currNav === 10">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="bbs_pub" ui-sref-active="active">发帖爆料</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="bbs_post" ui-sref-active="active">帖子管理</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(12)" ng-mouseleave="navMouseleave()" ng-show="currNav === 12">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="cir_pub" ui-sref-active="active">发布话题</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="cir_list" ui-sref-active="active">话题管理</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="cir_dynameic" ui-sref-active="active">动态管理</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="cir_comment" ui-sref-active="active">评论管理</a>
+                    </li>
+
                 </ul>
             </div>
 

@@ -1,0 +1,10 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+@import "../../helpers/_extend";
+.modal-showpic {
+	background-color:red;
+	transform:translate(0,100px)
+}
+

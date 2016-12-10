@@ -1,0 +1,100 @@
+<div id="bbs_pub">
+ <show-msg inn="1" ruter="true" innc="show" intop="70" inleft="45" inhtml='{{inhtml}}'></show-msg>
+<div class="art_put_form">
+    <div class="inner">
+        <div class="l">
+            <div class="phone">
+                 <div class="phone_head">
+                    <div class="head_btn"></div>
+                    <div class="head_tit">
+                        <span>详情</span>
+                    </div>
+                </div>
+
+                 <div class="post">
+                        <div class="post_title">{{pub.title}}</div>
+                        <div class="post_user">
+                            <div class="user_head" ng-style="newStyle"></div>
+                            <div class="user_info">
+                                <div class="user_name">{{userInfo.nickName}}</div>
+                                <div class="user_time">132阅读  06-31 20:21</div>
+                            </div>
+                            <div class="user_care"></div>
+                        </div>
+
+                        <div class="post_content" id="rel_content" ng-bind-html="artCon || artConPlace">
+                            
+                        </div>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="r">
+
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>帖子标题：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" ng-model="pub.title" ng-focus="step = 1" placeholder="请输入帖子标题">
+                    <span class="err" ng-show="noTit">请输入帖子标题</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>社区板块：</span>
+                </div>
+                <div class="cont">
+                    <select class="select_type" ng-change="" ng-options="i.name for i in option_list track by i.id" ng-model="sec"></select>
+                  <!--   <label class="checkbox_label" ng-show="permission.button_info_ucoin === '1'">
+                        <input type="checkbox" ng-model="infoSet.feeType" ng-false-value="0" ng-true-value="3">
+                        <span>U币文章</span>
+                    </label> -->
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>是否置顶：</span>
+                </div>
+                <div class="cont">
+                    <label class="radio_label">
+                        <input type="radio" value="1" ng-change="step = 1" ng-model="pub.top">
+                        <i class="icon"></i>
+                        <span>是</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" value="0" ng-change="step = 1" ng-model="pub.top">
+                        <i class="icon"></i>
+                        <span>否</span>
+                    </label>
+                </div>
+            </div>
+        
+
+            <div class="form_row" ng-show="true">
+                <div class="tit">
+                    <span>文章内容：</span>
+                </div>
+                <div class="cont">
+                    <app-editor-mu ng-model="pub.htmlContent" ng-click="step = 2"></app-editor-mu>
+                </div>
+                <p class="err_block" ng-show="noContent">请编辑文章内容</p>
+            </div>
+            <div class="form_row">
+                <div class="tit"></div>
+                <div class="cont">
+                    <button class="app-button-default app-button-pubmy" ng-show="true" type="button" ng-click="pubPost()">发布</button>
+                    <!-- <i class="loading" ng-show="loading"></i>
+                    <span class="err" ng-show="errMsg">{{errMsg}}</span>
+                    <span class="succ" ng-show="succMsg">{{succMsg}}</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>

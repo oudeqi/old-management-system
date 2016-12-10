@@ -1,0 +1,112 @@
+<div id="bbs_post">
+ <show-msg inn="1" ruter="true" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
+
+	<div class="app-filter">
+		<div class="r">	
+            <div class="app-select">
+                <select class="select_type" ng-change="" ng-options="i.name for i in option_list track by i.id" ng-model="sec"></select>
+                <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
+            </div>
+            <div class="app-input-date">
+                <input class="input" type="text" ng-change="getList()" ng-model="date_get" date-picker placeholder="发帖日期">
+                <button class="input-addon" type="button">
+                    <i class="glyphicon dataaddon"></i>
+                </button>
+            </div>
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字搜索" ng-model="listParams.search" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="getList()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="rx">
+        	<button class="app-button-primary rx-button" ui-sref="bbs_pub" type="button">发布帖子</button>
+        </div>
+	</div>
+
+    <!-- 展板 -->
+    <div class="app-display-board" ng-show="true">
+        <div class="l">
+            <div class="inner">
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="get_class(2)" ng-class="{'activex':listParams.createType == 2}">
+                        <p class="t">{{top.inUser}}</p>
+                        <p class="b">平台发布</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="get_class(1)" ng-class="{'activex':listParams.createType == 1}">
+                        <p class="t">{{top.netUser}}</p>
+                        <p class="b">网友发布</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="get_class(0)" ng-class="{'activex':listParams.createType==0}">
+                        <p class="t-show">显示全部</p>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 表格 -->
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>帖子标题</th>
+                    <th>发布者</th>
+                    <th>社区板块</th>
+                    <th>发帖时间</th>
+                    <th>评论数量</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list.data" ng-show="list">
+                    <td ng-click="testx(item)">{{item.title}}</td>
+                    <td>{{item.nickName}}</td>
+                    <td>{{item.groupType}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <!-- <td>{{item.name}}</td> -->
+                    <td>{{item.commentCount}}</td>
+                    <!-- <td>{{item.weixin}}</td> -->
+                	<td>
+                		
+                        <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
+                        <a href="javascript:void(0);" ng-click="okgo(item)" ng-show="true">详情</a>
+                        <a href="javascript:void(0);" ng-click="del(item)" ng-show="true">删除</a>
+                        <a href="javascript:void(0);" ng-click="changePost(item)" ng-show="item.createType==1">修改</a>
+                	</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged(this_page)"
+        items-per-page="list.pageSize"
+        num-pages="list.pageCount"
+        total-items="list.rowCount"
+        ng-model="this_page"
+        max-size="5"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo">
+        </div>
+    </div>
+
+</div>

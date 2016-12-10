@@ -52,10 +52,6 @@ app.config(['$stateProvider','$urlRouterProvider',
         $stateProvider
         .state('secl', {
             url: "/",
-            templateUrl: "./tpl/_index/secl-type.html",
-            controller: 'secl_type',
-        }).state('login', {
-            url: "/login",
             templateUrl: "./tpl/_index/login.html",
             controller: 'login',
         }).state('reg', {
@@ -71,5 +67,26 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl: "./tpl/_index/ruzhu.html",
             controller: 'ruzhu',
         });
+        // .state('secl', {
+        //     url: "/",
+        //     templateUrl: "./tpl/_index/secl-type.html",
+        //     controller: 'secl_type',
+        // }).state('login', {
+        //     url: "/login",
+        //     templateUrl: "./tpl/_index/login.html",
+        //     controller: 'login',
+        // }).state('reg', {
+        //     url: "/reg",
+        //     templateUrl: "./tpl/_index/reg.html",
+        //     controller: 'reg',
+        // }).state('forget', {
+        //     url: "/forget",
+        //     templateUrl: "./tpl/_index/forget.html",
+        //     controller: 'forget',
+        // }).state('ruzhu', {
+        //     url: "/rz",
+        //     templateUrl: "./tpl/_index/ruzhu.html",
+        //     controller: 'ruzhu',
+        // });
     }
 ]);
