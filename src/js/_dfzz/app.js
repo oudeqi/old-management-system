@@ -55,7 +55,7 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
             $rootScope.statusMsg = "";
         }
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
-        $rootScope.permission.menu_gem_verify = "1";
+        // $rootScope.permission.menu_gem_verify = "1";
         // $rootScope.permission.menu_rp = "0";
 
         // 二级导航切换
@@ -182,6 +182,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/tgtj",
             templateUrl: "./tpl/_dfzz/tgtj.list.html",
             controller: 'tgtj',
+        })
+        .state('tgtj_promoter', {
+            url: "/tgtj_promoter",
+            templateUrl: "./tpl/_dfzz/tgtj.promoter.html",
+            controller: 'tgtj_promoter',
         })
         .state('ads_launch', {
             url: "/ads_launch",

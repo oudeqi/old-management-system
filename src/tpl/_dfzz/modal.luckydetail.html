@@ -11,12 +11,91 @@
             <h3>中奖信息</h3>
             <ul>
                 <li>
-                    <span>用户名：</span><span>张三</span>
+                    <p>
+                        <span>用户名：</span><span>{{luckyDetail.nickName}}</span>
+                    </p>
                 </li>
                 <li>
-                    <span>用户名：</span><span>张三</span>
+                    <p>
+                        <span>用户ID：</span><span>{{luckyDetail.uid}}</span>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>中奖号码：</span><span>{{luckyDetail.gemNo}}</span>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>购买时间：</span><span>{{luckyDetail.buyTime | date : "yyyy-MM-dd HH:mm:ss"}}</span>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>购买次数：</span><span>{{luckyDetail.buyCount}}人次</span>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>收货信息：</span><span>{{luckyDetail.receiveInfo}}</span>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>A值：</span>
+                        <span>{{luckyDetail.valueA}}</span>
+                        <a href="javascript:void(0);" ng-show="!valueAShow" ng-click="valueAToggle()">展开↓</a>
+                        <a href="javascript:void(0);" ng-show="valueAShow" ng-click="valueAToggle()">收起↑</a>
+                    </p>
+                    <div class="tablebox" ng-show="valueAShow">
+                        <table class="app-modal-table">
+                            <thead>
+                                <tr>
+                                    <th>夺宝时间</th>
+                                    <th>计算数值结果</th>
+                                    <th>用户账号</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="i in luckyDetail.valueAList">
+                                    <td>{{i.createTime | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                                    <td>{{i.value}}</td>
+                                    <td>{{i.nickName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+                <li>
+                    <p>
+                        <span>B值：</span><span>{{luckyDetail.valueB}}</span>
+                    </p>
                 </li>
             </ul>
+        </div>
+        <div class="luckyfive">
+            <h3>购买人次前五名</h3>
+            <div class="tablebox">
+                <table class="app-modal-table">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>购买次数</th>
+                            <th>购买时间</th>
+                            <th>手机号码</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in luckyDetail.topBuyList">
+                            <td>{{i.nickName}}</td>
+                            <td>{{i.buyCount}}人次</td>
+                            <td>{{i.buyTime | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                            <td>{{i.phone}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
     <div class="modal-footer">

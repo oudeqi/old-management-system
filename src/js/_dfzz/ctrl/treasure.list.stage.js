@@ -99,7 +99,7 @@ app.controller('treasure_list_stage',['$scope','$http','constant','localStorageS
             var modalInstance = $uibModal.open({
                 backdrop:'static',
                 animation: true,
-                windowClass: 'app-modal-table',
+                // windowClass: 'app-modal-table',
                 templateUrl: './tpl/_dfzz/modal.participation.list.html',
                 controller: 'participation_list',
     			size: "lg",

@@ -9,10 +9,6 @@ app.controller('luckyInfo',['$scope','$uibModalInstance','luckyDetail','$http','
     		$scope.valueAShow = !$scope.valueAShow;
     	};
 
-
-
-
-
         $scope.ok = function () {
         	$uibModalInstance.close();
     	};

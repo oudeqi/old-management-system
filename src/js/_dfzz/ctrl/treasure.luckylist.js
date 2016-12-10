@@ -32,7 +32,7 @@ app.controller('treasure_lucky',['$scope','$http','constant','localStorageServic
 
         $scope.keywords = "";
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 14;
         $scope.maxSize = 5;
         $scope.getList = function(){
             $http.get(constant.APP_HOST+'/v1/aut/lucky/list',{
