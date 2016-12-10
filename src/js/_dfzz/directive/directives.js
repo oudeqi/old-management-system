@@ -13,6 +13,50 @@ angular.module('uoudo.dfzz')
         }
     };
 })
+.directive('showMsg',function($document,$timeout){
+    return {
+        restrict:'E',
+        scope:{     
+           inn:'=',
+           innc:'=',
+           ruter:'=',
+           intop:'=',
+           inleft:'=',
+           inhtml:'@'
+        },
+        template:'<div class="show-msg" ng-style="ngstylex" ng-class="myclass" ng-if="showNow">{{nohot}}</div>',
+        link:function(scope,elem,attrs){ 
+            // elem[0].innerText=elem[0].dataset.nt;
+            scope.$watchGroup([
+                'innc',
+                'inhtml',
+                ],function(na){
+                    if(scope.innc){
+                        scope.myclass='show-msg-in';
+                    }else{
+                        scope.myclass='show-msg-out';
+                    }
+                    scope.nohot=na[1];
+                })
+            if(scope.innc){
+                scope.myclass='show-msg-in';
+            }else{
+                scope.myclass='show-msg-out';
+            }
+            scope.ngstylex={
+                'top':scope.intop+'vh',
+                'left':scope.inleft+'vw',
+            }
+            // scope.nohot=elem[0].dataset.nt;
+            scope.nohot=scope.inhtml;
+            scope.showNow=scope.ruter;
+
+        },
+
+    }
+})
+
+
 .directive('datePicker',function(){
     return {
         restrict:'A',

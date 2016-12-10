@@ -1,0 +1,14 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+.showMsg {
+	font-size: 18px;
+	color: #2B333B;
+	letter-spacing: 0;
+	background: #FFFFFF;
+	box-shadow: 0 0 20px 8px rgba(0,0,0,0.09);
+	border-radius: 3px;
+	width:233px;
+	height:50px;
+}

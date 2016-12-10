@@ -34,7 +34,8 @@ $sub-nav-width: 140px !default;
 #sub-nav-ly,
 #sub-nav-tgzx,
 #sub-nav-finance,
-#sub-nav-treasure{
+#sub-nav-treasure,
+.sub-nav-all{
     @extend %sub-nav;
 }
 
@@ -48,7 +49,8 @@ $sub-nav-width: 140px !default;
 #sub-nav-tgzx,
 #sub-nav-art,
 #sub-nav-finance,
-#sub-nav-treasure{
+#sub-nav-treasure,
+.sub-nav-all{
     .list{
         .item{
             a{

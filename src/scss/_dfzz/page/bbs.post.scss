@@ -1,0 +1,57 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#bbs_post {
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 81px;
+        line-height: 80px;
+        .r{
+            float:left;
+            .app-input-date{
+                line-height: normal;
+                margin-right: 14px;
+            }
+            .app-input-search{
+                line-height: normal;
+            }
+            .glyphicon-search {
+                color:#BFBFBF;
+            }   
+            .dataaddon {
+                @include sprite($icon-date-addon);
+            }
+        }
+        .rx {
+            float:right;
+            .rx-button {
+                width:138px;
+                height:38px;
+                line-height:38px;
+            }
+        }
+
+        }
+
+
+    .app-display-board{
+        .l{
+            width: 100%;
+            .item{
+                width: 33.333%;
+                .activex {
+                    color:#007cfb !important;
+                }
+                .t-show{
+                    font-size:17px;
+                    line-height:82px;
+                }
+            }
+        }
+    }
+}

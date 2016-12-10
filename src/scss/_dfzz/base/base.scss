@@ -77,3 +77,47 @@ textarea{
     line-height: 0;
     clear: both;
 }
+
+.show-msg {
+    position:fixed;
+    width:233px;
+    height:50px;
+    background: #FFFFFF;
+    box-shadow: 0 0 20px 8px rgba(0,0,0,0.09);
+    border-radius: 3px;
+    font-family: '.PingFangSC-Semibold';
+    font-size: 18px;
+    font-weight:bold;
+    color: #2B333B;
+    letter-spacing: 0;
+    line-height:50px;
+    text-align:center;
+    z-index:10000;
+}
+.show-msg-in {
+    animation:showIn 1s ease forwards;
+}
+@keyframes showIn{
+    from {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0)
+    }
+}
+
+.show-msg-out {
+    animation:showOut 1s ease forwards;
+}
+@keyframes showOut {
+    from {
+         opacity:1;
+        transform:translateY(0)
+    }
+    to {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+}

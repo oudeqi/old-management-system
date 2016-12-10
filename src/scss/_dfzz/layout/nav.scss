@@ -78,7 +78,13 @@ $nav-act-bg-color: #2d3237 !default;
                     @include sprite($icon-nav-finance);
                 }
                 .icon-websiteman{
-                    @include sprite($icon-websiteman)
+                    @include sprite($icon-websiteman);
+                }
+                .icon-bbs {
+                    @include sprite($icon-bbs);
+                }
+                .icon-cir {
+                    @include sprite($icon-cir);
                 }
                 .txt{
                     display: block;
@@ -114,6 +120,12 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-websiteman{ 
                         @include sprite($icon-websiteman-act);
+                    }
+                    .icon-bbs {
+                        @include sprite($icon-bbs-act);
+                    }
+                    .icon-cir {
+                        @include sprite($icon-cir-act);
                     }
                 }
                 &:hover{

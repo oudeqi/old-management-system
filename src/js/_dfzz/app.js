@@ -203,7 +203,54 @@ app.config(['$stateProvider','$urlRouterProvider',
            url:"/websiteman_ctl_add",
             templateUrl:"./tpl/_dfzz/websiteman.ctl.add.html",
             controller:"websiteman_ctl_add"
-        });
+        })
+        .state('bbs_pub',{
+            params:{"postid":null,"canedit":null,"postitem":null},
+            url:"/bbs_pub",
+            templateUrl:"./tpl/_dfzz/bbs.pub.html",
+            controller:"bbs_pub"
+        })
+        .state('bbs_post',{
+            url:"/bbs_post",
+            templateUrl:"./tpl/_dfzz/bbs.post.html",
+            controller:"bbs_post"
+        })
+        .state('bbs_post_edit',{
+            params:{"postid":null,"canedit":null,"postitem":null},
+            url:"/bbs_post_edit",
+            templateUrl:"./tpl/_dfzz/bbs.post.edit.html",
+            controller:"bbs_post_edit"
+        })
+        .state('cir_pub',{
+            url:"/cir_pub",
+            templateUrl:"./tpl/_dfzz/cir.pub.html",
+            controller:"cir_pub"
+        })
+        .state('cir_list',{
+            url:"/cir_list",
+            templateUrl:"./tpl/_dfzz/cir.list.html",
+            controller:"cir_list",
+        })
+        .state('cir_edit',{
+            url:"/cir_edit",
+            templateUrl:"./tpl/_dfzz/cir.edit.html",
+            controller:"cir_edit"
+        })
+        .state('cir_dynameic',{
+            url:"/cir_dynameic",
+            templateUrl:"./tpl/_dfzz/cir.dynameic.html",
+            controller:"cir_dynameic",
+        })
+        .state('cir_dynameic_comment',{
+            url:"/cir_dynameic_comment",
+            templateUrl:"./tpl/_dfzz/cir.dynameic.comment.html",
+            controller:"cir_dynameic_comment",
+        })
+        .state('cir_comment',{
+            url:"/cir_comment",
+            templateUrl:"./tpl/_dfzz/cir.comment.html",
+            controller:"cir_comment",
+        })
 
 
 
