@@ -1,0 +1,18 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.treasure_lucky{
+    .app-display-board{
+        .l{
+            width: 100%;
+            .inner{
+                margin-right: 0;
+                .item{
+                    width: 16.66%;
+                }
+            }
+        }
+    }
+}

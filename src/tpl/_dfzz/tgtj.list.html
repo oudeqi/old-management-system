@@ -2,13 +2,13 @@
     <div class="app-filter">
         <div class="l">
             <span class="icon-ewm"></span>
-            <a class="txt_1" href="javascript:void(0);" ng-click="lookEwm()">查看推广二维码</a>
+            <a class="txt_1" href="javascript:void(0);" ng-click="lookEwm()">查看站长推广码</a>
             <span class="icon-people"></span>
             <span class="txt_2">邀请成功 <i>{{report.allSuccessUser}}</i> 人</span>
         </div>
         <div class="r">
             <div class="app-input-date">
-                <input class="input" type="text" ng-change="getList()" ng-model="putDate" date-picker placeholder="选择注册时间">
+                <input class="input" type="text" ng-change="getList()" ng-model="putDate" date-picker placeholder=" 选择注册时间">
                 <button class="input-clear" type="button" ng-click="putDate=null;getList()">
                     <i class="glyphicon glyphicon-remove"></i>
                 </button>
@@ -17,7 +17,7 @@
                 </button>
             </div>
             <div class="app-input-search">
-                <input class="input" type="text" placeholder="输入用户昵称" ng-model="keywords" ng-keypress="search($event)">
+                <input class="input" type="text" placeholder=" 邀请用户 / 推广员" ng-model="keywords" ng-keypress="search($event)">
                 <button class="input-addon" type="button" ng-click="search()">
                     <i class="glyphicon glyphicon-search"></i>
                 </button>
@@ -85,6 +85,7 @@
                     <th>用户昵称</th>
                     <th>手机号码</th>
                     <th>注册时间</th>
+                    <th>推广员</th>
                     <th>审核状态</th>
                     <th>U币玩家</th>
                     <th>新注册奖励</th>
@@ -97,6 +98,7 @@
                     <td>{{item.nickName}}</td>
                     <td>{{item.phoneNumber}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.name}}</td>
                     <td>{{item.status}}</td>
                     <td>{{item.uCoinUser}}</td>
                     <td>{{item.regGift | currency : "￥" : 2}}</td>

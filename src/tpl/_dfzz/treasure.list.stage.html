@@ -1,0 +1,104 @@
+<div class="treasure_list_stage">
+    <ul class="current_status">
+        <li>
+            <div class="cont cont_currsta">
+                <p class="t">第{{currStatus.nowStageNo}}期</p>
+                <p class="b">当前期数</p>
+            </div>
+        </li>
+        <li>
+            <div class="cont cont_currpeo">
+                <p class="t">{{currStatus.nowBuyNumber}}人次</p>
+                <p class="b">当前参与人次</p>
+            </div>
+        </li>
+        <li>
+            <div class="cont cont_remainpeo">
+                <p class="t">{{currStatus.needNumber}}人次</p>
+                <p class="b">还需人次</p>
+            </div>
+        </li>
+        <li>
+            <div class="cont cont_starttm">
+                <p ng-show="currStatus.startTime" class="t">{{currStatus.startTime | date : "yyyy-MM-dd"}}</p>
+                <p ng-show="currStatus.startTime" class="b">{{currStatus.startTime | date : "HH:mm:ss"}} 开始</p>
+                <p ng-show="!currStatus.startTime" class="notStart">未开始</p>
+            </div>
+        </li>
+    </ul>
+    <div class="app-filter">
+        <div class="l">
+            <div class="app-select">
+                <select ng-change="getList()" ng-options="s as s.name for s in status track by s.id" ng-model="selectedStatus"></select>
+            </div>
+        </div>
+        <div class="r">
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder=" 期数\号码\姓名" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+            <button class="app-button-primary" type="button" ng-click="treasureList()">返回夺宝列表</button>
+        </div>
+    </div>
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>期数</th>
+                    <th>开奖时间</th>
+                    <th>中奖号码</th>
+                    <th>中奖用户</th>
+                    <th>参与列表</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 0正在开奖，1待领取，2待发货，3已发货，4已完成 -->
+                <tr ng-repeat="item in list">
+                    <td>第{{item.stageNo}}期</td>
+                    <td>{{item.announceTime | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                    <td>{{item.gemNo}}</td>
+                    <td>{{item.luckyUser || "无名氏"}}</td>
+                    <td>
+                        <a href="" ng-click="checkUserList(item)">查看</a>
+                    </td>
+                    <td>
+	 					<span ng-show="item.status == 0">正在开奖</span>
+	 					<span ng-show="item.status == 1">待领取</span>
+	 					<span ng-show="item.status == 2">待发货</span>
+	 					<span ng-show="item.status == 3">已发货</span>
+	 					<span ng-show="item.status == 4">已完成</span>
+	 				</td>
+                    <td>
+	 					<button ng-if="item.status == 2" class="btn btn-info" ng-click="sendGoods(item)">去发货</button>
+	 					<button  ng-if="item.status >= 3" class="btn btn-default" ng-click="checkLogistics(item)">查看物流</button>
+	 				</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

@@ -15,14 +15,20 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
                 'Authorization': localStorageService.get("token")
             }
         }).success(function(data) {
+            console.log("文章分类");
             console.log(data);
             if(!data.errMessage){
-                $scope.types = data.data;
-                $scope.types.unshift({
-                    id:0,
-                    name:"全部"
-                });
-                $scope.artType = $scope.types[0];
+                if(!!data.data.length){
+                    $scope.types = data.data;
+                    $scope.types.unshift({
+                        id:0,
+                        name:"全部"
+                    });
+                    $scope.artType = $scope.types[0];
+                }else{
+                    $scope.types = [];
+                    $scope.artType = {};
+                }
             }
         }).error(function(data) {
 
@@ -33,7 +39,7 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
         $scope.putDate = null;
         $scope.keywords = "";
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 13;
         $scope.maxSize = 5;
         $scope.list = [];
         $scope.totalItems = 0;
@@ -44,6 +50,7 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
                 'Authorization': localStorageService.get("token")
             }
         }).success(function(data) {
+            console.log("获取统计");
             console.log(data);
             if(data.errMessage){
                 $scope.report = null;
@@ -83,6 +90,7 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
                     infoTypeId:$scope.artType.id || $scope.infoTypeId
                 }
             }).success(function(data) {
+                console.log("获取列表");
                 console.info(data);
                 if (data.errMessage) {
                     $scope.list = null;
@@ -238,6 +246,7 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
                 pushTime: item.pushTime,
                 content: content
              };
+             console.log(art);
              localStorageService.set('art.put',art);
              $state.go("art_put",{},{reload:true});
         };

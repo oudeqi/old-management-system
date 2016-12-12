@@ -1,0 +1,25 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="content">
+        <h3>新增推广员</h3>
+        <form name="promoter" novalidate ng-submit="ok()">
+            <div class="ipt_row">
+                <label>推广员姓名：</label>
+                <input autocomplete="off" ng-class="{'err':promoter.name.$invalid && promoter.name.$dirty}" type="text" placeholder="姓名：" required name="name" ng-model="name">
+            </div>
+            <div class="ipt_row">
+                <label>推广员电话：</label>
+                <input autocomplete="off" ng-class="{'err':promoter.phoneNumber.$invalid && promoter.phoneNumber.$dirty}" type="number" placeholder="电话："required name="phoneNumber"  ng-model="phoneNumber">
+            </div>
+            <div class="ipt_row">
+                <label>备注信息：</label>
+                <textarea placeholder="备注：" ng-model="remarks"></textarea>
+            </div>
+            <div class="ipt_row mar_t">
+                <input type="submit" class="app-button-primary" ng-disabled="promoter.$invalid" value="确认">
+                <span class="msg">{{msg}}</span>
+                <span class="err">{{err}}</span>
+            </div>
+        </form>
+    </div>
+</div>

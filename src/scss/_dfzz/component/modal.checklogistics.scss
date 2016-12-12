@@ -1,0 +1,67 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal_checkLogistics{
+    // 夺宝期数页面 有多个弹出框的bug，防止重复提交
+    .baseInfo{
+        padding: 20px 50px;
+        padding-bottom: 5px;
+        font-size: 15px;
+        display: table;
+        li{
+            display: table-row;
+
+            .l{
+                display: table-cell;
+                padding: 4px 0;
+            }
+            .r{
+                display: table-cell;
+                padding: 4px 0;
+                input{
+                    height: 27px;
+                    margin: 0;
+                    padding: 0 6px;
+                    border: 1px solid #ccc;
+                }
+                .alter{
+                    height: 27px;
+                    border: 0;
+                    background-color: #fff;
+                    color: $font-color-primary;
+                }
+                .cancel{
+                    border: 0;
+                    height: 27px;
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+    .packageInfo{
+        padding: 10px 50px;
+        table{
+            width: 100%;
+            font-size: 15px;
+            margin-bottom: 16px;
+            th,td{
+                padding: 10px 0;
+                text-align: center;
+                text-align: left;
+                &:first-child{
+                    width: 180px;
+                    padding-left: 0;
+                }
+                &:last-child{
+                    padding-left: 30px;
+                }
+            }
+            td{
+                color: #fd9e24;
+                padding: 5px 0;
+            }
+        }
+    }
+}

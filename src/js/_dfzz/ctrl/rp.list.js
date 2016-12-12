@@ -8,7 +8,7 @@ app.controller('rp_list',['$scope','$http','constant','localStorageService','$fi
         };
 
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 13;
         $scope.maxSize = 5;
         $scope.list = [];
         $scope.totalItems = 0;

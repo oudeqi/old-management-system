@@ -25,11 +25,12 @@ app.run(['$rootScope','$state',
 
         // 监听路由改变成功
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+            $rootScope.loginType = 0;
             // console.log(fromState,toState,$rootScope.loginType);
-            if(toState.name === "login" && $rootScope.loginType !== 0 && $rootScope.loginType !== 1 && $rootScope.loginType !== 2 && $rootScope.loginType !== 3){
-                event.preventDefault();
-                $state.go("secl");
-            }
+            // if(toState.name === "login" && $rootScope.loginType !== 0 && $rootScope.loginType !== 1 && $rootScope.loginType !== 2 && $rootScope.loginType !== 3){
+            //     event.preventDefault();
+            //     $state.go("secl");
+            // }
         });
     }
 ]);
@@ -48,24 +49,12 @@ app.config(['localStorageServiceProvider',
 
 app.config(['$stateProvider','$urlRouterProvider',
     function($stateProvider,$urlRouterProvider){
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/login");
         $stateProvider
-        .state('secl', {
-            url: "/",
+        .state('login', {
+            url: "/login",
             templateUrl: "./tpl/_index/login.html",
             controller: 'login',
-        }).state('reg', {
-            url: "/reg",
-            templateUrl: "./tpl/_index/reg.html",
-            controller: 'reg',
-        }).state('forget', {
-            url: "/forget",
-            templateUrl: "./tpl/_index/forget.html",
-            controller: 'forget',
-        }).state('ruzhu', {
-            url: "/rz",
-            templateUrl: "./tpl/_index/ruzhu.html",
-            controller: 'ruzhu',
         });
         // .state('secl', {
         //     url: "/",
