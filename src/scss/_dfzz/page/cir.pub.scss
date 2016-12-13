@@ -3,15 +3,15 @@
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
 @import "../../helpers/_extend";
-#bbs_pub {
-.app-button-pubmy {
-    width:138px;
-    height:38px;
-    background: #007CFB;
-    border-radius: 5px;
-}
-    .art_put_form{
+#cir_pub {
+.art_put_form{
     padding: 20px;
+    .app-button-pubmy {
+    	background: #007CFB;
+		border-radius: 5px;
+		width:168px;
+		height:38px;
+    }
     .inner{
         background: #fff;
         border-radius: 4px;
@@ -19,74 +19,52 @@
         .l{
             float: left;
             width: 550px;
-            padding: 45px 0;
+            padding: 25px 0 45px 0;
             .phone{
                 @extend %phone_art;
-                .post {
-                    position:absolute;
-                    left:33px;
+            }
+            .post {
+            		position:absolute;
+            		left:33px;
                     top:170px;
                     padding:0 12px;
-                     .post_title {
-                            height:auto;
-                            word-break:break-all;
-                            white-space:normal;
-                            color:#2b333b;
-                            font-size:20px;
-
-                            width:320px;
-                      }
-                    .post_user {
-                        margin:1rem 0 0 0;
-                        .user_head {
-                            float:left;
-                            height:4rem;
-                            width:4rem;
-                            border-radius:50%;
-                            background-size:cover;
-                            background-image:url('../../../img/head-pic.jpg');                   }  
-
-                        .user_info {
-                            float:left;
-                            margin:6px 12px 0 12px;
-                            .user_name {
-                                font-size:15px;
-                                color:#686868;
-                            }
-                            .user_time{
-                                font-size:12px;
-                                color:#bfbfbf;
-
-                            }
-                        }
-                        .user_care {
-                           float:right;
-                            margin:6px 32px 0 0;
-                            width:80px;
-                            height:34px;
-                            background-size:cover;
-                            background-image:url('../../../img/care_btn.png')
-                        }
-
-                        }
-                        .post_content_left{
-                            overflow:hidden;
-                            width:325px;
+                    overflow:hidden;
+                    width:330px;
+                    .postx {
+                     height:550px;
+                    width:350px;
+                        overflow:auto;
+                        overflow-wrap: break-word;
+                        .post_title {
+                        height:auto;
+                        word-break:break-all;
+                        white-space:normal;
+                        color:#2b333b;
+                        font-size:20px;
+                        width:320px;
+                    }
+                    .post_nav {
+                        margin:12px 0 0 0;
+                        font-size: 12px;
+                        color: #BFBFBF;
+                        letter-spacing: 0;
+                    }
+                    .post_img {
+                        max-width:325px;
+                    }
                     .post_content {
-                            clear:both;
-                            width:345px;
-                            overflow-wrap: break-word;
-                            margin:10px 0 0 0;
-                            overflow:auto;
-                            height:420px;
-                            img {
-                                max-width:325px;
-                            }
-                        }
+                        max-width:340px;
+                        font-size: 16px;
+                        color: #848689;
+                        line-height: 25.88px;
+
+                        img {
+                            max-width:340px;
                         }
                     }
-           
-            }
+                    }
+
+                }
         }
         .r{
             margin-left: 550px;
@@ -317,5 +295,5 @@
         }
     }
 }
-   
 }
+   

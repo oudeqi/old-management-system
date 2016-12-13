@@ -238,6 +238,7 @@ app.config(['$stateProvider','$urlRouterProvider',
             controller:"cir_list",
         })
         .state('cir_edit',{
+             params:{"postid":null,"canedit":null,"postitem":null},
             url:"/cir_edit",
             templateUrl:"./tpl/_dfzz/cir.edit.html",
             controller:"cir_edit"
@@ -256,6 +257,17 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/cir_comment",
             templateUrl:"./tpl/_dfzz/cir.comment.html",
             controller:"cir_comment",
+        })
+        .state('cir_list_info',{
+         params:{"postid":null,"canedit":null,"postitem":null},
+            url:"/cir_list_info",
+            templateUrl:"./tpl/_dfzz/cir.list.info.html",
+            controller:"cir_list_info"
+        })
+        .state('user_ctl',{
+            url:"/user_ctl",
+            templateUrl:"./tpl/_dfzz/user.ctl.html",
+            controller:"user_ctl"
         })
         .state('treasure_put', {
             url: "/treasure_put",
@@ -277,7 +289,6 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl: "./tpl/_dfzz/treasure.luckylist.html",
             controller: 'treasure_lucky',
         });
-
 
 
 

@@ -1,0 +1,93 @@
+<div id="cir_pub">
+<show-msg inn="1" ruter="true" innc="show" intop="50" inleft="45" inhtml='{{inhtml}}'></show-msg>
+	<div class="art_put_form">
+	    <div class="inner">
+	        <div class="l">
+	            <div class="phone">
+	                 <div class="phone_head">
+	                    <div class="head_btn"></div>
+	                    <div class="head_tit">
+	                        <span>话题</span>
+	                    </div>
+	                </div>
+	                
+	                 <div class="post"><div class="postx">
+	                        <div class="post_title">{{newTop.topic ? newTop.topic : '请输入话题标题'}}</div>
+	                        <div class="post_nav">已有0人参与 0张照片</div>
+	                        <img class="post_img" ng-src="{{newTop.img}}">
+	                        <div class="post_content">{{newTop.content ? newTop.content : '请输入话题描述文字'}}</div>
+	               	 </div>
+	               	 </div>
+
+	            </div>
+	            
+	        </div>
+	        <div class="r">
+
+
+	            <div class="form_row">
+	                <div class="tit">
+	                    <span>话题标题：</span>
+	                </div>
+	                <div class="cont">
+	                    <input class="form_ipt" type="text" ng-model="newTop.topic" ng-focus="step = 1" placeholder="请输入话题标题">
+	                    <span class="err" ng-show="noTit">请输入话题标题</span>
+	                </div>
+	            </div>
+
+	            <div class="form_row">
+	                <div class="tit">
+	                    <span>是否推荐：</span>
+	                </div>
+	                <div class="cont">
+	                    <label class="radio_label">
+	                        <input type="radio" value="1" ng-change="step = 1" ng-model="newTop.recommandOrder">
+	                        <i class="icon"></i>
+	                        <span>是</span>
+	                    </label>
+	                    <label class="radio_label">
+	                        <input type="radio" value="0" ng-change="step = 1" ng-model="newTop.recommandOrder">
+	                        <i class="icon"></i>
+	                        <span>否</span>
+	                    </label>
+	                </div>
+	            </div>
+                    <div class="form_row">
+	                <div class="tit">
+	                    <span>上传图片：</span>
+	                </div>
+	                <div class="cont">
+	                    <div class="pic_view" ng-show="shareImg">
+	                        <img ng-src="{{shareImg}}" alt="" />
+	                        <button class="delpic" type="button" ng-click="clearImg()"></button>
+	                    </div>
+	                    <button ng-show="!shareImg" class="add_pic_btn" ng-click="clickBtnPic()" type="button" name="button"></button>
+	                    <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadPic" nv-file-select="" uploader="uploadPic" />
+	                    <span class="tip" ng-show="(!picUploadErr && !uploadPic.queue[0].progress && !noPreviewUrl) && !shareImg">支持jpg/png格式，640*320 72dpi</span>
+	                    <span class="tip" ng-show="!!uploadPic.queue[0].progress">{{uploadVideo.queue[0].progress}} %</span>
+	                    <span class="tip" ng-show="shareImg">上传成功</span>
+	                    <span class="err" ng-show="(picUploadErr || noPreviewUrl) && !shareImg">{{picUploadErr || "请上传文章封面图"}}</span>
+	                </div>
+	            </div>
+	            <div class="form_row" ng-show="true">
+	                <div class="tit">
+	                    <span>话题描述：</span>
+	                </div>
+	                <div class="cont">
+	                    <textarea ng-model="newTop.content" ng-focus="step = 2" placeholder="请输入话题描述文字"></textarea>
+	                </div>
+	                <p class="err_block" ng-show="noVideoCon">请输入话题描述文字</p>
+	            </div>
+	            <div class="form_row">
+	                <div class="tit"></div>
+	                <div class="cont">
+	                    <button class="app-button-default app-button-pubmy" ng-show="true" type="button" ng-click="pubGo()">发布</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+
+
+</div>

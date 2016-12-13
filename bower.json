@@ -22,6 +22,7 @@
     "smalot-bootstrap-datetimepicker": "smalot/bootstrap-datetimepicker#^2.3.11",
     "umeditor": "^1.2.2",
     "animate.css": "daneden/animate.css#^3.5.2",
-    "Downloadify": "dcneiner/Downloadify#^0.2.1"
+    "Downloadify": "dcneiner/Downloadify#^0.2.1",
+    "angularjsSlider":"jsonpeter/AngularjsSlider"
   }
 }

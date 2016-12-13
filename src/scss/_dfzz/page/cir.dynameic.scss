@@ -2,8 +2,8 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-
-#bbs_post {
+@import "../../helpers/_extend";
+#cir_dynameic {
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -13,9 +13,6 @@
         line-height: 80px;
         .r{
             float:left;
-            .app-select {
-                margin:2px 16px 0 0;
-            }
             .app-input-date{
                 line-height: normal;
                 margin-right: 14px;
@@ -41,9 +38,6 @@
 
         }
 
-    .app-pagination {
-        background:none;
-    }
 
     .app-display-board{
         .l{
@@ -60,4 +54,6 @@
             }
         }
     }
+
 }
+   

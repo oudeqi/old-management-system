@@ -1,14 +1,12 @@
-<div id="bbs_post_edit">
-<show-msg inn="1" ruter="true" innc="show" intop="37" inleft="45" inhtml='{{inhtml}}'></show-msg>
+<div id="cir_edit">
        <div class="app-filter">
             <div class="nav-left">  
                 <ol class="breadcrumb">
-                    <a ui-sref="bbs_post"><i class="data-addon"></i></a>
-                  <li><a ui-sref="bbs_post">帖子管理</a></li>
+                    <a ui-sref="cir_list"><i class="data-addon"></i></a>
+                  <li><a ui-sref="cir_list">话题管理</a></li>
                   <!-- <li><a href="#">Library</a></li> -->
-                  <li class="active">{{allx.title}}</li>
+                  <li class="active">{{allx.topic}}</li>
                       <div class="rx">
-                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="changePost(allx)" type="button">修改</button>
                         </div>
                 </ol>
             </div>
@@ -19,22 +17,12 @@
         <div class="app-display-board">
             <div class="l">
                 <div class="l-head"></div>
-                <div class="postLeft">
                  <div class="post">
-                        <div class="post_title">{{allx.title}}</div>
-                        <div class="post_user">
-                            <div class="user_head" ng-style="newStyle"></div>
-                            <div class="user_info">
-                                <div class="user_name">{{allx.nickName}}</div>
-                                <div class="user_time">132阅读  {{allx.createDate | date:"MM/dd HH:mm"}}</div>
-                            </div>
-                            <div class="user_care"></div>
-                        </div>
-
-                        <div class="post_content" ng-bind-html="htmlc">
-                        </div>
-                </div>
-                </div>
+                        <div class="post_title">{{allx.topic}}</div>
+                        <div class="post_nav">已有0人参与 0张照片</div>
+                        <img class="post_img" src="../../src/img/login-bg.jpg">
+                        <div class="post_content">{{allx.content}}</div>
+               	 </div>
 
             </div>
             <div class="r">
@@ -43,22 +31,24 @@
                         <table class="app-table">
                             <thead>
                                 <tr>
-                                    <th>评论者</th>
+                                    <th>参与者</th>
                                     <th>评论内容</th>
-                                    <th>评论时间</th>
+                                    <th>查看照片</th>
+                                    <th>发表时间</th>
                                     <th>操作</th>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="item in list" ng-show="list">
-                                    <td>{{item.nikeName}}</td>
-                                    <td ng-show="item.isDelete==1"><s>{{item.content}}</s></td>
-                                    <td ng-show="item.isDelete==0">{{item.content}}</td>
+                                    <td>{{item.siteName}}</td>
+                                    <td>{{item.statusName}}</td>
                                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                                    <td>2016/12/23 20:23</td>
                                     <td>
-                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽评论</a>
-                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==1">恢复</a>
+                                        <a href="javascript:void(0);" ng-click="info_change(item)" ng-show="item.status==1">修改</a>
+                                        <a href="javascript:void(0);" ng-click="info_auth(item)" ng-show="item.status==2 && permission.button_site_audit==1">详情</a>
+                                        <a href="javascript:void(0);" ng-click="info_dredge(item)" ng-show="item.status==1 && permission.button_site_audit==1">通过</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -86,5 +76,6 @@
                     </div> 
             </div>
         </div>
+        <show-msg inn="1" ruter="true" innc="noho" intop="11" inleft="80" data-nt="刮风这天"></show-msg>
 
 </div>

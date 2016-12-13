@@ -4,7 +4,50 @@
 @import "../../helpers/_function";
 @import "../../helpers/_extend";
 .modal-showpic {
-	background-color:red;
-	transform:translate(0,100px)
+	transform:translate(0,100px);
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	.modal-close {
+			moz-user-select: -moz-none;
+			-moz-user-select: none;
+			-o-user-select:none;
+			-khtml-user-select:none;
+			-webkit-user-select:none;
+			-ms-user-select:none;
+			user-select:none;
+	}
+
+	.picshow {
+		width:320px;
+		height:480px;
+		padding:55px 20px;
+		#myCarousel {
+			width:260px;
+			.carousel-control {
+				top:380px;
+				background: #2B333B;
+				color:#000;
+				font-size:3rem
+			}
+			.carousel-indicators {
+					top:396px;
+				li {
+				background: #D7D7D7;
+				}
+				.active {
+				background: #2B333B;
+				}
+			}
+			.carousel-inner {
+				width:262px;
+				height:374px;
+			}
+		}
+	}
 }
 

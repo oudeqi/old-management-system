@@ -3,7 +3,7 @@
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
 
-#bbs_post_edit {
+#cir_list_info {
     .ng-show {
         transform:translateY(-100px);
         opacity:1;
@@ -57,20 +57,18 @@
                 width:353px;
                 height:61px;
             }
-            .postLeft {
-                width:353px;
-                overflow:hidden;
             .post { 
                     background-color:white;
-                    padding:0 12px;
                     height:60vh;
-                    overflow:auto;
-                    overflow-wrap: break-word;
-                    width:370px;
-
+                    padding:0 12px;
                      .post_title {
+
+                         overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
                             color:#2b333b;
                             font-size:20px;
+                            height:3rem;
                             width:320px;
                             padding:8px 0 0 0;
                       }
@@ -99,7 +97,7 @@
                         }
                         .user_care {
                             float:right;
-                            margin:6px 18px 0 0;
+                            margin:6px 0 0 0;
                             width:80px;
                             height:34px;
                             background-size:cover;
@@ -111,15 +109,10 @@
                     .post_content {
                             clear:both;
                             width:325px;
-                            
+                            overflow-wrap: break-word;
                             margin:6rem 0 0 0;
-                            img {
-                                max-width:325px;
-                            }
                     }   
                 }
-
-            }
             }
         .r{
             width:65%;

@@ -3,7 +3,7 @@
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
 
-#bbs_post {
+#user_ctl {
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -13,9 +13,6 @@
         line-height: 80px;
         .r{
             float:left;
-            .app-select {
-                margin:2px 16px 0 0;
-            }
             .app-input-date{
                 line-height: normal;
                 margin-right: 14px;
@@ -41,21 +38,23 @@
 
         }
 
-    .app-pagination {
-        background:none;
-    }
 
     .app-display-board{
         .l{
-            width: 100%;
-            .item{
-                width: 33.333%;
-                .activex {
-                    color:#007cfb !important;
+            float: left;
+            width: 60%;
+            .inner{
+                .item{
+                    width: 25%;
                 }
-                .t-show{
-                    font-size:17px;
-                    line-height:82px;
+            }
+        }
+        .r{
+            float: left;
+            width:40%;
+            .inner{
+                .item{
+                    width: 33.33%;
                 }
             }
         }

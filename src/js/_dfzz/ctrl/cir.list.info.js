@@ -1,5 +1,5 @@
 var app = angular.module('uoudo.dfzz');
-app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','constant','localStorageService','$sce','$http','$filter','$state','$stateParams',
+app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','constant','localStorageService','$sce','$http','$filter','$state','$stateParams',
     function($scope,$uibModal,$timeout,FileUploader,constant,localStorageService,$sce,$http,$filter,$state,$stateParams){
     	// console.log($stateParams.postitem);
     	$scope.allx=$stateParams.postitem;
@@ -9,11 +9,27 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
     	$scope.list=null;
     	$scope.htmlc=null;
 
-
-            // 更改帖子
-        $scope.changePost=function(item){
-            $state.go("bbs_pub",{postitem:item},{reload:true});
-        }
+        $scope.testx = function(item){
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-showpic',
+                templateUrl: './tpl/_dfzz/modal.showpic.html',
+                controller: 'modal_pic',
+                size: 'sm', 
+                // sm,lg,md
+                resolve: {
+                    rp: function () {
+                        return item;
+                    }
+                }
+            });
+            modalInstance.result.then(function (data) {
+                console.info(data);
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+        };
 
         $scope.newStyle={
             "background-image":"url("+$scope.allx.headIconUrl+")",
@@ -22,11 +38,9 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
         $scope.unStyle={
         	"text-decoration":"none"
         }
-        if($scope.allx.createType==1){
+
         $scope.htmlc = $sce.trustAsHtml($scope.allx.htmlContent);
-        }else{
-        $scope.htmlc = $sce.trustAsHtml($scope.allx.content);   
-        }
+
         // 获取评论列表
         $scope.getList=function(){
 	         $http.get(constant.APP_HOST+'/v1/aut/site/group/comment',{

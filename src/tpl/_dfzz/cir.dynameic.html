@@ -1,17 +1,13 @@
-<div id="bbs_post">
+<div id="cir_dynameic">
  <show-msg inn="1" ruter="true" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
-    <div class="app-alert" ng-class="{'active':hasMsg}">
-        <div class="inner">{{msg}}</div>
-    </div>
-
-	<div class="app-filter">
+ 	<div class="app-filter">
 		<div class="r">	
             <div class="app-select">
                 <select class="select_type" ng-change="" ng-options="i.name for i in option_list track by i.id" ng-model="sec"></select>
                 <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
             </div>
             <div class="app-input-date">
-                <input class="input" type="text" ng-change="getList()" ng-model="date_get" date-picker placeholder="发帖日期">
+                <input class="input" type="text" ng-change="getList()" ng-model="date_get" date-picker placeholder="发表日期">
                 <button class="input-addon" type="button">
                     <i class="glyphicon dataaddon"></i>
                 </button>
@@ -30,48 +26,24 @@
         </div>
 	</div>
 
-    <!-- 展板 -->
-    <div class="app-display-board" ng-show="true">
-        <div class="l">
-            <div class="inner">
-                <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(2)" ng-class="{'activex':listParams.createType == 2}">
-                        <p class="t">{{top.inUser}}</p>
-                        <p class="b">平台发布</p>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(1)" ng-class="{'activex':listParams.createType == 1}">
-                        <p class="t">{{top.netUser}}</p>
-                        <p class="b">网友发布</p>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(0)" ng-class="{'activex':listParams.createType==0}">
-                        <p class="t-show">显示全部</p>
 
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- 表格 -->
     <div class="app-table-box">
         <table class="app-table">
             <thead>
                 <tr>
-                    <th>帖子标题</th>
-                    <th>发布者</th>
-                    <th>社区板块</th>
-                    <th>发帖时间</th>
-                    <th>评论数量</th>
+                    <th>作者</th>
+                    <th>动态内容</th>
+                    <th>评论列表</th>
+                    <th>查看照片</th>
+                    <th>发表时间</th>
                     <th>操作</th>
 
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in list.data" ng-show="list">
-                    <td>{{item.title}}</td>
+                    <td ng-click="testx(item)">{{item.title}}</td>
                     <td>{{item.nickName}}</td>
                     <td>{{item.groupType}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
@@ -88,6 +60,7 @@
                 </tr>
             </tbody>
         </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
     </div>
     <div class="app-pagination">
         <ul uib-pagination

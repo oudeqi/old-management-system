@@ -210,10 +210,13 @@ app.controller('bbs_post',['$scope','$uibModal','FileUploader','constant','local
             },  
         }).success(function(data){
             if(data.errMessage){
-
+                    console.log('获取分类模板错误')
             }else{
                 $scope.option_list=data.data;
-                console.log($scope.option_list)
+              $scope.option_list.push({"id": 0,"siteId": 1,"name": "全部"})
+                console.log("#######这里是option_list");
+                console.log($scope.option_list);
+                console.log("#######这里是option_list");
             }
             // console.log(data)
         })

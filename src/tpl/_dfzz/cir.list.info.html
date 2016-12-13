@@ -1,14 +1,14 @@
-<div id="bbs_post_edit">
+<div id="cir_list_info">
 <show-msg inn="1" ruter="true" innc="show" intop="37" inleft="45" inhtml='{{inhtml}}'></show-msg>
        <div class="app-filter">
             <div class="nav-left">  
                 <ol class="breadcrumb">
-                    <a ui-sref="bbs_post"><i class="data-addon"></i></a>
-                  <li><a ui-sref="bbs_post">帖子管理</a></li>
+                    <a ui-sref="websiteman_ctl"><i class="data-addon"></i></a>
+                  <li><a ui-sref="websiteman_ctl">帖子管理</a></li>
                   <!-- <li><a href="#">Library</a></li> -->
                   <li class="active">{{allx.title}}</li>
                       <div class="rx">
-                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="changePost(allx)" type="button">修改</button>
+                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="showMsg()" type="button">修改</button>
                         </div>
                 </ol>
             </div>
@@ -19,7 +19,6 @@
         <div class="app-display-board">
             <div class="l">
                 <div class="l-head"></div>
-                <div class="postLeft">
                  <div class="post">
                         <div class="post_title">{{allx.title}}</div>
                         <div class="post_user">
@@ -34,7 +33,6 @@
                         <div class="post_content" ng-bind-html="htmlc">
                         </div>
                 </div>
-                </div>
 
             </div>
             <div class="r">
@@ -43,9 +41,10 @@
                         <table class="app-table">
                             <thead>
                                 <tr>
-                                    <th>评论者</th>
+                                    <th>参与者</th>
                                     <th>评论内容</th>
-                                    <th>评论时间</th>
+                                    <th>查看图片</th>
+                                    <th>发表时间</th>
                                     <th>操作</th>
 
                                 </tr>
@@ -54,6 +53,7 @@
                                 <tr ng-repeat="item in list" ng-show="list">
                                     <td>{{item.nikeName}}</td>
                                     <td ng-show="item.isDelete==1"><s>{{item.content}}</s></td>
+                                    <td>''''''</td>
                                     <td ng-show="item.isDelete==0">{{item.content}}</td>
                                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                                     <td>
