@@ -108,6 +108,9 @@
                             overflow:auto;
                             overflow-wrap: break-word;
                             margin:6rem 0 0 0;
+                            img {
+                                max-width:325px;
+                            }
                     }   
                 }
             }
