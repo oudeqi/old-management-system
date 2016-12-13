@@ -82,7 +82,7 @@ app.controller('tgtj_promoter',['$scope','$uibModal','$http','constant','localSt
                         backdrop:'static',
                         animation: true,
                         windowClass: 'modal-lookewm',
-                        templateUrl: './tpl/_dfzz/modal.lookewm.html?zxc',
+                        templateUrl: './tpl/_dfzz/modal.lookewm.html',
                         controller: 'lookEwm',
                         size: 'sm',
                         resolve: {
