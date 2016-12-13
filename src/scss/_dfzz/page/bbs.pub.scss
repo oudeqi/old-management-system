@@ -28,12 +28,12 @@
                     top:170px;
                     padding:0 12px;
                      .post_title {
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
+                            height:auto;
+                            word-break:break-all;
+                            white-space:normal;
                             color:#2b333b;
                             font-size:20px;
-                            height:3rem;
+
                             width:320px;
                       }
                     .post_user {
@@ -75,6 +75,8 @@
                             width:325px;
                             overflow-wrap: break-word;
                             margin:90px 0 0 0;
+                            overflow:auto;
+                            height:420px;
                         }
                     }
            

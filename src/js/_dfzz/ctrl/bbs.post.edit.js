@@ -16,9 +16,11 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
         $scope.unStyle={
         	"text-decoration":"none"
         }
-
+        if($scope.allx.createType==1){
         $scope.htmlc = $sce.trustAsHtml($scope.allx.htmlContent);
-
+        }else{
+        $scope.htmlc = $sce.trustAsHtml($scope.allx.content);   
+        }
         // 获取评论列表
         $scope.getList=function(){
 	         $http.get(constant.APP_HOST+'/v1/aut/site/group/comment',{

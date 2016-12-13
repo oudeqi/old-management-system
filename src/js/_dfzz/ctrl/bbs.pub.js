@@ -6,7 +6,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         console.log("#############")
         console.log($scope.allx)
         console.log("#############")
-
+        $scope.nowClass='今日成都'
         $scope.option_list=null;
         $scope.selected_name=null;
         $scope.show=false;
@@ -31,7 +31,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             id:null,
             title:'',
             groupTypeId:2,
-            top:1,
+            top:0,
             htmlContent:'',
             imgList:[],
         }
@@ -41,13 +41,27 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
 
         $scope.$watchGroup([
             'sec.id',
+            'sec.name',
         	],function(na,nc){
                 $scope.pub.groupTypeId=na[0]
+                $scope.nowClass=na[1]
                 console.log(na)
         		// console.log(nc[1].id)
     	}) 
+        $scope.$watch("pub.title",function(na,nc){
+            console.log(na.length)
+            if(na.length>30){
+                $scope.pub.title=$scope.pub.title.substr(0,30);
+                $scope.inhtml='标题不能超过30字';
+                $scope.show=true;
+                 $timeout(function() {
+                    $scope.show=false;
+                }, 3000);
+            }
+        });
 
         $scope.$watch("pub.htmlContent",function(nv,ov){
+            console.log($scope.pub.htmlContent)
             $scope.artCon = $sce.trustAsHtml(nv);
             var str=nv;
             var imgReg = /<img.*?(?:>|\/>)/gi;
@@ -128,7 +142,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                             $scope.show=false;
                         }, 3000); 
                         $scope.pub.title='';
-                        $scope.htmlContent='';  
+                        $scope.pub.htmlContent='';
                     }
                 }).error(function(data){
                     console.log('可能网络有错误')

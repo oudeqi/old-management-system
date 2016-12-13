@@ -7,12 +7,12 @@
                  <div class="phone_head">
                     <div class="head_btn"></div>
                     <div class="head_tit">
-                        <span>详情</span>
+                        <span>{{nowClass}}</span>
                     </div>
                 </div>
 
                  <div class="post">
-                        <div class="post_title">{{pub.title}}</div>
+                        <div class="post_title">{{pub.title ? pub.title : '请输入帖子标题'}}</div>
                         <div class="post_user">
                             <div class="user_head" ng-style="newStyle"></div>
                             <div class="user_info">
