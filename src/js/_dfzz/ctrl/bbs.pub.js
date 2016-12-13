@@ -48,6 +48,17 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                 console.log(na)
         		// console.log(nc[1].id)
     	}) 
+        $scope.$watch("pub.title",function(na,nc){
+            console.log(na.length)
+            if(na.length>30){
+                $scope.pub.title=$scope.pub.title.substr(0,30);
+                $scope.inhtml='标题不能超过30字';
+                $scope.show=true;
+                 $timeout(function() {
+                    $scope.show=false;
+                }, 3000);
+            }
+        });
 
         $scope.$watch("pub.htmlContent",function(nv,ov){
             console.log($scope.pub.htmlContent)
