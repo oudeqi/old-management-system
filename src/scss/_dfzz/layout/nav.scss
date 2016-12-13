@@ -86,6 +86,9 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-cir {
                     @include sprite($icon-cir);
                 }
+                .icon-userctl {
+                     @include sprite($icon-userctl);
+                }
                 .txt{
                     display: block;
                     width: 100%;
@@ -126,6 +129,9 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-cir {
                         @include sprite($icon-cir-act);
+                    }
+                    .icon-userctl {
+                        @include sprite($icon-userctl-act);
                     }
                 }
                 &:hover{

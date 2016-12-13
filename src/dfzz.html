@@ -60,7 +60,9 @@
         <link rel="stylesheet" href="css/_dfzz/page/cir.dynameic.comment.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.dynameic.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.edit.css">
+        <link rel="stylesheet" href="css/_dfzz/page/cir.list - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/cir.list.info.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.pub - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.pub.css">
         <link rel="stylesheet" href="css/_dfzz/page/finance.list.css">
@@ -70,6 +72,7 @@
         <link rel="stylesheet" href="css/_dfzz/page/tgtj.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/user.ctl.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add.css">
@@ -104,6 +107,7 @@
         <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
+        <script src="js/_dfzz/ctrl/user.ctl.js"></script>
         <script src="js/_dfzz/ctrl/treasure.put.js"></script>
         <script src="js/_dfzz/ctrl/treasure.list.js"></script>
         <script src="js/_dfzz/ctrl/tgtj.list.js"></script>
@@ -123,6 +127,7 @@
         <script src="js/_dfzz/ctrl/finance.list.js"></script>
         <script src="js/_dfzz/ctrl/cir.pub.js"></script>
         <script src="js/_dfzz/ctrl/cir.list.js"></script>
+        <script src="js/_dfzz/ctrl/cir.list.info.js"></script>
         <script src="js/_dfzz/ctrl/cir.edit.js"></script>
         <script src="js/_dfzz/ctrl/cir.dynameic.js"></script>
         <script src="js/_dfzz/ctrl/cir.dynameic.comment.js"></script>
@@ -233,6 +238,15 @@
                             <span class="txt">圈子管理</span>
                         </a>
                     </li>
+
+                    <!-- 用户管理 -->
+                    <li class="item" ng-if="true">
+                        <a href="javascript:void(0);" ui-sref="user_ctl" ng-class="{'active':mainNav==='userctl'}" ng-mouseenter="navMouseover(13)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-userctl"></i>
+                            <span class="txt">用户管理</span>
+                        </a>
+                    </li>
+
 
 
                 </ul>
@@ -394,7 +408,22 @@
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="cir_comment" ui-sref-active="active">评论管理</a>
                     </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="cir_list_info" ui-sref-active="active">话题详情页</a>
+                    </li>
 
+                </ul>
+            </div>
+
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(13)" ng-mouseleave="navMouseleave()" ng-show="currNav === 13">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="user_ctl" ui-sref-active="active">用户管理</a>
+                    </li>
                 </ul>
             </div>
 
