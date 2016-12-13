@@ -88,6 +88,7 @@
         <table class="app-table">
             <thead>
                 <tr>
+                    <th>编号</th>
                     <th>红包ID</th>
                     <th>红包标题</th>
                     <th>红包类型</th>
@@ -101,6 +102,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in list" ng-show="list">
+                    <td>{{$index+1}}</td>
                     <td>{{item.id}}</td>
                     <td>{{item.introduce1}}</td>
                     <td>{{item.typeName}}</td>

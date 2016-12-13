@@ -43,4 +43,14 @@ $app-ipt-width: 200px !default;
             }
         }
     }
+    .app-table{
+        tr th:first-child{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        tr td:first-child{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
 }
