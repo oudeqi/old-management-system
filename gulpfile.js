@@ -125,8 +125,8 @@ gulp.task('clean', function() {
 gulp.task('server:build',function(){
     // 启动本地服务器
     browserSync.init({
-         server: "./dist",
-        // proxy: "http://192.168.0.200:80/dist/", //代理
+        //  server: "./dist",
+        proxy: "http://192.168.0.200:80/dist/", //代理
         files: ["dist/css/**/*.css"]
     });
     gulp.watch("src/**/*.html").on('change', browserSync.reload);
@@ -266,8 +266,8 @@ gulp.task('tpl:dfzz', function() {
 gulp.task('server:dev',function(cb){
     // 启动本地服务器
     browserSync.init({
-         server: "./",
-        // proxy: "http://192.168.0.200:80/src/", //代理
+        //  server: "./",
+        proxy: "http://192.168.0.200:80/src/", //代理
         files: ["src/css/**/*.css"]
     });
     cb();

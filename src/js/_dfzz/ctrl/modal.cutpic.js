@@ -441,8 +441,6 @@ app.controller('cutTreasurePic', ['$scope','$http','$uibModalInstance','constant
             $(_this).Jcrop({
                 onChange: showPreview,
                 onSelect: showPreview,
-
-                aspectRatio: 1.448717948717949,
                 aspectRatio: 2,
                 setSelect: [0, 0, 800,800],
                 boxWidth: 800,
