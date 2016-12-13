@@ -1,0 +1,135 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#cir_list_info {
+    .ng-show {
+        transform:translateY(-100px);
+        opacity:1;
+    }
+
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 81px;
+        line-height: 81px;
+                
+            .nav-left {
+                line-height:81px;
+                .rx {
+                    float:right;
+                    .rx-button {
+                        width:138px;
+                        height:38px;
+                        line-height:38px;
+                    }
+                }
+                .breadcrumb {
+                    background:none;
+                    padding:0;
+                    .data-addon {
+                            position:relative;
+                            float:left;
+                            top:.4rem;
+                            margin:0 1rem 0 0;
+                            @include sprite($icon-bread-back);   
+
+                        }
+
+
+                }
+
+                
+            }
+        }
+    .app-display-board {
+
+        .l {
+            width:353px;
+            height:auto;
+            margin:18px 20px;
+            .l-head {
+                background-image:url('../../../img/phone-title.png');
+                background-size:cover;
+                width:353px;
+                height:61px;
+            }
+            .post { 
+                    background-color:white;
+                    height:60vh;
+                    padding:0 12px;
+                     .post_title {
+
+                         overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            color:#2b333b;
+                            font-size:20px;
+                            height:3rem;
+                            width:320px;
+                            padding:8px 0 0 0;
+                      }
+                    .post_user {
+                       margin:1rem 0 0 0;
+                        .user_head {
+                            float:left;
+                            height:4rem;
+                            width:4rem;
+                            border-radius:50%;
+                            background-size:cover;
+                            background-image:url('../../../img/head-pic.jpg');                   }  
+
+                        .user_info {
+                            float:left;
+                            margin:6px 12px 0 12px;
+                            .user_name {
+                                font-size:15px;
+                                color:#686868;
+                            }
+                            .user_time{
+                                font-size:12px;
+                                color:#bfbfbf;
+
+                            }
+                        }
+                        .user_care {
+                            float:right;
+                            margin:6px 0 0 0;
+                            width:80px;
+                            height:34px;
+                            background-size:cover;
+                            background-image:url('../../../img/care_btn.png')
+                        }
+
+                    }
+
+                    .post_content {
+                            clear:both;
+                            width:325px;
+                            overflow-wrap: break-word;
+                            margin:6rem 0 0 0;
+                    }   
+                }
+            }
+        .r{
+            width:65%;
+            .app-table-box {
+
+                border-radius:0;
+            }
+            .app-pagination {
+                border-radius:0;
+            }
+        }   
+    }
+
+
+
+
+
+
+
+}

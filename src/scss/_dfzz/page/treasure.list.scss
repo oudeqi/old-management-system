@@ -1,0 +1,131 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.treasure_list{
+    background: #fff;
+    padding-bottom: 1px;
+    .app-filter{
+        padding-top: 30px;
+        .app-select{
+            margin-left: 8px;
+        }
+        .app-input-search{
+            margin-right: 4px;
+        }
+    }
+    %cols{
+        &.col_1{
+            width: 200px;
+            text-align: left;
+        }
+        &.col_2{
+            width: 120px;
+        }
+        &.col_3{
+            width: 120px;
+        }
+        &.col_4{
+            width: 130px;
+        }
+        &.col_5{
+            width: 160px;
+        }
+        &.col_6{
+            width: 160px;
+        }
+        &.col_7{
+            width: 120px;
+        }
+        &.col_8{
+            width: 120px;
+            border-right: 0;
+        }
+    }
+    .treasure_list_table{
+        margin: 18px;
+        margin-top: 30px;
+        .treasure_list_table_head{
+            background-color: #f8f8f8;
+            font-size: 15px;
+            color: #000;
+            line-height: 1;
+            padding: 14px 0;
+            text-align: center;
+            @include clearfix();
+            .col{
+                float: left;
+                @extend %cols;
+                &.col_1{
+                    padding-left: 10px;
+                }
+            }
+        }
+        .treasure_list_table_item{
+            margin-top: 20px;
+            border: 1px solid #eee;
+            text-align: center;
+            @include clearfix();
+            .col{
+                border-right: 1px solid #eee;
+                padding: 10px;
+                height: 200px;
+                float: left;
+                @extend %cols;
+                &.col_1{
+                    img{
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        margin-bottom: 4px;
+                    }
+                    p{
+                        margin-bottom: 8px;
+                        height: 40px;
+                        overflow: hidden;
+                        .link{
+                            @include motw;
+                        }
+
+                    }
+                }
+                &.col_2{
+                    line-height: 180px;
+                }
+                &.col_3{
+                    .notpassed{
+                        padding-top: 60px;
+                    }
+                    .passed{
+                        padding-top: 70px;
+                        p{
+                            margin-bottom: 6px;
+                        }
+                    }
+                    .no_permission{
+                        line-height: 180px;
+                    }
+                }
+                &.col_4{
+                    line-height: 180px;
+                }
+                &.col_5{
+                    .offline{
+                        padding-top: 43px;
+                        .input-group{
+                            width: 138px;
+                        }
+                    }
+                    .online{
+                        line-height: 180px;
+                    }
+                }
+                &.col_6{}
+                &.col_7{}
+                &.col_8{}
+            }
+
+        }
+    }
+}

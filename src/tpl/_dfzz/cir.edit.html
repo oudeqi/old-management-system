@@ -1,0 +1,81 @@
+<div id="cir_edit">
+       <div class="app-filter">
+            <div class="nav-left">  
+                <ol class="breadcrumb">
+                    <a ui-sref="cir_list"><i class="data-addon"></i></a>
+                  <li><a ui-sref="cir_list">话题管理</a></li>
+                  <!-- <li><a href="#">Library</a></li> -->
+                  <li class="active">{{allx.topic}}</li>
+                      <div class="rx">
+                        </div>
+                </ol>
+            </div>
+        </div>
+
+
+
+        <div class="app-display-board">
+            <div class="l">
+                <div class="l-head"></div>
+                 <div class="post">
+                        <div class="post_title">{{allx.topic}}</div>
+                        <div class="post_nav">已有0人参与 0张照片</div>
+                        <img class="post_img" src="../../src/img/login-bg.jpg">
+                        <div class="post_content">{{allx.content}}</div>
+               	 </div>
+
+            </div>
+            <div class="r">
+                    <!-- 表格 -->
+                    <div class="app-table-box">
+                        <table class="app-table">
+                            <thead>
+                                <tr>
+                                    <th>参与者</th>
+                                    <th>评论内容</th>
+                                    <th>查看照片</th>
+                                    <th>发表时间</th>
+                                    <th>操作</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in list" ng-show="list">
+                                    <td>{{item.siteName}}</td>
+                                    <td>{{item.statusName}}</td>
+                                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                                    <td>2016/12/23 20:23</td>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="info_change(item)" ng-show="item.status==1">修改</a>
+                                        <a href="javascript:void(0);" ng-click="info_auth(item)" ng-show="item.status==2 && permission.button_site_audit==1">详情</a>
+                                        <a href="javascript:void(0);" ng-click="info_dredge(item)" ng-show="item.status==1 && permission.button_site_audit==1">通过</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+                    </div> 
+
+                    <div class="app-pagination">
+                        <ul uib-pagination
+                        ng-change="pageChanged(this_page)"
+                        items-per-page="all_page.pageSize"
+                        num-pages="all_page.pageCount"
+                        total-items="all_page.rowCount"
+                        ng-model="this_page"
+                        max-size="5"
+                        boundary-links="true"
+                        rotate="true"
+                        first-text="&laquo;"
+                        last-text="&raquo;"
+                        previous-text="&lsaquo;"
+                        next-text="&rsaquo;"></ul>
+                        <div class="pageTo">
+                            <input type="number" placeholder="输入页数" ng-model="pageTo">
+                        </div>
+                    </div> 
+            </div>
+        </div>
+        <show-msg inn="1" ruter="true" innc="noho" intop="11" inleft="80" data-nt="刮风这天"></show-msg>
+
+</div>

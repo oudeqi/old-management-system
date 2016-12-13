@@ -1,0 +1,113 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#cir_edit {
+    .ng-show {
+        transform:translateY(-100px);
+        opacity:1;
+    }
+
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 81px;
+        line-height: 81px;
+                
+            .nav-left {
+                line-height:81px;
+                .rx {
+                    float:right;
+                    .rx-button {
+                        width:138px;
+                        height:38px;
+                        line-height:38px;
+                    }
+                }
+                .breadcrumb {
+                    background:none;
+                    padding:0;
+                    .data-addon {
+                            position:relative;
+                            float:left;
+                            top:.4rem;
+                            margin:0 1rem 0 0;
+                            @include sprite($icon-bread-back);   
+
+                        }
+
+
+                }
+
+                
+            }
+        }
+    .app-display-board {
+
+        .l {
+            width:354px;
+            margin:18px 20px;
+            height:70vh;
+            background-color:white;
+            .l-head {
+                background-image:url('../../../img/phone-title.png');
+                background-size:cover;
+                width:353px;
+                height:61px;
+
+            }
+			.post {
+            		left:33px;
+                    top:170px;
+                    padding:0 12px;
+                    overflow:auto;
+                        height:560px;
+                        overflow-wrap: break-word;
+      				.post_title {
+      					width:96%;
+						font-size: 18px;
+						color: #2B333B;
+						letter-spacing: 0;
+      				}
+      				.post_nav {
+						font-size: 12px;
+						color: #BFBFBF;
+						letter-spacing: 0;
+                        margin:10px 0 10px 0;
+      				}
+      				.post_img {
+      					max-width:325px;
+      				}
+      				.post_content {
+      					max-width:340px;
+						font-size: 16px;
+						color: #848689;
+						line-height: 25.88px;
+                        img {
+                            max-width:340px;
+                        }
+      				}	
+                }
+            }
+        .r{
+            width:65%;
+            .app-table-box {
+
+                border-radius:0;
+            }
+            .app-pagination {
+                border-radius:0;
+            }
+        }   
+    }
+
+
+
+
+
+
+
+}

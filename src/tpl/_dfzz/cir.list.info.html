@@ -1,0 +1,90 @@
+<div id="cir_list_info">
+<show-msg inn="1" ruter="true" innc="show" intop="37" inleft="45" inhtml='{{inhtml}}'></show-msg>
+       <div class="app-filter">
+            <div class="nav-left">  
+                <ol class="breadcrumb">
+                    <a ui-sref="websiteman_ctl"><i class="data-addon"></i></a>
+                  <li><a ui-sref="websiteman_ctl">帖子管理</a></li>
+                  <!-- <li><a href="#">Library</a></li> -->
+                  <li class="active">{{allx.title}}</li>
+                      <div class="rx">
+                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="showMsg()" type="button">修改</button>
+                        </div>
+                </ol>
+            </div>
+        </div>
+
+
+
+        <div class="app-display-board">
+            <div class="l">
+                <div class="l-head"></div>
+                 <div class="post">
+                        <div class="post_title">{{allx.title}}</div>
+                        <div class="post_user">
+                            <div class="user_head" ng-style="newStyle"></div>
+                            <div class="user_info">
+                                <div class="user_name">{{allx.nickName}}</div>
+                                <div class="user_time">132阅读  {{allx.createDate | date:"MM/dd HH:mm"}}</div>
+                            </div>
+                            <div class="user_care"></div>
+                        </div>
+
+                        <div class="post_content" ng-bind-html="htmlc">
+                        </div>
+                </div>
+
+            </div>
+            <div class="r">
+                    <!-- 表格 -->
+                    <div class="app-table-box">
+                        <table class="app-table">
+                            <thead>
+                                <tr>
+                                    <th>参与者</th>
+                                    <th>评论内容</th>
+                                    <th>查看图片</th>
+                                    <th>发表时间</th>
+                                    <th>操作</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in list" ng-show="list">
+                                    <td>{{item.nikeName}}</td>
+                                    <td ng-show="item.isDelete==1"><s>{{item.content}}</s></td>
+                                    <td>''''''</td>
+                                    <td ng-show="item.isDelete==0">{{item.content}}</td>
+                                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                                    <td>
+                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽评论</a>
+                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==1">恢复</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+                    </div> 
+
+                    <div class="app-pagination">
+                        <ul uib-pagination
+                        ng-change="pageChanged(this_page)"
+                        items-per-page="all_page.pageSize"
+                        num-pages="all_page.pageCount"
+                        total-items="all_page.rowCount"
+                        ng-model="this_page"
+                        max-size="5"
+                        boundary-links="true"
+                        rotate="true"
+                        first-text="&laquo;"
+                        last-text="&raquo;"
+                        previous-text="&lsaquo;"
+                        next-text="&rsaquo;"></ul>
+                        <div class="pageTo">
+                            <input type="number" placeholder="输入页数" ng-model="pageTo">
+                        </div>
+                    </div> 
+            </div>
+        </div>
+
+</div>

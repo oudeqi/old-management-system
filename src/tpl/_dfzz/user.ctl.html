@@ -1,0 +1,121 @@
+<div id="user_ctl">
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
+
+	<div class="app-filter">
+		<div class="r">	
+            <div class="app-select">
+                <select label='测试' class="select_type" ng-change="" ng-options="i.name for i in option_list track by i.id" ng-model="sec"></select>
+                <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
+            </div>
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入用户名搜索" ng-model="list_get.search" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="get_list()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="rx">
+        	<button class="app-button-primary rx-button" ui-sref="cir_edit" type="button">新增话题</button>
+        </div>
+	</div>
+
+    <!-- 展板 -->
+    <div class="app-display-board" ng-show="true">
+        <div class="l">
+            <div class="inner">
+                <div class="item">
+                    <!-- * status：1待审核，2通过，3拒绝，4下线 -->
+                    <a href="javascript:void(0);" ng-click="changeStatus(1)" ng-class="{'active':status === 1}">
+                        <p class="t">{{report.statusWaitAudit | number : 0}}</p>
+                        <p class="b">今日活跃用户</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeStatus(2)" ng-class="{'active':status === 2}">
+                        <p class="t">{{report.statusSuccess | number : 0}}</p>
+                        <p class="b">7日活跃用户</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeStatus(3)" ng-class="{'active':status === 3}">
+                        <p class="t">{{report.statusFail | number : 0}}</p>
+                        <p class="b">本月活跃用户</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="inner">
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(0)" ng-class="{'active':type === 0}">
+                        <p class="t">{{report.countFree | number : 0}}</p>
+                        <p class="b">今日新增用户</p>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeType(3)" ng-class="{'active':type === 3}">
+                        <p class="t">{{report.typeUcoin | number : 0}}</p>
+                        <p class="b">用户总数</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 表格 -->
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>用户账号</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>身高</th>
+                    <th>星座</th>
+                    <th>魅力</th>
+                    <th>关注</th>
+                    <th>粉丝</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list" ng-show="list">
+                    <td>{{item.siteName}}</td>
+                    <td>{{item.statusName}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>{{item.weixin}}</td>
+                    <td>{{item.caozuo}}</td>
+                    <td>{{item.caozuo}}</td>
+                    <td>{{item.caozuo}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged(this_page)"
+        items-per-page="all_page.pageSize"
+        num-pages="all_page.pageCount"
+        total-items="all_page.rowCount"
+        ng-model="this_page"
+        max-size="5"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo">
+        </div>
+    </div>
+
+</div>

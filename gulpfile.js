@@ -304,16 +304,16 @@ gulp.task('watch', function(cb) {
         });
 
     // 监听模板文件增加编译成js
-    // watch(["src/tpl/**/*.html"])
-    //     .on('add', function() {
-    //         gulp.start('tpl:index');
-    //     })
-    //     .on('change', function() {
-    //         gulp.start('tpl:index');
-    //     })
-    //     .on('unlink', function() {
-    //         gulp.start('tpl:index');
-    //     });
+     watch(["src/tpl/**/*.html"])
+         .on('add', function() {
+             gulp.start('tpl:index');
+         })
+         .on('change', function() {
+             gulp.start('tpl:index');
+         })
+         .on('unlink', function() {
+             gulp.start('tpl:index');
+         });
 
     // 监听scss 编译scss
     gulp.watch("src/scss/**/*.scss", ['scss']);
