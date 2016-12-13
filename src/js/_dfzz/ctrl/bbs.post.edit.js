@@ -9,6 +9,12 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
     	$scope.list=null;
     	$scope.htmlc=null;
 
+
+            // 更改帖子
+        $scope.changePost=function(item){
+            $state.go("bbs_pub",{postitem:item},{reload:true});
+        }
+
         $scope.newStyle={
             "background-image":"url("+$scope.allx.headIconUrl+")",
         }

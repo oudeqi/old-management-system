@@ -28,36 +28,42 @@
             		left:33px;
                     top:170px;
                     padding:0 12px;
+                    overflow:hidden;
+                    width:330px;
+                    .postx {
+                     height:550px;
+                    width:350px;
                         overflow:auto;
-                        height:550px;
                         overflow-wrap: break-word;
-      				.post_title {
-      					height:auto;
+                        .post_title {
+                        height:auto;
                         word-break:break-all;
                         white-space:normal;
                         color:#2b333b;
                         font-size:20px;
                         width:320px;
-      				}
-      				.post_nav {
+                    }
+                    .post_nav {
                         margin:12px 0 0 0;
-						font-size: 12px;
-						color: #BFBFBF;
-						letter-spacing: 0;
-      				}
-      				.post_img {
-      					max-width:325px;
-      				}
-      				.post_content {
-      					max-width:340px;
-						font-size: 16px;
-						color: #848689;
-						line-height: 25.88px;
+                        font-size: 12px;
+                        color: #BFBFBF;
+                        letter-spacing: 0;
+                    }
+                    .post_img {
+                        max-width:325px;
+                    }
+                    .post_content {
+                        max-width:340px;
+                        font-size: 16px;
+                        color: #848689;
+                        line-height: 25.88px;
 
                         img {
                             max-width:340px;
                         }
-      				}	
+                    }
+                    }
+
                 }
         }
         .r{

@@ -16,16 +16,6 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
     	}).error(function(data){});
 
         $scope.showInfo = function(){
-            // console.log("goodsName:"+$scope.treasure.goodsName);
-            // console.log($scope.treasure.treasureType);
-            // console.log("stageNumber:"+$scope.treasure.stageNumber);
-            // console.log("previewUrl:"+$scope.treasure.previewUrl);
-            // console.log("title:"+$scope.treasure.title);
-            // console.log("number:"+$scope.treasure.number);
-            // console.log("onceMoney:"+$scope.treasure.onceMoney);
-            // console.log($scope.treasure.imgList);
-            // console.log("remarks:"+$scope.treasure.remarks);
-            // console.log("goodsInfo:"+$scope.treasure.goodsInfo);
             console.log(localStorageService.get('treasure.put'));
         };
 
@@ -33,6 +23,7 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
             $scope.treasure = localStorageService.get('treasure.put');
         }else{
             $scope.treasure = {};
+            $scope.treasure.id = null;
             $scope.treasure.goodsName = "";//夺宝名称
             $scope.treasure.treasureType =  {//夺宝所属类别
     			id:0,
@@ -222,7 +213,7 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
         $scope.treasurePut = function(){
             if($scope.validate()){
                 $scope.loading = true;
-                $http.post(constant.APP_HOST+'v1/aut/gemSet',{
+                var postData = {
                     goodsName:$scope.treasure.goodsName,
                     labelId:$scope.treasure.treasureType.id,
                     stageNumber:$scope.treasure.stageNumber,
@@ -233,7 +224,12 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
                     imgList:$scope.treasure.imgList,
                     remarks:$scope.treasure.remarks,
                     goodsInfo:$scope.treasure.goodsInfo,
-                 },{
+                };
+                if($scope.treasure.id){
+                    postData.id = $scope.treasure.id;
+                }
+
+                $http.post(constant.APP_HOST+'v1/aut/gemSet',postData,{
          			headers:{
          				'Authorization':localStorageService.get("token")
          			}
@@ -245,7 +241,11 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
                         $scope.succMsg = "";
                     }else{
                         $scope.errMsg = "";
-                        $scope.succMsg = "夺宝发布成功";
+                        if($scope.treasure.id){
+                            $scope.succMsg = "修改夺宝成功";
+                        }else{
+                            $scope.succMsg = "夺宝发布成功";
+                        }
                         $timeout(function(){
                             localStorageService.remove('treasure.put');
                             $state.go("treasure_put",{},{reload:true});
@@ -253,7 +253,11 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
                     }
                 }).error(function(data){
                     $scope.loading = false;
-                    $scope.errMsg = "夺宝发布失败！";
+                    if($scope.treasure.id){
+                        $scope.errMsg = "修改夺宝失败！";
+                    }else{
+                        $scope.errMsg = "夺宝发布失败！";
+                    }
                 });
             }
         };

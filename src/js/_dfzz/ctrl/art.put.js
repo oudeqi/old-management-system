@@ -15,7 +15,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         // }
         $scope.step = 1;//当前显示页数
         $scope.art = localStorageService.get('art.put');
-        // console.log($scope.art);
+        console.log($scope.art);
         if(!!$scope.art){
             $scope.artEdit = true;
             var content="",videoCon="";
@@ -122,23 +122,36 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 'Authorization': localStorageService.get("token")
             }
         }).success(function(data) {
+            console.log("获取文章分类");
             console.log(data);
             if(!data.errMessage){
-                $scope.types = data.data;
-                $scope.type = $scope.types[0];
-                $scope.$watch("type",function(){
-                    var artPut = localStorageService.get("art.put");
-                    artPut.infoTypeId = $scope.type.id;
-                    localStorageService.set('art.put',artPut);
-                });
-                // 如果是修改
-                if(!!$scope.art){
+                if(!!data.data.length){
+                    $scope.types = data.data;
+                    $scope.type = $scope.types[0];
                     angular.forEach($scope.types,function(item){
                         if(item.id === $scope.art.infoTypeId){
                             $scope.type = item; //文章类别
                         }
                     });
+                    $scope.$watch("type",function(){
+                        var artPut = localStorageService.get("art.put");
+                        console.log($scope.type);
+                        artPut.infoTypeId = $scope.type.id;
+                        localStorageService.set('art.put',artPut);
+                    });
+                }else{
+                    $scope.types = [];
+                    $scope.type = {};
+                    if($scope.art){
+                        $scope.type.id = $scope.art.infoTypeId;
+                    }else{
+                        $scope.type.id = 0;
+                    }
+                    var artPut = localStorageService.get("art.put");
+                    artPut.infoTypeId = $scope.type.id;
+                    localStorageService.set('art.put',artPut);
                 }
+
             }
         }).error(function(data) {
 
@@ -277,7 +290,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             var pushTime = null;
             if($scope.pushTime){
                 pushTime = $scope.pushTime + ":00";
-                pushTime = new Date(pushTime).getTime()
+                pushTime = new Date(pushTime).getTime();
             }
             $http.post(constant.APP_HOST+'/v1/aut/info/publish',{
                 deleteId:$scope.deleteId,
@@ -301,14 +314,14 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
      			}
      		}).success(function(data){
                 console.log(data);
+                $scope.loading = false;
                 if(data.errMessage){
                     $scope.errMsg = data.errMessage;
                     $scope.succMsg = "";
-                    $scope.loading = false;
+
                 }else{
                     $scope.errMsg = "";
                     $scope.succMsg = "文章发布成功";
-                    $scope.loading = false;
                     $timeout(function(){
                         localStorageService.remove('art.put');
                         $state.go("art_put",{},{reload:true});

@@ -1,11 +1,11 @@
 angular.module('uoudo.dfzz')
-.controller('lookEwm', ['$scope','$uibModalInstance','tg',
-    function ($scope,$uibModalInstance,tg) {
+.controller('lookEwm', ['$scope','$uibModalInstance','promotEwm',
+    function ($scope,$uibModalInstance,promotEwm) {
 
-        $scope.tg = tg;
+        $scope.promotEwm = promotEwm;
 
     	$scope.ok = function () {
-            $uibModalInstance.close($scope.imgSrc);
+            $uibModalInstance.close();
     	};
     	$scope.cancel = function () {
     		$uibModalInstance.dismiss();

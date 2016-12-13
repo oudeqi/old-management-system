@@ -18,7 +18,6 @@ $app-ipt-width: 200px !default;
 %app-input{
     height: $app-ipt-height;
     border: 1px solid $app-ipt-border-color;
-    border-radius: $app-ipt-border-radus 0 0 $app-ipt-border-radus;
     padding-left: 6px;
     padding-right: 6px;
     font-size: 15px;
@@ -43,6 +42,7 @@ $app-ipt-width: 200px !default;
     @extend %app-input-box;
     input.input{
         width: $app-ipt-width - $app-ipt-height;
+        border-radius: $app-ipt-border-radus 0 0 $app-ipt-border-radus;
         @extend %app-input;
     }
     .input-clear{
@@ -64,6 +64,7 @@ $app-ipt-width: 200px !default;
     @extend %app-input-box;
     input.input{
         width: $app-ipt-width;
+        border-radius: $app-ipt-border-radus;
         @extend %app-input;
     }
 }
@@ -72,6 +73,7 @@ $app-ipt-width: 200px !default;
     @extend %app-input-box;
     input.input{
         width: $app-ipt-width;
+        border-radius: $app-ipt-border-radus 0 0 $app-ipt-border-radus;
         @extend %app-input;
     }
     .input-addon{

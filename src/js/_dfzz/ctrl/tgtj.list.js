@@ -6,7 +6,7 @@ app.controller('tgtj',['$scope','$uibModal','$http','constant','localStorageServ
         $scope.putDate = null;
         $scope.keywords = "";
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 12;
         $scope.maxSize = 5;
         $scope.list = [];
         $scope.totalItems = 0;
@@ -30,6 +30,7 @@ app.controller('tgtj',['$scope','$uibModal','$http','constant','localStorageServ
                     pageIndex:$scope.currentPage
                 }
             }).success(function(data) {
+                console.log("推广用户列表");
                 console.info(data);
                 if (data.errMessage) {
                     $scope.list = null;
@@ -75,8 +76,6 @@ app.controller('tgtj',['$scope','$uibModal','$http','constant','localStorageServ
         };
 
         $scope.detail = function(item){
-            alert("未开放！");
-            return;
             // var modalInstance = $uibModal.open({
             //     backdrop:'static',
             //     animation: true,

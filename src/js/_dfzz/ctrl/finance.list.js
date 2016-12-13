@@ -18,6 +18,7 @@ app.controller('finance_list',['$scope','$http','constant','localStorageService'
                     pageIndex:$scope.currentPage
                 }
             }).success(function(data) {
+                console.log("获取财务列表");
                 console.info(data);
                 if (data.errMessage) {
                     $scope.list = null;
@@ -96,6 +97,7 @@ app.controller('finance_list',['$scope','$http','constant','localStorageService'
                 pageIndex:$scope.downloadCurrentPage
             }
         }).success(function(data) {
+            console.log("获取财务下载列表");
             console.info(data);
             if (data.errMessage) {
                 $scope.downloadList = [];

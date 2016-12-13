@@ -69,17 +69,20 @@
                         }
 
                         }
-
+                        .post_content_left{
+                            overflow:hidden;
+                            width:325px;
                     .post_content {
                             clear:both;
-                            width:325px;
+                            width:345px;
                             overflow-wrap: break-word;
-                            margin:90px 0 0 0;
+                            margin:10px 0 0 0;
                             overflow:auto;
                             height:420px;
                             img {
                                 max-width:325px;
                             }
+                        }
                         }
                     }
            

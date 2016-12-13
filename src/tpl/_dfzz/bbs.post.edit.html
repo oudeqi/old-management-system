@@ -8,7 +8,7 @@
                   <!-- <li><a href="#">Library</a></li> -->
                   <li class="active">{{allx.title}}</li>
                       <div class="rx">
-                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="showMsg()" type="button">修改</button>
+                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="changePost(allx)" type="button">修改</button>
                         </div>
                 </ol>
             </div>
@@ -19,6 +19,7 @@
         <div class="app-display-board">
             <div class="l">
                 <div class="l-head"></div>
+                <div class="postLeft">
                  <div class="post">
                         <div class="post_title">{{allx.title}}</div>
                         <div class="post_user">
@@ -32,6 +33,7 @@
 
                         <div class="post_content" ng-bind-html="htmlc">
                         </div>
+                </div>
                 </div>
 
             </div>

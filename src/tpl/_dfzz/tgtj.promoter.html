@@ -1,0 +1,60 @@
+<div id="tgtj_promoter">
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
+    <div class="app-filter">
+        <div class="r">
+            <button class="app-button-primary" type="button" ng-click="addNewPromoter()">新增推广员</button>
+        </div>
+    </div>
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>推广员姓名</th>
+                    <th>电话</th>
+                    <th>推广用户总数量</th>
+                    <th>有效用户总数量</th>
+                    <th>推广总佣金（U币）</th>
+                    <th width="300">备注</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list">
+                    <td>{{item.name}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>{{item.allInvite | number : 0}}</td>
+                    <td>{{item.successInvite | number : 0}}</td>
+                    <td>{{item.inviteReward | number : 2}}</td>
+                    <td>
+                        <span title="{{item.remarks}}">{{item.remarks || "无"}}</span>
+                    </td>
+                    <td>
+                        <a ng-click="lookEwm(item)">查看二维码</a>
+                        <a ng-click="delPromoter(item)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

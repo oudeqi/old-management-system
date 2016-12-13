@@ -12,6 +12,7 @@ $nav-act-bg-color: #2d3237 !default;
     position: fixed;
     top: 0;
     left:0;
+    z-index: 9999;
     height: 100%;
     width: $nav-width;
     background: $nav-bg-color;
@@ -88,6 +89,9 @@ $nav-act-bg-color: #2d3237 !default;
                 }
                 .icon-userctl {
                      @include sprite($icon-userctl);
+                     }
+                .icon-treasure{
+                    @include sprite($icon-nav-treasure);
                 }
                 .txt{
                     display: block;
@@ -121,7 +125,7 @@ $nav-act-bg-color: #2d3237 !default;
                     .icon-finance{
                         @include sprite($icon-nav-finance-act);
                     }
-                    .icon-websiteman{ 
+                    .icon-websiteman{
                         @include sprite($icon-websiteman-act);
                     }
                     .icon-bbs {
@@ -132,6 +136,9 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-userctl {
                         @include sprite($icon-userctl-act);
+                        }
+                    .icon-treasure{
+                        @include sprite($icon-nav-treasure-act);
                     }
                 }
                 &:hover{

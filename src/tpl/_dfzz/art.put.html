@@ -1,7 +1,7 @@
 <div class="art_put_form">
     <div class="inner">
         <div class="l">
-            <div class="phone" ng-show="step === 1">
+            <div class="phone" ng-show="step == 1">
                 <div class="phone_head">
                     <div class="head_btn"></div>
                     <div class="head_tit">
@@ -25,8 +25,8 @@
                     </ul>
                     <div class="banner">
                         <div class="bg"></div>
-                        <img ng-show="infoSet.top === '1' && previewUrl" ng-src="{{previewUrl}}" alt="" />
-                        <div class="tit" ng-show="infoSet.top === '1'">
+                        <img ng-show="infoSet.top == '1' && previewUrl" ng-src="{{previewUrl}}" alt="" />
+                        <div class="tit" ng-show="infoSet.top == '1'">
                             {{infoSet.title || "请输入文章标题"}}
                         </div>
                         <div class="bott">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="phone" ng-show="step === 2">
+            <div class="phone" ng-show="step == 2">
                 <div class="phone_head">
                     <div class="head_btn">
                         <div class="back animated bounceIn" ng-click="step = 1">
@@ -79,7 +79,7 @@
                     <div class="head_btn"></div>
                 </div>
                 <div class="phone_content_detail">
-                    <div class="art_video" ng-show="infoSet.template === '1'">
+                    <div class="art_video" ng-show="infoSet.template == '1'">
                         <img ng-show="imageUrl" ng-src="{{imageUrl}}" alt="" />
                         <button class="video_play" type="button" name="button"></button>
                     </div>
@@ -91,10 +91,10 @@
                         <span class="time">2016-06-31 20:11</span>
                         <span class="read">阅读:2000</span>
                     </div>
-                    <div class="art_con" ng-show="infoSet.template === '1'">
+                    <div class="art_con" ng-show="infoSet.template == '1'">
                         {{infoSet.videoCon || "介绍在45个字以内，若没有填写，标题则会成为视频文案。"}}
                     </div>
-                    <div class="art_con" ng-bind-html="artCon || artConPlace" ng-show="infoSet.template === '2'"></div>
+                    <div class="art_con" ng-bind-html="artCon || artConPlace" ng-show="infoSet.template == '2'"></div>
                 </div>
             </div>
         </div>
@@ -116,13 +116,13 @@
                     </label>
                 </div>
             </div>
-            <div class="form_row">
+            <div class="form_row" ng-show="!!types.length">
                 <div class="tit">
                     <span>文章分类：</span>
                 </div>
                 <div class="cont">
                     <select class="select_type" ng-change="step = 1" ng-options="i.name for i in types track by i.id" ng-model="type"></select>
-                    <label class="checkbox_label" ng-show="permission.button_info_ucoin === '1'">
+                    <label class="checkbox_label" ng-show="permission.button_info_ucoin == '1'">
                         <input type="checkbox" ng-model="infoSet.feeType" ng-false-value="0" ng-true-value="3">
                         <span>U币文章</span>
                     </label>
@@ -137,7 +137,7 @@
                     <span class="err" ng-show="noTit">请输入文章标题</span>
                 </div>
             </div>
-            <div class="form_row" ng-show="permission.button_push_time ==='1'">
+            <div class="form_row" ng-show="permission.button_push_time =='1'">
                 <div class="tit">
                     <span>发布时间：</span>
                 </div>
@@ -193,7 +193,7 @@
                     <span class="err" ng-show="noSellerName">请输入文章来源</span>
                 </div>
             </div>
-            <div class="form_row" ng-show="infoSet.template === '1'">
+            <div class="form_row" ng-show="infoSet.template == '1'">
                 <div class="tit">
                     <span>上传视频：</span>
                 </div>
@@ -209,7 +209,7 @@
                     <span class="err" ng-show="videoUploadErr || noVideoUrl">{{videoUploadErr || "请上传视频"}}</span>
                 </div>
             </div>
-            <div class="form_row" ng-show="infoSet.template === '1' && permission.button_info_video === '1'">
+            <div class="form_row" ng-show="infoSet.template == '1' && permission.button_info_video == '1'">
                 <div class="tit">
                     <span>精彩视频推荐：</span>
                 </div>
@@ -226,7 +226,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form_row" ng-show="infoSet.template === '1'">
+            <div class="form_row" ng-show="infoSet.template == '1'">
                 <div class="tit">
                     <span>视频文案：</span>
                 </div>
@@ -235,7 +235,7 @@
                 </div>
                 <p class="err_block" ng-show="noVideoCon">请输入视频文案</p>
             </div>
-            <div class="form_row" ng-show="infoSet.template === '2'">
+            <div class="form_row" ng-show="infoSet.template == '2'">
                 <div class="tit">
                     <span>文章内容：</span>
                 </div>

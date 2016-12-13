@@ -24,6 +24,7 @@
                     <th>盈利</th>
                     <th>待提现金额</th>
                     <th>活跃账户结余</th>
+                    <th>总用户账户结余</th>
                     <th>用户消耗U币</th>
                     <th>用户充值U币数</th>
                     <th>充值U币优惠比例</th>
@@ -56,6 +57,7 @@
                     <td>{{item.balance}}</td>
                     <td>{{item.waitCash}}</td>
                     <td>{{item.allUserBalance}}</td>
+                    <td>{{item.userBalance || "0"}}</td>
                     <td>{{item.dayConsumeUCoin}}</td>
                     <td>{{item.ucoinPament}}</td>
                     <td>{{item.uPamentScale}}</td>

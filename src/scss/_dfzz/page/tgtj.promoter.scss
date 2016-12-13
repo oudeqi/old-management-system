@@ -1,0 +1,29 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#tgtj_promoter{
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 80px;
+        line-height: 80px;
+        .r{
+            text-align: right;
+            button{
+                line-height: normal;
+                font-size: 14px;
+            }
+        }
+    }
+    table{
+        table-layout: fixed;
+        td{
+            @include otw();
+        }
+    }
+
+}
