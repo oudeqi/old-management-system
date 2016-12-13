@@ -304,6 +304,17 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
                 console.info('模态框取消: ' + new Date());
             });
         };
-
     }
 ]);
+
+function setPageSize(i){
+    var appElement = document.querySelector('#art-list');
+    var $scope = angular.element(appElement).scope();
+    if(i && i>=1){
+        $scope.pageSize = i;
+    }else{
+        $scope.pageSize = 10;
+    }
+    $scope.getList();//改变了模型，想同步到控制器中，则需要调用$apply()
+    $scope.$apply();
+}
