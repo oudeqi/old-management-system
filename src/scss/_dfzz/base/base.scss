@@ -95,7 +95,40 @@ textarea{
     z-index:10000;
 }
 .show-msg-in {
+-o-animation:showIn 1s ease forwards;
+-moz-animation:showIn 1s ease forwards;
+-webkit-animation:showIn 1s ease forwards;
     animation:showIn 1s ease forwards;
+}
+@-o-keyframes showIn{
+    from {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0)
+    }
+}
+@-moz-keyframes showIn{
+    from {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0)
+    }
+}
+@-webkit-keyframes showIn{
+    from {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+    to {
+        opacity:1;
+        transform:translateY(0)
+    }
 }
 @keyframes showIn{
     from {
@@ -109,7 +142,40 @@ textarea{
 }
 
 .show-msg-out {
+-o-animation:showOut 1s ease forwards;
+-moz-animation:showOut 1s ease forwards;
+-webkit-animation:showOut 1s ease forwards;
     animation:showOut 1s ease forwards;
+}
+@-o-keyframes showOut {
+    from {
+         opacity:1;
+        transform:translateY(0)
+    }
+    to {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+}
+@-moz-keyframes showOut {
+    from {
+         opacity:1;
+        transform:translateY(0)
+    }
+    to {
+        opacity:0;
+        transform:translateY(-100px);
+    }
+}
+@-webkit-keyframes showOut {
+    from {
+         opacity:1;
+        transform:translateY(0)
+    }
+    to {
+        opacity:0;
+        transform:translateY(-100px);
+    }
 }
 @keyframes showOut {
     from {
