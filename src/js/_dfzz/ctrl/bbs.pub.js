@@ -131,7 +131,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                             $scope.show=false;
                         }, 3000); 
                         $scope.pub.title='';
-                        $scope.htmlContent='';  
+                        $scope.pub.htmlContent='';
                     }
                 }).error(function(data){
                     console.log('可能网络有错误')
