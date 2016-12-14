@@ -9,16 +9,86 @@ app.controller('cir_list',['$scope','$uibModal','FileUploader','constant','local
             startTime:null,
             endTime:null,
             search:'',
-            createType:null,
+            createType:0,
             pageIndex:0,
+            recommend:0,
         }
 
         $scope.thispage=null;
         $scope.pageTo=null;
+        $scope.date_get=null;
 
 
+        // 是否推荐
+        $scope.isRecommandOrder = function(item){
+            console.log(item);
+            var confirm,takeyes;
+            if(item.recommandOrder==1){
+                takeyes=0;
+                confirm = {
+                tit : "取消推荐话题？",
+                content : "取消推荐话题后将不再圈子首页中显示"
+                };
+            }else{
+                takeyes=1;
+                confirm = {
+                tit : "确定推荐话题？",
+                content : "推荐话题"
+                };
+            }
+            // var confirm = {
+            //     tit : "取消推荐话题？",
+            //     content : "取消推荐话题后将不再圈子首页中显示"
+            // };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+            $scope.hasMsg = false;
+            $scope.warning = false;
+            modalInstance.result.then(function () {
+                // /v1/aut/info/delete?id=1  DELETE方法
+                $http.post(constant.APP_HOST+'/v1/aut/world/topic/recommend',{
+                id:item.id,
+                recommandOrder:takeyes,
+                    },{
+                        headers:{
+                            'Authorization':localStorageService.get("token")
+                        }, 
+                    }).success(function(data){
+                        if(data.errMessage){}else{
+                            $scope.getList();
+                        }
+                    })
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+        };
+
+        // 搜索
+        $scope.$watch("list.search",function(na,nv){
+            console.log(na);
+            $scope.getList();
+        })
+
+        // 查看推荐话题
+        $scope.goRecommend=function(){
+            $scope.list.createType=0;
+            $scope.list.recommandOrder=1;
+            $scope.getList();
+        }
         // top 分类
         $scope.goTopClass=function(num){
+            $scope.list.recommandOrder=0;
             $scope.list.createType=num;
             $scope.getList();
         }
@@ -136,6 +206,10 @@ app.controller('cir_list',['$scope','$uibModal','FileUploader','constant','local
 
         // 获取话题列表
         $scope.getList=function(){
+            if($scope.date_get){
+                $scope.list.startTime = new Date($scope.date_get + " 00:00:01").getTime();
+                $scope.list.endTime = new Date($scope.date_get + " 23:59:59").getTime();
+            };
             $http.get(constant.APP_HOST+'/v1/aut/world/topic/list',{
             params: $scope.list,
             headers:{

@@ -6,14 +6,14 @@
 	<div class="app-filter">
 		<div class="r">	
             <div class="app-input-date">
-                <input class="input" type="text" ng-change="get_list()" ng-model="date_get" date-picker placeholder="发表日期">
+                <input class="input" type="text" ng-change="getList()" ng-model="date_get" date-picker placeholder="发表日期">
                 <button class="input-addon" type="button">
                     <i class="glyphicon dataaddon"></i>
                 </button>
             </div>
             <div class="app-input-search">
-                <input class="input" type="text" placeholder="输入关键字搜索" ng-model="list_get.search" ng-keypress="search($event)">
-                <button class="input-addon" type="button" ng-click="get_list()">
+                <input class="input" type="text" placeholder="输入关键字搜索" ng-model="list.search" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="getList()">
                     <i class="glyphicon glyphicon-search"></i>
                 </button>
             </div>
@@ -21,7 +21,7 @@
 
 
         <div class="rx">
-        	<button class="app-button-primary rx-button" ui-sref="cir_edit" type="button">新增话题</button>
+        	<button class="app-button-primary rx-button" ui-sref="cir_pub" type="button">新增话题</button>
         </div>
 	</div>
 
@@ -30,25 +30,25 @@
         <div class="l">
             <div class="inner">
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(3)" ng-class="{'activex':list_get.status == 2}">
+                    <a href="javascript:void(0);" ng-click="goRecommend()" ng-class="{'activex':list.recommandOrder == 1}">
                         <p class="t">{{top.recommand}}</p>
                         <p class="b">推荐话题</p>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(2)" ng-class="{'activex':list_get.status == 2}">
+                    <a href="javascript:void(0);" ng-click="goTopClass(2)" ng-class="{'activex':list.createType == 2}">
                         <p class="t">{{top.inside}}</p>
                         <p class="b">平台发布</p>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(1)" ng-class="{'activex':list_get.status == 1}">
+                    <a href="javascript:void(0);" ng-click="goTopClass(1)" ng-class="{'activex':list.createType == 1}">
                         <p class="t">{{top.appUser}}</p>
                         <p class="b">网友发布</p>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="get_class(0)" ng-class="{'activex':true}">
+                    <a href="javascript:void(0);" ng-click="goTopClass(0)" ng-class="{'activex':list.createType == 0}">
                         <p class="t-show">显示全部</p>
 
                     </a>
@@ -89,19 +89,18 @@
 
                     <td>{{item.topic}}</td>
                     <td>{{item.createType==2 ? '网友':'平台'}}</td>
-                    <td>ddd</td>
-                    <!-- <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td> -->
+                    <!-- <td>ddd</td> -->
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                     <td>{{item.joinNumbers}}</td>
                 	<td>
                 		<a href="javascript:void(0);" ng-click="clickBtnPic(item)" ng-show="true">修改图片</a>
                         <a href="javascript:void(0);" ng-click="goCirInfo(item)" ng-show="true">详情</a>
-                        <a href="javascript:void(0);" ng-click="cgRecommandOrder(item)" ng-show="true">{{item.recommandOrder==1?'取消推荐':'推荐'}}</a>
+                        <a href="javascript:void(0);" ng-click="isRecommandOrder(item)" ng-show="true">{{item.recommandOrder==1?'取消推荐':'推荐'}}</a>
 
                 	</td>
                 </tr>
             </tbody>
         </table>
-        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
     </div>
     <div class="app-pagination">
         <ul uib-pagination

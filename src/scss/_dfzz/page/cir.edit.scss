@@ -59,12 +59,16 @@
                 height:61px;
 
             }
+        .postLeft {
+                width:353px;
+                overflow:hidden;
 			.post {
             		left:33px;
                     top:170px;
+                    width:373px;
                     padding:0 12px;
                     overflow:auto;
-                        height:560px;
+                        height:590px;
                         overflow-wrap: break-word;
       				.post_title {
       					width:96%;
@@ -91,12 +95,16 @@
                         }
       				}	
                 }
+                }
             }
         .r{
             width:65%;
             .app-table-box {
 
                 border-radius:0;
+                .picLook {
+  
+                }
             }
             .app-pagination {
                 border-radius:0;

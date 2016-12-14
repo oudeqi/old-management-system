@@ -30,6 +30,7 @@ angular.module('uoudo.dfzz')
             scope.$watchGroup([
                 'innc',
                 'inhtml',
+                'ruter',
                 ],function(na){
                     if(scope.innc){
                         scope.myclass='show-msg-in';
@@ -37,6 +38,7 @@ angular.module('uoudo.dfzz')
                         scope.myclass='show-msg-out';
                     }
                     scope.nohot=na[1];
+                    scope.showNow=na[2];
                 })
             if(scope.innc){
                 scope.myclass='show-msg-in';
