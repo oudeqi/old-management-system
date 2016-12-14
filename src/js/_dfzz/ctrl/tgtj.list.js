@@ -124,7 +124,7 @@ app.controller('tgtj',['$scope','$uibModal','$http','constant','localStorageServ
                         controller: 'lookEwm',
                         size: 'sm',
                         resolve: {
-                            tg: function () {
+                            promotEwm: function () {
                                 return data.data;
                             }
                         }
