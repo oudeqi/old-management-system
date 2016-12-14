@@ -10,6 +10,7 @@ app.controller('cir_pub',['$scope','$uibModal','FileUploader','constant','localS
 
         $scope.inhtml='';
         $scope.show=false;
+        $scope.testruter=false;
 
 
         $scope.pubGo=function(){
@@ -18,6 +19,7 @@ app.controller('cir_pub',['$scope','$uibModal','FileUploader','constant','localS
                     'Authorization':localStorageService.get("token")
                     },
                 }).success(function(data){
+                    $scope.testruter=true;
                     if(data.errMessage){
                         $scope.inhtml='发布失败，'+data.errMessage;
                     }else{

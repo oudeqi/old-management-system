@@ -6,6 +6,12 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         console.log("#############")
         console.log($scope.allx)
         console.log("#############")
+        $scope.pushTime=null;
+        // $scope.pushTime = $filter('date')($scope.art.pushTime, "yyyy-MM-dd HH:mm");//发布时间
+        // if($scope.pushTime){
+        //     pushTime = $scope.pushTime + ":00";
+        //     pushTime = new Date(pushTime).getTime();
+        // }
         $scope.nowClass='今日成都'
         $scope.option_list=null;
         $scope.selected_name=null;
@@ -34,6 +40,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             top:0,
             htmlContent:'',
             imgList:[],
+            pushTime:null,
         }
 
 
@@ -51,7 +58,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         $scope.$watch("pub.title",function(na,nc){
             console.log(na.length)
             if(na.length>30){
-                $scope.pub.title=$scope.pub.title.substr(0,30);
+                $scope.pub.title=na.substr(0,30);
                 $scope.inhtml='标题不能超过30字';
                 $scope.show=true;
                  $timeout(function() {
@@ -112,6 +119,12 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         // 发布文章
         $scope.pubPost=function(){
             var gosrc,xmsg;
+            console.log($scope.pushTime);
+            $scope.pub.pushTime=new Date($scope.pushTime).getTime();
+            // if($scope.pushTime){
+            //     startTime = new Date($scope.pushTime + " 00:00:01").getTime();
+            //     endTime = new Date($scope.pushTime + " 23:59:59").getTime();
+            // }
             if($scope.allx){ 
                 // 是修改
                 $scope.pub.id=$scope.allx.id;
