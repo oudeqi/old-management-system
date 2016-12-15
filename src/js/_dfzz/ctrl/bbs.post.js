@@ -23,6 +23,7 @@ app.controller('bbs_post',['$scope','$uibModal','FileUploader','constant','local
         $scope.show=false;
         $scope.this_page=1;
         $scope.pageTo=null;
+        $scope.showyes=false;
 
 
         $scope.pageChanged=function(index){
@@ -111,7 +112,9 @@ app.controller('bbs_post',['$scope','$uibModal','FileUploader','constant','local
         };
 
         // 删除
+
         $scope.del = function(item){
+
             console.log(item);
             var confirm = {
                 tit : "确认删除吗？",
@@ -140,6 +143,7 @@ app.controller('bbs_post',['$scope','$uibModal','FileUploader','constant','local
                     }
                 }).success(function(data){
                     console.log(data);
+                        $scope.showyes=true;
                     if(!data.errMessage){
                     	$scope.inhtml='删除成功';
     					$scope.show=true;

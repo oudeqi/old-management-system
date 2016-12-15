@@ -1,5 +1,5 @@
 <div id="bbs_pub">
- <show-msg inn="1" ruter="true" innc="show" intop="70" inleft="45" inhtml='{{inhtml}}'></show-msg>
+ <show-msg inn="1" ruter="showyes" innc="show" intop="70" inleft="45" inhtml='{{inhtml}}'></show-msg>
 <div class="art_put_form">
     <div class="inner">
         <div class="l">
@@ -78,9 +78,10 @@
                 <div class="tit">
                     <span>投放时间：</span>
                 </div>
+
                 <div class="cont">
                 <div class="app-input-date">
-                    <input class="input" type="text" ng-change="get_list()" ng-model="pushTime" date-picker placeholder="开通时间">
+                    <input class="input" type="text" ng-change="get_list()" ng-model="pushTime" date-time-picker placeholder="开通时间">
                     <button class="input-addon" type="button">
                         <i class="glyphicon glyphicon-calendar"></i>
                     </button>

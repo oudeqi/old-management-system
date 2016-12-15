@@ -13,6 +13,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         //     pushTime = new Date(pushTime).getTime();
         // }
         $scope.nowClass='今日成都'
+        $scope.showyes=false;
         $scope.option_list=null;
         $scope.selected_name=null;
         $scope.show=false;
@@ -118,9 +119,12 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
 
         // 发布文章
         $scope.pubPost=function(){
+            $scope.showyes=true;  
             var gosrc,xmsg;
             console.log($scope.pushTime);
+            if($scope.pushTime){
             $scope.pub.pushTime=new Date($scope.pushTime).getTime();
+            }
             // if($scope.pushTime){
             //     startTime = new Date($scope.pushTime + " 00:00:01").getTime();
             //     endTime = new Date($scope.pushTime + " 23:59:59").getTime();
@@ -156,6 +160,8 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                         }, 3000); 
                         $scope.pub.title='';
                         $scope.pub.htmlContent='';
+                        $scope.pushTime=null;
+                        $scope.pub.groupTypeId=2;
                     }
                 }).error(function(data){
                     console.log('可能网络有错误')

@@ -8,6 +8,7 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
     	$scope.show=false;
     	$scope.list=null;
     	$scope.htmlc=null;
+        $scope.showyes=false;
 
 
             // 更改帖子
@@ -63,6 +64,7 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
                     if(data.errMessage){
                        
                     }else{
+                        $scope.showyes=true;
                     	if(item.isDelete==0){
                     		$scope.inhtml='评论屏蔽成功';
 							$scope.unStyle={
