@@ -278,7 +278,9 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
-
+            if($scope.loading){
+                return;
+            }
             $scope.loading = true;
             var content = "";
             if($scope.infoSet.template === "1"){ //视频模板
@@ -314,7 +316,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
      			}
      		}).success(function(data){
                 console.log(data);
-                $scope.loading = false;
                 if(data.errMessage){
                     $scope.errMsg = data.errMessage;
                     $scope.succMsg = "";

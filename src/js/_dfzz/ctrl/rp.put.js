@@ -340,8 +340,10 @@ app.controller('rp_put',['$scope','$uibModal','FileUploader','constant','localSt
          */
         $scope.rpPutLoading = false;
         $scope.rpPut = function(){
+            if($scope.rpPutLoading){
+                return;
+            }
             $scope.rpPutLoading = true;
-
             /*
             uCoin:$scope.rp.uCoin*100,//所需U币
             stageNumber:$scope.rp.stageNumber,//单期个数

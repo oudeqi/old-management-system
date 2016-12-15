@@ -212,6 +212,9 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
         $scope.loading = false;
         $scope.treasurePut = function(){
             if($scope.validate()){
+                if($scope.loading){
+                    return;
+                }
                 $scope.loading = true;
                 var postData = {
                     goodsName:$scope.treasure.goodsName,
@@ -235,7 +238,6 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
          			}
          		}).success(function(data){
                     console.log(data);
-                    $scope.loading = false;
                     if(data.errMessage){
                         $scope.errMsg = data.errMessage;
                         $scope.succMsg = "";
