@@ -22,8 +22,14 @@
                 display: inline-block;
                 vertical-align: middle;
                 margin-right: 4px;
-                margin-left: 50px;
+                margin-left: 0px;
                 @include sprite($icon-people);
+            }
+            .icon-warning{
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 40px;
+                @include sprite($icon-warning);
             }
             .txt_1{
                 display: inline-block;
