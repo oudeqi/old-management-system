@@ -1,0 +1,46 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+//左边宽度
+$l_width:580px !default;
+
+.task_put{
+    padding: 30px 20px;
+    .tab{
+        .tab_head{
+            padding-left: $l_width;
+            @include clearfix();
+            li{
+                float: left;
+                width: 80px;
+                height: 36px;
+                text-align: center;
+                background: #fff;
+                margin-right: 10px;
+                line-height: 36px;
+                background: #d7d7d7;
+                color: #fff;
+                border-radius: 5px 5px 0 0;
+                font-size: 15px;
+                cursor: pointer;
+                &:hover{
+                    font-size: 14px;
+                }
+                &.active{
+                    background: #fff;
+                    color: #2b333b;
+                }
+                &.active:hover{
+                    font-size: 15px;
+                }
+            }
+        }
+        .tab_cont{
+            min-height: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+    }
+}
