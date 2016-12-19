@@ -28,7 +28,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         //     name:'',
         // };
         $scope.sec={
-            id:2,
+            id:null,
             name:'',
             siteId:1,
         };
@@ -112,6 +112,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
 
             }else{
                 $scope.option_list=data.data;
+                $scope.sec.id=data.data[0].id;
                 console.log($scope.option_list)
             }
             // console.log(data)

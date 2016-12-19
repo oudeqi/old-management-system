@@ -63,7 +63,8 @@
                     <th>帖子标题</th>
                     <th>发布者</th>
                     <th>社区板块</th>
-                    <th>发帖时间</th>
+                    <th>创建时间</th>
+                    <th>预约时间</th>
                     <th>评论数量</th>
                     <th>操作</th>
 
@@ -75,6 +76,7 @@
                     <td>{{item.nickName}}</td>
                     <td>{{item.groupType}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                     <td>{{item.pushTime | date:"yyyy/MM/dd HH:mm"}}</td>
                     <!-- <td>{{item.name}}</td> -->
                     <td>{{item.commentCount}}</td>
                     <!-- <td>{{item.weixin}}</td> -->
