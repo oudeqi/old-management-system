@@ -3,8 +3,13 @@ var app = angular.module('uoudo.dfzz');
 app.controller('modal_pic',['$scope','$uibModalInstance','$http','localStorageService','constant','rp','$sce',
     function($scope,$uibModalInstance,$http,localStorageService,constant,rp,$sce){
         // /v1/aut/redpackage/details?id=1
+        console.log(rp);
         $scope.showYes=0;
         $scope.showMax=2;
+        $scope.allImg=null;
+        if(rp){
+            $scope.allImg=rp;
+        }
 
         $scope.next=function(){
         	if($scope.showYes==$scope.showMax){

@@ -1,4 +1,5 @@
 <div id="cir_edit">
+<show-msg inn="1" ruter="showyes" innc="show" intop="70" inleft="45" inhtml='{{inhtml}}'></show-msg>
        <div class="app-filter">
             <div class="nav-left">  
                 <ol class="breadcrumb">
@@ -34,7 +35,7 @@
                             <thead>
                                 <tr>
                                     <th>参与者</th>
-                                    <th>评论内容</th>
+                                    <th>动态内容</th>
                                     <th>查看照片</th>
                                     <th>发表时间</th>
                                     <th>操作</th>
@@ -44,12 +45,14 @@
                             <tbody>
                                 <tr ng-repeat="item in list" ng-show="list">
                                     <td>{{item.nickName}}</td>
-                                    <td>{{item.content}}</td>
-                                    <td class="picLook"><img ng-src="{{item.imgs}}" /></td>
+                                    <td ng-show="item.isDelete==1"><s>{{item.content}}</s></td>
+                                    <td ng-show="item.isDelete==0">{{item.content}}</td>
+
+                                    <td ng-click="testx(item.imgList)" class="picLook"><img ng-show="item.imgList.length>0" ng-src="{{item.imgList[0]}}" /><span>{{item.imgList.length}}张</span></td>
                                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                                     <td>
-                                        <a href="javascript:void(0);" ng-click="info_change(item)" ng-show="true">屏蔽动态</a>
-                                        <a href="javascript:void(0);" ng-click="info_auth(item)" ng-show="true">恢复</a>
+                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽动态</a>
+                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==1">恢复</a>
                                     </td>
                                 </tr>
                             </tbody>

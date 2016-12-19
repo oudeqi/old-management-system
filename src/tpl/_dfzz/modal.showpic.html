@@ -5,22 +5,27 @@
   		<div id="myCarousel" class="carousel slide">
 				<!-- 轮播（Carousel）指标 -->
 				<ol class="carousel-indicators">
-					<li data-slide-to="0" ng-click="go(0)" ng-class="{'active':showYes==0}"></li>
+				<li ng-repeat="(in,it) in allImg" data-slide-to="in" ng-click="go(in)" ng-class="{'active':showYes==in}"></li>
+					<!-- <li data-slide-to="0" ng-click="go(0)" ng-class="{'active':showYes==0}"></li>
 					<li data-slide-to="1" ng-click="go(1)" ng-class="{'active':showYes==1}"></li>
-					<li data-slide-to="2" ng-click="go(2)" ng-class="{'active':showYes==2}"></li>
+					<li data-slide-to="2" ng-click="go(2)" ng-class="{'active':showYes==2}"></li> -->
 				</ol>   
 				<!-- 轮播（Carousel）项目 -->
 				<!-- ng-class="{'active':mainNav==='websiteman'}" -->
 				<div class="carousel-inner">
-					<div class="item" ng-class="{'active':showYes==0}">
-						<img src="http://www.runoob.com/wp-content/uploads/2014/07/slide1.png" alt="First slide">
+				<!-- {{allImg[0]}} -->
+					<div class="item" ng-repeat="(index,item) in allImg" ng-class="{'active':showYes==index}">
+						<img src="" ng-src="{{item}}">
+					</div>
+					<!-- <div class="item" ng-class="{'active':showYes==0}">
+						<img ng-src="{{allImg[0]}}" alt="First slide">
 					</div>
  					<div class="item" ng-class="{'active':showYes==1}">
 						<img src="img/phone-rp-luck.jpg" alt="Second slide">
 					</div>
 					<div class="item" ng-class="{'active':showYes==2}">
 						<img src="img/treasure_eg.jpg" alt="Third slide">
-					</div>
+					</div> -->
 				</div>
 				<!-- 轮播（Carousel）导航 -->
 				<a class="carousel-control left" ng-click="left()" href="javascript:void(0)" 
