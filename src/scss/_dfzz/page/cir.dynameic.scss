@@ -41,22 +41,23 @@
 
         }
 
-
-    .app-display-board{
-        .l{
-            width: 100%;
-            .item{
-                width: 33.333%;
-                .activex {
-                    color:#007cfb !important;
+    .app-table-box {
+                tr {
+                    td {
+                        line-height:38px;
+                    }
+                    img {
+                        width:38px;
+                        height:38px;
+                    }
+                    span {
+                        margin:0 0 0 8px;
+                        color:#007cfb;
+                    }
                 }
-                .t-show{
-                    font-size:17px;
-                    line-height:82px;
-                }
-            }
-        }
     }
+
+
 
 }
    

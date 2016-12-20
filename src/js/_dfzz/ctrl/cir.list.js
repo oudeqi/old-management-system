@@ -80,6 +80,14 @@ app.controller('cir_list',['$scope','$uibModal','FileUploader','constant','local
             $scope.getList();
         })
 
+        $scope.$watch("date_get",function(na,nv){
+            if(na==null || na==''){
+                $scope.list.startTime=null;
+                $scope.list.endTime=null;
+            }
+            $scope.getList();
+        })
+
         // 查看推荐话题
         $scope.goRecommend=function(){
             $scope.list.createType=0;

@@ -1,15 +1,12 @@
 <div id="cir_list_info">
-<show-msg inn="1" ruter="true" innc="show" intop="37" inleft="45" inhtml='{{inhtml}}'></show-msg>
+<show-msg inn="1" ruter="showyes" innc="show" intop="37" inleft="45" inhtml='{{inhtml}}'></show-msg>
        <div class="app-filter">
             <div class="nav-left">  
                 <ol class="breadcrumb">
-                    <a ui-sref="websiteman_ctl"><i class="data-addon"></i></a>
-                  <li><a ui-sref="websiteman_ctl">帖子管理</a></li>
+                    <a onclick="window.history.back()"><i class="data-addon"></i></a>
+                  <li onclick="window.history.back()"><a>动态管理</a></li>
                   <!-- <li><a href="#">Library</a></li> -->
-                  <li class="active">{{allx.title}}</li>
-                      <div class="rx">
-                        <button ng-show="allx.createType==1" class="app-button-primary rx-button" ng-click="showMsg()" type="button">修改</button>
-                        </div>
+                  <li class="active">{{list.content}}</li>
                 </ol>
             </div>
         </div>
@@ -20,14 +17,30 @@
             <div class="l">
                 <div class="l-head"></div>
                  <div class="post">
-                        <div class="post_title">{{allx.title}}</div>
                         <div class="post_user">
+
                             <div class="user_head" ng-style="newStyle"></div>
                             <div class="user_info">
-                                <div class="user_name">{{allx.nickName}}</div>
-                                <div class="user_time">132阅读  {{allx.createDate | date:"MM/dd HH:mm"}}</div>
+                                <div class="user_name">{{list.nickName}}</div>
+                                <div class="user_time">{{list.createDate | date:"MM/dd HH:mm"}}</div>
                             </div>
-                            <div class="user_care"></div>
+
+                            <div class="rContent">
+                                <div class="sayContent">{{list.content}}</div>
+                                <div class="sayImg">
+                                    <div class="sayImgDiv" ng-repeat="it in list.imgList">
+                                    <img ng-src="{{it}}">
+                                    </div>
+                                </div>
+                                <div class="sayInfo">
+                                <!-- liuyan.png  like.png -->
+                                    <div class="sayRead">{{list.userReadNumbers}}阅读</div>
+                                    <div class="sayLike"><a href="javascript:void(0)"></a>{{list.commentNumbers}}</div>
+                                    <div class="sayComment"><a href="javascript:void(0)"></a>{{list.likeNumbers}}</div>
+                                    
+                                </div>
+                            </div>
+                        
                         </div>
 
                         <div class="post_content" ng-bind-html="htmlc">
@@ -41,29 +54,26 @@
                         <table class="app-table">
                             <thead>
                                 <tr>
-                                    <th>参与者</th>
+                                    <th>用户名</th>
                                     <th>评论内容</th>
-                                    <th>查看图片</th>
                                     <th>发表时间</th>
                                     <th>操作</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in list" ng-show="list">
-                                    <td>{{item.nikeName}}</td>
-                                    <td ng-show="item.isDelete==1"><s>{{item.content}}</s></td>
-                                    <td>''''''</td>
+                                <tr ng-repeat="item in list.commentList">
+                                    <td>{{item.uName}}</td>
+                                    <td ng-show="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
                                     <td ng-show="item.isDelete==0">{{item.content}}</td>
                                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                                     <td>
-                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽评论</a>
+                                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽</a>
                                         <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==1">恢复</a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
                     </div> 
 
                     <div class="app-pagination">
@@ -72,7 +82,7 @@
                         items-per-page="all_page.pageSize"
                         num-pages="all_page.pageCount"
                         total-items="all_page.rowCount"
-                        ng-model="this_page"
+                        ng-model="pageIndex"
                         max-size="5"
                         boundary-links="true"
                         rotate="true"
@@ -81,7 +91,7 @@
                         previous-text="&lsaquo;"
                         next-text="&rsaquo;"></ul>
                         <div class="pageTo">
-                            <input type="number" placeholder="输入页数" ng-model="pageTo">
+                            <input type="number" placeholder="输入页数" ng-model="pageIndex">
                         </div>
                     </div> 
             </div>

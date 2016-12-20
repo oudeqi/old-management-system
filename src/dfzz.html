@@ -15,6 +15,8 @@
 
         <!-- build:css css/_dfzz/app/app.css -->
         <!-- inject:css -->
+        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
+        <link rel="stylesheet" href="css/_dfzz/base/base.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -25,6 +27,7 @@
         <link rel="stylesheet" href="css/_dfzz/component/input.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal-cutpic.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.addpromoter.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.artcheck - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.artcheck.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.checklogistics.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.common.css">
@@ -44,8 +47,6 @@
         <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
-        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
-        <link rel="stylesheet" href="css/_dfzz/base/base.css">
         <link rel="stylesheet" href="css/_dfzz/layout/home.css">
         <link rel="stylesheet" href="css/_dfzz/layout/main.css">
         <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
@@ -53,15 +54,22 @@
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/bbs.post - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/bbs.post.css">
         <link rel="stylesheet" href="css/_dfzz/page/bbs.post.edit.css">
+        <link rel="stylesheet" href="css/_dfzz/page/bbs.pub (1).css">
+        <link rel="stylesheet" href="css/_dfzz/page/bbs.pub (2).css">
         <link rel="stylesheet" href="css/_dfzz/page/bbs.pub.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.comment.css">
+        <link rel="stylesheet" href="css/_dfzz/page/cir.dynameic - 副本 (2).css">
+        <link rel="stylesheet" href="css/_dfzz/page/cir.dynameic - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.dynameic.comment.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.dynameic.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.edit.css">
+        <link rel="stylesheet" href="css/_dfzz/page/cir.list - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.list.info.css">
+        <link rel="stylesheet" href="css/_dfzz/page/cir.pub - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/cir.pub.css">
         <link rel="stylesheet" href="css/_dfzz/page/finance.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/rp.list.css">
@@ -71,10 +79,11 @@
         <link rel="stylesheet" href="css/_dfzz/page/tgtj.promoter.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.list.stage.css">
-        <link rel="stylesheet" href="css/_dfzz/page/treasure.lucky.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.luckylist.css">
         <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
         <link rel="stylesheet" href="css/_dfzz/page/user.ctl.css">
+        <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl - 副本.css">
+        <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add - 副本.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.css">
         <!-- endinject -->
@@ -104,6 +113,7 @@
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
         <script src="js/_dfzz/ctrl/user.ctl.js"></script>
@@ -146,7 +156,6 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -241,12 +250,12 @@
                     </li>
 
                     <!--圈子管理-->
-                    <!-- <li class="item" ng-if="true">
+                    <li class="item" ng-if="permission.menu_world=='1'">
                         <a href="javascript:void(0);" ui-sref="cir_pub" ng-class="{'active':mainNav==='cir'}" ng-mouseenter="navMouseover(12)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-cir"></i>
                             <span class="txt">圈子管理</span>
                         </a>
-                    </li> -->
+                    </li>
                     <!--夺宝管理-->
                     <li class="item" ng-if="permission.menu_gem=='1'">
                         <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(1008)" ng-mouseleave="navMouseleave()">
@@ -420,9 +429,6 @@
                     </li>
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="cir_comment" ui-sref-active="active">评论管理</a>
-                    </li>
-                    <li class="item">
-                        <a href="javascript:void(0);" ui-sref="cir_list_info" ui-sref-active="active">话题详情页</a>
                     </li>
 
                 </ul>
