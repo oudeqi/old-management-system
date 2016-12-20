@@ -183,14 +183,6 @@
                             font-family: inherit;
                             display: table-cell;
                             vertical-align: middle;
-                            // outline: 0;
-                            // &:focus{
-                            //     border:1px solid lighten($font-color-primary,25%);
-                            //     border-right: 0;
-                            //     & + .ipt_addon{
-                            //         border-left:1px solid lighten($font-color-primary,25%);
-                            //     }
-                            // }
                             @extend %ipt_focus;
                         }
                         .ipt_addon{

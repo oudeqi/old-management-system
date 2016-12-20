@@ -1,27 +1,204 @@
 <div class="task_put">
     <div class="tab">
         <ul class="tab_head">
-            <li class="active">
-                <span>答题</span>
-            </li>
-            <li>
-                <span>调查</span>
-            </li>
-            <li>
-                <span>文案</span>
-            </li>
-            <li>
-                <span>欣赏</span>
-            </li>
-            <li>
-                <span>审核</span>
-            </li>
+            <li class="active"><span>答题</span></li>
+            <li><span>调查</span></li>
+            <li><span>文案</span></li>
+            <li><span>欣赏</span></li>
+            <li><span>审核</span></li>
         </ul>
         <div class="tab_cont">
-            <div class="">
+            <div class="task_put_form">
+                <div class="l">
+                    <div class="phone">
+                        <div class="phone_head">
+                            <h2>任务</h2>
+                        </div>
+                        <div class="phone_nav">
+                            <img src="./img/app-nav-fl.png" alt="">
+                        </div>
+                        <div class="phone_content">
+                            <ul class="list">
+                                <li class="item active">
+                                    <div class="piccon">
+                                        <img src="" alt="" />
+                                    </div>
+                                    <button type="button">
+                                        审核
+                                    </button>
+                                    <p class="partc">
+                                        <i class="icon"></i>
+                                        <span>400人参与</span>
+                                    </p>
+                                    <div class="txtcon">
+                                        <p class="tit">请输入任务标题</p>
+                                        <p class="price">￥0.00</p>
+                                    </div>
 
+                                </li>
+                                <li class="item"></li>
+                                <li class="item"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="r">
+                    <form>
+                        <div class="form_row">
+                            <div class="fow_label">任务标题：</div>
+                            <div class="fow_cont">
+                                <input class="form_ipt" type="text" name="name" value="" placeholder="请输入任务标题">
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">封面图片：</div>
+                            <div class="fow_cont">
+                                <div class="picview">
+                                    <div class="inner">
+                                        <img src="" alt="" />
+                                    </div>
+                                    <button type="button" class="delpic"></button>
+                                </div>
+                                <button class="addpic" type="button"></button>
+                                <span class="tip">支持jpg/png格式，RGB模式，640*320 72dpi</span>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">任务单价：</div>
+                            <div class="fow_cont">
+                                <input class="form_ipt" type="number" name="name" value="" placeholder="单个任务金额">
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">任务个数：</div>
+                            <div class="fow_cont">
+                                <input class="form_ipt wid200" type="number" name="name" value="" placeholder="任务总个数">
+                                <p class="msg">单个任务均价 <span>0.00 元</span></p>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">正确比例：</div>
+                            <div class="fow_cont">
+                                <input class="form_ipt wid100" type="number" name="name" value="" placeholder="1~100">
+                                <span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">投放时间：</div>
+                            <div class="fow_cont">
+                                <div class="form_date">
+                                    <input type="text" ng-model="pushTime" date-time-picker placeholder="选择日期">
+                                    <button type="button" class="ipt_addon date-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">文章模板：</div>
+                            <div class="fow_cont">
+                                <label class="radio_label">
+                                    <input type="radio" name="name" value="">
+                                    <i class="icon"></i>
+                                    <span>图片模板</span>
+                                </label>
+                                <label class="radio_label">
+                                    <input type="radio" name="name" value="">
+                                    <i class="icon"></i>
+                                    <span>视频模板</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">轮播图片：</div>
+                            <div class="fow_cont">
+                                <ul class="piclist">
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="picview">
+                                        <div class="inner">
+                                            <img src="" alt="" />
+                                        </div>
+                                        <button type="button" class="delpic"></button>
+                                    </li>
+                                    <li class="btnbox">
+                                        <button class="addpic" type="button"></button>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_label">任务说明：</div>
+                            <div class="fow_cont">
+                                <p><input class="form_ipt" type="text" name="name" value="" placeholder="添加任务说明1"></p>
+                                <p><input class="form_ipt" type="text" name="name" value="" placeholder="添加任务说明2"></p>
+                                <p><input class="form_ipt" type="text" name="name" value="" placeholder="添加任务说明3"></p>
+                            </div>
+                        </div>
+                        <div class="form_row">
+                            <div class="fow_cont">
+                                <button class="app-button-primary" type="button">下一步</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+
 
 </div>
