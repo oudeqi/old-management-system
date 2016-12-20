@@ -62,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="item in list.commentList">
+                                <tr ng-repeat="item in nowList">
                                     <td>{{item.uName}}</td>
                                     <td ng-show="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
                                     <td ng-show="item.isDelete==0">{{item.content}}</td>
@@ -78,10 +78,10 @@
 
                     <div class="app-pagination">
                         <ul uib-pagination
-                        ng-change="pageChanged(this_page)"
-                        items-per-page="all_page.pageSize"
-                        num-pages="all_page.pageCount"
-                        total-items="all_page.rowCount"
+                        ng-change=""
+                        items-per-page="pageSize"
+                        num-pages="pageCount"
+                        total-items="rowCount"
                         ng-model="pageIndex"
                         max-size="5"
                         boundary-links="true"

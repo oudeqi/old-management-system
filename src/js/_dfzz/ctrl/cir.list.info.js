@@ -7,9 +7,25 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
     	$scope.show=false;
         $scope.showyes=false;
     	$scope.list=null;
+        $scope.nowList=[];
     	$scope.htmlc=null;
 
+        $scope.pageIndex=1;
+
+        // 
+        $scope.pageSize=20;
+        $scope.rowCount=null;
+
         $scope.htmlc = $sce.trustAsHtml($scope.allx.htmlContent);
+
+        $scope.$watch("pageIndex",function(na,nv){
+            // $scope.nowList.push(a);
+            if(na==1){
+                $scope.nowList=$scope.list.commentList.slice(0,20);
+            }else{
+                $scope.nowList=$scope.list.commentList.slice(na*20-20,20*na);
+            }
+        })
 
         // 获取动态和评论列表
         $scope.getList=function(){
@@ -24,13 +40,22 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
 	        	 if(data.errMessage){
 		            }else{
 		            	$scope.list=data.data;
+                        angular.forEach($scope.list.commentList,function(a,b){
+                            if(b==20){
+                                return;
+                            }else{
+                                $scope.nowList.push(a);
+                            }
+                            
+                            
+                        })
+                        console.log($scope.nowList)
+                        // list.commentList.length
+                        $scope.rowCount=$scope.list.commentList.length;
+                        $scope.pageCount=parseInt(($scope.list.commentList.length)/20);
                         $scope.newStyle={
                             "background-image":"url("+$scope.list.headIconUrl+")",
                         }
-                        console.log("############")
-                        console.log($scope.list)
-
-                        console.log("############")
 
 		            }
 	        })       	

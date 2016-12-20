@@ -91,7 +91,8 @@
                                     overflow:hidden;
                                     margin:0 4px 0 0;
                                     img {
-                                        max-width:90px;
+                                        min-width:90px;
+                                        min-height:90px;
                                     }
                                 }
                                 
