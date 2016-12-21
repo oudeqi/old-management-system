@@ -10,6 +10,7 @@ app.controller('sysset_blacklist',['$scope','$uibModal','FileUploader','constant
         $scope.inhtml='';
         $scope.search=null;
         $scope.list=null;
+        $scope.pageIndex=1;
 
 
         // add new 关键词
@@ -55,7 +56,8 @@ app.controller('sysset_blacklist',['$scope','$uibModal','FileUploader','constant
         $scope.getList=function(){
             $http.get(constant.APP_HOST+'/v1/aut/filter',{
                 params:{
-                    search:$scope.search
+                    search:$scope.search,
+                    pageIndex:$scope.pageIndex,
                 },
                 headers: {
                         'Authorization': localStorageService.get("token")
@@ -71,7 +73,9 @@ app.controller('sysset_blacklist',['$scope','$uibModal','FileUploader','constant
         }
         $scope.getList();
 
-
+        $scope.$watch("pageIndex",function(a,b){
+            $scope.getList();
+        })
 
         // 删除
         $scope.del = function(item){

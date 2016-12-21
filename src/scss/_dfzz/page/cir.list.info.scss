@@ -175,6 +175,15 @@
             .app-table-box {
 
                 border-radius:0;
+                .dyc {
+                            width:300px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        -webkit-text-overflow:ellipsis;
+        -moz-text-overflow:ellipsis;
+        white-space:nowrap;
+                }
             }
             .app-pagination {
                 border-radius:0;

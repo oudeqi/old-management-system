@@ -156,3 +156,6 @@ app.controller('cir_dynameic',['$scope','$uibModal','FileUploader','constant','l
 
     }
 ]);
+
+document.getElementById("testx").tooltip();
+// $(function () { $("[data-toggle='tooltip']").tooltip(); });

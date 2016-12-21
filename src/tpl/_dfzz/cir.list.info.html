@@ -64,8 +64,8 @@
                             <tbody>
                                 <tr ng-repeat="item in nowList">
                                     <td>{{item.uName}}</td>
-                                    <td ng-show="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
-                                    <td ng-show="item.isDelete==0">{{item.content}}</td>
+                                    <td class="dyc" ng-show="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
+                                    <td class="dyc" ng-show="item.isDelete==0">{{item.content}}</td>
                                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                                     <td>
                                         <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽</a>

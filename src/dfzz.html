@@ -17,10 +17,6 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="css/_dfzz/base/animate.css">
         <link rel="stylesheet" href="css/_dfzz/base/base.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -53,6 +49,10 @@
         <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
@@ -271,7 +271,7 @@
                     </li>
 
                     <!-- 用户管理 -->
-                    <li class="item" ng-if="true">
+                    <li class="item" ng-if="permission.menu_user">
                         <a href="javascript:void(0);" ui-sref="user_ctl" ng-class="{'active':mainNav==='user'}" ng-mouseenter="navMouseover(13)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-userctl"></i>
                             <span class="txt">用户管理</span>
@@ -279,7 +279,7 @@
                     </li>
 
                     <!-- 系统设置 -->
-                    <li class="item" ng-if="true">
+                    <li class="item" ng-if="permission.menu_system">
                         <a href="javascript:void(0);" ui-sref="sysset_blacklist" ng-class="{'active':mainNav==='sysset'}" ng-mouseenter="navMouseover(14)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-sysset"></i>
                             <span class="txt">系统设置</span>

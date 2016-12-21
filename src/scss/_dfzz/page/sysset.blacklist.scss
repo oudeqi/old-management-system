@@ -41,6 +41,19 @@
 
         }
 
+
+    .app-table {
+        tbody{
+            tr {
+                td {
+                    width:80%;
+                }
+            }
+        }
+    }
+
+
+
     .app-pagination {
         background:none;
     }
@@ -49,7 +62,7 @@
         .l{
             width: 100%;
             .item{
-                width: 33.333%;
+                width: 30%;
                 .activex {
                     color:#007cfb !important;
                 }

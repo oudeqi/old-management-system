@@ -21,14 +21,19 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
         $scope.$watch("pageIndex",function(na,nv){
             // $scope.nowList.push(a);
             if(na==1){
+                try{
                 $scope.nowList=$scope.list.commentList.slice(0,20);
+            }catch(e){
+                $scope.nowList=[];
+            }
             }else{
                 $scope.nowList=$scope.list.commentList.slice(na*20-20,20*na);
             }
         })
 
         // 获取动态和评论列表
-        $scope.getList=function(){
+        $scope.getList=function(nood){
+                var noods=nood | 0;
 	         $http.get(constant.APP_HOST+'/v1/aut/world/details',{
 	        	params:{
 	        		worldId:$scope.allx.worldId
@@ -39,22 +44,46 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
 	        }).success(function(data){
 	        	 if(data.errMessage){
 		            }else{
+                        if(noods==2){
+                            $scope.list=data.data;
+                            $scope.nowList=$scope.list.commentList;
+                            try{
+                                $scope.rowCount=$scope.list.commentList.length;
+                                $scope.pageCount=parseInt(($scope.list.commentList.length)/20);
+                            }catch(e){
+                                $scope.rowCount=0;
+                                $scope.pageCount=1;
+                            }
+                                $scope.newStyle={
+                                    "background-image":"url("+$scope.list.headIconUrl+")",
+                                }
+
+                        }else{
 		            	$scope.list=data.data;
                         angular.forEach($scope.list.commentList,function(a,b){
                             if(b==20){
                                 return;
                             }else{
                                 $scope.nowList.push(a);
-                            }
-                            
+                            }          
                             
                         })
                         console.log($scope.nowList)
                         // list.commentList.length
-                        $scope.rowCount=$scope.list.commentList.length;
-                        $scope.pageCount=parseInt(($scope.list.commentList.length)/20);
+                        // try{
+
+                        // }
+                            try{
+                                $scope.rowCount=$scope.list.commentList.length;
+                                $scope.pageCount=parseInt(($scope.list.commentList.length)/20);
+                            }catch(e){
+                                $scope.rowCount=0;
+                                $scope.pageCount=1;
+                            }
                         $scope.newStyle={
                             "background-image":"url("+$scope.list.headIconUrl+")",
+                        }
+
                         }
 
 		            }
@@ -85,7 +114,7 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
                         $scope.showyes=true;
     					$scope.show=true;
     					$timeout(function() {$scope.show=false}, 1500);
-                        $scope.getList();
+                        $scope.getList(2);
                     }
                 }).error(function(data) {
                     $scope.show('网络错误');

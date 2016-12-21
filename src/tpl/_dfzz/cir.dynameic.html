@@ -19,11 +19,6 @@
                 </button>
             </div>
         </div>
-
-
-        <div class="rx">
-        	<button class="app-button-primary rx-button" ui-sref="bbs_pub" type="button">发布帖子</button>
-        </div>
 	</div>
 
 
@@ -45,8 +40,8 @@
             <tbody>
                 <tr ng-repeat="item in cirAllContent.data">
                     <td>{{item.nickName}}</td>
-                    <td ng-show="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
-                    <td ng-show="item.isDelete==0">{{item.content}}</td>
+                    <td uib-tooltip="{{item.content}}" tooltip-placement="bottom" class="dyc" ng-if="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
+                    <td uib-tooltip="{{item.content}}" tooltip-placement="bottom" class="dyc" ng-if="item.isDelete==0">{{item.content}}</td>
                     <td ng-show="perT.button_world_site==1">{{item.siteName}}</td>
                     <td>{{item.commentCount}}条</td>
                     <td ng-click="testx(item.imgList)" class="picLook"><img ng-show="item.imgList.length>0" ng-src="{{item.imgList[0]}}" /><span>{{item.imgList.length}}张</span></td>
