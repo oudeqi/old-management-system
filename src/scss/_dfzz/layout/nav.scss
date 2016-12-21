@@ -93,6 +93,9 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-treasure{
                     @include sprite($icon-nav-treasure);
                 }
+                .icon-sysset {
+                    @include sprite($icon-sysset);
+                }
                 .txt{
                     display: block;
                     width: 100%;
@@ -136,9 +139,12 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-userctl {
                         @include sprite($icon-userctl-act);
-                        }
+                    }
                     .icon-treasure{
                         @include sprite($icon-nav-treasure-act);
+                    }
+                    .icon-sysset {
+                        @include sprite($icon-sysset-act);
                     }
                 }
                 &:hover{

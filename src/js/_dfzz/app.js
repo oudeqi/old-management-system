@@ -288,7 +288,12 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/treasure_lucky",
             templateUrl: "./tpl/_dfzz/treasure.luckylist.html",
             controller: 'treasure_lucky',
-        });
+        })
+        .state('sysset_blacklist',{
+            url: "/sysset_blacklist",
+            templateUrl: "./tpl/_dfzz/sysset.blacklist.html",
+            controller: 'sysset_blacklist',
+        })
 
 
 
