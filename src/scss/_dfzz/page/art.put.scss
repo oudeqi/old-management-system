@@ -99,11 +99,14 @@
                         vertical-align: middle;
                         display: inline-block;
                         border: 1px solid #d7d7d7;
-                        background-color: #f8f8f8;
+                        background-color: transparent;
                         padding: 0 10px;
                         border-radius: 2px;
                         outline: 0;
                         overflow: hidden;
+                        &:hover{
+                            background-color: #f8f8f8;
+                        }
                         .play{
                             margin-right: 2px;
                             float: left;
