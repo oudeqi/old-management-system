@@ -116,6 +116,8 @@
         <script src="js/_dfzz/ctrl/treasure.list.js"></script>
         <script src="js/_dfzz/ctrl/tgtj.promoter.js"></script>
         <script src="js/_dfzz/ctrl/tgtj.list.js"></script>
+        <script src="js/_dfzz/ctrl/task.put.js"></script>
+        <script src="js/_dfzz/ctrl/task.list.js"></script>
         <script src="js/_dfzz/ctrl/setting.js"></script>
         <script src="js/_dfzz/ctrl/rp.put.js"></script>
         <script src="js/_dfzz/ctrl/rp.list.js"></script>
@@ -149,6 +151,8 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+        <script src="js/_dfzz/filter/filters.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -254,6 +258,12 @@
                         <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(1008)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-treasure"></i>
                             <span class="txt">夺宝管理</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="task_put" ng-class="{'active':mainNav==='task'}" ng-mouseenter="navMouseover(1009)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-task"></i>
+                            <span class="txt">任务管理</span>
                         </a>
                     </li>
 
@@ -455,6 +465,20 @@
                     <li class="item" ng-if="permission.button_gem_audit=='1'">
                         <a href="javascript:void(0);" ui-sref="treasure_lucky" ui-sref-active="active">中奖列表</a>
                     </li>
+                </ul>
+            </div>
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(1009)" ng-mouseleave="navMouseleave()" ng-show="currNav === 1009">
+               <div class="top-logo">
+                   <img src="img/subnav_logo.png" alt="" />
+               </div>
+               <ul class="list">
+                   <li class="item">
+                        <a href="javascript:void(0);" ui-sref="task_put" ui-sref-active="active">任务发布</a>
+                    </li>
+                    <li class="item">
+                         <a href="javascript:void(0);" ui-sref="task_list" ui-sref-active="active">任务列表</a>
+                     </li>
                 </ul>
             </div>
         </div>

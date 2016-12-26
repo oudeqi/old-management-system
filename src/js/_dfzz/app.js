@@ -288,7 +288,18 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/treasure_lucky",
             templateUrl: "./tpl/_dfzz/treasure.luckylist.html",
             controller: 'treasure_lucky',
+        })
+        .state('task_put', {
+            url: "/task_put",
+            templateUrl: "./tpl/_dfzz/task.put.html",
+            controller: 'task_put',
+        })
+        .state('task_list', {
+            url: "/task_list",
+            templateUrl: "./tpl/_dfzz/task.list.html",
+            controller: 'task_list',
         });
+
 
 
 
