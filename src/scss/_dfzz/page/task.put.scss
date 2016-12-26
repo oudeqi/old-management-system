@@ -4,7 +4,7 @@
 @import "../../helpers/_function";
 
 //左边宽度
-$l_width:580px !default;
+$l_width:41% !default;
 
 .task_put{
     padding: 20px;
@@ -59,7 +59,8 @@ $l_width:580px !default;
             height: 844px;
             background: url(../../../img/phone.png) scroll no-repeat center;
             position: absolute;
-            left: ($l_width - 417px) / 2;
+            left: 50%;
+            margin-left: -(417px / 2);
             top: -30px;
             .phone_head{
                 position: absolute;
@@ -237,7 +238,8 @@ $l_width:580px !default;
             height: 844px;
             background: url(../../../img/phone.png) scroll no-repeat center;
             position: absolute;
-            left: ($l_width - 417px) / 2;
+            left: 50%;
+            margin-left: -(417px / 2);
             top: -30px;
             .phone_head{
                 position: absolute;
