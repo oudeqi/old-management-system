@@ -107,7 +107,7 @@
                         <div class="form_row">
                             <div class="fow_label">任务总价：</div>
                             <div class="fow_cont">
-                                <input class="form_ipt wid200" ng-focus="answer.step = 1" ng-keyup="getPrice(answer.totalPrice,answer.count)" type="number" ng-model="answer.totalPrice" placeholder="单个任务金额">
+                                <input class="form_ipt wid200" ng-focus="answer.step = 1" ng-keyup="getPrice(answer.totalPrice,answer.count)" type="number" ng-model="answer.totalPrice" placeholder="任务总金额">
                                 <span class="unit">元</span>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                         <div class="form_row">
                             <div class="fow_label">正确比例：</div>
                             <div class="fow_cont">
-                                <input class="form_ipt wid100" type="number" ng-model="answer.rate" placeholder="1~100">
+                                <input class="form_ipt wid100" type="number" limit-number="[0,100]" ng-model="answer.rate" placeholder="1~100">
                                 <span class="unit">%</span>
                             </div>
                         </div>
@@ -300,7 +300,7 @@
                         <div class="form_row">
                             <div class="fow_label">任务总价：</div>
                             <div class="fow_cont">
-                                <input class="form_ipt wid200" ng-focus="survey.step = 1" ng-keyup="getPrice(survey.totalPrice,survey.count)" type="number" ng-model="survey.totalPrice" placeholder="单个任务金额">
+                                <input class="form_ipt wid200" ng-focus="survey.step = 1" ng-keyup="getPrice(survey.totalPrice,survey.count)" type="number" ng-model="survey.totalPrice" placeholder="任务总金额">
                                 <span class="unit">元</span>
                             </div>
                         </div>
@@ -485,7 +485,7 @@
                         <div class="form_row">
                             <div class="fow_label">任务总价：</div>
                             <div class="fow_cont">
-                                <input class="form_ipt wid200" ng-focus="paperwork.step = 1" ng-keyup="getPrice(paperwork.totalPrice,paperwork.count)" type="number" ng-model="paperwork.totalPrice" placeholder="单个任务金额">
+                                <input class="form_ipt wid200" ng-focus="paperwork.step = 1" ng-keyup="getPrice(paperwork.totalPrice,paperwork.count)" type="number" ng-model="paperwork.totalPrice" placeholder="任务总金额">
                                 <span class="unit">元</span>
                             </div>
                         </div>
@@ -663,7 +663,7 @@
                         <div class="form_row">
                             <div class="fow_label">任务总价：</div>
                             <div class="fow_cont">
-                                <input class="form_ipt wid200" ng-focus="enjoy.step = 1" ng-keyup="getPrice(enjoy.totalPrice,enjoy.count)" type="number" ng-model="enjoy.totalPrice" placeholder="单个任务金额">
+                                <input class="form_ipt wid200" ng-focus="enjoy.step = 1" ng-keyup="getPrice(enjoy.totalPrice,enjoy.count)" type="number" ng-model="enjoy.totalPrice" placeholder="任务总金额">
                                 <span class="unit">元</span>
                             </div>
                         </div>
@@ -816,7 +816,7 @@
                         <div class="form_row">
                             <div class="fow_label">任务总价：</div>
                             <div class="fow_cont">
-                                <input class="form_ipt wid200" ng-focus="check.step = 1" ng-keyup="getPrice(check.totalPrice,check.count)" type="number" ng-model="check.totalPrice" placeholder="单个任务金额">
+                                <input class="form_ipt wid200" ng-focus="check.step = 1" ng-keyup="getPrice(check.totalPrice,check.count)" type="number" ng-model="check.totalPrice" placeholder="任务总金额">
                                 <span class="unit">元</span>
                             </div>
                         </div>

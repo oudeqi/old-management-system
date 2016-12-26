@@ -4,8 +4,6 @@ dist/
 node_modules/
 .idea/
 src/css/
-src/js/_dfzz/tpl/
-src/js/_index/tpl/
 src/scss/helpers/_sprite.scss
 gulpfile.js
 ##############################

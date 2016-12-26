@@ -41,31 +41,31 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
         $scope.getPrice = function(totalPrice,count){
             if($scope.page.type == '0'){
                 if(totalPrice && count){
-                    $scope.answer.price = $filter("formatFloat")(totalPrice/count);
+                    $scope.answer.price = Math.floor((totalPrice/count)*100)/100;
                 }else{
                     $scope.answer.price = 0;
                 }
             }else if($scope.page.type == '1'){
                 if(totalPrice && count){
-                    $scope.survey.price = $filter("formatFloat")(totalPrice/count);
+                    $scope.survey.price = Math.floor((totalPrice/count)*100)/100;
                 }else{
                     $scope.survey.price = 0;
                 }
             }else if($scope.page.type == '2'){
                 if(totalPrice && count){
-                    $scope.paperwork.price = $filter("formatFloat")(totalPrice/count);
+                    $scope.paperwork.price = Math.floor((totalPrice/count)*100)/100;
                 }else{
                     $scope.paperwork.price = 0;
                 }
             }else if($scope.page.type == '3'){
                 if(totalPrice && count){
-                    $scope.enjoy.price = $filter("formatFloat")(totalPrice/count);
+                    $scope.enjoy.price = Math.floor((totalPrice/count)*100)/100;
                 }else{
                     $scope.enjoy.price = 0;
                 }
             }else if($scope.page.type == '4'){
                 if(totalPrice && count){
-                    $scope.check.price = $filter("formatFloat")(totalPrice/count);
+                    $scope.check.price = Math.floor((totalPrice/count)*100)/100;
                 }else{
                     $scope.check.price = 0;
                 }

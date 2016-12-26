@@ -294,6 +294,16 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl: "./tpl/_dfzz/sysset.blacklist.html",
             controller: 'sysset_blacklist',
         })
+        .state('task_put', {
+            url: "/task_put",
+            templateUrl: "./tpl/_dfzz/task.put.html",
+            controller: 'task_put',
+        })
+        .state('task_list', {
+            url: "/task_list",
+            templateUrl: "./tpl/_dfzz/task.list.html",
+            controller: 'task_list',
+        });
 
 
 

@@ -93,18 +93,14 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-treasure{
                     @include sprite($icon-nav-treasure);
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
                 .icon-task{
                     @include sprite($icon-nav-task);
-=======
+                }
                 .icon-sysset {
                     @include sprite($icon-sysset);
->>>>>>> 133ef9301cb892c30789b586cc168c7256d7db85
-=======
+                }
                 .icon-sysset {
                     @include sprite($icon-sysset);
->>>>>>> 133ef9301cb892c30789b586cc168c7256d7db85
                 }
                 .txt{
                     display: block;
@@ -153,18 +149,14 @@ $nav-act-bg-color: #2d3237 !default;
                     .icon-treasure{
                         @include sprite($icon-nav-treasure-act);
                     }
-<<<<<<< HEAD
-<<<<<<< HEAD
                     .icon-task{
                         @include sprite($icon-nav-task-act);
-=======
+                    }
                     .icon-sysset {
                         @include sprite($icon-sysset-act);
->>>>>>> 133ef9301cb892c30789b586cc168c7256d7db85
-=======
+                    }
                     .icon-sysset {
                         @include sprite($icon-sysset-act);
->>>>>>> 133ef9301cb892c30789b586cc168c7256d7db85
                     }
                 }
                 &:hover{

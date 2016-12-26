@@ -23,7 +23,7 @@ app.controller('cir_dynameic',['$scope','$uibModal','FileUploader','constant','l
 
     	// 分页
     	$scope.pageIndex=1;
-        $scope.$watch("pageIndex",function(nv,ov){ 
+        $scope.$watch("pageIndex",function(nv,ov){
         	$scope.cirAll.pageIndex=nv;
         	$scope.getList();
         	// console.log(nv)
@@ -56,7 +56,7 @@ app.controller('cir_dynameic',['$scope','$uibModal','FileUploader','constant','l
                 windowClass: 'modal-showpic',
                 templateUrl: './tpl/_dfzz/modal.showpic.html',
                 controller: 'modal_pic',
-                size: 'sm', 
+                size: 'sm',
                 // sm,lg,md
                 resolve: {
                     rp: function () {
@@ -156,6 +156,3 @@ app.controller('cir_dynameic',['$scope','$uibModal','FileUploader','constant','l
 
     }
 ]);
-
-document.getElementById("testx").tooltip();
-// $(function () { $("[data-toggle='tooltip']").tooltip(); });

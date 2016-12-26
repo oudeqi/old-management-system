@@ -13,10 +13,31 @@ angular.module('uoudo.dfzz')
         }
     };
 })
+.directive('limitNumber',function(){
+    return {
+        restrict:'A',
+        link:function(scope,elem,attrs){
+            elem.keyup(function(ev){
+                var limitNumber = attrs.limitNumber.substring(1,attrs.limitNumber.length-1);
+                limitNumber = limitNumber.split(",");
+                if(elem.val() < parseInt(limitNumber[0])){
+                     elem.val(0);
+                }
+                if(elem.val() > parseInt(limitNumber[1])){
+                  elem.val(100);
+                }
+                var reg = /^(\d{1,2}|100)$/;
+                if(!reg.test(elem.val())){
+                    elem.val("");
+                }
+            });
+        }
+    };
+})
 .directive('showMsg',function($document,$timeout){
     return {
         restrict:'E',
-        scope:{     
+        scope:{
            inn:'=',
            innc:'=',
            ruter:'=',
@@ -25,7 +46,7 @@ angular.module('uoudo.dfzz')
            inhtml:'@'
         },
         template:'<div class="show-msg" ng-style="ngstylex" ng-class="myclass" ng-if="showNow">{{nohot}}</div>',
-        link:function(scope,elem,attrs){ 
+        link:function(scope,elem,attrs){
             // elem[0].innerText=elem[0].dataset.nt;
             scope.$watchGroup([
                 'innc',
