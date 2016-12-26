@@ -60,7 +60,8 @@
             .post { 
                     background-color:white;
                     height:60vh;
-                    padding:0 12px;
+                    padding:8px 12px 0 12px;
+                    overflow:auto;
                      .post_title {
 
                          overflow: hidden;
@@ -73,7 +74,62 @@
                             padding:8px 0 0 0;
                       }
                     .post_user {
-                       margin:1rem 0 0 0;
+
+                        .rContent {
+                            float:left;
+                            width:calc(330px - 4rem);
+                            margin:.5rem 0 0 4rem;
+
+                            .sayImg {
+                                width:100%;
+                                margin: .5rem 0 .5rem 0;
+                                float:left;
+                                .sayImgDiv {
+                                    float:left;
+                                    width:90px;
+                                    height:90px;
+                                    overflow:hidden;
+                                    margin:0 4px 0 0;
+                                    img {
+                                        min-width:90px;
+                                        min-height:90px;
+                                    }
+                                }
+                                
+                            }
+
+                            .sayInfo {
+                                font-size:12px;
+                                margin:6px 0 0 0;
+
+                                .sayRead {
+                                    float:left;
+                                }
+                                 .sayLike {
+                                    float:right;
+                                    a{
+                                    margin:0 2px -2px 0;
+                                    @include sprite($icon-like);                                    
+                                    }
+
+                                }
+                                .sayComment {
+                                    margin:0 12px 0 0;
+                                    float:right;  
+                                    a {
+                                     margin:0 2px -2px 0;
+                                    @include sprite($icon-liuyan);
+
+                                    }
+                                }
+
+                            }
+                        }
+
+
+
+
+
                         .user_head {
                             float:left;
                             height:4rem;
@@ -119,6 +175,15 @@
             .app-table-box {
 
                 border-radius:0;
+                .dyc {
+                            width:300px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        -webkit-text-overflow:ellipsis;
+        -moz-text-overflow:ellipsis;
+        white-space:nowrap;
+                }
             }
             .app-pagination {
                 border-radius:0;

@@ -10,8 +10,8 @@
                 <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
             </div>
             <div class="app-input-search">
-                <input class="input" type="text" placeholder="输入用户名搜索" ng-model="list_get.search" ng-keypress="search($event)">
-                <button class="input-addon" type="button" ng-click="get_list()">
+                <input class="input" type="text" placeholder="输入用户名搜索" ng-model="par.search" ng-keypress="getList()">
+                <button class="input-addon" type="button" ng-click="getList()">
                     <i class="glyphicon glyphicon-search"></i>
                 </button>
             </div>
@@ -19,7 +19,7 @@
 
 
         <div class="rx">
-        	<button class="app-button-primary rx-button" ui-sref="cir_edit" type="button">新增话题</button>
+        
         </div>
 	</div>
 
@@ -29,36 +29,36 @@
             <div class="inner">
                 <div class="item">
                     <!-- * status：1待审核，2通过，3拒绝，4下线 -->
-                    <a href="javascript:void(0);" ng-click="changeStatus(1)" ng-class="{'active':status === 1}">
-                        <p class="t">{{report.statusWaitAudit | number : 0}}</p>
+                    <a href="javascript:void(0);" ng-click="changeS(1)" ng-class="{'active':par.type == 1}">
+                        <p class="t">{{allTop.dayCount | number : 0}}</p>
                         <p class="b">今日活跃用户</p>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="changeStatus(2)" ng-class="{'active':status === 2}">
-                        <p class="t">{{report.statusSuccess | number : 0}}</p>
+                    <a href="javascript:void(0);" ng-click="changeS(2)" ng-class="{'active':par.type == 2}">
+                        <p class="t">{{allTop.weekCount | number : 0}}</p>
                         <p class="b">7日活跃用户</p>
                     </a>
                 </div>
-                <div class="item">
+<!--                 <div class="item">
                     <a href="javascript:void(0);" ng-click="changeStatus(3)" ng-class="{'active':status === 3}">
                         <p class="t">{{report.statusFail | number : 0}}</p>
                         <p class="b">本月活跃用户</p>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="r">
             <div class="inner">
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="changeType(0)" ng-class="{'active':type === 0}">
-                        <p class="t">{{report.countFree | number : 0}}</p>
+                    <a href="javascript:void(0);" ng-click="changeS(3)" ng-class="{'active':par.type == 3}">
+                        <p class="t">{{allTop.dayNewUser | number:0}}</p>
                         <p class="b">今日新增用户</p>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="javascript:void(0);" ng-click="changeType(3)" ng-class="{'active':type === 3}">
-                        <p class="t">{{report.typeUcoin | number : 0}}</p>
+                    <a href="javascript:void(0);" ng-click="changeS(0)" ng-class="{'active':par.type == 0}">
+                        <p class="t">{{allTop.allUser | number : 0}}</p>
                         <p class="b">用户总数</p>
                     </a>
                 </div>
@@ -78,34 +78,36 @@
                     <th>身高</th>
                     <th>星座</th>
                     <th>魅力</th>
-                    <th>关注</th>
+                    <!-- <th>关注</th> -->
                     <th>粉丝</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in list" ng-show="list">
-                    <td>{{item.siteName}}</td>
-                    <td>{{item.statusName}}</td>
-                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
-                    <td>{{item.name}}</td>
+                <tr ng-repeat="item in list.data">
+                    <td>{{item.nickName}}</td>
                     <td>{{item.phoneNumber}}</td>
-                    <td>{{item.weixin}}</td>
-                    <td>{{item.caozuo}}</td>
-                    <td>{{item.caozuo}}</td>
-                    <td>{{item.caozuo}}</td>
+
+                    <td ng-show="item.gender==2">女</td>
+                    <td ng-show="item.gender==1">男</td>
+                    <td ng-show="item.gender==0">未知</td>
+
+                    <td>{{item.age?item.age:'未知'}}</td>
+                    <td>{{item.height?item.age:'未知'}}</td>
+                    <td>{{item.constellation}}</td>
+                    <td>{{item.charm}}</td>
+                    <td>{{item.fansCount}}</td>
                 </tr>
             </tbody>
         </table>
-        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
     </div>
     <div class="app-pagination">
         <ul uib-pagination
-        ng-change="pageChanged(this_page)"
-        items-per-page="all_page.pageSize"
-        num-pages="all_page.pageCount"
-        total-items="all_page.rowCount"
-        ng-model="this_page"
+        ng-change=""
+        items-per-page="list.pageSize"
+        num-pages="list.pageCount"
+        total-items="list.rowCount"
+        ng-model="pageIndex"
         max-size="5"
         boundary-links="true"
         rotate="true"
@@ -114,7 +116,7 @@
         previous-text="&lsaquo;"
         next-text="&rsaquo;"></ul>
         <div class="pageTo">
-            <input type="number" placeholder="输入页数" ng-model="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageIndex">
         </div>
     </div>
 

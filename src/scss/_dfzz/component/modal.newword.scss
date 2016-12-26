@@ -1,0 +1,67 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal-confirm{
+    .modal-header{
+        text-align: center;
+        padding: 20px 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+        font-weight: bold;
+        .modal-title{
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+    .modal-body{
+        text-align: center;
+        padding:20px;
+        .cont{
+            width:100%;
+            margin:0 auto 0 3rem;
+
+                    .radio_label{
+                        margin-right: 22px;
+                        padding:20px 0;
+                        cursor: pointer;
+                        float:left;
+                        span{
+                            line-height: 18px;
+                            vertical-align: middle;
+                            font-weight: normal;
+                        }
+                        input[type="checkbox"]{
+                            display: none;
+                            & + .icon{
+                                @include sprite($icon-unchecked);
+                            }
+                        }
+                        input[type="checkbox"]:checked + .icon{
+                            @include sprite($icon-checked);
+                        }
+                        .icon{
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+        }
+    }
+    .modal-footer{
+        border-top: 0;
+        padding-top: 0;
+        text-align: center;
+        button{
+            margin: 0 5px;
+            .smx {
+                background-color:#007CFB;
+            }
+        }
+    }
+    .modal-button {
+        color:#686868;
+        background-color:white;
+        border:1px solid #BFBFBF;
+    }
+}

@@ -3,60 +3,88 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
     function($scope,$uibModal,$timeout,FileUploader,constant,localStorageService,$sce,$http,$filter,$state,$stateParams){
     	// console.log($stateParams.postitem);
     	$scope.allx=$stateParams.postitem;
-    	console.log($scope.allx.createType)
     	$scope.inhtml='';
     	$scope.show=false;
+        $scope.showyes=false;
     	$scope.list=null;
+        $scope.nowList=[];
     	$scope.htmlc=null;
 
-        $scope.testx = function(item){
-            var modalInstance = $uibModal.open({
-                backdrop:'static',
-                animation: true,
-                windowClass: 'modal-showpic',
-                templateUrl: './tpl/_dfzz/modal.showpic.html',
-                controller: 'modal_pic',
-                size: 'sm', 
-                // sm,lg,md
-                resolve: {
-                    rp: function () {
-                        return item;
-                    }
-                }
-            });
-            modalInstance.result.then(function (data) {
-                console.info(data);
-            }, function () {
-                console.info('模态框取消: ' + new Date());
-            });
-        };
+        $scope.pageIndex=1;
 
-        $scope.newStyle={
-            "background-image":"url("+$scope.allx.headIconUrl+")",
-        }
-
-        $scope.unStyle={
-        	"text-decoration":"none"
-        }
+        // 
+        $scope.pageSize=20;
+        $scope.rowCount=null;
 
         $scope.htmlc = $sce.trustAsHtml($scope.allx.htmlContent);
 
-        // 获取评论列表
-        $scope.getList=function(){
-	         $http.get(constant.APP_HOST+'/v1/aut/site/group/comment',{
+        $scope.$watch("pageIndex",function(na,nv){
+            // $scope.nowList.push(a);
+            if(na==1){
+                try{
+                $scope.nowList=$scope.list.commentList.slice(0,20);
+            }catch(e){
+                $scope.nowList=[];
+            }
+            }else{
+                $scope.nowList=$scope.list.commentList.slice(na*20-20,20*na);
+            }
+        })
+
+        // 获取动态和评论列表
+        $scope.getList=function(nood){
+                var noods=nood | 0;
+	         $http.get(constant.APP_HOST+'/v1/aut/world/details',{
 	        	params:{
-	        		groupId:$scope.allx.id
+	        		worldId:$scope.allx.worldId
 	        	},
 	    		headers:{
 	                'Authorization':localStorageService.get("token")
 	                },	
 	        }).success(function(data){
-	        	 		console.log(data)
-
 	        	 if(data.errMessage){
 		            }else{
-		            	$scope.list=data.data.data;
-		            	console.log($scope.list)
+                        if(noods==2){
+                            $scope.list=data.data;
+                            $scope.nowList=$scope.list.commentList;
+                            try{
+                                $scope.rowCount=$scope.list.commentList.length;
+                                $scope.pageCount=parseInt(($scope.list.commentList.length)/20);
+                            }catch(e){
+                                $scope.rowCount=0;
+                                $scope.pageCount=1;
+                            }
+                                $scope.newStyle={
+                                    "background-image":"url("+$scope.list.headIconUrl+")",
+                                }
+
+                        }else{
+		            	$scope.list=data.data;
+                        angular.forEach($scope.list.commentList,function(a,b){
+                            if(b==20){
+                                return;
+                            }else{
+                                $scope.nowList.push(a);
+                            }          
+                            
+                        })
+                        console.log($scope.nowList)
+                        // list.commentList.length
+                        // try{
+
+                        // }
+                            try{
+                                $scope.rowCount=$scope.list.commentList.length;
+                                $scope.pageCount=parseInt(($scope.list.commentList.length)/20);
+                            }catch(e){
+                                $scope.rowCount=0;
+                                $scope.pageCount=1;
+                            }
+                        $scope.newStyle={
+                            "background-image":"url("+$scope.list.headIconUrl+")",
+                        }
+
+                        }
 
 		            }
 	        })       	
@@ -79,52 +107,32 @@ app.controller('cir_list_info',['$scope','$uibModal','$timeout','FileUploader','
                     }else{
                     	if(item.isDelete==0){
                     		$scope.inhtml='评论屏蔽成功';
-							$scope.unStyle={
-							"text-decoration":"line-through"
-							}
                     	}else{
                     		$scope.inhtml='评论恢复成功';
-                    		$scope.unStyle={
-							"text-decoration":"none"
-							}
+
                     	}
+                        $scope.showyes=true;
     					$scope.show=true;
     					$timeout(function() {$scope.show=false}, 1500);
-                        $scope.getList();
+                        $scope.getList(2);
                     }
                 }).error(function(data) {
                     $scope.show('网络错误');
                     // console.log('网络可能错误');
                 })
 
-        	// $http.post(constant.APP_HOST+'/v1/aut/site/group/comment/update',
-        	// 	{
-        	// 	id:item.id,
-        	// 	isDelte:item.isDelete==0 ? 1 : 0,
-        	// 	},{
-        	// 		headers:{
-         //            'Authorization':localStorageService.get("token")
-         //            },
-        	// 	}).success(function(data){
-    				 // if(data.errMessage){
-			      //       }else{
-			      //       	console.log('修改成功');
-			      //       	$scope.getList();
-
-			      //       }
-        	// 	})
-        }
-        // 恢复评论
-        $scope.recover=function(num){
 
         }
 
 
-    	// $http.post(constant.APP_HOST+'')
-       // $scope.noho=false;
-       // $timeout(function() {
-       // 	console.log('换掉class')
-       // 	$scope.noho=true;
-       // }, 5000);
+
+
+
+
+
+
+
+
+
     }
 ]);

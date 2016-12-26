@@ -5,10 +5,11 @@ app.controller('modal_pic',['$scope','$uibModalInstance','$http','localStorageSe
         // /v1/aut/redpackage/details?id=1
         console.log(rp);
         $scope.showYes=0;
-        $scope.showMax=2;
+        $scope.showMax=null;
         $scope.allImg=null;
         if(rp){
             $scope.allImg=rp;
+            $scope.showMax=rp.length;
         }
 
         $scope.next=function(){

@@ -3,7 +3,7 @@
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
 
-#user_ctl {
+#sysset_blacklist {
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -13,6 +13,9 @@
         line-height: 80px;
         .r{
             float:left;
+            .app-select {
+                margin:0px 16px 0 0;
+            }
             .app-input-date{
                 line-height: normal;
                 margin-right: 14px;
@@ -25,9 +28,6 @@
             }   
             .dataaddon {
                 @include sprite($icon-date-addon);
-            }
-            .app-select {
-                margin:1px 12px 0 0;
             }
         }
         .rx {
@@ -42,22 +42,33 @@
         }
 
 
-    .app-display-board{
-        .l{
-            float: left;
-            width: 60%;
-            .inner{
-                .item{
-                    width: 50%;
+    .app-table {
+        tbody{
+            tr {
+                td {
+                    width:80%;
                 }
             }
         }
-        .r{
-            float: left;
-            width:40%;
-            .inner{
-                .item{
-                    width: 50%;
+    }
+
+
+
+    .app-pagination {
+        background:none;
+    }
+
+    .app-display-board{
+        .l{
+            width: 100%;
+            .item{
+                width: 30%;
+                .activex {
+                    color:#007cfb !important;
+                }
+                .t-show{
+                    font-size:17px;
+                    line-height:82px;
                 }
             }
         }

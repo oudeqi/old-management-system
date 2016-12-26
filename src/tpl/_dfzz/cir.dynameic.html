@@ -1,28 +1,23 @@
 <div id="cir_dynameic">
- <show-msg inn="1" ruter="true" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
+ <show-msg inn="1" ruter="showyes" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
  	<div class="app-filter">
 		<div class="r">	
-            <div class="app-select">
-                <select class="select_type" ng-change="" ng-options="i.name for i in option_list track by i.id" ng-model="sec"></select>
+            <div class="app-select" ng-show="perT.button_world_site==1">
+                <select class="select_type" ng-change="" ng-options="i.name for i in cirClass track by i.id" ng-model="sec"></select>
                 <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
             </div>
             <div class="app-input-date">
-                <input class="input" type="text" ng-change="getList()" ng-model="date_get" date-picker placeholder="发表日期">
+                <input class="input" type="text" ng-model="date_get" date-picker placeholder="发表日期">
                 <button class="input-addon" type="button">
                     <i class="glyphicon dataaddon"></i>
                 </button>
             </div>
             <div class="app-input-search">
-                <input class="input" type="text" placeholder="输入关键字搜索" ng-model="listParams.search" ng-keypress="search($event)">
+                <input class="input" type="text" placeholder="输入关键字搜索" ng-model="cirAll.search" ng-keypress="getList()">
                 <button class="input-addon" type="button" ng-click="getList()">
                     <i class="glyphicon glyphicon-search"></i>
                 </button>
             </div>
-        </div>
-
-
-        <div class="rx">
-        	<button class="app-button-primary rx-button" ui-sref="bbs_pub" type="button">发布帖子</button>
         </div>
 	</div>
 
@@ -34,6 +29,7 @@
                 <tr>
                     <th>作者</th>
                     <th>动态内容</th>
+                    <th ng-show="perT.button_world_site==1">站点</th>
                     <th>评论列表</th>
                     <th>查看照片</th>
                     <th>发表时间</th>
@@ -42,20 +38,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in list.data" ng-show="list">
-                    <td ng-click="testx(item)">{{item.title}}</td>
+                <tr ng-repeat="item in cirAllContent.data">
                     <td>{{item.nickName}}</td>
-                    <td>{{item.groupType}}</td>
+                    <td uib-tooltip="{{item.content}}" tooltip-placement="bottom" class="dyc" ng-if="item.isDelete==1"><s style="color:#BFBFBF">{{item.content}}</s></td>
+                    <td uib-tooltip="{{item.content}}" tooltip-placement="bottom" class="dyc" ng-if="item.isDelete==0">{{item.content}}</td>
+                    <td ng-show="perT.button_world_site==1">{{item.siteName}}</td>
+                    <td>{{item.commentCount}}条</td>
+                    <td ng-click="testx(item.imgList)" class="picLook"><img ng-show="item.imgList.length>0" ng-src="{{item.imgList[0]}}" /><span>{{item.imgList.length}}张</span></td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                     <!-- <td>{{item.name}}</td> -->
-                    <td>{{item.commentCount}}</td>
+                    <!-- <td>{{item.commentCount}}</td> -->
                     <!-- <td>{{item.weixin}}</td> -->
                 	<td>
                 		
                         <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
-                        <a href="javascript:void(0);" ng-click="okgo(item)" ng-show="true">详情</a>
-                        <a href="javascript:void(0);" ng-click="del(item)" ng-show="true">删除</a>
-                        <a href="javascript:void(0);" ng-click="changePost(item)" ng-show="item.createType==1">修改</a>
+                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==0">屏蔽</a>
+                        <a href="javascript:void(0);" ng-click="shield(item)" ng-show="item.isDelete==1">恢复</a>
+                        <a href="javascript:void(0);" ng-click="goListInfo(item)" ng-show="true">评论管理</a>
+                        
                 	</td>
                 </tr>
             </tbody>
@@ -63,11 +63,11 @@
     </div>
     <div class="app-pagination">
         <ul uib-pagination
-        ng-change="pageChanged(this_page)"
-        items-per-page="list.pageSize"
-        num-pages="list.pageCount"
-        total-items="list.rowCount"
-        ng-model="this_page"
+        ng-change="pageChanged(pageIndex)"
+        items-per-page="cirAllContent.pageSize"
+        num-pages="cirAllContent.pageCount"
+        total-items="cirAllContent.rowCount"
+        ng-model="pageIndex"
         max-size="5"
         boundary-links="true"
         rotate="true"
@@ -76,7 +76,7 @@
         previous-text="&lsaquo;"
         next-text="&rsaquo;"></ul>
         <div class="pageTo">
-            <input type="number" placeholder="输入页数" ng-model="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="thispage">
         </div>
     </div>
 
