@@ -1,0 +1,41 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.task_list{
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 80px;
+        line-height: 80px;
+        .app-input-date,
+        .app-input-search,
+        .app-button-primary,
+        .app-select{
+            line-height: normal;
+        }
+        .app-input-date,
+        .app-select{
+            margin-right: 10px;
+        }
+        .app-input-search,
+        .app-button-primary{
+            margin-left: 10px;
+        }
+    }
+    .app-display-board{
+        .r{
+            width: 100%;
+            .inner{
+                margin-left: 0;
+                .item{
+                    width: 20%;
+                }
+            }
+        }
+
+    }
+}
