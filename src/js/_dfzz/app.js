@@ -294,6 +294,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl: "./tpl/_dfzz/sysset.blacklist.html",
             controller: 'sysset_blacklist',
         })
+        .state('finance_mgetout',{
+            url:"/finance_mgetout",
+            templateUrl:"./tpl/_dfzz/finance.mgetout.html",
+            controller:"finance_mgetout"
+        })
 
 
 
