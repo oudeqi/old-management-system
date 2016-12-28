@@ -1,0 +1,73 @@
+<div id="sysset_report">
+ <show-msg inn="1" ruter="showyes" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
+
+    <div class="app-filter">
+        <div class="r"> 
+            <div class="app-select">
+                <select class="select_type" ng-change="" ng-options="i.name for i in reportx track by i.id" ng-model="sec"></select>
+                <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
+            </div>
+
+
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字搜索" ng-model="search">
+                <button class="input-addon" type="button" ng-click="getList()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- 表格 -->
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>类别</th>
+                    <th>举报人</th>
+                    <th>备注</th>
+                    <th>时间</th>
+                    <th class="itemx">操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list.data">
+                    <td>{{item.nickName}}</td>
+                    <td>{{item.busTypeName}}</td>
+                    <td>{{item.uNames}}</td>
+                    <td>{{item.reportType}}</td>
+                    <td>{{item.createTime | date:"yyyy/MM/dd HH:mm"}}</td>
+                    
+                        <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
+                    <td class="itemx">
+                        <a href="javascript:void(0);" ng-click="del(item)" ng-show="item.status==0">屏蔽</a>
+                        <a style="color:#FB4747" href="javascript:void(0);" ng-show="item.status==1">已处理</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change=""
+        items-per-page="list.pageSize"
+        num-pages="list.pageCount"
+        total-items="list.rowCount"
+        ng-model="pageIndex"
+        max-size="5"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageIndex">
+        </div>
+    </div>
+
+</div>

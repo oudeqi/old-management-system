@@ -1,0 +1,149 @@
+<div id="finance_mgetout">
+ <show-msg inn="1" ruter="showyes" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
+    <div class="app-filter">
+        <div class="r"> 
+            <div class="app-select" ng-show="perT.button_world_site==1">
+                <select class="select_type" ng-change="" ng-options="i.name for i in cirClass track by i.id" ng-model="sec"></select>
+                <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
+            </div>
+            <div class="app-input-date">
+                <input class="input" type="text" ng-model="date_get" date-picker placeholder="申请日期">
+                <button class="input-addon" type="button">
+                    <i class="glyphicon dataaddon"></i>
+                </button>
+            </div>
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入姓名搜索" ng-model="cirAll.search" ng-keypress="getList()">
+                <button class="input-addon" type="button" ng-click="getList()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="rx">
+                   <a href="javascript:void(0);" class="app-download_xls_btn">
+                        <span>导出Excel</span>
+                        <button type="button" id="downloadify_finance"></button>
+                    </a>
+        </div>
+
+
+    </div>
+    <!-- 导出表格 -->
+    <div id="download_finance_list" ng-show="false">
+                <table class="app-table">
+            <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>账户UID</th>
+                    <th>类型</th>
+                    <th>账户余额</th>
+                    <th>提现金额</th>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>提现账户</th>
+                    <th>申请时间</th>
+                    <th>状态</th>
+                    <th>操作人员</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cirAllContent.data">
+                    <td>{{item.id}}</td>
+                    <td>{{item.userId}}</td>
+                    <td>{{item.bankName}}</td>
+                    <td>{{item.overplusMoney || 0}}</td>
+                    <td>{{item.money}}</td>
+                    <td>{{item.realName}}</td>
+                    <td style="mso-number-format:'\@';">{{item.identityCard}}</td>
+                    <td style="mso-number-format:'\@';">{{item.account}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.operator}}</td>
+                    <td>{{item.failReason}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 表格 -->
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>订单号</th>
+                    <th>账户UID</th>
+                    <th>类型</th>
+                    <th>账户余额</th>
+                    <th>提现金额</th>
+                    <th>姓名</th>
+                    <th>身份证号</th>
+                    <th>提现账户</th>
+                    <th>申请时间</th>
+                    <th>状态</th>
+                    <th>操作人员</th>
+                    <th>备注</th>
+                    <th>操作</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in cirAllContent.data">
+                    <td>{{item.id}}</td>
+                    <td>{{item.userId}}</td>
+                    <td>{{item.bankName}}</td>
+                    <td>{{item.overplusMoney || 0}}</td>
+                    <td>{{item.money}}</td>
+                    <td>{{item.realName}}</td>
+                    <td>{{item.identityCard}}</td>
+                    <td>{{item.account}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.operator}}</td>
+                    <td>{{item.failReason}}</td>
+
+
+            
+                    <!-- <td>{{item.name}}</td> -->
+                    <!-- <td>{{item.commentCount}}</td> -->
+                    <!-- <td>{{item.weixin}}</td> -->
+                    <td>
+                  
+                        <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
+                        <a href="javascript:void(0);" ng-click="goYes(item,1)" ng-show="item.status==1">通过</a>
+                        <a href="javascript:void(0);" ng-click="goYes(item,2)" ng-show="item.status==1">拒绝</a>
+                        <a href="javascript:void(0);" ng-click="goYes(item,3)" ng-show="item.status==2">处理成功</a>
+                        <a href="javascript:void(0);" ng-click="goYes(item,4)" ng-show="item.status==2">处理失败</a>
+                        <a href="javascript:void(0);" ng-show="item.status==3">审核失败</a>
+
+                        <a href="javascript:void(0);" ng-show="item.status==4">转账成功</a>
+                        <a href="javascript:void(0);" ng-show="item.status==5">转账失败</a>
+
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged(pageIndex)"
+        items-per-page="cirAllContent.pageSize"
+        num-pages="cirAllContent.pageCount"
+        total-items="cirAllContent.rowCount"
+        ng-model="pageIndex"
+        max-size="5"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageIndex">
+        </div>
+    </div>
+
+</div>
