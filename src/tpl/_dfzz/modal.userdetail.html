@@ -1,0 +1,747 @@
+<div class="modal-body vip-modal">
+    <div class="modal-nav">
+        <div class="head-pic">
+            <div class="pic-box">
+                <img ng-src="{{userInfo.headIconUrl}}" alt="头像"/>
+            </div>
+        </div>
+        <ul class="modal-nav-cont">
+            <li ng-click="modalNav(1)" ng-class="{'active':modalCurrent == 1}">用户信息</li>
+            <li ng-click="modalNav(2)" ng-class="{'active':modalCurrent == 2}">账务记录</li>
+            <li ng-click="modalNav(7)" ng-class="{'active':modalCurrent == 7}">U币列表</li>
+            <li ng-click="modalNav(3)" ng-class="{'active':modalCurrent == 3}">活跃记录</li>
+            <li ng-click="modalNav(4)" ng-class="{'active':modalCurrent == 4}">媒体价值分</li>
+            <li ng-click="modalNav(5)" ng-class="{'active':modalCurrent == 5}">评论列表</li>
+            <li ng-click="modalNav(6)" ng-class="{'active':modalCurrent == 6}">邀请列表</li>
+        </ul>
+        <ul class="operation">
+            <li>
+                <div class="switch-box">
+                    <switch name="enabled" ng-model="invitationRights" ng-change="switchInvitation" class="green"></switch>
+                </div>
+                <span ng-show="!invitationRights" class="txt">邀请有奖</span>
+                <span ng-show="invitationRights" class="txt">恢复邀请有奖</span>
+            </li>
+            <li>
+                <div class="switch-box">
+                    <switch name="enabled" ng-model="userBlocking" ng-change="switchUserBlocking" class="green"></switch>
+                </div>
+                <span ng-show="!userBlocking" class="txt">点击封号</span>
+                <span ng-show="userBlocking" class="txt">单击解封</span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-cont">
+        <div class="loading" ng-show="loading"><img src="./img/loading.gif" alt=""/></div>
+        <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+        <!-- 用户信息 -->
+        <div class="user-info" ng-show="modalCurrent === 1">
+            <div class="noUserInfo" ng-if="userInfoErrMsg">{{userInfoErrMsg}}</div>
+            <ul class="list" ng-if="!userInfoErrMsg">
+                <li>
+                    <h4 class="tit">基本信息</h4>
+                    <hr>
+                    <div class="item">
+                        <div class="l">UID：</div>
+                        <div class="r">{{userInfo.uid}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">昵称：</div>
+                        <div class="r">{{userInfo.nickName}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">性别：</div>
+                        <div class="r">{{userInfo.gender}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">年龄：</div>
+                        <div class="r">{{userInfo.age}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">上级邀请：</div>
+                        <div class="r">{{userInfo.firstUserNickName}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">注册时间：</div>
+                        <div class="r">{{userInfo.createDate | date:"yyyy-MM-dd"}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">VIP有效期：</div>
+                        <div class="r">{{userInfo.vipEndTime | date:"yyyy-MM-dd"}}</div>
+                    </div>
+                </li>
+                <li>
+                    <h4 class="tit">实名认证信息</h4>
+                    <hr>
+                    <div class="item">
+                        <div class="l">绑定手机：</div>
+                        <div class="r">{{userInfo.phoneNumber}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">职业：</div>
+                        <div class="r">{{userInfo.professionName}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">地区：</div>
+                        <div class="r">{{userInfo.cityName}}</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">QQ：</div>
+                        <div class="r">（{{userInfo.qqUserInfoNickName}}）</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">微信：</div>
+                        <div class="r">（{{userInfo.wxUserInfoNickName}}）</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">微博：</div>
+                        <div class="r">（{{userInfo.wbName}}）</div>
+                    </div>
+                    <div class="item">
+                        <div class="l">身份证信息：</div>
+                        <div class="r">{{userInfo.IDCardInfo}}</div>
+                    </div>
+                </li>
+                <li>
+                    <h4 class="tit">媒体价值信息</h4>
+                    <hr>
+                    <div class="item">
+                        <div class="l">兴趣爱好：</div>
+                        <div class="r">{{userInfo.interests}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 账务记录 -->
+        <div class="account-record" ng-show="modalCurrent === 2">
+            <div class="tit">财务记录 / 平台收益</div>
+            <ul class="modal-display-board">
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':financeType == 0}" ng-click="financeNav(0,0,2)">
+                        <p class="t">{{overplusMoney ? overplusMoney : 0 | currency:"￥":2}}</p>
+                        <p class="b">账户余额</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':financeType === 1}" ng-click="financeNav(1,0,1)">
+                        <p class="t">{{totalIncomeMoney ? totalIncomeMoney : 0 | currency:"￥":2}}</p>
+                        <p class="b">平台收益</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':financeType === 601}" ng-click="financeNav(601,1,1)">
+                        <p class="t">{{consumeMoney ? consumeMoney : 0 | currency:"￥":2}}</p>
+                        <p class="b">第三方支付</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':financeType === 19}" ng-click="financeNav(19,0,0)">
+                        <p class="t">{{thirdConsumeMoney ? thirdConsumeMoney : 0  | currency:"￥":2}}</p>
+                        <p class="b">累计支出</p>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- 平台收益 tab -->
+            <!-- [1广告收入，2任务收入，3红包收入，4推广收益  28话费返佣 夺宝返佣：15  vip返佣:19//平台收益 income 1] -->
+            <div class="tabs" ng-show="third === 0 && income === 1 && (financeType === 1 || financeType === 2 || financeType === 3 || financeType === 4 || financeType === 28 || financeType === 15 || financeType === 19)">
+                <div class="tab-head clearfix">
+                    <!-- type,third,income -->
+                    <div ng-click="financeNav(1,0,1)" ng-class="{'active': financeType === 1 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">广告收益</a>
+                    </div>
+                    <div ng-click="financeNav(2,0,1)" ng-class="{'active': financeType === 2 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">任务收益</a>
+                    </div>
+                    <div ng-click="financeNav(3,0,1)" ng-class="{'active': financeType === 3 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">红包收益</a>
+                    </div>
+                    <div ng-click="financeNav(4,0,1)" ng-class="{'active': financeType === 4 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">推广收益</a>
+                    </div>
+                    <div ng-click="financeNav(28,0,1)" ng-class="{'active': financeType === 28 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">话费返佣</a>
+                    </div>
+                    <div ng-click="financeNav(15,0,1)" ng-class="{'active': financeType === 15 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">夺宝返佣</a>
+                    </div>
+                    <div ng-click="financeNav(19,0,1)" ng-class="{'active': financeType === 19 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">VIP返佣</a>
+                    </div>
+                    <div class="search">
+                        <input type="text" name="search" ng-model="search" value="" placeholder="输入关键词搜索">
+                        <a href="" ng-click="searchFinance()" class="glyphicon glyphicon-search"></a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>介绍</th>
+                                <th>金额(元)</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in financeList track by $index">
+                                <td>{{item.id}}</td>
+                                <td>{{item.introduce}}</td>
+                                <td>{{item.money | currency:"":2}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!financeList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+
+            <!-- 第三方支付 tab -->
+            <!-- [601 购买VIP， 602 一元夺宝， 603 话费充值， 6 余额充值 //第三方交易，需要传third=1 income 1] -->
+            <div class="tabs" ng-show="third === 1 && income === 1">
+                <div class="tab-head clearfix">
+                    <!-- type,third,income -->
+                    <div ng-click="financeNav(601,1,1)" ng-class="{'active': financeType === 601 && third === 1 && income === 1}" class="tab-head-item">
+                        <a href="">购买VIP</a>
+                    </div>
+                    <div ng-click="financeNav(602,1,1)" ng-class="{'active': financeType === 602 && third === 1 && income === 1}" class="tab-head-item">
+                        <a href="">夺宝</a>
+                    </div>
+                    <div ng-click="financeNav(603,1,1)" ng-class="{'active': financeType === 603 && third === 1 && income === 1}" class="tab-head-item">
+                        <a href="">话费充值</a>
+                    </div>
+                    <div ng-click="financeNav(6,1,1)" ng-class="{'active': financeType === 6 && third === 1 && income === 1}" class="tab-head-item">
+                        <a href="">余额充值</a>
+                    </div>
+                    <div ng-click="financeNav(604,1,1)" ng-class="{'active': financeType === 604 && third === 1 && income === 1}" class="tab-head-item">
+                        <a href="">U币充值</a>
+                    </div>
+                    <div class="search">
+                        <input type="text" name="search" ng-model="search" value="" placeholder="输入关键词搜索">
+                        <a href="" ng-click="searchFinance()" class="glyphicon glyphicon-search"></a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>介绍</th>
+                                <th>金额(元)</th>
+                                <th>支付方式</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in financeList track by $index">
+                                <td>{{item.id}}</td>
+                                <td>{{item.introduce}}</td>
+                                <td>{{item.money | currency:"":2}}</td>
+                                <td>{{item.payMethonName}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!financeList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+
+            <!-- 累计支出 -->
+            <!-- [19 购买VIP， 15 一元夺宝， 20 话费充值， 7 提现， 10 手续费 //累计支出 income 0] -->
+            <div class="tabs" ng-show="income === 0 && third === 0 && (financeType === 19 || financeType === 15 || financeType === 20 || financeType === 7 || financeType === 10)">
+                <div class="tab-head clearfix">
+                    <!-- type,third,income -->
+                    <div ng-click="financeNav(19,0,0)" ng-class="{'active': financeType === 19 && third === 0 && income === 0}" class="tab-head-item">
+                        <a href="">购买VIP</a>
+                    </div>
+                    <div ng-click="financeNav(15,0,0)" ng-class="{'active': financeType === 15 && third === 0 && income === 0}" class="tab-head-item">
+                        <a href="">夺宝</a>
+                    </div>
+                    <div ng-click="financeNav(20,0,0)" ng-class="{'active': financeType === 20 && third === 0 && income === 0}" class="tab-head-item">
+                        <a href="">话费充值</a>
+                    </div>
+                    <div ng-click="financeNav(7,0,0)" ng-class="{'active': financeType === 7 && third === 0 && income === 0}" class="tab-head-item">
+                        <a href="">提现</a>
+                    </div>
+                    <div ng-click="financeNav(10,0,0)" ng-class="{'active': financeType === 10 && third === 0 && income === 0}" class="tab-head-item">
+                        <a href="">手续费</a>
+                    </div>
+                    <div class="search">
+                        <input type="text" name="search" ng-model="search" value="" placeholder="输入关键词搜索">
+                        <a href="" ng-click="searchFinance()" class="glyphicon glyphicon-search"></a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>介绍</th>
+                                <th>支出金额(元)</th>
+                                <th>支付方式</th>
+                                <th>状态</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in financeList track by $index">
+                                <td>{{item.id}}</td>
+                                <td>{{item.introduce}}</td>
+                                <td>{{item.money | currency:"":2}}</td>
+                                <td>{{item.payMethonName}}</td>
+                                <td>{{item.statusName}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!financeList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+
+            <!-- 收支明细 -->
+            <!-- [type为0 ，income 1收入，0支出，2全部 //收支明细] -->
+            <div class="tabs" ng-show="financeType === 0 && third === 0">
+                <div class="tab-head clearfix">
+                    <!-- type,third,income -->
+                    <div ng-click="financeNav(0,0,2)" ng-class="{'active': financeType === 0 && third === 0 && income === 2}" class="tab-head-item">
+                        <a href="">全部</a>
+                    </div>
+                    <div ng-click="financeNav(0,0,1)" ng-class="{'active': financeType === 0 && third === 0 && income === 1}" class="tab-head-item">
+                        <a href="">收入</a>
+                    </div>
+                    <div ng-click="financeNav(0,0,0)" ng-class="{'active': financeType === 0 && third === 0 && income === 0}" class="tab-head-item">
+                        <a href="">支出</a>
+                    </div>
+                    <div class="search">
+                        <input type="text" name="search" ng-model="search" value="" placeholder="输入关键词搜索">
+                        <a href="" ng-click="searchFinance()" class="glyphicon glyphicon-search"></a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>介绍</th>
+                                <th>金额(元)</th>
+                                <th>支付方式</th>
+                                <th>状态</th>
+                                <th>账户余额</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in financeList track by $index">
+                                <td style="cursor:pointer" title="{{item.id}}">{{item.id}}</td>
+                                <td style="cursor:pointer" title="{{item.introduce}}">{{item.introduce}}</td>
+                                <td style="cursor:pointer" title="{{item.money | currency:'':2}}">{{item.money | currency:"":2}}</td>
+                                <td style="cursor:pointer" title="{{item.payMethonName}}">{{item.payMethonName}}</td>
+                                <td style="cursor:pointer" title="{{item.statusName}}">{{item.statusName}}</td>
+                                <td style="cursor:pointer" title="{{item.overplusMoney | currency:'￥':2}}">{{item.overplusMoney | currency:"￥":2}}</td>
+                                <td>{{item.createDate | date:"yyyy/MM/dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!financeList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+            <div class="modal-pagination">
+                <div class="total" ng-hide="!total || (financeType === 0 && third === 0 && income === 2)">合计：{{total | currency:"￥":2}}</div>
+                <ul uib-pagination
+                ng-change="financePageChanged()"
+                items-per-page="financePageSize"
+                num-pages="numPages"
+                total-items="financeTotalItems"
+                ng-model="financeCurrentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+            </div>
+        </div>
+
+        <!-- U币列表 -->
+        <div class="account-record" ng-show="modalCurrent === 7">
+            <div class="tit">财务记录 / U币列表</div>
+            <ul class="modal-display-board display-board-col5">
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':ubType === 1}" ng-click="ubNav(1)">
+                        <p class="t">{{overplus ? overplus : 0}}</p>
+                        <p class="b">U币余额/交易明细</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':ubType === 2}" ng-click="ubNav(2)">
+                        <p class="t">{{recharge ? recharge : 0}}</p>
+                        <p class="b">充值U币</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':ubType === 3 || ubType === 4}" ng-click="ubNav(3)">
+                        <p class="t">{{exchange ? exchange : 0}}</p>
+                        <p class="b">获取U币</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':ubType === 2}" ng-click="ubNav(2)">
+                        <p class="t">{{rechargeMoney ? rechargeMoney : 0 | currency:"￥":2}}</p>
+                        <p class="b">U币充值金额</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="javascript:void(0);" ng-class="{'active':ubType === 5}" ng-click="ubNav(5)">
+                        <p class="t">{{rpMoney ? rpMoney : 0 | currency:"￥":2}}</p>
+                        <p class="b">手气红包收入</p>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- 获取U币之外的选项 -->
+            <div class="tabs" ng-show="ubType === 1 || ubType === 2 || ubType === 5">
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>介绍</th>
+                                <th>数量(U)</th>
+                                <th>支付方式</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in ubList track by $index">
+                                <td style="cursor:pointer" title="{{item.id}}">{{item.id}}</td>
+                                <td style="cursor:pointer" title="{{item.introduce}}">{{item.introduce}}</td>
+                                <td style="cursor:pointer" title="{{item.ucount}}">{{item.ucount}}</td>
+                                <td style="cursor:pointer" title="{{item.payMethonName}}">{{item.payMethonName}}</td>
+                                <td>{{item.createDate | date:"yyyy/MM/dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!ubList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+            <!-- 获取U币 -->
+            <div class="tabs" ng-show="ubType === 3 || ubType === 4">
+                <div class="tab-head clearfix">
+                    <div ng-click="ubNav(3)" ng-class="{'active': ubType === 3}" class="tab-head-item">
+                        <a href="">赚取U币</a>
+                    </div>
+                    <div ng-click="ubNav(4)" ng-class="{'active': ubType === 4}" class="tab-head-item">
+                        <a href="">兑换U币</a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con" ng-show="ubType === 3">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>介绍</th>
+                                <th>数量(U)</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in ubList track by $index">
+                                <td>{{item.code}}</td>
+                                <td>{{item.introduce}}</td>
+                                <td>{{item.ucount}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!ubList.length" class="table-nodata">暂无数据</div>
+                </div>
+
+                <div class="modal-table-box tab-con" ng-show="ubType === 4">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>交易单号</th>
+                                <th>U码</th>
+                                <th>数量(U)</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in ubList track by $index">
+                                <td>{{item.id}}</td>
+                                <td>{{item.code}}</td>
+                                <td>{{item.ucoin}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!ubList.length" class="table-nodata">暂无数据</div>
+                </div>
+
+            </div>
+            <div class="modal-pagination">
+                <ul uib-pagination
+                ng-change="ubPageChanged()"
+                items-per-page="ubPageSize"
+                num-pages="numPages"
+                total-items="ubTotalItems"
+                ng-model="ubCurrentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+            </div>
+        </div>
+
+        <!-- 活跃记录 -->
+        <div class="activity-record" ng-show="modalCurrent == 3">
+            <div class="tit">活跃记录</div>
+            <div class="tabs">
+                <div class="tab-head clearfix">
+                    <div ng-click="actNav(1)" class="tab-head-item" ng-class="{'active': actType === 1}">
+                        <a href="">广告</a>
+                    </div>
+                    <div ng-click="actNav(2)" class="tab-head-item" ng-class="{'active': actType === 2}">
+                        <a href="">任务</a>
+                    </div>
+                    <div ng-click="actNav(3)" class="tab-head-item" ng-class="{'active': actType === 3}">
+                        <a href="">红包</a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>介绍</th>
+                                <th ng-hide="actType === 3">状态</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in actList track by $index">
+                                <td>{{item.introduce}}</td>
+                                <td ng-hide="actType === 3">{{item.statusName}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!actList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+            <div class="modal-pagination">
+                <ul uib-pagination
+                ng-change="actPageChanged()"
+                items-per-page="pageSize"
+                num-pages="numPages"
+                total-items="actTotalItems"
+                ng-model="actCurrentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+            </div>
+        </div>
+
+        <!-- 媒体价值分 -->
+        <div class="media-value" ng-show="modalCurrent === 4">
+            <div class="tit">媒体价值分</div>
+            <div class="tabs">
+                <div class="tab-head clearfix">
+                    <div ng-click="mediaNav(1)" class="tab-head-item" ng-class="{'active': mediaType === 1}">
+                        <a href="">身份特质</a>
+                    </div>
+                    <div ng-click="mediaNav(2)" class="tab-head-item" ng-class="{'active': mediaType === 2}">
+                        <a href="">行为偏好</a>
+                    </div>
+                    <div ng-click="mediaNav(3)" class="tab-head-item" ng-class="{'active': mediaType === 3}">
+                        <a href="">人脉关系</a>
+                    </div>
+                    <div ng-click="mediaNav(4)" class="tab-head-item" ng-class="{'active': mediaType === 4}">
+                        <a href="">传播效果</a>
+                    </div>
+                    <div ng-click="mediaNav(5)" class="tab-head-item" ng-class="{'active': mediaType === 5}">
+                        <a href="">活跃度</a>
+                    </div>
+                </div>
+
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>介绍</th>
+                                <th>维度类型</th>
+                                <th>分值</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in mediaList | orderBy: 'id' track by $index">
+                                <td>{{item.id}}</td>
+                                <td>{{item.action}}</td>
+                                <td>{{item.dimensionTypeName}}</td>
+                                <td>{{item.score}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!mediaList.length" class="table-nodata">暂无数据</div>
+                </div>
+
+            </div>
+            <div class="modal-pagination">
+                <ul uib-pagination
+                ng-change="mediaPageChanged()"
+                items-per-page="pageSize"
+                num-pages="numPages"
+                total-items="mediaTotalItems"
+                ng-model="mediaCurrentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+            </div>
+        </div>
+
+        <!-- 评论列表 -->
+        <div class="comment-list" ng-show="modalCurrent === 5">
+            <div class="tit">评论列表</div>
+            <div class="tabs">
+                <div class="tab-head clearfix">
+                    <div ng-click="commentNav(0)" class="tab-head-item" ng-class="{'active': commentType === 0}">
+                        <a href="">全部</a>
+                    </div>
+                    <div ng-click="commentNav(1)" class="tab-head-item" ng-class="{'active': commentType === 1}">
+                        <a href="">广告评论</a>
+                    </div>
+                    <div ng-click="commentNav(2)" class="tab-head-item" ng-class="{'active': commentType === 2}">
+                        <a href="">任务评论</a>
+                    </div>
+                    <div ng-click="commentNav(3)" class="tab-head-item" ng-class="{'active': commentType === 3}">
+                        <a href="">红包评论</a>
+                    </div>
+                    <div ng-click="commentNav(4)" class="tab-head-item" ng-class="{'active': commentType === 4}">
+                        <a href="">任务文案</a>
+                    </div>
+                    <div ng-click="commentNav(5)" class="tab-head-item" ng-class="{'active': commentType === 5}">
+                        <a href="">夺宝晒单</a>
+                    </div>
+                    <div class="search">
+                        <input type="text" name="search" ng-model="search" value="" placeholder="输入关键词搜索">
+                        <a href="" ng-click="searchComment()" class="glyphicon glyphicon-search"></a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>评论渠道</th>
+                                <th>评论内容</th>
+                                <th>标签</th>
+                                <th style="width:200px;">时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in commentList track by $index">
+                                <td>{{item.title}}</td>
+                                <td>{{item.content}}</td>
+                                <td>{{item.labelName ? item.labelName : "无"}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!commentList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+            <div class="modal-pagination">
+                <ul uib-pagination
+                ng-change="commentPageChanged()"
+                items-per-page="pageSize"
+                num-pages="numPages"
+                total-items="commentTotalItems"
+                ng-model="commentCurrentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+            </div>
+        </div>
+
+        <!-- 邀请列表 -->
+        <div class="invitation-list" ng-show="modalCurrent === 6">
+            <div class="tit">邀请列表</div>
+            <div class="tabs">
+                <div class="tab-head clearfix">
+                    <div ng-click="invitNav(1)" class="tab-head-item" ng-class="{'active': invitType === 1}">
+                        <a href="">一级好友</a>
+                    </div>
+                    <div ng-click="invitNav(2)" class="tab-head-item" ng-class="{'active': invitType === 2}">
+                        <a href="">二级好友</a>
+                    </div>
+                    <div ng-click="invitNav(3)" class="tab-head-item" ng-class="{'active': invitType === 3}">
+                        <a href="">三级好友</a>
+                    </div>
+                    <div class="search">
+                        <input type="text" name="search" ng-model="search" placeholder="输入关键词搜索">
+                        <a href="javascript:;" ng-click="searchInvit()" class="glyphicon glyphicon-search"></a>
+                    </div>
+                </div>
+                <div class="modal-table-box tab-con">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>UID</th>
+                                <th>用户昵称</th>
+                                <th>手机号码</th>
+                                <th>身份特质</th>
+                                <th>审核状态</th>
+                                <th>注册时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in invitList track by $index">
+                                <td>{{item.uid}}</td>
+                                <td>{{item.nickName}}</td>
+                                <td>{{item.phoneNumber}}</td>
+                                <td>{{item.userType}}</td>
+                                <td>{{item.statusName}}</td>
+                                <td>{{item.createDate | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div ng-show="!invitList.length" class="table-nodata">暂无数据</div>
+                </div>
+            </div>
+            <div class="modal-pagination">
+                <div class="total">人数合计：{{invitTotalItems}}</div>
+                <ul uib-pagination
+                ng-change="invitPageChanged()"
+                items-per-page="pageSize"
+                num-pages="numPages"
+                total-items="invitTotalItems"
+                ng-model="invitCurrentPage"
+                max-size="maxSize"
+                boundary-links="true"
+                rotate="true"
+                first-text="&laquo;"
+                last-text="&raquo;"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"></ul>
+            </div>
+        </div>
+    </div>
+</div>

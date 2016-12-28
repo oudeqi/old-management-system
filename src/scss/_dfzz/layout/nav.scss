@@ -9,6 +9,8 @@ $nav-bg-color: #394047 !default;
 $nav-act-bg-color: #2d3237 !default;
 
 #app-nav{
+    @include content-scroll(0px);
+    overflow-y: auto;
     position: fixed;
     top: 0;
     left:0;
@@ -16,6 +18,7 @@ $nav-act-bg-color: #2d3237 !default;
     height: 100%;
     width: $nav-width;
     background: $nav-bg-color;
+    padding-bottom: 80px;
     .head-pic{
         padding: 10px;
         position: relative;
@@ -166,13 +169,13 @@ $nav-act-bg-color: #2d3237 !default;
                     opacity: 1;
                 }
             }
-
         }
     }
     .local{
-        position: absolute;
+        position: fixed;
         bottom: 0;
-        width: 100%;
+        left: 0;
+        width: 78px;
         text-align: center;
         color: #fff;
         font-size: 12px;

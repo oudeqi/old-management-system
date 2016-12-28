@@ -5,5 +5,7 @@ node_modules/
 .idea/
 src/css/
 src/scss/helpers/_sprite.scss
+src/js/_dfzz/tpl/
+src/js/_index/tpl/
 gulpfile.js
 ##############################
