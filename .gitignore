@@ -4,5 +4,6 @@ dist/
 node_modules/
 .idea/
 src/css/
+src/scss/helpers/_sprite.scss
 gulpfile.js
 ##############################
