@@ -76,24 +76,24 @@ app.controller('tgtj',['$scope','$uibModal','$http','constant','localStorageServ
         };
 
         $scope.detail = function(item){
-            // var modalInstance = $uibModal.open({
-            //     backdrop:'static',
-            //     animation: true,
-            //     windowClass: 'modal-table',
-            //     templateUrl: './tpl/_dfzz/modal.tgtjdetail.html',
-            //     controller: 'tgtj_detail',
-            //     size: 'lg',
-            //     resolve: {
-            //         tgtj: function () {
-            //             return item;
-            //         }
-            //     }
-            // });
-            // modalInstance.result.then(function (data) {
-            //     console.info(data);
-            // }, function () {
-            //     console.info('模态框取消: ' + new Date());
-            // });
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-table',
+                templateUrl: './tpl/_dfzz/modal.tgtjdetail.html',
+                controller: 'tgtj_detail',
+                size: 'lg',
+                resolve: {
+                    tgtj: function () {
+                        return item;
+                    }
+                }
+            });
+            modalInstance.result.then(function (data) {
+                console.info(data);
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
         };
 
         // 获取二维码

@@ -1,0 +1,71 @@
+<div class="user_list">
+    <div class="app-filter">
+        <div class="l">
+            <span class="total">总人数：{{totalItems || "0"}}人</span>
+        </div>
+        <div class="r">
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th>UID</th>
+                    <th>电话号码</th>
+                    <th>昵称</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>城市</th>
+                    <th>账户余额</th>
+                    <th>总收入</th>
+                    <th>媒体价值分</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list" ng-show="list">
+                    <td>{{item.uid}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                    <td>{{item.nickName || "无"}}</td>
+                    <td>
+                        <span ng-if="item.gender == 1">男</span>
+                        <span ng-if="item.gender == 2">女</span>
+                    </td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.cityCode}}</td>
+                    <td>{{item.overplusMoney | currency :"" :2}}</td>
+                    <td>{{item.totalIncomeMoney | currency : "" :2}}</td>
+                    <td>{{item.mdPoint || "0" | number:2}}</td>
+                    <td>{{item.createDate | date : "yyyy-MM-dd HH:mm:ss"}}</td>
+                    <td><a ng-click="detail(item.uid)" href="javascript:void(0);">详情</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+    <div class="app-pagination">
+        <ul uib-pagination
+        ng-change="pageChanged()"
+        items-per-page="pageSize"
+        num-pages="numPages"
+        total-items="totalItems"
+        ng-model="currentPage"
+        max-size="maxSize"
+        boundary-links="true"
+        rotate="true"
+        first-text="&laquo;"
+        last-text="&raquo;"
+        previous-text="&lsaquo;"
+        next-text="&rsaquo;"></ul>
+        <div class="pageTo">
+            <input type="number" placeholder="输入页数" ng-model="pageTo" ng-keypress="setPage($event)">
+        </div>
+    </div>
+</div>

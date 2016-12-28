@@ -35,7 +35,7 @@ $pagination-act-border-color: $bg-color-primary;
 .modal-display-board{
     padding: 20px;
     background: #ebebeb;
-    @include clearfix();
+    overflow: hidden;
     .item{
         float: left;
         width: 25%;

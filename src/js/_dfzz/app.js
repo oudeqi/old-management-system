@@ -303,6 +303,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             url: "/task_list",
             templateUrl: "./tpl/_dfzz/task.list.html",
             controller: 'task_list',
+        })
+        .state('user_list',{
+            url:"/user_list",
+            templateUrl:"./tpl/_dfzz/user.list.html",
+            controller:"user_list"
         });
 
 
