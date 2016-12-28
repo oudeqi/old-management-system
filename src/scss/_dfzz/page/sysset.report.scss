@@ -1,0 +1,68 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+#sysset_report {
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 81px;
+        line-height: 80px;
+        .r{
+            float:left;
+            .app-select {
+                margin:0px 16px 0 0;
+            }
+            .app-input-date{
+                line-height: normal;
+                margin-right: 14px;
+            }
+            .app-input-search{
+                line-height: normal;
+            }
+            .glyphicon-search {
+                color:#BFBFBF;
+            }   
+            .dataaddon {
+                @include sprite($icon-date-addon);
+            }
+        }
+
+        }
+
+
+    .app-table {
+        tbody{
+            tr {
+                td {
+                   
+                }
+            }
+        }
+    }
+
+
+
+    .app-pagination {
+        background:none;
+    }
+
+    .app-display-board{
+        .l{
+            width: 100%;
+            .item{
+                width: 30%;
+                .activex {
+                    color:#007cfb !important;
+                }
+                .t-show{
+                    font-size:17px;
+                    line-height:82px;
+                }
+            }
+        }
+    }
+}
