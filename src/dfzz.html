@@ -16,10 +16,6 @@
         <!-- build:css css/_dfzz/app/app.css -->
         <!-- inject:css -->
 
-        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
-
-        <link rel="stylesheet" href="css/_dfzz/base/base.css">
-
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
 
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
@@ -83,6 +79,10 @@
         <link rel="stylesheet" href="css/_dfzz/component/switch.css">
 
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
+
+        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
+
+        <link rel="stylesheet" href="css/_dfzz/base/base.css">
 
         <link rel="stylesheet" href="css/_dfzz/layout/home.css">
 
@@ -184,6 +184,7 @@
         <!-- inject:js -->
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
+        <script src="js/_dfzz/filter/filters.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
         <script src="js/_dfzz/ctrl/user.list.js"></script>
@@ -234,7 +235,6 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
-        <script src="js/_dfzz/filter/filters.js"></script>
         <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
@@ -536,10 +536,10 @@
                     <img src="img/subnav_logo.png" alt="" />
                 </div>
                 <ul class="list">
-                    <li class="item">
+                    <li class="item" ng-if="permission.menu_user_site=='1'">
                         <a href="javascript:void(0);" ui-sref="user_ctl" ui-sref-active="active">站点用户</a>
                     </li>
-                    <li class="item">
+                    <li class="item" ng-if="permission.menu_user_app=='1'">
                         <a href="javascript:void(0);" ui-sref="user_list" ui-sref-active="active">用户列表</a>
                     </li>
                 </ul>
