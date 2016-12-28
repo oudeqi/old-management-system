@@ -8,6 +8,7 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
         $scope.inhtml='';
         $scope.date_get=null;
 
+
         $scope.cirAll={
             status:0,
             startTime:null,
@@ -23,15 +24,24 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
 
         // 分页
         $scope.pageIndex=1;
-        $scope.$watch("pageIndex",function(nv,ov){ 
+        var a1=true,a2=true,a3=true;
+        $scope.$watch("pageIndex",function(nv,ov){
+
+            if(a1==true){a1=false}else{
             $scope.cirAll.pageIndex=nv;
             $scope.getList();
+            console.log("getList 1")
+            }
             // console.log(nv)
          });
 
         $scope.$watch("sec.id",function(nv,ov){
+            if(a2==true){a2=false}else{
             $scope.cirAll.status=nv;
             $scope.getList();
+            console.log("getList 2")
+
+            }
         })
         // $scope.$watch("")
 
@@ -41,35 +51,41 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
         // }
 
         $scope.$watch("date_get",function(na,nv){
+            if(a3==true){a3=false}else{
             if(na==null || na==''){
                 $scope.cirAll.startTime=null;
                 $scope.cirAll.endTime=null;
             }
             $scope.getList();
+            console.log("getList 3")
+
+            }
         })
 
 
-        $scope.testx = function(item){
-            var modalInstance = $uibModal.open({
-                backdrop:'static',
-                animation: true,
-                windowClass: 'modal-showpic',
-                templateUrl: './tpl/_dfzz/modal.showpic.html',
-                controller: 'modal_pic',
-                size: 'sm', 
-                // sm,lg,md
-                resolve: {
-                    rp: function () {
-                        return item;
-                    }
-                }
-            });
-            modalInstance.result.then(function (data) {
-                console.info(data);
-            }, function () {
-                console.info('模态框取消: ' + new Date());
-            });
+        // 展示评论详情
+        $scope.showMoreInfo = function(textall){
+
+                    var modalInstance = $uibModal.open({
+                        backdrop:'static',
+                        animation: true,
+                        windowClass: 'modal-lookewm',
+                        templateUrl: './tpl/_dfzz/modal.lookewminfo.html',
+                        controller: 'lookEwm',
+                        size: 'sm',
+                        resolve: {
+                            promotEwm: function () {
+                                return textall;
+                            }
+                        }
+                    });
+                    modalInstance.result.then(function (data) {
+                        console.log(data);
+                    }, function () {
+                        console.info('模态框取消: ' + new Date());
+                    });
         };
+
 
         // 屏蔽恢复动态
         $scope.shield=function(item){
@@ -224,7 +240,7 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
 
 
         // 导出表格
-                Downloadify.create('downloadify_finance',{
+        Downloadify.create('downloadify_finance',{
             filename: function(){
                 return "提现审核_"+new Date().getTime()+".xls";
             },
@@ -265,6 +281,28 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
             transparent: true,
             append: false
         });
+
+        $scope.detail = function(id){
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal_userDetail',
+                templateUrl: './tpl/_dfzz/modal.userdetail.html',
+                controller: 'userDetail',
+                size: 'lg',
+                resolve: {
+                    userId: function () {
+                        return id;
+                    }
+                }
+            });
+            modalInstance.result.then(function (data) {
+                console.info(data);
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+
+        };
 
 
 

@@ -21,6 +21,29 @@ app.controller('cir_dynameic',['$scope','$uibModal','FileUploader','constant','l
     		id:0
     	}
 
+            // 展示评论详情
+        $scope.showMoreInfo = function(textall){
+
+                 var modalInstance = $uibModal.open({
+                        backdrop:'static',
+                        animation: true,
+                        windowClass: 'modal-lookewm',
+                        templateUrl: './tpl/_dfzz/modal.lookewminfo.html',
+                        controller: 'lookEwm',
+                        size: 'sm',
+                        resolve: {
+                            promotEwm: function () {
+                                return textall;
+                            }
+                        }
+                    });
+                    modalInstance.result.then(function (data) {
+                        console.log(data);
+                    }, function () {
+                        console.info('模态框取消: ' + new Date());
+                    });
+        };
+
     	// 分页
     	$scope.pageIndex=1;
         $scope.$watch("pageIndex",function(nv,ov){

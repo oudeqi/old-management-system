@@ -48,12 +48,16 @@
                         line-height:38px;
                     }
                     .dyc {
-                        width:400px;
+                        width:150px;
                         word-break:break-all;
                         display:-webkit-box;
                         -webkit-line-clamp:1;
                         -webkit-box-orient:vertical;
                         overflow:hidden;
+                    }
+
+                    .dkit {
+                        color:#007cfb;
                     }
                     img {
                         width:38px;

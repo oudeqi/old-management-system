@@ -44,7 +44,7 @@
                     <th>身份证号</th>
                     <th>提现账户</th>
                     <th>申请时间</th>
-                    <th>状态</th>
+
                     <th>操作人员</th>
                     <th>备注</th>
                 </tr>
@@ -52,7 +52,7 @@
             <tbody>
                 <tr ng-repeat="item in cirAllContent.data">
                     <td>{{item.id}}</td>
-                    <td>{{item.userId}}</td>
+                    <td class="dkit">{{item.userId}}</td>
                     <td>{{item.bankName}}</td>
                     <td>{{item.overplusMoney || 0}}</td>
                     <td>{{item.money}}</td>
@@ -60,9 +60,8 @@
                     <td style="mso-number-format:'\@';">{{item.identityCard}}</td>
                     <td style="mso-number-format:'\@';">{{item.account}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.operator}}</td>
-                    <td>{{item.failReason}}</td>
+                    <td{{item.operator}}</td>
+                    <td class="dyc">>{{item.failReason}}</td>
                 </tr>
             </tbody>
         </table>
@@ -82,7 +81,7 @@
                     <th>身份证号</th>
                     <th>提现账户</th>
                     <th>申请时间</th>
-                    <th>状态</th>
+
                     <th>操作人员</th>
                     <th>备注</th>
                     <th>操作</th>
@@ -92,17 +91,18 @@
             <tbody>
                 <tr ng-repeat="item in cirAllContent.data">
                     <td>{{item.id}}</td>
-                    <td>{{item.userId}}</td>
+                    <td class="dkit" ng-click="detail(item.userId)">{{item.userId}}</td>
                     <td>{{item.bankName}}</td>
                     <td>{{item.overplusMoney || 0}}</td>
                     <td>{{item.money}}</td>
                     <td>{{item.realName}}</td>
-                    <td>{{item.identityCard}}</td>
-                    <td>{{item.account}}</td>
+                    <td style="mso-number-format:'\@';">{{item.identityCard}}</td>
+                    <td style="mso-number-format:'\@';">{{item.account}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
-                    <td>{{item.status}}</td>
                     <td>{{item.operator}}</td>
-                    <td>{{item.failReason}}</td>
+                    <td ng-click="showMoreInfo(item.failReason)" class="dyc">{{item.failReason}}</td>
+    <!-- uib-popover="I appeared on mouse enter!" popover-trigger="'mouseenter'" type="button" class="btn btn-default" -->
+
 
 
             
@@ -129,7 +129,7 @@
     </div>
     <div class="app-pagination">
         <ul uib-pagination
-        ng-change="pageChanged(pageIndex)"
+        ng-change=""
         items-per-page="cirAllContent.pageSize"
         num-pages="cirAllContent.pageCount"
         total-items="cirAllContent.rowCount"
