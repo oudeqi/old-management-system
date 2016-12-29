@@ -37,7 +37,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         $scope.pub={
             id:null,
             title:'',
-            groupTypeId:2,
+            groupTypeId:null,
             top:0,
             htmlContent:'',
             imgList:[],
@@ -53,6 +53,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
         	],function(na,nc){
                 $scope.pub.groupTypeId=na[0]
                 $scope.nowClass=na[1]
+                console.log("监听分类选择变动，变动之后更改需要发表的值")
                 console.log(na)
         		// console.log(nc[1].id)
     	}) 
@@ -112,8 +113,8 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
 
             }else{
                 $scope.option_list=data.data;
-                $scope.sec.id=data.data[0].id;
-                console.log($scope.option_list)
+                $scope.sec.groupTypeId=data.data[0].groupTypeId;
+                // console.log($scope.option_list)
             }
             // console.log(data)
         })
@@ -132,7 +133,8 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             // }
             if($scope.allx){ 
                 // 是修改
-                $scope.pub.id=$scope.allx.id;
+                console.log("变change");
+                $scope.pub.groupTypeId=$scope.allx.id;
                 gosrc='/v1/aut/site/group/update';
                 xmsg='修改成功';
             }else{
@@ -162,7 +164,6 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                         $scope.pub.title='';
                         $scope.pub.htmlContent='';
                         $scope.pushTime=null;
-                        $scope.pub.groupTypeId=2;
                     }
                 }).error(function(data){
                     console.log('可能网络有错误')
