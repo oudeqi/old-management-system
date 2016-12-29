@@ -26,6 +26,7 @@
             <thead>
                 <tr>
                     <th>用户名</th>
+                    <td>内容</td>
                     <th>类别</th>
                     <th>举报人</th>
                     <th>备注</th>
@@ -37,12 +38,11 @@
             <tbody>
                 <tr ng-repeat="item in list.data">
                     <td>{{item.nickName}}</td>
+                    <td ng-click="showMoreInfo(item.content)">{{item.content}}</td>
                     <td>{{item.busTypeName}}</td>
                     <td>{{item.uNames}}</td>
                     <td>{{item.reportType}}</td>
                     <td>{{item.createTime | date:"yyyy/MM/dd HH:mm"}}</td>
-                    
-                        <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
                     <td class="itemx">
                         <a href="javascript:void(0);" ng-click="del(item)" ng-show="item.status==0">屏蔽</a>
                         <a style="color:#FB4747" href="javascript:void(0);" ng-show="item.status==1">已处理</a>
