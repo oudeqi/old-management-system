@@ -1,7 +1,7 @@
 <div id="finance_mgetout">
  <show-msg inn="1" ruter="showyes" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
     <div class="app-filter">
-        <div class="r"> 
+        <div class="r">
             <div class="app-select" ng-show="perT.button_world_site==1">
                 <select class="select_type" ng-change="" ng-options="i.name for i in cirClass track by i.id" ng-model="sec"></select>
                 <!-- <select ng-options="i.name for i in types track by i.id" ng-model="artType" ng-change="currentPage=1;getList()"></select> -->
@@ -60,7 +60,7 @@
                     <td style="mso-number-format:'\@';">{{item.identityCard}}</td>
                     <td style="mso-number-format:'\@';">{{item.account}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
-                    <td{{item.operator}}</td>
+                    <td>{{item.operator}}</td>
                     <td class="dyc">>{{item.failReason}}</td>
                 </tr>
             </tbody>
@@ -105,12 +105,12 @@
 
 
 
-            
+
                     <!-- <td>{{item.name}}</td> -->
                     <!-- <td>{{item.commentCount}}</td> -->
                     <!-- <td>{{item.weixin}}</td> -->
                     <td>
-                  
+
                         <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
                         <a href="javascript:void(0);" ng-click="goYes(item,1)" ng-show="item.status==1">通过</a>
                         <a href="javascript:void(0);" ng-click="goYes(item,2)" ng-show="item.status==1">拒绝</a>
@@ -121,7 +121,7 @@
                         <a href="javascript:void(0);" ng-show="item.status==4">转账成功</a>
                         <a href="javascript:void(0);" ng-show="item.status==5">转账失败</a>
 
-                        
+
                     </td>
                 </tr>
             </tbody>
