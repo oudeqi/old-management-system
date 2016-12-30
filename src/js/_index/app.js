@@ -1,4 +1,3 @@
-
 var app = angular.module('uoudo.index',[
     'ui.router',
     'LocalStorageModule',

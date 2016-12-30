@@ -198,6 +198,14 @@
         .modal-pagination{
             margin-top: 0;
             padding: 0;
+            .total{
+                font-size:14px;
+                line-height: 70px;
+                height: 70px;
+                padding-left: 6px;
+                color:#fd9e24;
+                float: left;
+            }
         }
         .tabs{
             border-radius: 4px;
