@@ -67,6 +67,31 @@ app.controller('sysset_report',['$scope','$uibModal','FileUploader','constant','
             $scope.getList();
         })
 
+
+
+                // 展示评论详情
+        $scope.showMoreInfo = function(textall){
+
+                    var modalInstance = $uibModal.open({
+                        backdrop:'static',
+                        animation: true,
+                        windowClass: 'modal-lookewm',
+                        templateUrl: './tpl/_dfzz/modal.lookewminfo.html',
+                        controller: 'lookEwm',
+                        size: 'sm',
+                        resolve: {
+                            promotEwm: function () {
+                                return textall;
+                            }
+                        }
+                    });
+                    modalInstance.result.then(function (data) {
+                        console.log(data);
+                    }, function () {
+                        console.info('模态框取消: ' + new Date());
+                    });
+        };
+
         // 删除
         $scope.del = function(item){
 
