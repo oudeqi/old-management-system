@@ -178,7 +178,8 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                 case 1:
                     confirm={
                         tit:"确认通过吗？",
-                        content:"确认通过"
+                        content:"确认通过",
+                        show:false,
                     }
                     getHost="/v1/aut/cash/verify";
                     getKey=2;
@@ -186,7 +187,8 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                 case 2:
                     confirm={
                         tit:"确认拒绝吗？",
-                        content:"确认拒绝"
+                        content:"确认拒绝",
+                        show:true,
                     }
                     getHost="/v1/aut/cash/verify";
                     getKey=3;
@@ -195,6 +197,7 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                     confirm={
                         tit:"确认处理成功吗？",
                         content:"确认成功",
+                        show:false,
                     }
                     getHost="/v1/aut/cash/complete";
                     getKey=4;
@@ -203,6 +206,7 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                     confirm={
                         tit:"确认处理失败吗？",
                         content:"确认失败",
+                        show:true,
                     }
                     getHost="/v1/aut/cash/complete";
                     getKey=5;
@@ -213,8 +217,8 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                 backdrop:'static',
                 animation: true,
                 windowClass: 'modal-confirm',
-                templateUrl: './tpl/_dfzz/modal.confirm.html',
-                controller: 'modal_confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.hinput.html',
+                controller: 'modal_confirm_hinput',
                 size: 'sm',
                 resolve: {
                     confirm: function () {
@@ -222,11 +226,13 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                     }
                 }
             });
-            modalInstance.result.then(function () {
+            modalInstance.result.then(function (data) {
                 // /v1/aut/info/delete?id=1  DELETE方法
                 $http.post(constant.APP_HOST+getHost, {
                         id:item.id,
-                        status:getKey
+                        status:getKey,
+                        failReason:data,
+                        // refuseReason:data,
                     },{
                     headers: {
                         'Authorization': localStorageService.get("token")
