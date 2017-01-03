@@ -15,8 +15,10 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
             endTime:null,
             search:null,
             pageIndex:1,
+            pageSize:20,
         }
         $scope.cirAllContent=null;
+        $scope.cirAllContentx=null;
         $scope.sec={
             name:'',
             id:0
@@ -120,8 +122,6 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
 
 
 
-        // 获取圈子所有动态
-        // /v1/aut/world/topic/recommend？siteId=0&startTime=&endTime=&search=
         $scope.getList=function(){
                 if($scope.date_get){
                     $scope.cirAll.startTime = new Date($scope.date_get + " 00:00:01").getTime();
@@ -135,10 +135,31 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
                     }).success(function(data){
                         if(data.errMessage){}else{
                             $scope.cirAllContent=data;
-                            console.log($scope.cirAllContent)
+
+                                            $scope.cirAll.pageSize=1000;
+                                            $http.get(constant.APP_HOST+'/v1/aut/cash/verify',{
+                                                params:$scope.cirAll,
+                                                headers:{
+                                                    'Authorization': localStorageService.get("token")
+                                                }
+                                            }).success(function(data){
+                                                if(data.errMessage){}else{
+                                                    $scope.cirAllContentx=data;
+                                                    $scope.cirAll.pageSize=20;
+                                                    return true;
+                                                }
+
+                                            }).error(function(){
+                                                $scope.cirAll.pageSize=20;
+                                            })
+
                         }
 
                     })
+                    
+                        
+
+
         }
         $scope.getList();
 
@@ -238,10 +259,10 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
             });
         };
 
-
-        // 导出表格
-        Downloadify.create('downloadify_finance',{
+      Downloadify.create('downloadify_finance',{
+            
             filename: function(){
+                // $scope.exportExcel();
                 return "提现审核_"+new Date().getTime()+".xls";
             },
             data: function(){
@@ -281,6 +302,8 @@ app.controller('finance_mgetout',['$scope','$uibModal','FileUploader','constant'
             transparent: true,
             append: false
         });
+
+
 
         $scope.detail = function(id){
             var modalInstance = $uibModal.open({
