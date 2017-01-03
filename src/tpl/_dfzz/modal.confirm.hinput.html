@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{tit}}</h4>
+</div>
+<div class="modal-body" ng-show="!show">
+  {{content}}
+</div>
+
+<div class="modal-input" ng-show="show">
+  <div class="form_row">
+            <div class="cont">
+            	<textarea cols="30" rows="3" class="form_ipt" placeholder="请输入拒绝内容" ng-model="myinput"></textarea>
+                <!-- <input class="form_ipt" type="text" placeholder="请输入拒绝内容" ng-model="myinput"> -->
+            </div>
+	</div>
+</div>
+
+
+<div class="modal-footer">
+    <button class="app-button-warning-sm" type="button" ng-click="ok()">确定</button>
+    <button class="app-button-default-sm" type="button" ng-click="cancel()">取消</button>
+</div>
