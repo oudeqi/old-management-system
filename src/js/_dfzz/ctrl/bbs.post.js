@@ -170,6 +170,15 @@ app.controller('bbs_post',['$scope','$uibModal','FileUploader','constant','local
         };
 
 
+        $scope.$watch("date_get",function(na,nv){
+            if(na==null || na==''){
+                $scope.listParams.startTime=null;
+                $scope.listParams.endTime=null;
+            }
+            $scope.getList();
+        })
+
+
 
 
 

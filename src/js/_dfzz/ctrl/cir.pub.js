@@ -32,8 +32,8 @@ app.controller('cir_pub',['$scope','$uibModal','FileUploader','constant','localS
                     }
                     $scope.show=true;
                     $timeout(function() {$scope.show=false}, 1500);
-                }).error(function(){
-                    $scope.inhtml='网络可能有问题';
+                }).error(function(data,state){
+                    $scope.inhtml='网络可能有问题'+state;
                     $scope.show=true;
                     $timeout(function() {$scope.show=false}, 1500);
                 })

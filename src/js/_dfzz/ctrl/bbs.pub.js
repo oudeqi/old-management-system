@@ -166,6 +166,11 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                         $scope.pushTime=null;
                     }
                 }).error(function(data){
+                    $scope.inhtml="可能网络有错误";
+                    $scope.show=true;
+                     $timeout(function() {
+                        $scope.show=false;
+                    }, 3000); 
                     console.log('可能网络有错误')
                 })
             }
