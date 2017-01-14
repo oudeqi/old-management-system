@@ -134,7 +134,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             if($scope.allx){ 
                 // 是修改
                 console.log("变change");
-                $scope.pub.groupTypeId=$scope.allx.id;
+                $scope.pub.id=$scope.allx.id;
                 gosrc='/v1/aut/site/group/update';
                 xmsg='修改成功';
             }else{
