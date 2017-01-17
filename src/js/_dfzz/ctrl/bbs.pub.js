@@ -134,7 +134,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             if($scope.allx){ 
                 // 是修改
                 console.log("变change");
-                $scope.pub.groupTypeId=$scope.allx.id;
+                $scope.pub.id=$scope.allx.id;
                 gosrc='/v1/aut/site/group/update';
                 xmsg='修改成功';
             }else{
@@ -166,6 +166,11 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                         $scope.pushTime=null;
                     }
                 }).error(function(data){
+                    $scope.inhtml="可能网络有错误";
+                    $scope.show=true;
+                     $timeout(function() {
+                        $scope.show=false;
+                    }, 3000); 
                     console.log('可能网络有错误')
                 })
             }
