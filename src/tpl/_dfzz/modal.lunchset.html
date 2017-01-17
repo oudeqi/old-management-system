@@ -1,29 +1,79 @@
 <div class="modal-body">
     <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
     <div class="content">
-        <h3>广告标题</h3>
-        <div class="ipt_box">
-            <input type="text" ng-keyup="checkTit()" placeholder="输入广告标题" ng-model="title">
-            <p class="err" ng-show="titMsg">{{titMsg}}</p>
+        <div class="ipt_row">
+            <p class="ipt_label">广告类型：</p>
+            <div class="ipt_box">
+                <select ng-model="busType" ng-change="changeType()">
+                    <option value="36">超链接</option>
+                    <option value="30">文章</option>
+                    <option value="15">夺宝</option>
+                    <option value="3">红包</option>
+                    <option value="2">任务</option>
+                </select>
+            </div>
         </div>
-        <h3>广告链接</h3>
-        <div class="ipt_box">
-            <input type="text" ng-keyup="checkurl()" placeholder="http(s)://" ng-model="url">
-            <p class="err" ng-show="urlMsg">{{urlMsg}}</p>
+        <div class="ipt_row">
+            <p class="ipt_label">广告图片：</p>
+            <button class="addPic" ng-show="!image" ng-click="upload()" type="button"></button>
+            <input ng-show="false" clean-file-value type="file" accept="image/*" id="uploadLunchPic" nv-file-select="" uploader="uploadLunchPic" />
+            <div class="picBox" ng-show="image">
+                <div class="inner">
+                    <img ng-src="{{image}}" alt="">
+                </div>
+                <button class="dropPic" ng-click="image = ''" type="button"></button>
+            </div>
+            <p class="tip">jpg格式750*1100 150kb以内</p>
         </div>
-        <h3>上传广告图片</h3>
-        <p class="tip">jpg格式750*1100 150kb以内</p>
-        <div class="picview" ng-show="image">
-            <button class="delpic" ng-show="!succMsg" ng-click="image = ''"></button>
-            <img ng-src="{{image}}" alt="" />
+        <div class="ipt_row">
+            <p class="ipt_label">预约发布：</p>
+            <div class="ipt_date">
+                <input type="text" ng-model="pushTime" date-time-picker placeholder="选择日期">
+                <button type="button" class="ipt_addon date-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </div>
         </div>
-        <button ng-show="!image" class="addpic" ng-click="upload()"></button>
-        <input ng-show="false" clean-file-value type="file" accept="image/*" id="uploadLunchPic" nv-file-select="" uploader="uploadLunchPic" />
-        <div class="msg_box">
+        <div class="ipt_row" ng-show="busType == '36'">
+            <p class="ipt_label">广告链接：</p>
+            <div class="ipt_box">
+                <input type="url" ng-keyup="checkurl()" placeholder="http(s)://" ng-model="url">
+                <p class="err" ng-show="urlMsg">{{urlMsg}}</p>
+            </div>
+        </div>
+        <div class="ipt_row" ng-hide="busType == '36'">
+            <div class="app-input-search">
+                <input class="input ng-pristine ng-valid ng-empty ng-touched" type="text" placeholder="输入关键字" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>内容标题</th><th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in list | limitTo:5">
+                        <td>{{item.title}}</td>
+                        <td>
+                            <label class="app-radio" ng-if="item.id">
+                                <input type="radio" name="x" ng-value="item.id" ng-model="busId">
+                                <span class="icon"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="btnBox">
             <p class="msg" ng-show="succMsg">{{succMsg}}</p>
             <p class="err" ng-show="errMsg">{{errMsg}}</p>
+            <button class="app-button-default" type="button" ng-click="cancel()" name="button">关闭</button>
+            <button class="app-button-primary" type="button" ng-click="ok()" name="button">确认</button>
         </div>
-        <button class="app-button-primary" type="button" ng-show="!succMsg" ng-click="ok()" name="button">确认</button>
-        <button class="app-button-default" type="button" ng-show="succMsg" ng-click="cancel()" name="button">关闭</button>
     </div>
 </div>

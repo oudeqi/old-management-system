@@ -10,7 +10,6 @@
                     <th>投放时间</th>
                     <th>类别</th>
                     <th>链接</th>
-                    <th>点击次数</th>
                     <th>状态</th>
                     <th>操作</th>
                 </tr>
@@ -22,10 +21,15 @@
                             <img ng-src="{{item.image}}" alt="" />
                         </a>
                     </td>
-                    <td>{{item.title}}</td>
-                    <td><a ng-href="{{item.url}}" target="_blank">{{item.url}}</a></td>
-                    <td>{{item.createDate | date:"yyyy-MM-dd hh:mm"}}</td>
+                    <td>{{item.pushTime || item.createDate | date:"yyyy-MM-dd hh:mm"}}</td>
+                    <td>{{item.busTypeName}}</td>
+                    <td>
+                        <a ng-href="{{item.url}}" target="_blank">{{item.url}}</a>
+                    </td>
                     <td>{{item.status == 1 ? "未使用" : "使用中"}}</td>
+                    <td>
+                        <a ng-if="item.status == 1" ng-click="onLine(item)" href="javascript:void(0);">上线</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

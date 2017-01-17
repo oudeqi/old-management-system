@@ -8,7 +8,12 @@ $app-ipt-border-color: #d7d7d7 !default;
 $app-ipt-bg-color:#fff !default;
 $app-ipt-height:38px !default;
 $app-ipt-width: 200px !default;
-
+%ipt_focus{
+    outline: 0;
+    &:focus{
+        border:1px solid lighten($font-color-primary,25%);
+    }
+}
 %app-input-box{
     display: inline-block;
     vertical-align: middle;
@@ -23,7 +28,6 @@ $app-ipt-width: 200px !default;
     font-size: 15px;
     background-color: $app-ipt-bg-color;
     float: left;
-
 }
 
 %app-input-addon{
@@ -44,18 +48,21 @@ $app-ipt-width: 200px !default;
         width: $app-ipt-width - $app-ipt-height;
         border-radius: $app-ipt-border-radus 0 0 $app-ipt-border-radus;
         @extend %app-input;
+        @extend %ipt_focus;
     }
     .input-clear{
         font-size:12px;
         border-right: 1px solid $app-ipt-border-color;
         @extend %app-input-addon;
         border-radius: 0;
+        @extend %ipt_focus;
     }
     .input-addon{
         font-size:14px;
         @extend %app-input-addon;
         outline: 0;
         border-radius: 0 $app-ipt-border-radus $app-ipt-border-radus 0;
+        @extend %ipt_focus;
     }
 }
 
@@ -66,6 +73,7 @@ $app-ipt-width: 200px !default;
         width: $app-ipt-width;
         border-radius: $app-ipt-border-radus;
         @extend %app-input;
+        @extend %ipt_focus;
     }
 }
 // 搜索框
@@ -75,10 +83,12 @@ $app-ipt-width: 200px !default;
         width: $app-ipt-width;
         border-radius: $app-ipt-border-radus 0 0 $app-ipt-border-radus;
         @extend %app-input;
+        @extend %ipt_focus;
     }
     .input-addon{
         font-size:16px;
         @extend %app-input-addon;
         border-radius: 0 $app-ipt-border-radus $app-ipt-border-radus 0;
+        @extend %ipt_focus;
     }
 }

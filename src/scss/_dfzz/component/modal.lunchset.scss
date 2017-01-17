@@ -5,62 +5,167 @@
 @import "../../helpers/_extend";
 .modal_lunchset{
     .modal-dialog{
-        width: 480px;
+        %ipt_focus{
+            outline: 0;
+            &:focus{
+                border:1px solid lighten($font-color-primary,25%);
+            }
+        }
         .content{
-            padding: 50px 20px;
-            text-align: center;
-            h3{
-                margin: 0;
-                font-size: 15px;
-                padding-bottom: 10px;
-            }
-            %ipt_focus{
-                outline: 0;
-                &:focus{
-                    border:1px solid lighten($font-color-primary,25%);
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 20px 30px;
+            .ipt_row{
+                margin: 20px 0;
+                .app-input-search{
+                    input,button{
+                        height: 36px;
+                    }
+                }
+                .ipt_label{
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0;
+                    font-size: 15px;
+                }
+                .ipt_box{
+                    display: inline-block;
+                    vertical-align: middle;
+                    select{
+                        background:#ffffff;
+                        border:1px solid #d7d7d7;
+                        border-radius:3px;
+                        width:auto;
+                        min-width: 100px;
+                        height:36px;
+                        padding: 0 2px;
+                        @extend %ipt_focus;
+                    }
+                    input{
+                        width: 350px;
+                        height: 36px;
+                        border: 1px solid #d7d7d7;
+                        border-radius: 2px;
+                        padding: 0 5px;
+                        font-size: inherit;
+                        font-family: inherit;
+                        @extend %ipt_focus;
+                    }
+                    .err{
+                        color: $font-color-info;
+                        padding-top: 8px;
+                        line-height: 1;
+                        font-size: 13px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-left: 10px;
+                    }
+                    .msg{
+                        color: $font-color-primary;
+                    }
+                }
+                .addPic{
+                    @include sprite($icon-add-pic);
+                    vertical-align: middle;
+                    display: inline-block;
+                    border: 0;
+                }
+                .picBox{
+                    vertical-align: middle;
+                    display: inline-block;
+                    position: relative;
+                    .inner{
+                        overflow: hidden;
+                        background-color: #ddd;
+                        border-radius: 4px;
+                        width: 44px;
+                        height: 44px;
+                        img{
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                    .dropPic{
+                        position: absolute;
+                        top: -6px;
+                        right: -6px;
+                        border: 0;
+                        background-color: transparent;
+                        @include sprite($icon-del);
+                    }
+                }
+                .tip{
+                    font-size:14px;
+                    vertical-align: middle;
+                    display: inline-block;
+                    color:#686868;
+                    margin: 0;
+                    margin-left: 10px;
+                }
+                .ipt_date{
+                    display: inline-table;
+                    input{
+                        width: 164px;
+                        height: 36px;
+                        border: 1px solid #d7d7d7;
+                        border-right: 0;
+                        border-radius: 2px 0 0 2px;
+                        outline: 0;
+                        padding: 0 5px;
+                        font-size: inherit;
+                        font-family: inherit;
+                        display: table-cell;
+                        vertical-align: middle;
+                        @extend %ipt_focus;
+                    }
+                    .ipt_addon{
+                        font-size: 15px;
+                        width: 36px;
+                        height: 36px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 0 2px 2px 0;
+                        background-color: #f0f0f0;
+                        display: table-cell;
+                        vertical-align: middle;
+                        outline: 0;
+                    }
                 }
             }
-            .ipt_box{
-                height: 80px;
-                input{
-                    width: 350px;
-                    height: 36px;
-                    border: 1px solid #d7d7d7;
-                    border-radius: 2px;
-                    padding: 0 5px;
-                    font-size: inherit;
-                    font-family: inherit;
-                    @extend %ipt_focus;
-                }
-                .err{
-                    color: $font-color-info;
-                    padding-top: 8px;
-                    line-height: 1;
-                    font-size: 13px;
-                }
-                .msg{
-                    color: $font-color-primary;
+            .table-box{
+                border-radius: 4px;
+                overflow: hidden;
+                table{
+                    width: 100%;
+                    tr th{
+                        background: #f1f1f1;
+                        padding: 10px 20px;
+                    }
+                    tr td{
+                        padding: 12px 20px;
+                        height: 45px;
+                    }
+                    tbody{
+                        tr:nth-child(odd){
+                            background: #fcfcfc;
+                        }
+                        tr:nth-child(even){
+                            background: #f1f1f1;
+                        }
+                    }
                 }
             }
-            .tip{
-                font-size: 12px;
-                color: #BFBFBF;
-            }
-            .addpic{
-                display: inline-block;
-                vertical-align: middle;
-                border: 0;
-                background: transparent;
-                @include sprite($icon-add-pic);
-            }
-            .msg_box{
-                height: 20px;
-                line-height: 20px;
-                margin-top: 30px;
-                margin-bottom: 10px;
+            .btnBox{
+                padding: 24px 0 10px;
+                text-align: right;
+                button{
+                    margin-left: 8px;
+                }
                 p{
                     margin: 0;
                     padding: 0;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 10px;
                 }
                 .err{
                     color: $font-color-info;
@@ -69,33 +174,6 @@
                     color: $font-color-primary;
                 }
             }
-            .picview{
-                width: 44px;
-                height: 44px;
-                position: relative;
-                margin: 0 auto;
-                img{
-                    display: block;
-                    width: 100%;
-                    border-radius: 5px;
-                    overflow: hidden;
-                    height: auto;
-                }
-                .delpic{
-                    position: absolute;
-                    display: block;
-                    border: 0;
-                    background-color: transparent;
-                    right: -6px;
-                    top: -6px;
-                    @include sprite($icon-del);
-                }
-            }
-            .app-button-primary,
-            .app-button-default{
-                padding: 0 50px;
-            }
-
         }
     }
 }
