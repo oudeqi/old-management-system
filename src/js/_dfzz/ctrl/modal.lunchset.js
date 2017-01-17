@@ -1,23 +1,14 @@
 angular.module('uoudo.dfzz')
-.controller('modal_lunchset',['$scope','$uibModalInstance','FileUploader','constant','localStorageService','$http',
-    function($scope,$uibModalInstance,FileUploader,constant,localStorageService,$http){
-        /*
-        /v1/start/ad/publish POST
-        {
-            "title":"jasper118",
-            "image":"1212",
-            "url":"12121"
-        }
-        返回：
-        {
-          "errMessage": "",
-          "data": "发布成功"
-        }
-         */
+.controller('modal_lunchset',['$scope','$uibModalInstance','FileUploader','constant','localStorageService','$http','$timeout','$state',
+    function($scope,$uibModalInstance,FileUploader,constant,localStorageService,$http,$timeout,$state){
 
-        $scope.title = "";
+        $scope.pushTime = "";
         $scope.image = "";
+        $scope.busType = "36";
+        $scope.busId = "";
         $scope.url = "";
+        $scope.keywords = "";
+        $scope.list = [{},{},{},{},{}];
 
         $scope.upload = function(){
             document.getElementById("uploadLunchPic").click();
@@ -40,14 +31,75 @@ angular.module('uoudo.dfzz')
             $scope.errMsg = "图片上传失败";
         };
 
-        $scope.checkTit = function(){
-            if(!$scope.title){
-                $scope.titMsg = "广告标题为1到30字";
+        $scope.search = function(e){
+            if(e && e.keyCode !== 13){
                 return;
-            }else{
-                $scope.titMsg = "";
             }
+            $scope.getList();
         };
+
+        $scope.changeType = function(){
+            if($scope.busType == '36'){
+                $scope.list = [{},{},{},{},{}];
+                return;
+            }
+            $scope.url = "";
+            $scope.getList();
+        };
+
+        $scope.getList = function(){
+            ///v1/start/ad/content?type=&search=GET
+            //type:  36  超链接   30 文章   15夺宝   3红包   2任务
+            $http.get(constant.APP_HOST + '/v1/start/ad/content', {
+                headers: {
+                    'Authorization': localStorageService.get("token")
+                },
+                params:{
+                    type:$scope.busType,
+                    search:$scope.keywords
+                }
+            }).success(function(data) {
+                console.log(data);
+                if(!data.errMessage){
+                    if(data.data.length === 0){
+                        $scope.list = [{},{},{},{},{}];
+                    }
+                    if(data.data.length == 1){
+                        $scope.list = data.data;
+                        $scope.list.push({});
+                        $scope.list.push({});
+                        $scope.list.push({});
+                        $scope.list.push({});
+                    }
+                    if(data.data.length == 2){
+                        $scope.list = data.data;
+                        $scope.list.push({});
+                        $scope.list.push({});
+                        $scope.list.push({});
+                    }
+                    if(data.data.length == 3){
+                        $scope.list = data.data;
+                        $scope.list.push({});
+                        $scope.list.push({});
+                    }
+                    if(data.data.length == 4){
+                        $scope.list = data.data;
+                        $scope.list.push({});
+                    }
+                    if(data.data.length > 4){
+                        $scope.list = data.data;
+                    }
+                    if(data.data.length > 0){
+                        $scope.busId = $scope.list[0].id;
+                    }
+                }else{
+                    $scope.list = [{},{},{},{},{}];
+                }
+            }).error(function(data) {
+                $scope.list = [{},{},{},{},{}];
+            });
+        };
+
         $scope.checkurl = function(){
             if(/^(f|ht){1}(tp|tps):\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?/.test($scope.url)){
                 $scope.urlMsg = "";
@@ -64,30 +116,29 @@ angular.module('uoudo.dfzz')
             }
             $scope.loading = true;
             console.log(
-                $scope.title,
-                $scope.url,
-                $scope.image
+                new Date($scope.pushTime+":00").getTime(),
+                $scope.image,
+                $scope.busType,
+                $scope.busId,
+                $scope.url
             );
             $scope.succMsg = "";
-            if(!$scope.title){
-                $scope.titMsg = "广告标题为1到30字";
-                $scope.loading = false;
-                return;
-            }
-            if(!$scope.url){
-                $scope.urlMsg = "广告链接地址格式不正确";
-                $scope.loading = false;
-                return;
-            }
             if(!$scope.image){
                 $scope.errMsg = "广告图片不能为空";
                 $scope.loading = false;
                 return;
             }
+            if($scope.busType == '36' && !$scope.url){
+                $scope.urlMsg = "广告链接地址格式不正确";
+                $scope.loading = false;
+                return;
+            }
             $http.post(constant.APP_HOST+'/v1/start/ad/publish',{
-                title:$scope.title,
-                url:$scope.url,
-                image:$scope.image
+                pushTime:new Date($scope.pushTime+":00").getTime(),
+                image:$scope.image,
+                busType:$scope.busType,
+                busId:$scope.busId,
+                url:$scope.url
              },{
      			headers:{
      				'Authorization':localStorageService.get("token")
@@ -101,6 +152,7 @@ angular.module('uoudo.dfzz')
                 }else{
                     $scope.errMsg = "";
                     $scope.succMsg = "设置成功";
+                    $uibModalInstance.dismiss($scope.succMsg);
                 }
             }).error(function(data){
                 $scope.loading = false;

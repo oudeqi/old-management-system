@@ -1,0 +1,24 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+@import "../../helpers/_extend";
+
+.app-radio{
+    margin: 0;
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    input[type="radio"]{
+        display: none;
+    }
+    input[type="radio"] + .icon{
+        display: block;
+        @include sprite($icon-unchecked1);
+    }
+    input[type="radio"]:checked + .icon{
+        display: block;
+        @include sprite($icon-checked1);
+    }
+}
