@@ -1,11 +1,260 @@
 var app = angular.module('uoudo.dfzz');
 app.controller('task_put',['$scope','$http','constant','localStorageService','FileUploader','$uibModal','$state','$timeout','$sce','$filter',
     function($scope,$http,constant,localStorageService,FileUploader,$uibModal,$state,$timeout,$sce,$filter){
+        $scope.survey = { // 1调查
+            step:1,
+            title:"",
+            coverImg:"",
+            price:"",
+            totalPrice:"",
+            count:"",
+            time:"",
+            template:0, // 0图文；1视频
+            banner:[],
+            video:"",
+            explain:[{desc:""}],
+            question:[{
+                tit:"",
+                titEmpty:0,
+                type:0,//0单选；1多选
+                ans:[{
+                    option:"",
+                    optionEmpty:0,
+                    hover:0,
+                    flag:1 //1正确答案；0错误答案
+                }]
+            }]
+        };
+        $scope.paperwork = { // 2文案
+            step:1,
+            title:"",
+            coverImg:"",
+            price:"",
+            totalPrice:"",
+            count:"",
+            time:"",
+            template:0, // 0图文；1视频
+            banner:[],
+            video:"",
+            explain:[{desc:""}]
+        };
+        $scope.enjoy = { // 3欣赏
+            step:1,
+            title:"",
+            coverImg:"",
+            price:"",
+            totalPrice:"",
+            count:"",
+            time:"",
+            template:1, // 0图文；1视频//欣赏任务没有图片模板
+            video:"",
+            explain:[{desc:""}]
+        };
+        $scope.answer = { // 0答题
+            step:1,
+            title:"",
+            coverImg:"",
+            price:"",
+            totalPrice:"",
+            count:"",
+            rate:"",//正确率
+            time:"",
+            template:0, // 0图文；1视频
+            banner:[],
+            video:"",
+            explain:[{desc:""}],
+            question:[{
+                tit:"",
+                titEmpty:0,
+                type:0,//0单选；1多选
+                ans:[{
+                    option:"",
+                    optionEmpty:0,
+                    hover:0,
+                    flag:1 //1正确答案；0错误答案
+                }]
+            }]
+        };
+        function setSurvey(taskPut){
+            console.log($scope.survey);
+            $scope.survey.title = taskPut.title;
+            $scope.survey.coverImg = taskPut.previewUrl;
+            $scope.survey.totalPrice = Math.floor(taskPut.onesMoney*taskPut.taskNumber*100)/100;
+            $scope.survey.price = taskPut.onesMoney;
+            $scope.survey.count = taskPut.taskNumber;
+            $scope.survey.time = $filter('date')(taskPut.pushTime,'yyyy/MM/dd HH:mm');
+            if(taskPut.templateType == '1'){ //shipin
+                $scope.survey.template = 1;
+                $scope.survey.video = taskPut.videoUrl;
+            }else{
+                $scope.survey.template = 0;
+                $scope.survey.banner = taskPut.imgList || [];
+            }
+            $scope.survey.explain = [];
+            for(var i=0;i<taskPut.introduceList.length;i++){
+                $scope.survey.explain.push({
+                    desc:taskPut.introduceList[i]
+                });
+            }
+            $scope.survey.question = [];
+            for(var j=0;j<taskPut.testQuestionList.length;j++){
+                $scope.survey.question.push({
+                    tit:taskPut.testQuestionList[j].question,
+                    titEmpty:0,
+                    type:taskPut.testQuestionList[j].questionType==1?0:1,//0单选；1多选
+                    ans:[]
+                });
+                for(var k=0;k<taskPut.testQuestionList[j].answerList.length;k++){
+                    $scope.survey.question[j].ans.push({
+                        option:taskPut.testQuestionList[j].answerList[k].testAnswer,
+                        optionEmpty:0,
+                        hover:0,
+                        flag:taskPut.testQuestionList[j].answerList[k].rightAnswer?1:0 //1正确答案；0错误答案
+                    });
+                }
+            }
+        }
+        function setPaperwork(taskPut){
+            console.log($scope.paperwork);
+            $scope.paperwork.title = taskPut.title;
+            $scope.paperwork.coverImg = taskPut.previewUrl;
+            $scope.paperwork.totalPrice = Math.floor(taskPut.onesMoney*taskPut.taskNumber*100)/100;
+            $scope.paperwork.price = taskPut.onesMoney;
+            $scope.paperwork.count = taskPut.taskNumber;
+            $scope.survey.time = $filter('date')(taskPut.pushTime,'yyyy/MM/dd HH:mm');
+            if(taskPut.templateType == '1'){ //shipin
+                $scope.paperwork.template = 1;
+                $scope.paperwork.video = taskPut.videoUrl;
+            }else{
+                $scope.paperwork.template = 0;
+                $scope.paperwork.banner = taskPut.imgList || [];
+            }
+            $scope.paperwork.explain = [];
+            for(var i=0;i<taskPut.introduceList.length;i++){
+                $scope.paperwork.explain.push({
+                    desc:taskPut.introduceList[i]
+                });
+            }
+        }
+        function setEnjoy(taskPut){
+            console.log($scope.enjoy);
+            $scope.enjoy.title = taskPut.title;
+            $scope.enjoy.coverImg = taskPut.previewUrl;
+            $scope.enjoy.totalPrice = Math.floor(taskPut.onesMoney*taskPut.taskNumber*100)/100;
+            $scope.enjoy.price = taskPut.onesMoney;
+            $scope.enjoy.count = taskPut.taskNumber;
+            $scope.enjoy.time = $filter('date')(taskPut.pushTime,'yyyy/MM/dd HH:mm');
+            $scope.enjoy.video = taskPut.videoUrl;
+            $scope.enjoy.explain = [];
+            for(var i=0;i<taskPut.introduceList.length;i++){
+                $scope.enjoy.explain.push({
+                    desc:taskPut.introduceList[i]
+                });
+            }
+        }
+        function setAnswer(taskPut){
+            console.log($scope.answer);
+            $scope.answer.title = taskPut.title;
+            $scope.answer.coverImg = taskPut.previewUrl;
+            $scope.answer.totalPrice = Math.floor(taskPut.onesMoney*taskPut.taskNumber*100)/100;
+            $scope.answer.price = taskPut.onesMoney;
+            $scope.answer.count = taskPut.taskNumber;
+            $scope.answer.rate = taskPut.proportional;
+            $scope.answer.time = $filter('date')(taskPut.pushTime,'yyyy/MM/dd HH:mm');
+            if(taskPut.templateType == '1'){ //shipin
+                $scope.answer.template = 1;
+                $scope.answer.video = taskPut.videoUrl;
+            }else{
+                $scope.answer.template = 0;
+                $scope.answer.banner = taskPut.imgList || [];
+            }
+            $scope.answer.explain = [];
+            for(var i=0;i<taskPut.introduceList.length;i++){
+                $scope.answer.explain.push({
+                    desc:taskPut.introduceList[i]
+                });
+            }
+            $scope.answer.question = [];
+            for(var j=0;j<taskPut.testQuestionList.length;j++){
+                $scope.answer.question.push({
+                    tit:taskPut.testQuestionList[j].question,
+                    titEmpty:0,
+                    type:taskPut.testQuestionList[j].questionType==1?0:1,//0单选；1多选
+                    ans:[]
+                });
+                for(var k=0;k<taskPut.testQuestionList[j].answerList.length;k++){
+                    $scope.answer.question[j].ans.push({
+                        option:taskPut.testQuestionList[j].answerList[k].testAnswer,
+                        optionEmpty:0,
+                        hover:0,
+                        flag:taskPut.testQuestionList[j].answerList[k].rightAnswer?1:0 //1正确答案；0错误答案
+                    });
+                }
+            }
+        }
+
+        $scope.moveForward = function(arr,index){
+            if(!!index){
+                var obj = arr[index];
+                arr[index] = arr[index-1];
+                arr[index-1] = obj;
+            }
+        };
+        $scope.moveBackward = function(arr,index){
+            if(index < arr.length - 1){
+                var obj = arr[index];
+                arr[index] = arr[index+1];
+                arr[index+1] = obj;
+            }
+        };
+        $scope.copy = function(arr,index){
+            var obj = {
+                ans:[],
+                tit:arr[index].tit,
+                titEmpty:arr[index].titEmpty,
+                type:arr[index].type
+            };
+            for (var i = 0; i < arr[index].ans.length; i++) {
+                obj.ans.push({
+                    flag:arr[index].ans[i].flag,
+                    hover:arr[index].ans[i].hover,
+                    option:arr[index].ans[i].option,
+                    optionEmpty:arr[index].ans[i].optionEmpty
+                });
+            }
+            arr.splice(index,0,obj);
+        };
+
+        $scope.editCancel = function(){
+            localStorageService.remove("task.put");
+            location.reload();
+        };
+
+        var taskPut = $scope.editPut = localStorageService.get('task.put');
+        console.log(taskPut);
+        var taskType = 0;
+        //taskType; //1.调查,2.审核,3.文案,4.欣赏 5.游戏  6答题
+        if(!!taskPut){
+            switch (String(taskPut.taskType)) {
+                case '1'://调查
+                    taskType = 1;setSurvey(taskPut);
+                    break;
+                case '3'://文案
+                    taskType = 2;setPaperwork(taskPut);
+                    break;
+                case '4'://欣赏
+                    taskType = 3;setEnjoy(taskPut);
+                    break;
+                case '6'://答题
+                    taskType = 0;setAnswer(taskPut);
+                    break;
+            }
+        }
 
         //页面对象
         $scope.page = {
             res: 0,// 0第一步；1第二步；2成功；3失败
-            type: 0,// 0答题；1调查；2文案；3欣赏；4审核
+            type: taskType,// 0答题；1调查；2文案；3欣赏；4审核
         };
 
         //改变类型
@@ -444,7 +693,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
             if(!!item.tit){
                 item.titEmpty = 0;
             }else{
-                item.titEmpty = 0;
+                item.titEmpty = 1;
             }
         };
 
@@ -453,7 +702,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
             if(!!item.option){
                 item.optionEmpty = 0;
             }else{
-                item.optionEmpty = 0;
+                item.optionEmpty = 1;
             }
         };
 
@@ -576,32 +825,6 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
             return true;
         };
 
-        $scope.answer = { // 0答题
-            step:1,
-            title:"",
-            coverImg:"",
-            price:"",
-            totalPrice:"",
-            count:"",
-            rate:"",//正确率
-            time:"",
-            template:0, // 0图文；1视频
-            banner:[],
-            video:"",
-            explain:[{desc:""}],
-            question:[{
-                tit:"",
-                titEmpty:0,
-                type:0,//0单选；1多选
-                ans:[{
-                    option:"",
-                    optionEmpty:0,
-                    hover:0,
-                    flag:1 //1正确答案；0错误答案
-                }]
-            }]
-        };
-
         //发布答题任务
         $scope.putAnswer = function(){
             if($scope.validQues($scope.answer)){
@@ -611,7 +834,8 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                 }else{
                     template = 1;
                 }
-                $http.post(constant.APP_HOST+'/v1/aut/taskset',{
+
+                var postData = {
                     title:$scope.answer.title,
                     taskType:6,
                     onesMoney:$scope.answer.price,
@@ -624,7 +848,11 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     templateType:template,//模板类型
                     videoUrl:$scope.answer.video,
                     testQuestionList: changeQuesCons($scope.answer.question)
-                 },{
+                };
+                if(!!localStorageService.get('task.put')){
+                    postData.deleteId = localStorageService.get('task.put').id;
+                }
+                $http.post(constant.APP_HOST+'/v1/aut/taskset',postData,{
          			headers:{
          				'Authorization':localStorageService.get("token")
          			}
@@ -633,37 +861,13 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     if(data.errMessage){
                         $scope.page.res = 3;
                     }else{
+                        localStorageService.remove("task.put");
                         $scope.page.res = 2;
                     }
                 }).error(function(data){
                     $scope.page.res = 3;
                 });
             }
-        };
-
-        $scope.survey = { // 1调查
-            step:1,
-            title:"",
-            coverImg:"",
-            price:"",
-            totalPrice:"",
-            count:"",
-            time:"",
-            template:0, // 0图文；1视频
-            banner:[],
-            video:"",
-            explain:[{desc:""}],
-            question:[{
-                tit:"",
-                titEmpty:0,
-                type:0,//0单选；1多选
-                ans:[{
-                    option:"",
-                    optionEmpty:0,
-                    hover:0,
-                    flag:1 //1正确答案；0错误答案
-                }]
-            }]
         };
 
         //发布调查任务
@@ -680,7 +884,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     templateType：//1视频 2模板
                     questionType：//1单选，2多选
                  */
-                $http.post(constant.APP_HOST+'/v1/aut/taskset',{
+                var postData = {
                     title:$scope.survey.title,
                     taskType:1,
                     onesMoney:$scope.survey.price,
@@ -692,7 +896,11 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     templateType:template,//模板类型
                     videoUrl:$scope.survey.video,
                     testQuestionList: changeQuesCons($scope.survey.question)
-                 },{
+                };
+                if(!!localStorageService.get('task.put')){
+                    postData.deleteId = localStorageService.get('task.put').id;
+                }
+                $http.post(constant.APP_HOST+'/v1/aut/taskset',postData,{
          			headers:{
          				'Authorization':localStorageService.get("token")
          			}
@@ -701,6 +909,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     if(data.errMessage){
                         $scope.page.res = 3;
                     }else{
+                        localStorageService.remove("task.put");
                         $scope.page.res = 2;
                     }
                 }).error(function(data){
@@ -709,19 +918,6 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
             }
         };
 
-        $scope.paperwork = { // 2文案
-            step:1,
-            title:"",
-            coverImg:"",
-            price:"",
-            totalPrice:"",
-            count:"",
-            time:"",
-            template:0, // 0图文；1视频
-            banner:[],
-            video:"",
-            explain:[{desc:""}]
-        };
 
         //发布文案任务
         $scope.putPaperwork = function(){
@@ -737,7 +933,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     templateType：//1视频 2模板
                     questionType：//1单选，2多选
                  */
-                $http.post(constant.APP_HOST+'/v1/aut/taskset',{
+                var postData = {
                     title:$scope.paperwork.title,
                     taskType:3,
                     onesMoney:$scope.paperwork.price,
@@ -748,7 +944,11 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     introduceList:changeExplainCons($scope.paperwork.explain),
                     templateType:template,//模板类型
                     videoUrl:$scope.paperwork.video
-                 },{
+                };
+                if(!!localStorageService.get('task.put')){
+                    postData.deleteId = localStorageService.get('task.put').id;
+                }
+                $http.post(constant.APP_HOST+'/v1/aut/taskset',postData,{
          			headers:{
          				'Authorization':localStorageService.get("token")
          			}
@@ -757,25 +957,13 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     if(data.errMessage){
                         $scope.page.res = 3;
                     }else{
+                        localStorageService.remove("task.put");
                         $scope.page.res = 2;
                     }
                 }).error(function(data){
                     $scope.page.res = 3;
                 });
             }
-        };
-
-        $scope.enjoy = { // 3欣赏
-            step:1,
-            title:"",
-            coverImg:"",
-            price:"",
-            totalPrice:"",
-            count:"",
-            time:"",
-            template:1, // 0图文；1视频//欣赏任务没有图片模板
-            video:"",
-            explain:[{desc:""}]
         };
 
         //发布欣赏任务
@@ -786,7 +974,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     templateType：//1视频 2模板
                     questionType：//1单选，2多选
                  */
-                $http.post(constant.APP_HOST+'/v1/aut/taskset',{
+                var postData = {
                     title:$scope.enjoy.title,
                     taskType:4,
                     onesMoney:$scope.enjoy.price,
@@ -796,7 +984,11 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     introduceList:changeExplainCons($scope.enjoy.explain),
                     templateType:1,
                     videoUrl:$scope.enjoy.video
-                 },{
+                };
+                if(!!localStorageService.get('task.put')){
+                    postData.deleteId = localStorageService.get('task.put').id;
+                }
+                $http.post(constant.APP_HOST+'/v1/aut/taskset',postData,{
          			headers:{
          				'Authorization':localStorageService.get("token")
          			}
@@ -805,6 +997,7 @@ app.controller('task_put',['$scope','$http','constant','localStorageService','Fi
                     if(data.errMessage){
                         $scope.page.res = 3;
                     }else{
+                        localStorageService.remove("task.put");
                         $scope.page.res = 2;
                     }
                 }).error(function(data){

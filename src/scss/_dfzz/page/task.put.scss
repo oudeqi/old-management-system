@@ -406,6 +406,9 @@ $l_width:41% !default;
                 .fow_cont{
                     font-size: 15px;
                     margin-left: 86px;
+                    .app-button-primary{
+                        margin-right: 5px;
+                    }
                     .piclist{
                         display: inline-block;
                         vertical-align: middle;
@@ -749,8 +752,8 @@ $l_width:41% !default;
                     .ipt{
                         display: table-cell;
                         input{
-                            color: #999;
-                            background-color: #ebebeb;
+                            color: #444;
+                            background-color: #f4f4f4;
                             padding: 8px 20px;
                             border-radius: 3px;
                             line-height: 1.3;
@@ -758,6 +761,9 @@ $l_width:41% !default;
                             border: 1px solid #ebebeb;
                             width: 100%;
                             outline: 0;
+                            &:focus{
+                                border: 1px solid #71B1FF;
+                            }
                             &.hasError{
                                 border: 1px solid $font-color-info;
                                 background-color: #f8f8f8;

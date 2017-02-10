@@ -161,5 +161,45 @@ app.controller('task_list',['$scope','$http','constant','localStorageService','F
             });
         };
 
+        $scope.alterTask = function(item){
+            console.log(item);
+            var confirm = {
+                tit : "确认修改吗？",
+                content : "修改后将进入待发布状态"
+            };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+            modalInstance.result.then(function () {
+                ///v1/aut/taskset/12
+                $http.get(constant.APP_HOST + '/v1/aut/taskset/'+item.id, {
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    }
+                }).success(function(data){
+                    console.log(data);
+                    if(!data.errMessage){
+                        localStorageService.set('task.put',data.data);
+                        $state.go("task_put",{},{reload:true});
+                    }
+                }).error(function(data){
+
+                });
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+
+        };
+
     }
 ]);

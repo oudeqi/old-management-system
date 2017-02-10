@@ -196,6 +196,7 @@
                         <div class="form_row">
                             <div class="fow_cont">
                                 <button class="app-button-primary" type="button" ng-click="answerNext()">下一步</button>
+                                <button ng-show="editPut" class="app-button-default" type="button" ng-click="editCancel()">取消修改</button>
                             </div>
                         </div>
                     </form>
@@ -382,6 +383,7 @@
                         <div class="form_row">
                             <div class="fow_cont">
                                 <button class="app-button-primary" type="button" ng-click="surveyNext()">下一步</button>
+                                <button ng-show="editPut" class="app-button-default" type="button" ng-click="editCancel()">取消修改</button>
                             </div>
                         </div>
                     </form>
@@ -567,6 +569,7 @@
                         <div class="form_row">
                             <div class="fow_cont">
                                 <button class="app-button-primary" type="button" ng-click="putPaperwork()">提交</button>
+                                <button ng-show="editPut" class="app-button-default" type="button" ng-click="editCancel()">取消修改</button>
                             </div>
                         </div>
                     </form>
@@ -713,6 +716,7 @@
                         <div class="form_row">
                             <div class="fow_cont">
                                 <button class="app-button-primary" type="button" ng-click="putEnjoy()">提交</button>
+                                <button ng-show="editPut" class="app-button-default" type="button" ng-click="editCancel()">取消修改</button>
                             </div>
                         </div>
                     </form>
@@ -898,12 +902,12 @@
                         <div class="form_row">
                             <div class="fow_cont">
                                 <button class="app-button-primary" type="button">提交</button>
+                                <button ng-show="editPut" class="app-button-default" type="button" ng-click="editCancel()">取消修改</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -914,13 +918,13 @@
                 <div class="tit">{{answer.title}}</div>
                 <p>请编辑答题任务</p>
             </dt>
-            <dd class="animated zoomIn" ng-repeat="item in answer.question">
+            <dd class="animated zoomIn" ng-repeat="item in answer.question track by $index">
                 <div class="l">
                     <div class="idx">Q{{$index+1}}</div>
                     <ul class="opra">
-                        <li><button type="button" class="pre"></button></li>
-                        <li><button type="button" class="next"></button></li>
-                        <li><button type="button" class="copy"></button></li>
+                        <li><button ng-click="moveForward(answer.question,$index)" type="button" class="pre"></button></li>
+                        <li><button ng-click="moveBackward(answer.question,$index)" type="button" class="next"></button></li>
+                        <li><button ng-click="copy(answer.question,$index)" type="button" class="copy"></button></li>
                         <li ng-show="answer.question.length>1">
                             <button type="button" ng-click="delQues(answer.question,$index)" class="drop"></button>
                         </li>
@@ -937,7 +941,7 @@
                     </div> -->
                     <div class="ques_edit">
                         <p class="ipt">
-                            <input ng-class="{'hasError':item.titEmpty == 1}" type="text" ng-keypress="reValidTit(item)" ng-model="item.tit" placeholder="{{item.type == 0 ? '单选题题目' : '多选题题目'}}">
+                            <input ng-class="{'hasError':item.titEmpty == 1}" type="text" ng-keyup="reValidTit(item)" ng-model="item.tit" placeholder="{{item.type == 0 ? '单选题题目' : '多选题题目'}}">
                         </p>
                         <p class="tip" ng-show="!hasCorrect(item.ans)">
                             <i class="icon-warning"></i>
@@ -948,7 +952,7 @@
                         <li class="item" ng-repeat="i in item.ans">
                             <span class="dot" ng-show="item.type == 0"></span>
                             <span class="square" ng-show="item.type == 1"></span>
-                            <input class="ipt" ng-class="{'hasError':i.optionEmpty == 1}" ng-keypress="reValidOption(i)" type="text" ng-focus="i.hover = 1" ng-blur="hideSetBtn(i)" ng-model="i.option" placeholder="选项{{$index+1}}">
+                            <input class="ipt" ng-class="{'hasError':i.optionEmpty == 1}" ng-keyup="reValidOption(i)" type="text" ng-focus="i.hover = 1" ng-blur="hideSetBtn(i)" ng-model="i.option" placeholder="选项{{$index+1}}">
                             <button class="del" type="button" ng-click="delOption(item.ans,$index)" ng-show="item.ans.length>1"></button>
                             <a class="setcorr" ng-show="i.flag == 0 && i.hover == 1" ng-click="setCorrect(item,i)" href="javascript:void(0);">设为正确答案</a>
                             <span class="tip" ng-show="i.flag == 1">正确答案</span>
@@ -991,9 +995,9 @@
                 <div class="l">
                     <div class="idx">Q{{$index+1}}</div>
                     <ul class="opra">
-                        <li><button type="button" class="pre"></button></li>
-                        <li><button type="button" class="next"></button></li>
-                        <li><button type="button" class="copy"></button></li>
+                        <li><button ng-click="moveForward(survey.question,$index)" type="button" class="pre"></button></li>
+                        <li><button ng-click="moveBackward(survey.question,$index)" type="button" class="next"></button></li>
+                        <li><button ng-click="copy(survey.question,$index)" type="button" class="copy"></button></li>
                         <li ng-show="survey.question.length>1">
                             <button type="button" ng-click="delQues(survey.question,$index)" class="drop"></button>
                         </li>
@@ -1002,22 +1006,14 @@
                 <div class="r">
                     <div class="ques_edit">
                         <p class="ipt">
-                            <input ng-class="{'hasError':item.titEmpty == 1}" type="text" ng-keypress="reValidTit(item)" ng-model="item.tit" placeholder="{{item.type == 0 ? '单选题题目' : '多选题题目'}}">
-                        </p>
-                        <p class="tip" ng-show="!hasCorrect(item.ans)">
-                            <i class="icon-warning"></i>
-                            <span>未设置正确答案</span>
+                            <input ng-class="{'hasError':item.titEmpty == 1}" type="text" ng-keyup="reValidTit(item)" ng-model="item.tit" placeholder="添加题目">
                         </p>
                     </div>
                     <ul class="answer_list">
                         <li class="item" ng-repeat="i in item.ans">
-                            <span class="dot" ng-show="item.type == 0"></span>
-                            <span class="square" ng-show="item.type == 1"></span>
-                            <input class="ipt" ng-class="{'hasError':i.optionEmpty == 1}" ng-keypress="reValidOption(i)" type="text" ng-focus="i.hover = 1" ng-blur="hideSetBtn(i)" ng-model="i.option" placeholder="选项{{$index+1}}">
+                            <span class="square"></span>
+                            <input class="ipt" ng-class="{'hasError':i.optionEmpty == 1}" ng-keyup="reValidOption(i)" type="text" ng-model="i.option" placeholder="选项{{$index+1}}">
                             <button class="del" type="button" ng-click="delOption(item.ans,$index)" ng-show="item.ans.length>1"></button>
-                            <a class="setcorr" ng-show="i.flag == 0 && i.hover == 1" ng-click="setCorrect(item,i)" href="javascript:void(0);">设为正确答案</a>
-                            <span class="tip" ng-show="i.flag == 1">正确答案</span>
-                            <a class="seterr" ng-show="i.flag == 1 && i.hover == 1 && getCorrectLength(item.ans)>1" ng-click="setError(item.ans,i)" href="javascript:void(0);">设为错误答案</a>
                         </li>
                         <li class="item">
                             <button class="addansw" ng-click="addOption(item.ans)" type="button">新建选项</button>
@@ -1026,7 +1022,7 @@
                 </div>
             </dd>
         </dl>
-        <div class="additem">
+        <div class="additem" ng-show="page.type == 0">
             <div class="tit">新增题目</div>
             <div class="btnbox">
                 <button type="button" ng-click="addQues(survey.question,0)" class="animated bounceIn">
@@ -1036,6 +1032,15 @@
                 <button type="button" ng-click="addQues(survey.question,1)" class="animated bounceIn">
                     <i class="icon-checkbox"></i>
                     <span>多选题</span>
+                </button>
+            </div>
+        </div>
+        <div class="additem" ng-show="page.type == 1">
+            <div class="tit">新增题目</div>
+            <div class="btnbox">
+                <button type="button" ng-click="addQues(survey.question,1)" class="animated bounceIn">
+                    <i class="icon-checkbox"></i>
+                    <span>添加调查项</span>
                 </button>
             </div>
         </div>
