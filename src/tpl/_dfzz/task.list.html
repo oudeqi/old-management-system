@@ -93,9 +93,8 @@
                     <td>{{item.receiveNumber}}</td>
                     <td>{{item.statusName || "无"}}</td>
                     <td>
-                        <!-- 1待发布   2发布中 3审核失败  4 一下线 -->
-                        <a ng-if="item.status == 1" ng-click="alterTask(item)" href="javascript:void(0);">修改</a>
-                        <a ng-if="item.status == 1" ng-click="delTask(item)" href="javascript:void(0);">删除</a>
+                        <a ng-click="alterTask(item)" href="javascript:void(0);">修改</a>
+                        <a ng-click="delTask(item)" href="javascript:void(0);">删除</a>
                     </td>
                 </tr>
             </tbody>

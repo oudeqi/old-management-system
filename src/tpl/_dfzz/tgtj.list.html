@@ -48,12 +48,12 @@
                         <p class="b">7日新增</p>
                     </a>
                 </div>
-                <div class="item">
+                <!-- <div class="item">
                     <a href="javascript:void(0);" ng-click="changeType(3)" ng-class="{'active':type === 3}">
                         <p class="t">{{report.allSuccessUcoinUser | number : 0}}</p>
                         <p class="b">U币玩家数量</p>
                     </a>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="r">
@@ -91,12 +91,13 @@
                     <th>审核状态</th>
                     <th>U币玩家</th>
                     <th>新注册奖励</th>
-                    <th>U币提成</th>
-                    <th>夺宝提成(元)</th>
+                    <!-- <th>U币提成</th>
+                    <th>夺宝提成(元)</th> -->
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in list" ng-show="list" ng-click="detail(item)">
+                <!--  ng-click="detail(item)" -->
+                <tr ng-repeat="item in list" ng-show="list">
                     <td>{{item.nickName}}</td>
                     <td>{{item.phoneNumber}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
@@ -104,8 +105,8 @@
                     <td>{{item.status}}</td>
                     <td>{{item.uCoinUser}}</td>
                     <td>{{item.regGift | currency : "￥" : 2}}</td>
-                    <td>{{item.uCoinGift | currency : "￥" : 2}}</td>
-                    <td>{{item.gemGift | currency : "￥" : 2}}</td>
+                    <!-- <td>{{item.uCoinGift | currency : "￥" : 2}}</td>
+                    <td>{{item.gemGift | currency : "￥" : 2}}</td> -->
                 </tr>
             </tbody>
         </table>

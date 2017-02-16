@@ -44,11 +44,14 @@ gulp.task('useref:index', function() {
 });
 // 生成index页面的版本
 gulp.task('rev:index', ['useref:index'], function() {
-    return gulp.src(['./dist/css/_index/**/*.css', './dist/js/_index/**/*.js'], {base: 'dist'})
+    return gulp.src(['dist/css/_index/**/*.css', 'dist/js/_index/**/*.js'], {base: 'dist'})
     .pipe(rev())
-    .pipe(gulp.dest('./dist'))
-    .pipe(rev.manifest({merge: true}))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('dist/'))
+    .pipe(rev.manifest({
+        // base: 'dist/',
+        merge: true
+    }))
+    .pipe(gulp.dest('dist/'));
 });
 // 替换index页面的资源
 gulp.task('replacerev:index', ['rev:index'], function(){
@@ -68,11 +71,14 @@ gulp.task('useref:dfzz', function() {
 });
 // 生成dfzz页面的版本
 gulp.task('rev:dfzz', ['useref:dfzz'], function() {
-    return gulp.src(['./dist/css/_dfzz/**/*.css', './dist/js/_dfzz/**/*.js'], {base: 'dist'})
+    return gulp.src(['dist/css/_dfzz/**/*.css', 'dist/js/_dfzz/**/*.js'], {base: 'dist'})
     .pipe(rev())
-    .pipe(gulp.dest('./dist'))
-    .pipe(rev.manifest({merge: true}))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('dist/'))
+    .pipe(rev.manifest({
+        // base: 'dist/',
+        merge: true
+    }))
+    .pipe(gulp.dest('dist/'));
 });
 // 替换dfzz页面的资源
 gulp.task('replacerev:dfzz', ['rev:dfzz'], function(){
@@ -83,11 +89,14 @@ gulp.task('replacerev:dfzz', ['rev:dfzz'], function(){
 });
 // 生成图片的版本
 gulp.task('rev:img', ['imagemin'], function() {
-    return gulp.src(['./dist/img/*.*'], {base: 'dist'})
+    return gulp.src(['dist/img/*.*'], {base: 'dist'})
         .pipe(rev())
-        .pipe(gulp.dest('./dist'))
-        .pipe(rev.manifest({merge: true}))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('dist/'))
+        .pipe(rev.manifest({
+            // base: 'dist/',
+            merge: true
+        }))
+        .pipe(gulp.dest('dist/'));
 });
 // 替换图片资源
 gulp.task('replacerev:img', ['rev:img'], function(){

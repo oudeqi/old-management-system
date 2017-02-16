@@ -61,7 +61,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             $scope.types = [];
             $scope.type = {}; //文章类别
             $scope.previewUrl = "";//封面大图
-            $scope.littleUrl = "";//封面小图:
+            $scope.littleUrl = "";//封面小图
             $scope.shareImg = "";//分享小图
             $scope.imageUrl = "";//视频封面图
             $scope.videoUrl = "";//视频地址
