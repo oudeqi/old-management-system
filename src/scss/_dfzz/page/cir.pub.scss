@@ -2,7 +2,6 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-@import "../../helpers/_extend";
 #cir_pub {
 .art_put_form{
     padding: 20px;
@@ -20,9 +19,7 @@
             float: left;
             width: 550px;
             padding: 25px 0 45px 0;
-            .phone{
-                @extend %phone_art;
-            }
+            .app-phone{}
             .post {
             		position:absolute;
             		left:33px;
@@ -296,4 +293,3 @@
     }
 }
 }
-   

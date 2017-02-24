@@ -43,7 +43,7 @@
 .app-button-sm{
     @extend .app-button;
     height: 34px;
-    padding: 0 30px;
+    padding: 0 10px;
 }
 
 .app-button-default{
@@ -63,21 +63,21 @@
     background-color: $bg-color-default;
     @extend %app-button;
     height: 34px;
-    padding: 0 30px;
+    padding: 0 10px;
     font-size: 14px;
 }
 .app-button-primary-sm{
     background-color: $bg-color-primary;
     @extend %app-button;
     height: 34px;
-    padding: 0 30px;
+    padding: 0 10px;
     font-size: 14px;
 }
 .app-button-warning-sm{
     background-color: $bg-color-warning;
     @extend %app-button;
     height: 34px;
-    padding: 0 30px;
+    padding: 0 10px;
     font-size: 14px;
 }
 

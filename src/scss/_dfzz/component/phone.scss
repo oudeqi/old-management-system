@@ -172,12 +172,11 @@
                 }
             }
         }
-        .list{
+        .list_art{
             padding: 12px 10px;
             padding-bottom: 10px;
             border-bottom: 1px solid #ebebeb;
             cursor: pointer;
-
             &:hover{
                 background: #f6f6f6;
             }
@@ -234,6 +233,80 @@
                         @include sprite($icon-app_share_gray);
                         margin-left: 10px;
                     }
+                }
+            }
+        }
+        .list_fm{
+            border-bottom: 1px solid #ebebeb;
+            .tit{
+                font-size: 16px;
+                line-height: 34px;
+                padding-left: 10px;
+                margin: 0;
+            }
+            .fm{
+                background: #eee;
+                height: 157px;
+                width: 330px;
+                margin: 0 auto;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            .art_source{
+                padding-left: 10px;
+                margin: 0;
+                line-height: 30px;
+                font-size: 14px;
+            }
+            cursor: pointer;
+            &:hover{
+                background: #f6f6f6;
+                .fm{
+                    background: #ddd;
+                }
+            }
+        }
+        .list_pic{
+
+            .tit{
+                font-size: 16px;
+                line-height: 34px;
+                padding-left: 10px;
+                margin: 0;
+            }
+            .mult_pic{
+                @include clearfix()
+                li{
+                    float: left;
+                    width: 105px;
+                    margin-left: 10px;
+                    height: 70px;
+                    background-color: #eee;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+            .art_source{
+                padding-left: 10px;
+                margin: 0;
+                line-height: 30px;
+                font-size: 14px;
+            }
+            border-bottom: 1px solid #ebebeb;
+            cursor: pointer;
+            &:hover{
+                background: #f6f6f6;
+                li{
+                    background-color: #eee;
                 }
             }
         }
@@ -316,4 +389,8 @@
             }
         }
     }
+}
+
+.app-phone{
+    @extend %phone_art;
 }

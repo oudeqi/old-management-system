@@ -1,7 +1,7 @@
 <div class="art_put_form">
     <div class="inner">
         <div class="l">
-            <div class="phone" ng-show="step == 1">
+            <div class="app-phone" ng-show="step == 1">
                 <div class="phone_head">
                     <div class="head_btn"></div>
                     <div class="head_tit">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list" ng-click="step = 2">
+                    <div ng-show="infoSet.template == 2 || infoSet.template == 1" class="list_art" ng-click="step = 2">
                         <div class="t">
                             <div class="t_l">
                                 {{infoSet.title || "请输入文章标题"}}
@@ -64,9 +64,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="list_pic" ng-show="infoSet.template == 4">
+                        <p class="tit">{{infoSet.title || "请输入文章标题"}}</p>
+                        <ul class="mult_pic">
+                            <li bg-cover="multPic[0].imgUrl"></li>
+                            <li bg-cover="multPic[1].imgUrl"></li>
+                            <li bg-cover="multPic[2].imgUrl"></li>
+                        </ul>
+                        <p class="art_source">{{infoSet.sellerName || "文章来源"}}</p>
+                    </div>
+                    <div class="list_fm" ng-show="infoSet.template == 3" ng-click="step = 2">
+                        <p class="tit">{{infoSet.title || "请输入文章标题"}}</p>
+                        <div class="fm">
+                            <img ng-show="littleUrl" ng-src="{{littleUrl}}" alt="" />
+                        </div>
+                        <div class="art_source">{{infoSet.sellerName || "文章来源"}}</div>
+                    </div>
                 </div>
             </div>
-            <div class="phone" ng-show="step == 2">
+            <div class="app-phone" ng-show="step == 2">
                 <div class="phone_head">
                     <div class="head_btn">
                         <div class="back animated bounceIn" ng-click="step = 1">
@@ -94,34 +110,17 @@
                     <div class="art_con" ng-show="infoSet.template == '1'">
                         {{infoSet.videoCon || "介绍在45个字以内，若没有填写，标题则会成为视频文案。"}}
                     </div>
-                    <div class="art_con" ng-bind-html="artCon || artConPlace" ng-show="infoSet.template == '2'"></div>
+                    <div class="art_con" ng-bind-html="artCon || artConPlace" ng-show="infoSet.template == '2' || infoSet.template == '3'"></div>
                 </div>
             </div>
         </div>
         <div class="r">
-            <div class="form_row">
-                <div class="tit">
-                    <span>置顶文章：</span>
-                </div>
-                <div class="cont">
-                    <label class="radio_label">
-                        <input type="radio" value="1" ng-change="step = 1" ng-model="infoSet.top">
-                        <i class="icon"></i>
-                        <span>是</span>
-                    </label>
-                    <label class="radio_label">
-                        <input type="radio" value="0" ng-change="step = 1" ng-model="infoSet.top">
-                        <i class="icon"></i>
-                        <span>否</span>
-                    </label>
-                </div>
-            </div>
             <div class="form_row" ng-show="!!types.length">
                 <div class="tit">
                     <span>文章分类：</span>
                 </div>
                 <div class="cont">
-                    <select class="select_type" ng-change="step = 1" ng-options="i.name for i in types track by i.id" ng-model="type"></select>
+                    <select class="select_type" ng-change="typeChange()" ng-options="i.name for i in types track by i.id" ng-model="type"></select>
                     <label class="checkbox_label" ng-show="permission.button_info_ucoin == '1'">
                         <input type="checkbox" ng-model="infoSet.feeType" ng-false-value="0" ng-true-value="3">
                         <span>U币文章</span>
@@ -137,6 +136,15 @@
                     <span class="err" ng-show="noTit">请输入文章标题</span>
                 </div>
             </div>
+            <div class="form_row">
+                <div class="tit">
+                    <span>文章来源：</span>
+                </div>
+                <div class="cont">
+                    <input class="form_ipt" type="text" ng-model="infoSet.sellerName" ng-focus="step = 2" placeholder="请输入文章来源">
+                    <span class="err" ng-show="noSellerName">请输入文章来源</span>
+                </div>
+            </div>
             <div class="form_row" ng-show="permission.button_push_time =='1'">
                 <div class="tit">
                     <span>预约时间：</span>
@@ -150,7 +158,51 @@
                     </div>
                 </div>
             </div>
-            <div class="form_row">
+            <div class="form_row" ng-hide="type.id == '8'">
+                <div class="tit">
+                    <span>文章模板：</span>
+                </div>
+                <div class="cont">
+                    <label class="radio_label">
+                        <input type="radio" value="2" ng-model="infoSet.template" ng-change="step = 1">
+                        <i class="icon"></i>
+                        <span>图文</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" value="3" ng-model="infoSet.template" ng-change="step = 1">
+                        <i class="icon"></i>
+                        <span>封面</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" value="4" ng-model="infoSet.template" ng-change="step = 1">
+                        <i class="icon"></i>
+                        <span>多图</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" value="1" ng-model="infoSet.template" ng-change="step = 1">
+                        <i class="icon"></i>
+                        <span>视频</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form_row" ng-show="(infoSet.template == 1 || infoSet.template == 2) && type.id != '8'">
+                <div class="tit">
+                    <span>置顶文章：  </span>
+                </div>
+                <div class="cont">
+                    <label class="radio_label">
+                        <input type="radio" value="1" ng-change="step = 1" ng-model="infoSet.top">
+                        <i class="icon"></i>
+                        <span>是</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" value="0" ng-change="step = 1" ng-model="infoSet.top">
+                        <i class="icon"></i>
+                        <span>否</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form_row" ng-hide="infoSet.template == 4 && type.id != '8'">
                 <div class="tit">
                     <span>上传图片：</span>
                 </div>
@@ -167,33 +219,7 @@
                     <span class="err" ng-show="(picUploadErr || noPreviewUrl) && !shareImg">{{picUploadErr || "请上传文章封面图"}}</span>
                 </div>
             </div>
-            <div class="form_row">
-                <div class="tit">
-                    <span>文章模板：</span>
-                </div>
-                <div class="cont">
-                    <label class="radio_label">
-                        <input type="radio" value="2" ng-model="infoSet.template" ng-change="step = 2">
-                        <i class="icon"></i>
-                        <span>图文模板</span>
-                    </label>
-                    <label class="radio_label">
-                        <input type="radio" value="1" ng-model="infoSet.template" ng-change="step = 2">
-                        <i class="icon"></i>
-                        <span>视频模板</span>
-                    </label>
-                </div>
-            </div>
-            <div class="form_row">
-                <div class="tit">
-                    <span>文章来源：</span>
-                </div>
-                <div class="cont">
-                    <input class="form_ipt" type="text" ng-model="infoSet.sellerName" ng-focus="step = 2" placeholder="请输入文章来源">
-                    <span class="err" ng-show="noSellerName">请输入文章来源</span>
-                </div>
-            </div>
-            <div class="form_row" ng-show="infoSet.template == '1'">
+            <div class="form_row" ng-show="infoSet.template == '1' || type.id == '8'">
                 <div class="tit">
                     <span>上传视频：</span>
                 </div>
@@ -209,7 +235,7 @@
                     <span class="err" ng-show="videoUploadErr || noVideoUrl">{{videoUploadErr || "请上传视频"}}</span>
                 </div>
             </div>
-            <div class="form_row" ng-show="infoSet.template == '1' && permission.button_info_video == '1'">
+            <div class="form_row" ng-show="(infoSet.template == '1' && permission.button_info_video == '1') || type.id == '8'">
                 <div class="tit">
                     <span>精彩视频推荐：</span>
                 </div>
@@ -226,7 +252,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form_row" ng-show="infoSet.template == '1'">
+            <div class="form_row" ng-show="infoSet.template == '1' && type.id != '8'">
                 <div class="tit">
                     <span>视频文案：</span>
                 </div>
@@ -235,14 +261,27 @@
                 </div>
                 <p class="err_block" ng-show="noVideoCon">请输入视频文案</p>
             </div>
-            <div class="form_row" ng-show="infoSet.template == '2'">
+            <div class="form_row" ng-show="(infoSet.template == '2' || infoSet.template == '3') && type.id != '8'">
                 <div class="tit">
                     <span>文章内容：</span>
                 </div>
                 <div class="cont">
+                    <!-- <button class="import_tpl_btn" type="button" name="button">导入模板</button> -->
+                    <div class="import_tpl_ipt">
+                        <input type="text" placeholder="请输入正确移动端模板的地址" name="" value="">
+                        <button type="button" name="button" ng-click="getTpl()">导入模板</button>
+                    </div>
                     <app-editor-mu ng-model="infoSet.content" ng-click="step = 2"></app-editor-mu>
                 </div>
                 <p class="err_block" ng-show="noContent">请编辑文章内容</p>
+            </div>
+            <div class="form_row" ng-show="infoSet.template == '4' && type.id != '8'">
+                <div class="tit">
+                    <span>文章内容：</span>
+                </div>
+                <div class="mult_pic_cont">
+                    <mult-pic-edit ng-model="multPic"></mult-pic-edit>
+                </div>
             </div>
             <div class="form_row">
                 <div class="tit"></div>

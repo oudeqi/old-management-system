@@ -2,7 +2,6 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-@import "../../helpers/_extend";
 #finance_mgetout {
     .app-filter{
         background-color: #fff;
@@ -25,7 +24,7 @@
             }
             .glyphicon-search {
                 color:#BFBFBF;
-            }   
+            }
             .dataaddon {
                 @include sprite($icon-date-addon);
             }
@@ -73,4 +72,3 @@
 
 
 }
-   

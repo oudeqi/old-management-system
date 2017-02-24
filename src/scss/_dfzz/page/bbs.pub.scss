@@ -2,7 +2,6 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-@import "../../helpers/_extend";
 #bbs_pub {
 .app-button-pubmy {
     width:138px;
@@ -20,8 +19,8 @@
             float: left;
             width: 550px;
             padding: 45px 0;
-            .phone{
-                @extend %phone_art;
+            .app-phone{
+
                 .post {
                     position:absolute;
                     left:33px;
@@ -44,7 +43,7 @@
                             width:4rem;
                             border-radius:50%;
                             background-size:cover;
-                            background-image:url('../../../img/head-pic.jpg');                   }  
+                            background-image:url('../../../img/head-pic.jpg');                   }
 
                         .user_info {
                             float:left;
@@ -85,7 +84,7 @@
                         }
                         }
                     }
-           
+
             }
         }
         .r{
@@ -317,5 +316,5 @@
         }
     }
 }
-   
+
 }

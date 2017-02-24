@@ -2,7 +2,6 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-@import "../../helpers/_extend";
 .modal-showpic {
 	transform:translate(0,100px);
 	moz-user-select: -moz-none;
@@ -50,4 +49,3 @@
 		}
 	}
 }
-
