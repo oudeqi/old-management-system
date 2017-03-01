@@ -6,6 +6,7 @@ var app = angular.module('uoudo.index',[
 ]);
 
 app.constant("constant",{
+    // APP_HOST:"http://localhost:8080/",
   APP_HOST : "http://192.168.10.254:8082/", //远程接口
   // APP_HOST : "http://partner.uoolle.com/",
 });

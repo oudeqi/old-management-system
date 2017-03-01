@@ -4,15 +4,33 @@
 @import "../../helpers/_function";
 @import "../../helpers/_extend";
 @import "../../helpers/app-phone";
-#cir_pub {
-.art_put_form{
+#sysset_notification_new {
+.app-button-pubmy {
+    width:138px;
+    height:38px;
+    background: #007CFB;
+    border-radius: 5px;
+}
+.app-table {
+    margin:0 0 0 2rem;
+}
+.p_wrap {
+     position:absolute;
+    left:4.5rem;
+    top:29rem;
+    padding:0 12px;
+    font-size:12.9px;
+    width:310px;
+}
+.p_title {
+    font-weight:bold;
+}
+.p_content {
+    word-wrap:break-word;
+}
+
+    .art_put_form{
     padding: 20px;
-    .app-button-pubmy {
-    	background: #007CFB;
-		border-radius: 5px;
-		width:168px;
-		height:38px;
-    }
     .inner{
         background: #fff;
         border-radius: 4px;
@@ -20,52 +38,74 @@
         .l{
             float: left;
             width: 550px;
-            padding: 25px 0 45px 0;
+            padding: 45px 0;
             .phone{
                 @extend %phone_art;
-            }
-            .post {
-            		position:absolute;
-            		left:33px;
+                .post {
+                    position:absolute;
+                    left:33px;
                     top:170px;
                     padding:0 12px;
-                    overflow:hidden;
-                    width:330px;
-                    .postx {
-                     height:550px;
-                    width:350px;
-                        overflow:auto;
-                        overflow-wrap: break-word;
-                        .post_title {
-                        height:auto;
-                        word-break:break-all;
-                        white-space:normal;
-                        color:#2b333b;
-                        font-size:20px;
-                        width:320px;
-                    }
-                    .post_nav {
-                        margin:12px 0 0 0;
-                        font-size: 12px;
-                        color: #BFBFBF;
-                        letter-spacing: 0;
-                    }
-                    .post_img {
-                        max-width:325px;
-                    }
-                    .post_content {
-                        max-width:340px;
-                        font-size: 16px;
-                        color: #848689;
-                        line-height: 25.88px;
+                     .post_title {
+                            height:auto;
+                            word-break:break-all;
+                            white-space:normal;
+                            color:#2b333b;
+                            font-size:20px;
 
-                        img {
-                            max-width:340px;
+                            width:320px;
+                      }
+                    .post_user {
+                        margin:1rem 0 0 0;
+                        .user_head {
+                            float:left;
+                            height:4rem;
+                            width:4rem;
+                            border-radius:50%;
+                            background-size:cover;
+                            background-image:url('../../../img/head-pic.jpg');                   }  
+
+                        .user_info {
+                            float:left;
+                            margin:6px 12px 0 12px;
+                            .user_name {
+                                font-size:15px;
+                                color:#686868;
+                            }
+                            .user_time{
+                                font-size:12px;
+                                color:#bfbfbf;
+
+                            }
+                        }
+                        .user_care {
+                           float:right;
+                            margin:6px 32px 0 0;
+                            width:80px;
+                            height:34px;
+                            background-size:cover;
+                            background-image:url('../../../img/care_btn.png')
+                        }
+
+                        }
+                        .post_content_left{
+                            overflow:hidden;
+                            width:325px;
+                    .post_content {
+                            clear:both;
+                            width:345px;
+                            overflow-wrap: break-word;
+                            margin:10px 0 0 0;
+                            overflow:auto;
+                            height:420px;
+                            img {
+                                max-width:325px;
+                            }
+                        }
                         }
                     }
-                    }
-
-                }
+           
+            }
         }
         .r{
             margin-left: 550px;
@@ -90,7 +130,15 @@
                     margin-left: 140px;
                     font-size:14px;
                 }
+
+
                 .cont{
+                     .input-width-one {
+                            width:191px !important;
+                        }
+                        .input-width-two {
+                            width:250px !important;
+                        }
                     margin: 0;
                     margin-left: 120px;
                     padding-left: 20px;
@@ -125,7 +173,7 @@
                         }
                     }
                     textarea{
-                        background:#ffffff;
+                        background:#F8F8F8;;
                         border:1px solid #d7d7d7;
                         border-radius:3px;
                         width:358px;
@@ -166,7 +214,7 @@
                     }
 
                     .select_type{
-                        background:#ffffff;
+                        background:#F8F8F8;
                         border:1px solid #d7d7d7;
                         border-radius:3px;
                         width:auto;
@@ -175,6 +223,43 @@
                         padding: 0 2px;
                         @extend %ipt_focus;
                     }
+
+                    .checkbox_label{
+                        padding-top: 4px;
+                        cursor: pointer;
+                        font-weight: normal;
+                        margin-left: 20px;
+                        input[type="checkbox"]{
+                            position: relative;
+                            top: 1px;
+                        }
+                    }
+                    .radio_label{
+                        margin-right: 20px;
+                        padding-top: 4px;
+                        cursor: pointer;
+                        span{
+                            line-height: 18px;
+                            vertical-align: middle;
+                            font-weight: normal;
+                        }
+                        input[type="checkbox"]{
+                            display: none;
+                            & + .icon{
+                                @include sprite($icon-unchecked);
+                            }
+                        }
+                        input[type="checkbox"]:checked + .icon{
+                            @include sprite($icon-checked);
+                        }
+                        .icon{
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+
+
+
                     .checkbox_label{
                         padding-top: 4px;
                         cursor: pointer;
@@ -216,6 +301,7 @@
                         padding: 0 5px;
                         font-size: inherit;
                         font-family: inherit;
+                        background-color:#F8F8F8;
                         @extend %ipt_focus;
                     }
                     .form_date{
@@ -296,5 +382,5 @@
         }
     }
 }
-}
    
+}

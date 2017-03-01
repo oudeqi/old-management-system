@@ -4,7 +4,10 @@
 @import "../../helpers/_function";
 @import "../../helpers/app-phone";
 
-#sysset_blacklist {
+#sysset_notification_list {
+        .wrapOne {
+         @include otw();
+        }
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -42,19 +45,6 @@
 
         }
 
-
-    .app-table {
-        tbody{
-            tr {
-                td {
-                    width:80%;
-                }
-            }
-        }
-    }
-
-
-
     .app-pagination {
         background:none;
     }
@@ -63,7 +53,7 @@
         .l{
             width: 100%;
             .item{
-                width: 30%;
+                width: 25%;
                 .activex {
                     color:#007cfb !important;
                 }

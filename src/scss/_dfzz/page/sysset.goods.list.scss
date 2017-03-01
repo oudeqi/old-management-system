@@ -4,7 +4,16 @@
 @import "../../helpers/_function";
 @import "../../helpers/app-phone";
 
-#sysset_blacklist {
+#sysset_goods_list {
+
+    .onelinex {
+        width:40%;
+    overflow:hidden;
+
+    }
+
+
+
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -42,19 +51,6 @@
 
         }
 
-
-    .app-table {
-        tbody{
-            tr {
-                td {
-                    width:80%;
-                }
-            }
-        }
-    }
-
-
-
     .app-pagination {
         background:none;
     }
@@ -63,7 +59,7 @@
         .l{
             width: 100%;
             .item{
-                width: 30%;
+                width: 33.333%;
                 .activex {
                     color:#007cfb !important;
                 }
