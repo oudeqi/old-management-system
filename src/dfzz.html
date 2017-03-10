@@ -90,6 +90,8 @@
 
         <link rel="stylesheet" href="css/_dfzz/component/pagination.css">
 
+        <link rel="stylesheet" href="css/_dfzz/component/phone.css">
+
         <link rel="stylesheet" href="css/_dfzz/component/radio.css">
 
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
@@ -224,8 +226,6 @@
 
         <script src="js/_dfzz/filter/filters.js"></script>
 
-        <script src="js/_dfzz/directive/directives.js"></script>
-
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
 
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
@@ -306,6 +306,8 @@
 
         <script src="js/_dfzz/ctrl/modal.addpromoter.js"></script>
 
+        <script src="js/_dfzz/ctrl/mall.order.js"></script>
+
         <script src="js/_dfzz/ctrl/finance.mgetout.js"></script>
 
         <script src="js/_dfzz/ctrl/finance.list.js"></script>
@@ -335,6 +337,8 @@
         <script src="js/_dfzz/ctrl/art.list.js"></script>
 
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+
+        <script src="js/_dfzz/directive/directives.js"></script>
 
         <!-- endinject -->
         <!-- endbuild -->
@@ -443,6 +447,16 @@
                             <span class="txt">夺宝管理</span>
                         </a>
                     </li>
+
+                    <!--商城-->
+                    <!--  ng-if="permission.menu_mall=='1'" -->
+                    <!-- <li class="item">
+                        <a href="javascript:void(0);" ui-sref="mall_order" ng-class="{'active':mainNav==='mall'}" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-mall"></i>
+                            <span class="txt">商城</span>
+                        </a>
+                    </li> -->
+                    <!-- 任务 -->
                     <li class="item" ng-if="permission.menu_task=='1'">
                         <a href="javascript:void(0);" ui-sref="task_put" ng-class="{'active':mainNav==='task'}" ng-mouseenter="navMouseover(1009)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-task"></i>
@@ -682,6 +696,17 @@
                     </li>
                     <li class="item" ng-if="permission.button_gem_audit=='1'">
                         <a href="javascript:void(0);" ui-sref="treasure_lucky" ui-sref-active="active">中奖列表</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()" ng-show="currNav === 1010">
+               <div class="top-logo">
+                   <img src="img/subnav_logo.png" alt="" />
+               </div>
+               <ul class="list">
+                   <li class="item">
+                        <a href="javascript:void(0);" ui-sref="mall_order" ui-sref-active="active">商城发货</a>
                     </li>
                 </ul>
             </div>

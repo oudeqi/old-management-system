@@ -1,6 +1,6 @@
 <div class="modal-body">
     <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
-    <div class="phone" ng-show="step === 1">
+    <div class="app-phone" ng-show="step === 1">
         <div class="phone_head">
             <div class="head_btn"></div>
             <div class="head_tit">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="list" ng-click="step = 2">
+            <div class="list_art" ng-click="step = 2">
                 <div class="t">
                     <div class="t_l">
                         {{title}}
@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <div class="phone" ng-show="step === 2">
+    <div class="app-phone" ng-show="step === 2">
         <div class="phone_head">
             <div class="head_btn">
                 <div class="back animated bounceIn" ng-click="step = 1">

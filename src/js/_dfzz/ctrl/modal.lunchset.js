@@ -100,6 +100,10 @@ angular.module('uoudo.dfzz')
             });
         };
 
+        $scope.changeBusId = function(id){
+            $scope.busId = id;
+        };
+
         $scope.checkurl = function(){
             if(/^(f|ht){1}(tp|tps):\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?/.test($scope.url)){
                 $scope.urlMsg = "";

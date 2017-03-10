@@ -3,16 +3,6 @@ var app = angular.module('uoudo.dfzz');
 app.controller('art_put',['$scope','$http','constant','localStorageService','FileUploader','$uibModal','$state','$timeout','$sce','$filter',
     function($scope,$http,constant,localStorageService,FileUploader,$uibModal,$state,$timeout,$sce,$filter){
 
-        // 获取文章类别下拉框数据：/v1/aut/info/type/list  GET
-        // {
-        //   "errMessage": "",
-        //   "data": [
-        //     {
-        //       "id": 20,
-        //       "name": "大城小事"
-        //     }
-        //   ]
-        // }
         $scope.step = 1;//当前显示页数
         $scope.art = localStorageService.get('art.put');
         console.log($scope.art);
@@ -40,6 +30,8 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             $scope.shareImg = $scope.art.shareImg;//分享小图
             $scope.imageUrl = $scope.art.imageUrl;//视频封面图
             $scope.videoUrl = $scope.art.videoUrl;//视频地址
+            $scope.multPic = $scope.art.multPic;//多图模板
+            console.log($scope.multPic);
             $scope.pushTime = $filter('date')($scope.art.pushTime, "yyyy-MM-dd HH:mm");//发布时间
             if($scope.deleteId && $scope.deleteId !== 0){
                 $scope.artEdit = true;
@@ -66,6 +58,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             $scope.imageUrl = "";//视频封面图
             $scope.videoUrl = "";//视频地址
             $scope.pushTime = null;//发布时间
+            $scope.multPic = [];
         }
         $scope.putNew = function(){
             localStorageService.remove('art.put');
@@ -87,22 +80,26 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             'infoSet.content',
             'infoSet.videoType',
             'infoSet.videoCon',
-            // 'type',
             'previewUrl',
             'videoUrl',
-            'pushTime'
+            'pushTime',
+            'multPic'
         ],function(){
+            console.log($scope.multPic);
             var content = "";
-            if($scope.infoSet.template === "1"){//视频
+            if($scope.infoSet.template == "1"){//视频
                 content = $scope.infoSet.videoCon;
-            }else{
+            }else if($scope.infoSet.template == "2"){//图文
                 content = $scope.infoSet.content;
+            }else if($scope.infoSet.template == "3"){//封面
+                $scope.infoSet.top = 0;
+            }else if($scope.infoSet.template == "4"){//多图
+                $scope.infoSet.top = 0;
             }
             var art = {
                deleteId: $scope.deleteId || 0,
                title: $scope.infoSet.title,
                sellerName: $scope.infoSet.sellerName,
-            //    infoTypeId: $scope.type.id,
                template: $scope.infoSet.template,
                previewUrl: $scope.previewUrl,
                feeType: $scope.infoSet.feeType,
@@ -113,6 +110,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                imageUrl: $scope.imageUrl,
                videoUrl: $scope.videoUrl,
                pushTime: $scope.pushTime,
+               multPic: $scope.multPic,
                content: content
             };
             localStorageService.set('art.put',art);
@@ -129,7 +127,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     $scope.types = data.data;
                     $scope.type = $scope.types[0];
                     angular.forEach($scope.types,function(item){
-                        if(item.id === $scope.art.infoTypeId){
+                        if($scope.art && (item.id == $scope.art.infoTypeId)){
                             $scope.type = item; //文章类别
                         }
                     });
@@ -151,11 +149,27 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     artPut.infoTypeId = $scope.type.id;
                     localStorageService.set('art.put',artPut);
                 }
-
             }
         }).error(function(data) {
 
         });
+
+        $scope.typeChange = function(){
+            $scope.step = 1;
+            if($scope.type.id == '8'){//如果文章分类选择视频，文章模板类型改成视频
+                $scope.infoSet.template = 1;
+            }
+        };
+
+        $scope.getTpl = function(){
+            $http.get('http://m.miaopai.com/show/channel/c5748uW2GmYLewn0p2-XFw__?from=groupmessage&isappinstalled=1')
+            .success(function(data){
+                console.log(data);
+            })
+            .error(function(data){
+
+            });
+        };
 
         //视频地址
         $scope.clickBtnVideo = function(){
@@ -237,16 +251,11 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         // 发布文章
         $scope.loading = false;
         $scope.putArticle = function(){
+
             if($scope.infoSet.title){
                 $scope.noTit = false;
             }else{
                 $scope.noTit = true;
-                return;
-            }
-            if($scope.previewUrl){
-                $scope.noPreviewUrl = false;
-            }else{
-                $scope.noPreviewUrl = true;
                 return;
             }
             if($scope.infoSet.sellerName){
@@ -255,7 +264,17 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 $scope.noSellerName = true;
                 return;
             }
-            if($scope.infoSet.template === "1"){
+
+            if($scope.infoSet.template != '4'){
+                if($scope.previewUrl){
+                    $scope.noPreviewUrl = false;
+                }else{
+                    $scope.noPreviewUrl = true;
+                    return;
+                }
+            }
+            console.log("x");
+            if($scope.infoSet.template == "1" || $scope.type.id == '8'){//视频
                 if($scope.videoUrl){
                     $scope.noVideoUrl = false;
                 }else{
@@ -263,36 +282,42 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
-            if($scope.infoSet.template === "2"){//图文模板
+            if($scope.infoSet.template == "2" && $scope.type.id != '8'){//图文模板
                 if($scope.infoSet.content){
                     $scope.noContent = false;
                 }else{
                     $scope.noContent = true;
                     return;
                 }
-            }else{//视频模板
-                if($scope.infoSet.videoCon){
-                    $scope.noVideoCon = false;
-                }else{
-                    $scope.noVideoCon = true;
+            }
+            if($scope.infoSet.template == "3"){//封面
+
+            }
+            if($scope.infoSet.template == "4" && $scope.type.id != '8'){//多图
+                if($scope.multPic.length < 3){
                     return;
                 }
             }
+
             if($scope.loading){
                 return;
             }
             $scope.loading = true;
-            var content = "";
+            var content = "",pushTime = null;
             if($scope.infoSet.template === "1"){ //视频模板
                 content = $scope.infoSet.videoCon;
             }else{//图文模板
                 content = constant.UMEDITOR_CONTENT_HEADER + $scope.infoSet.content + constant.UMEDITOR_CONTENT_FOOTER;
                 // content = $scope.infoSet.content;
             }
-            var pushTime = null;
             if($scope.pushTime){
                 pushTime = $scope.pushTime + ":00";
                 pushTime = new Date(pushTime).getTime();
+            }
+            if($scope.infoSet.template == "3"){//封面
+                $scope.infoSet.top = 0;
+            }else if($scope.infoSet.template == "4"){//多图
+                $scope.infoSet.top = 0;
             }
             $http.post(constant.APP_HOST+'/v1/aut/info/publish',{
                 deleteId:$scope.deleteId,
@@ -308,6 +333,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 videoType:$scope.infoSet.videoType,
                 imageUrl:$scope.imageUrl,
                 videoUrl:$scope.videoUrl,
+                infoImgsList:$scope.multPic,
                 pushTime:pushTime,
                 content:content
              },{
@@ -316,10 +342,10 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
      			}
      		}).success(function(data){
                 console.log(data);
+                $scope.loading = false;
                 if(data.errMessage){
                     $scope.errMsg = data.errMessage;
                     $scope.succMsg = "";
-
                 }else{
                     $scope.errMsg = "";
                     $scope.succMsg = "文章发布成功";
@@ -332,6 +358,8 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 $scope.loading = false;
             });
         };
+
+
 
     }
 ]);

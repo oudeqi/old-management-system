@@ -20,9 +20,7 @@
             float: left;
             width: 550px;
             padding: 25px 0 45px 0;
-            .phone{
-                @extend %phone_art;
-            }
+            .app-phone{}
             .post {
             		position:absolute;
             		left:33px;
@@ -296,4 +294,3 @@
     }
 }
 }
-   

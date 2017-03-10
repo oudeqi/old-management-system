@@ -1,4 +1,120 @@
 angular.module('uoudo.dfzz')
+.directive("bgCover",function(){
+    return {
+        restrict: 'A',
+        scope:{
+            url:"=bgCover"
+        },
+        link: function(scope,ele,attrs){
+            scope.$watch("url",function(){
+                if(scope.url){
+                    ele.css({
+                        "background-image": "url("+scope.url+")",
+                        "background-size": "cover",
+                        "background-position": "center",
+                        "background-repeat": "no-repeat"
+                    });
+                }else{
+                    ele.css({
+                        "background-image":"none"
+                    });
+                }
+            });
+
+        }
+    };
+})
+.directive("multPicEdit",['constant','localStorageService','$http',function(constant,localStorageService,$http){
+    return {
+        restrict: 'E',
+        replace: true,
+        transclude: true,
+        scope:{
+            arr:'=ngModel'
+        },
+        template: function(element, attrs) {
+            var html = '';
+            html += '<div class="tpl_edit">';
+            html +=     '<div ng-repeat="item in arr">';
+            html +=         '<div class="pic">';
+            html +=             '<button class="del_pic" ng-click="delPic($index)" type="button" title="删除"></button>';
+            html +=             '<img ng-src="{{item.imgUrl}}" alt="">';
+            html +=         '</div>';
+            html +=         '<div class="editable">';
+            html +=             '<p class="content" contenteditable="true" ng-model="item.explain" change-model>{{item.explain}}</p>';
+            html +=             '<p class="placeholder" ng-click="editFocus()" ng-show="!item.explain">添加图片描述</p>';
+            html +=         '</div>';
+            html +=     '</div>';
+            html +=     '<div class="btn_cont">';
+            html +=         '<button class="addpic" ng-click="addPic()" type="button">';
+            html +=             '<i></i>';
+            html +=             '<span>添加图片</span>';
+            html +=         '</button>';
+            html +=         '<p class="msg info" ng-show="arr.length<3">至少选择三张图片</p>';
+            html +=         '<form enctype="multipart/form-data" ng-show="false" method="post" name="fileinfo">';
+            html +=             '<input type="file" name="file" clean-file-value accept="image/*" onchange="angular.element(this).scope().fileChange(this)" />';
+            html +=         '</form>';
+            // html +=         '<button ng-click="testshow()">测试</button>';
+            html +=     '</div>';
+            html += '</div>';
+            return html;
+        },
+        link:function(scope,element, attrs, ctrl){
+            console.log(scope.arr);
+            scope.delPic = function(index){
+                scope.arr.splice(index,1);
+                var art = localStorageService.get('art.put');
+                art.multPic = scope.arr;
+                localStorageService.set('art.put',art);
+            };
+            scope.addPic = function(){
+                element.find('input[type="file"]').click();
+            };
+            scope.fileChange = function(_this){
+                var url = constant.APP_HOST + "/v1/back/uploadImg";
+                var fd = new FormData(document.forms.namedItem("fileinfo" ));
+                fd.append( "token", localStorageService.get("token"));
+                var req = new XMLHttpRequest();
+                req.open( "POST", url , true );
+                req.onload = function(oEvent) {
+                      if (req.status == 200) {
+                          console.log(req.responseText);
+                          scope.$apply(function(){
+                              scope.arr.push({
+                                  imgUrl: req.responseText,
+                                  explain: ""
+                              });
+                              var art = localStorageService.get('art.put');
+                              art.multPic = scope.arr;
+                              localStorageService.set('art.put',art);
+                          });
+                     } else {
+                          console.error(req);
+                     }
+                };
+                req.send(fd);
+            };
+            scope.editFocus = function(){
+                element.find(".content").focus();
+            };
+            scope.testshow = function(){
+                console.log(scope.arr);
+            };
+        }
+    };
+}])
+.directive('changeModel',function(){
+    return {
+        restrict: 'A',
+        require: '?ngModel',
+        link: function(scope,element, attrs, ctrl){
+            element.bind("input",function(e){
+                ctrl.$setViewValue(e.target.innerText);
+            });
+
+        }
+    };
+})
 .directive('switch', function(){
     return {
         restrict: 'AE',
@@ -183,7 +299,7 @@ angular.module('uoudo.dfzz')
             var _editorId = attrs.id ? attrs.id : "_editor" + (Date.now());
             element[0].id = _editorId;
             mueditor = UM.getEditor(_editorId,{
-                initialFrameWidth:360,
+                initialFrameWidth:420,
                 initialFrameHeight:480,
                 autoClearinitialContent:true,
                 autoClearEmptyNode : true,

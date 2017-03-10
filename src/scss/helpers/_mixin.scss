@@ -1,11 +1,13 @@
 // 清除浮动
 @mixin clearfix {
     &:after{
-        content: "";
+        content: " ";
         display: block;
         height: 0;
+        width: 0;
         font-size: 0;
         overflow: hidden;
+        visibility: hidden;
         line-height: 0;
         clear: both;
     }

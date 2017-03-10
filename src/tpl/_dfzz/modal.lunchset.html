@@ -61,7 +61,7 @@
                         <td>{{item.title}}</td>
                         <td>
                             <label class="app-radio" ng-if="item.id">
-                                <input type="radio" name="x" ng-value="item.id" ng-model="busId">
+                                <input type="radio" name="x" ng-value="{{item.id}}" ng-model="busId" ng-click="changeBusId(item.id)">
                                 <span class="icon"></span>
                             </label>
                         </td>

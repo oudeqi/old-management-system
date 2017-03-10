@@ -2,8 +2,7 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-
-#websiteman_ctl {
+.mall_send{
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -26,32 +25,11 @@
             .dataaddon {
                 @include sprite($icon-date-addon);
             }
-        }
-        .rx {
-            float:right;
-            .rx-button {
-                width:138px;
-                height:38px;
-                line-height:38px;
+            .app-select {
+                margin:1px 12px 0 0;
             }
         }
 
-        }
-
-
-    .app-display-board{
-        .l{
-            width: 100%;
-            .item{
-                width: 33.333%;
-                .activex {
-                    color:#007cfb !important;
-                }
-                .t-show{
-                    font-size:17px;
-                    line-height:82px;
-                }
-            }
-        }
     }
+
 }
