@@ -2,19 +2,10 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-<<<<<<< HEAD
-=======
 @import "../../helpers/_extend";
 @import "../../helpers/app-phone";
->>>>>>> 8635f1b06ee1179fffb5d551127f27342f9aa80f
-#bbs_pub {
-.app-button-pubmy {
-    width:138px;
-    height:38px;
-    background: #007CFB;
-    border-radius: 5px;
-}
-    .art_put_form{
+
+#sysset_goods_addnew{
     padding: 20px;
     .inner{
         background: #fff;
@@ -24,76 +15,9 @@
             float: left;
             width: 550px;
             padding: 45px 0;
-            .app-phone{
-
-                .post {
-                    position:absolute;
-                    left:33px;
-                    top:170px;
-                    padding:0 12px;
-                     .post_title {
-                            height:auto;
-                            word-break:break-all;
-                            white-space:normal;
-                            color:#2b333b;
-                            font-size:20px;
-
-                            width:320px;
-                      }
-                    .post_user {
-                        margin:1rem 0 0 0;
-                        .user_head {
-                            float:left;
-                            height:4rem;
-                            width:4rem;
-                            border-radius:50%;
-                            background-size:cover;
-                            background-image:url('../../../img/head-pic.jpg');                   }
-
-                        .user_info {
-                            float:left;
-                            margin:6px 12px 0 12px;
-                            .user_name {
-                                font-size:15px;
-                                color:#686868;
-                            }
-                            .user_time{
-                                font-size:12px;
-                                color:#bfbfbf;
-
-                            }
-                        }
-                        .user_care {
-                           float:right;
-                            margin:6px 32px 0 0;
-                            width:80px;
-                            height:34px;
-                            background-size:cover;
-                            background-image:url('../../../img/care_btn.png')
-                        }
-
-                        }
-                        .post_content_left{
-                            overflow:hidden;
-                            width:325px;
-                    .post_content {
-                            clear:both;
-                            width:345px;
-                            overflow-wrap: break-word;
-                            margin:10px 0 0 0;
-                            overflow:auto;
-                            height:420px;
-                            img {
-                                max-width:325px;
-                            }
-                        }
-                        }
-                    }
-
-            }
+           
         }
         .r{
-            margin-left: 550px;
             padding: 30px 0;
             .form_row{
                 margin-bottom: 20px;
@@ -173,11 +97,14 @@
                         vertical-align: middle;
                         display: inline-block;
                         border: 1px solid #d7d7d7;
-                        background-color: #f8f8f8;
+                        background-color: transparent;
                         padding: 0 10px;
                         border-radius: 2px;
                         outline: 0;
                         overflow: hidden;
+                        &:hover{
+                            background-color: #f8f8f8;
+                        }
                         .play{
                             margin-right: 2px;
                             float: left;
@@ -257,14 +184,6 @@
                             font-family: inherit;
                             display: table-cell;
                             vertical-align: middle;
-                            // outline: 0;
-                            // &:focus{
-                            //     border:1px solid lighten($font-color-primary,25%);
-                            //     border-right: 0;
-                            //     & + .ipt_addon{
-                            //         border-left:1px solid lighten($font-color-primary,25%);
-                            //     }
-                            // }
                             @extend %ipt_focus;
                         }
                         .ipt_addon{
@@ -320,6 +239,4 @@
             }
         }
     }
-}
-
 }

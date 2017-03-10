@@ -8,6 +8,7 @@ var app = angular.module('uoudo.dfzz',[
 ]);
 
 app.constant("constant",{
+    // APP_HOST:"http://localhost:8080/",
   APP_HOST : "http://192.168.10.254:8082/", //远程接口
   // APP_HOST : "http://partner.uoolle.com/",
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
@@ -298,6 +299,26 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/sysset_report",
             templateUrl:"./tpl/_dfzz/sysset.report.html",
             controller:"sysset_report"
+        })
+        .state('sysset_notification_list',{
+            url:"/sysset_notification_list",
+            templateUrl:"./tpl/_dfzz/sysset.notification.list.html",
+            controller:"sysset_notification_list",
+        })
+        .state('sysset_notification_new',{
+            url:"/sysset_notification_new",
+            templateUrl:"./tpl/_dfzz/sysset.notification.new.html",
+            controller:"sysset_notification_new",
+        })
+        .state('sysset_goods_addnew',{
+            url:"/sysset_goods_addnew",
+            templateUrl:"./tpl/_dfzz/sysset.goods.addnew.html",
+            controller:"sysset_goods_addnew",
+        })
+        .state('sysset_goods_list',{
+            url:"/sysset_goods_list",
+            templateUrl:"./tpl/_dfzz/sysset.goods.list.html",
+            controller:"sysset_goods_list",
         })
         .state('finance_mgetout',{
             url:"/finance_mgetout",

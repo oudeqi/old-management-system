@@ -1,0 +1,135 @@
+<div id="sysset_notification_new">
+ <show-msg inn="1" ruter="showyes" innc="show" intop="70" inleft="45" inhtml='{{inhtml}}'></show-msg>
+<div class="art_put_form">
+    <div class="inner">
+        <div class="l">
+            <div class="phone" style="background-image: url('../src/img/iphone_1.png');">     
+                    <div class="p_wrap">
+                        <div class="p_title">{{title}}</div>
+                        <div class="p_content">{{content}}</div>
+                    </div>
+            </div>
+            
+        </div>
+        <div class="r" style="padding: 8rem 0 30px 0">
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>推送类型：</span>
+                </div>
+                <div class="cont">
+                    <select class="select_type" ng-options="i.name for i in haha track by i.notiType" ng-model="sec"></select>
+                  <!--   <label class="checkbox_label" ng-show="permission.button_info_ucoin === '1'">
+                        <input type="checkbox" ng-model="infoSet.feeType" ng-false-value="0" ng-true-value="3">
+                        <span>U币文章</span>
+                    </label> -->
+                </div>
+            </div>
+
+             <div class="form_row">
+                <div class="tit">
+                    <span>系统类型：</span>
+                </div>
+                 <div class="cont">
+                    <label class="radio_label">
+                        <input type="radio" value="1" ng-change="step = 1" ng-model="systemOs">
+                        <i class="icon"></i>
+                        <span>安卓手机</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" value="2" ng-change="step = 1" ng-model="systemOs">
+                        <i class="icon"></i>
+                        <span>苹果手机</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>内容标题：</span>
+                </div>
+                <div class="cont">
+                    <input required class="form_ipt" type="text" maxlength="20" ng-model="title" ng-focus="step = 1" placeholder="请输入内容标题">
+                    <span class="err" ng-show="false">请输入内容标题</span>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>正文内容：</span>
+                </div>
+                <!-- <label>正文内容：</label> -->
+                <div class="cont">
+                <textarea required placeholder="内容" ng-model="content" maxlength="60"></textarea>
+                </div>
+            </div>
+
+            <div class="form_row">
+                <div class="tit">
+                    <span>链接内容：</span>
+                </div>
+                <div class="cont">
+                <div class="app-input-search">
+                <input class="input" type="text" style="background-color:#F8F8F8" placeholder="输入关键字搜索" ng-model="search" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="getSearch()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+                </div>
+            </div>
+            </div>
+             
+
+            <div class="form_row">
+                <div class="app-table-box">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th>内容标题</th>
+                                <th>操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in searchRes">
+                                <td>{{item.title}}{{item.id}}</td>
+                                <td>
+                                <div class="cont" style="margin-left: 0;">
+                                <label class="radio_label">
+                                    <input type="radio" name="ll" ng-value="item.id" ng-model="sidgo" ng-change="sidgof(item.id)" />
+                                    <i class="icon"></i>
+                                </label>
+                                </div>
+
+                                
+        
+                                </div>
+                                   <!-- <label class="radio_label">
+                                        <input type="radio" value="1" ng-change="step = 1" ng-model="pub.top">
+                                        <i class="icon"></i>
+                                    </label> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+           
+            <div class="form_row">
+                <div class="cont" style="margin-left: 2.8rem;">
+                    <!-- <button class="app-button-default app-button-pubmy" style="background-color: #F8F8F8; color: black;" ng-show="true" type="button" ng-click="pubPost()">取消</button> -->
+                     <button class="app-button-default app-button-pubmy" ng-show="true" type="button" ng-click="pubNow()">发布</button>
+                    <!-- <i class="loading" ng-show="loading"></i>
+                    <span class="err" ng-show="errMsg">{{errMsg}}</span>
+                    <span class="succ" ng-show="succMsg">{{succMsg}}</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>

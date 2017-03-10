@@ -4,7 +4,17 @@ var app = angular.module('uoudo.dfzz');
 app.controller('sysset_blacklist',['$scope','$uibModal','FileUploader','constant','localStorageService','$sce','$http','$filter','$state','$timeout',
     function($scope,$uibModal,FileUploader,constant,localStorageService,$sce,$http,$filter,$state,$timeout){
 
+        $scope.haha=[{
 
+        },{
+
+        },{
+
+        },{
+
+        },{
+            
+        }]
         $scope.show=false;
         $scope.showyes=false;
         $scope.inhtml='';

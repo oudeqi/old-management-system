@@ -2,18 +2,33 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-<<<<<<< HEAD
-=======
 @import "../../helpers/_extend";
 @import "../../helpers/app-phone";
->>>>>>> 8635f1b06ee1179fffb5d551127f27342f9aa80f
-#bbs_pub {
+#sysset_notification_new {
 .app-button-pubmy {
     width:138px;
     height:38px;
     background: #007CFB;
     border-radius: 5px;
 }
+.app-table {
+    margin:0 0 0 2rem;
+}
+.p_wrap {
+     position:absolute;
+    left:4.5rem;
+    top:29rem;
+    padding:0 12px;
+    font-size:12.9px;
+    width:310px;
+}
+.p_title {
+    font-weight:bold;
+}
+.p_content {
+    word-wrap:break-word;
+}
+
     .art_put_form{
     padding: 20px;
     .inner{
@@ -24,8 +39,8 @@
             float: left;
             width: 550px;
             padding: 45px 0;
-            .app-phone{
-
+            .phone{
+                @extend %phone_art;
                 .post {
                     position:absolute;
                     left:33px;
@@ -48,7 +63,7 @@
                             width:4rem;
                             border-radius:50%;
                             background-size:cover;
-                            background-image:url('../../../img/head-pic.jpg');                   }
+                            background-image:url('../../../img/head-pic.jpg');                   }  
 
                         .user_info {
                             float:left;
@@ -89,7 +104,7 @@
                         }
                         }
                     }
-
+           
             }
         }
         .r{
@@ -115,7 +130,15 @@
                     margin-left: 140px;
                     font-size:14px;
                 }
+
+
                 .cont{
+                     .input-width-one {
+                            width:191px !important;
+                        }
+                        .input-width-two {
+                            width:250px !important;
+                        }
                     margin: 0;
                     margin-left: 120px;
                     padding-left: 20px;
@@ -150,7 +173,7 @@
                         }
                     }
                     textarea{
-                        background:#ffffff;
+                        background:#F8F8F8;;
                         border:1px solid #d7d7d7;
                         border-radius:3px;
                         width:358px;
@@ -191,7 +214,7 @@
                     }
 
                     .select_type{
-                        background:#ffffff;
+                        background:#F8F8F8;
                         border:1px solid #d7d7d7;
                         border-radius:3px;
                         width:auto;
@@ -200,6 +223,43 @@
                         padding: 0 2px;
                         @extend %ipt_focus;
                     }
+
+                    .checkbox_label{
+                        padding-top: 4px;
+                        cursor: pointer;
+                        font-weight: normal;
+                        margin-left: 20px;
+                        input[type="checkbox"]{
+                            position: relative;
+                            top: 1px;
+                        }
+                    }
+                    .radio_label{
+                        margin-right: 20px;
+                        padding-top: 4px;
+                        cursor: pointer;
+                        span{
+                            line-height: 18px;
+                            vertical-align: middle;
+                            font-weight: normal;
+                        }
+                        input[type="checkbox"]{
+                            display: none;
+                            & + .icon{
+                                @include sprite($icon-unchecked);
+                            }
+                        }
+                        input[type="checkbox"]:checked + .icon{
+                            @include sprite($icon-checked);
+                        }
+                        .icon{
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+
+
+
                     .checkbox_label{
                         padding-top: 4px;
                         cursor: pointer;
@@ -241,6 +301,7 @@
                         padding: 0 5px;
                         font-size: inherit;
                         font-family: inherit;
+                        background-color:#F8F8F8;
                         @extend %ipt_focus;
                     }
                     .form_date{
@@ -321,5 +382,5 @@
         }
     }
 }
-
+   
 }

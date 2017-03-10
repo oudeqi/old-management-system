@@ -2,12 +2,18 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-<<<<<<< HEAD
-=======
-@import "../../helpers/_extend";
 @import "../../helpers/app-phone";
->>>>>>> 8635f1b06ee1179fffb5d551127f27342f9aa80f
-#cir_dynameic {
+
+#sysset_goods_list {
+
+    .onelinex {
+        width:40%;
+    overflow:hidden;
+
+    }
+
+
+
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -17,8 +23,8 @@
         line-height: 80px;
         .r{
             float:left;
-            .select_type {
-                margin:0px 12px 0 0;
+            .app-select {
+                margin:0px 16px 0 0;
             }
             .app-input-date{
                 line-height: normal;
@@ -29,7 +35,7 @@
             }
             .glyphicon-search {
                 color:#BFBFBF;
-            }
+            }   
             .dataaddon {
                 @include sprite($icon-date-addon);
             }
@@ -45,31 +51,23 @@
 
         }
 
-    .app-table-box {
-                tr {
-
-                    td {
-                        line-height:38px;
-                    }
-                    .dyc {
-                        width:400px;
-                        word-break:break-all;
-                        display:-webkit-box;
-                        -webkit-line-clamp:1;
-                        -webkit-box-orient:vertical;
-                        overflow:hidden;
-                    }
-                    img {
-                        width:38px;
-                        height:38px;
-                    }
-                    span {
-                        margin:0 0 0 8px;
-                        color:#007cfb;
-                    }
-                }
+    .app-pagination {
+        background:none;
     }
 
-
-
+    .app-display-board{
+        .l{
+            width: 100%;
+            .item{
+                width: 33.333%;
+                .activex {
+                    color:#007cfb !important;
+                }
+                .t-show{
+                    font-size:17px;
+                    line-height:82px;
+                }
+            }
+        }
+    }
 }

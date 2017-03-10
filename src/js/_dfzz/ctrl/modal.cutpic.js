@@ -419,6 +419,119 @@ app.controller('cutCirPub', ['$scope','$http','$uibModalInstance','constant','im
 ]);
 
 
+// goods裁剪
+app.controller('cutGoodsAddNew', ['$scope','$http','$uibModalInstance','constant','imgSrc','$timeout',
+    function ($scope,$http,$uibModalInstance,constant,imgSrc,$timeout) {
+        $scope.loading = false;
+        $scope.imgSrc = constant.APP_HOST + imgSrc;
+        var postData = {
+            x:0,
+            y:0,
+            width:0,
+            height:0,
+            imgUrl:imgSrc
+        };
+        $scope.imgOnload = function(_this){
+            // $(_this).removeAttr("onload");
+            $(_this).Jcrop({
+                onChange: showPreview,
+                onSelect: showPreview,
+                aspectRatio: 2,
+                setSelect: [0, 0, 800,800],
+                boxWidth: 800,
+                boxHeight:450
+            });
+        };
+        function showPreview(c){
+            postData.x = c.x;
+            postData.y = c.y;
+            postData.width = c.w;
+            postData.height = c.h;
+        }
+
+        $scope.ok = function () {
+            console.log(postData);
+            if(postData.width<400){
+                $scope.msg = "图片裁剪的最小宽度为 400 px";
+            }else{
+                $scope.msg = "";
+                $scope.loading = true;
+                $http.post(constant.APP_HOST + '/v1/uploade/cut',postData).success(function(data){
+                    $scope.loading = false;
+                    if(data.errMessage){
+                        $scope.msg = data.errMessage;
+                        return;
+                    }
+                    $scope.msg = "";
+                    $timeout(function(){
+                        $uibModalInstance.close(data.data);
+                    },300);
+                }).error(function(a,b,c){
+                    $scope.loading = false;
+                });
+            }
+        };
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss();
+        };
+    }
+]);
+app.controller('cutGoodsAddNew1', ['$scope','$http','$uibModalInstance','constant','imgSrc','$timeout',
+    function ($scope,$http,$uibModalInstance,constant,imgSrc,$timeout) {
+        $scope.loading = false;
+        $scope.imgSrc = constant.APP_HOST + imgSrc;
+        var postData = {
+            x:0,
+            y:0,
+            width:0,
+            height:0,
+            imgUrl:imgSrc
+        };
+        $scope.imgOnload = function(_this){
+            // $(_this).removeAttr("onload");
+            $(_this).Jcrop({
+                onChange: showPreview,
+                onSelect: showPreview,
+                aspectRatio: 2,
+                setSelect: [0, 0, 800,800],
+                boxWidth: 800,
+                boxHeight:350
+            });
+        };
+        function showPreview(c){
+            postData.x = c.x;
+            postData.y = c.y;
+            postData.width = c.w;
+            postData.height = c.h;
+        }
+
+        $scope.ok = function () {
+            console.log(postData);
+            if(postData.width<400){
+                $scope.msg = "图片裁剪的最小宽度为 400 px";
+            }else{
+                $scope.msg = "";
+                $scope.loading = true;
+                $http.post(constant.APP_HOST + '/v1/uploade/cut',postData).success(function(data){
+                    $scope.loading = false;
+                    if(data.errMessage){
+                        $scope.msg = data.errMessage;
+                        return;
+                    }
+                    $scope.msg = "";
+                    $timeout(function(){
+                        $uibModalInstance.close(data.data);
+                    },300);
+                }).error(function(a,b,c){
+                    $scope.loading = false;
+                });
+            }
+        };
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss();
+        };
+    }
+]);
 
 
 
