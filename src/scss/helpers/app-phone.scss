@@ -1,7 +1,7 @@
-@import "../../helpers/_variable";
-@import "../../helpers/_mixin";
-@import "../../helpers/_sprite";
-@import "../../helpers/_function";
+@import "./_variable";
+@import "./_mixin";
+@import "./_sprite";
+@import "./_function";
 
 %phone_con{
     position: absolute;
