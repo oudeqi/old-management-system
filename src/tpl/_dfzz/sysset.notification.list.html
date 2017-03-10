@@ -74,8 +74,8 @@
                 <tr ng-repeat="item in list.data.data">
                     <td>{{item.title}}</td>
                     <td class="wrapOne">{{item.content}}</td>
-                    <td>{{item.notiType}}</td>
-                    <td>{{item.pubTime | date:"yyyy/MM/dd HH:mm"}}</td>
+                    <td>{{item.busType}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                      <!-- <td>{{item.pushTime | date:"yyyy/MM/dd HH:mm"}}</td> -->
                     <!-- <td>{{item.name}}</td> -->
                     <!-- <td>{{item.commentCount}}</td> -->
@@ -83,9 +83,9 @@
                 	<td>
                 		
                         <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
-                        <a href="javascript:void(0);" ng-click="pubYes(item)" ng-show="item.pubStatus==2">上线</a>
-                        <a href="javascript:void(0);" ng-click="delYes(item)" ng-show="item.delStatus==2">删除</a>
-                        <a href="javascript:void(0);" style="color:#686868" ng-show="item.pubStatus==1">已推送</a>
+                        <a href="javascript:void(0);" ng-click="pubYes(item)" ng-show="item.status==1">上线</a>
+                        <a href="javascript:void(0);" ng-click="delYes(item)" ng-show="true">删除</a>
+                        <a href="javascript:void(0);" style="color:#686868" ng-show="item.status==2">已推送</a>
                 	</td>
                 </tr>
             </tbody>

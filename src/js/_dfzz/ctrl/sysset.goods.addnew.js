@@ -101,7 +101,7 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
                     animation: true,
                     windowClass: 'modal-cutpic',
                     templateUrl: './tpl/_dfzz/modal.cutpic.html',
-                    controller: 'cutGoodsAddNew1',
+                    controller: 'cutGoodsnohot',
                     size: 'lg',
                     resolve: {
                         imgSrc: function () {
@@ -181,10 +181,10 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
             if($scope.ucoin==null || $scope.ucoin==''){
                 $scope.ucoin=0;
             }
-            if($scope.imgList==null || $scope.imgList==''){
-                $scope.golet('请上传轮播图片')
-                return;
-            }
+            // if($scope.imgList==null || $scope.imgList==''){
+            //     $scope.golet('请上传轮播图片')
+            //     return;
+            // }
             if(!$scope.content){
                 $scope.golet('请填写图文信息');
                 return;

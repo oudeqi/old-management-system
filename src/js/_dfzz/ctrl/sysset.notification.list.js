@@ -46,25 +46,26 @@ app.controller('sysset_notification_list',['$scope','$uibModal','FileUploader','
 
         })
 
-		$http.get(constant.APP_HOST+'/v1/aut/sysset/gettop',{
+		$http.get(constant.APP_HOST+'/v1/aut/push/list/top',{
 			headers:{
                     'Authorization':localStorageService.get("token")
             }, 
 		}).success(function(data){
 			if(data!=null){
-				$scope.top=data.data[0];
+				$scope.top=data.data;
 			}
 		})
 
 		
 		$scope.getList=function(){
 			console.log($scope.search)
-			$http.get(constant.APP_HOST+'/v1/aut/sysset/getallplease',{
+			$http.get(constant.APP_HOST+'/v1/aut/push/list',{
 				params:{
-					notiType:$scope.notiType,
+					busType:$scope.notiType,
 					search:$scope.search,
-					begin:$scope.begin,
-					end:$scope.end,
+					pageIndex:$scope.this_page,
+					// begin:$scope.begin,
+					// end:$scope.end,
 				},
 				headers:{
                     'Authorization':localStorageService.get("token")
@@ -92,15 +93,15 @@ app.controller('sysset_notification_list',['$scope','$uibModal','FileUploader','
 
 		/*上线通知*/
 		$scope.pubYes=function(item){
-				$http.get(constant.APP_HOST+'/v1/aut/sysset/pubnoti',{
+				$http.get(constant.APP_HOST+'/v1/aut/push/online',{
 					params:{
-					nid:item.id,
+					id:item.id,
 				},
 					headers:{
                     'Authorization':localStorageService.get("token")
        				 }, 
 				}).success(function(data){
-						if(data.successStatus==1){
+						if(data.data){
 							// 成功
 							$scope.golet("成功上线")
 							$scope.getList();
@@ -146,15 +147,15 @@ app.controller('sysset_notification_list',['$scope','$uibModal','FileUploader','
             $scope.hasMsg = false;
             $scope.warning = false;
             modalInstance.result.then(function () {
-                $http.get(constant.APP_HOST+'/v1/aut/sysset/delnoti',{
+                $http.delete(constant.APP_HOST+'/v1/aut/push',{
                 	params:{
-					nid:item.id,
+					id:item.id,
 					},
 					headers:{
                     'Authorization':localStorageService.get("token")
        				 }, 
 				}).success(function(data){
-						if(data.successStatus==1){
+						if(data.data){
 							// 成功
 							$scope.golet("删除成功")
 							$scope.getList();
