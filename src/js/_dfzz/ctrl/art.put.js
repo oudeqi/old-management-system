@@ -159,7 +159,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             if($scope.type.id == '8'){//如果文章分类选择视频，文章模板类型改成视频
                 $scope.infoSet.template = 1;
             }
-
         };
 
         $scope.getTpl = function(){

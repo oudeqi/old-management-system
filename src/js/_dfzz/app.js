@@ -318,6 +318,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/user_list",
             templateUrl:"./tpl/_dfzz/user.list.html",
             controller:"user_list"
+        })
+        .state('mall_order',{
+            url:"/mall_order",
+            templateUrl:"./tpl/_dfzz/mall.order.html",
+            controller:"mall_order"
         });
 
 

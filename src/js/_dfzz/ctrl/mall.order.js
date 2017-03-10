@@ -1,76 +1,38 @@
 var app = angular.module('uoudo.dfzz');
-app.controller('treasure_list_stage',['$scope','$http','constant','localStorageService','$uibModal','$state','$timeout','$sce','treasure_types','$stateParams',
-    function($scope,$http,constant,localStorageService,$uibModal,$state,$timeout,$sce,treasure_types,$stateParams){
+app.controller('mall_order',['$scope','$http','constant','localStorageService','FileUploader','$uibModal','$state','$timeout','$sce','$filter',
+    function($scope,$http,constant,localStorageService,FileUploader,$uibModal,$state,$timeout,$sce,$filter){
 
-        console.log($stateParams);
-        $scope.treasureId = $stateParams.treasureId;
-
-        $scope.treasureList = function(){
-            $state.go("treasure_list",{},{reload:true});
-        };
-
-        $scope.status = [{
-            id:0,
-            name:"所有状态"
-        },{
-            id:1,
-            name:"待领取"
-        },{
-            id:2,
-            name:"待发货"
-        },{
-            id:3,
-            name:"已发货"
-        },{
-            id:4,
-            name:"已完成"
-        }];
-        $scope.selectedStatus = $scope.status[0];
+        $scope.currentPage = 1;
+        $scope.pageSize = 13;
+        $scope.maxSize = 5;
+        $scope.list = [];
+        $scope.totalItems = 0;
+        $scope.status = "0";
         $scope.keywords = "";
 
-        //获取概况
-        $http.get(constant.APP_HOST+'/v1/aut/gemSet/list/nowStage',{
-    		headers:{
-    			'Authorization':localStorageService.get("token")
-    		},
-    		params:{
-    			id:$scope.treasureId
-    		}
-    	}).success(function(data){
-            console.log(data);
-    		if(!data.errMessage){
-    			$scope.currStatus = data.data;
-    		}
-    	}).error(function(data){});
-
-
-        $scope.pageSize = 12;
-        $scope.currentPage = 1;
-        $scope.maxSize = 5;
-        $scope.totalItems = 0;
-        $scope.list = [];
-
-        //获取列表
         $scope.getList = function(){
-            $http.get(constant.APP_HOST+'/v1/aut/gemSet/list/beforeStage',{
-    			headers:{
-    				'Authorization':localStorageService.get("token")
-    			},
-    			params:{
-    				id:$scope.treasureId,
-    				status:$scope.selectedStatus.id,
-    				search:$scope.keywords,
-    				pageIndex:$scope.currentPage,
-    				pageSize:$scope.pageSize
-    			}
-    		}).success(function(data){
-                console.log(data);
-                if(!data.errMessage){
+            $http.get(constant.APP_HOST + '/v1/aut/pay/list', {
+                headers: {
+                    'Authorization': localStorageService.get("token")
+                },
+                params:{
+                    search:$scope.keywords,
+                    status:$scope.status,
+                    pageSize:$scope.pageSize,
+                    pageIndex:$scope.currentPage
+                }
+            }).success(function(data) {
+                console.info(data);
+                if (data.errMessage) {
+
+                } else {
+                    $scope.list = data.data.data;
                     $scope.totalItems = data.data.rowCount;
                     $scope.currentPage = data.data.pageIndex;
-                    $scope.list = data.data.data;
                 }
-            }).error(function(data){});
+            }).error(function(data) {
+
+            });
         };
         $scope.getList();
         $scope.pageChanged = function(){
@@ -93,38 +55,16 @@ app.controller('treasure_list_stage',['$scope','$http','constant','localStorageS
             $scope.getList();
         };
 
-        //查看参与列表
-        $scope.checkUserList = function(item){
-            console.log(item);
-            var modalInstance = $uibModal.open({
-                backdrop:'static',
-                animation: true,
-                // windowClass: 'app-modal-table',
-                templateUrl: './tpl/_dfzz/modal.participation.list.html',
-                controller: 'participation_list',
-    			size: "lg",
-    			resolve: {
-    				participationList: function () {
-    					return item;
-    				}
-    			}
-    	    });
-    	    modalInstance.result.then(function (data) {
-    	    	console.info(data);
-    	    }, function () {
-    	    	console.info('模态框取消: ' + new Date());
-    	    });
-        };
-
         //去发货
         $scope.sendGoods = function(item){
-            $http.get(constant.APP_HOST+'/v1/aut/lucky/deliver',{
+            $http.get(constant.APP_HOST+'/v1/aut/goods/deliver',{
     			headers:{
     				'Authorization':localStorageService.get("token")
     			},
     			params:{
-    				id:item.gemSetId,
-    				stage:item.stageNo
+    				id:item.goodsId,
+    				mailType:item.stageNo,
+                    mailNumber:item
     			}
     		}).success(function(data){
                 console.log(data);
@@ -188,10 +128,6 @@ app.controller('treasure_list_stage',['$scope','$http','constant','localStorageS
                 }
             }).error(function(data){});
         };
-
-
-
-
 
 
 

@@ -105,6 +105,9 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-sysset {
                     @include sprite($icon-sysset);
                 }
+                .icon-mall {
+                    @include sprite($icon-mall);
+                }
                 .txt{
                     display: block;
                     width: 100%;
@@ -160,6 +163,9 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-sysset {
                         @include sprite($icon-sysset-act);
+                    }
+                    .icon-mall{
+                        @include sprite($icon-mall-active);
                     }
                 }
                 &:hover{

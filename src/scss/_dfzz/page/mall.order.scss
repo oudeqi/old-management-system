@@ -1,0 +1,35 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+.mall_send{
+    .app-filter{
+        background-color: #fff;
+        margin: 0;
+        margin-bottom: 20px;
+        padding: 0 20px;
+        height: 81px;
+        line-height: 80px;
+        .r{
+            float:left;
+            .app-input-date{
+                line-height: normal;
+                margin-right: 14px;
+            }
+            .app-input-search{
+                line-height: normal;
+            }
+            .glyphicon-search {
+                color:#BFBFBF;
+            }
+            .dataaddon {
+                @include sprite($icon-date-addon);
+            }
+            .app-select {
+                margin:1px 12px 0 0;
+            }
+        }
+
+    }
+
+}
