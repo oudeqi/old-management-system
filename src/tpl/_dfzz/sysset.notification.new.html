@@ -65,6 +65,18 @@
                 </div>
             </div>
 
+            <div ng-show="notiType==5" class="form_row">
+                <div class="tit">
+                    <span>网址链接：</span>
+                </div>
+                <div class="cont">
+                    <input required class="form_ipt" type="text" ng-model="wwwsrc" ng-focus="step = 1" placeholder="请输入网址">
+                    <span class="err" ng-show="false">请输入网址</span>
+                </div>
+            </div>
+
+
+            <div ng-show="notiType!=5">
             <div class="form_row">
                 <div class="tit">
                     <span>链接内容：</span>
@@ -114,7 +126,7 @@
                     </table>
                 </div>
             </div>
-
+        </div>
 
 
            
