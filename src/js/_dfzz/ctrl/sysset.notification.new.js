@@ -13,6 +13,19 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
         $scope.notiType=1;
 
         $scope.systemOs=1;
+        $scope.systemOs_1=false;
+        $scope.systemOs_2=false;
+
+        // $scope.$watch("systemOs_1",function(data){
+        //     if(data){
+        //         if($scope.systemOs_2){
+        //             $scope.systemOs=0;
+        //         }else{
+        //             $scope.systemOs=1;
+        //         }
+        //     }
+           
+        // })
 
         $scope.title=null;
         $scope.content=null;
@@ -53,10 +66,10 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
         }) 
 
         $scope.getSearch=function(){
-            $http.get(constant.APP_HOST+'/v1/aut/sysset/getresult',{
+            $http.get(constant.APP_HOST+'/v1/aut/push/content',{
                 params:{
                     search:$scope.search,
-                    notiType:$scope.notiType,
+                    busType:$scope.notiType,
                 },
                 headers:{
                     'Authorization':localStorageService.get("token")
@@ -86,6 +99,15 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
         }
 
         $scope.pubNow=function(){
+             if($scope.systemOs_1==true && $scope.systemOs_2==true){
+                $scope.systemOs=0;
+            }else if($scope.systemOs_1==true && $scope.systemOs_2==false){
+                $scope.systemOs=1;
+            }else if($scope.systemOs_1==false && $scope.systemOs_2==true){
+                $scope.systemOs=2;
+            }else{
+                $scope.systemOs=null;
+            }
             console.log($scope.notiType,$scope.systemOs,$scope.content,$scope.sidgo)
             if($scope.notiType==null || $scope.systemOs==null || $scope.content==null || $scope.sidgo==null){
                $scope.golet("请填写必要的参数")
@@ -93,16 +115,12 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
             }
 
 
-            $http.post(constant.APP_HOST+'/v1/aut/sysset/addnewnote',{
-                    notiType:$scope.notiType,
+            $http.post(constant.APP_HOST+'/v1/aut/push',{
+                    busType:$scope.notiType,
                     systemOs:$scope.systemOs,
                     title:$scope.title,
                     content:$scope.content,
-                    pubStatus:2,
-                    delStatus:2,
                     busId:$scope.sidgo, //内容id
-                    uid:localStorageService.get("userInfo").uid, //发布者id
-                    siteId:null, //站点权限id
             },{
                 headers:{
                     'Authorization':localStorageService.get("token")

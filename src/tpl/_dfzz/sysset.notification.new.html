@@ -3,7 +3,7 @@
 <div class="art_put_form">
     <div class="inner">
         <div class="l">
-            <div class="phone" style="background-image: url('../src/img/iphone_1.png');">     
+            <div class="app-phone" style="background-image: url(../src/img/iphone_1.png);">     
                     <div class="p_wrap">
                         <div class="p_title">{{title}}</div>
                         <div class="p_content">{{content}}</div>
@@ -32,19 +32,19 @@
                 </div>
                  <div class="cont">
                     <label class="radio_label">
-                        <input type="radio" value="1" ng-change="step = 1" ng-model="systemOs">
+                     <input type="checkbox" value="1" ng-model="systemOs_1">
+                        <!-- <input type="radio" value="1" ng-change="step = 1" ng-model="systemOs"> -->
                         <i class="icon"></i>
                         <span>安卓手机</span>
                     </label>
                     <label class="radio_label">
-                        <input type="radio" value="2" ng-change="step = 1" ng-model="systemOs">
+                    <input type="checkbox" value="2" ng-model="systemOs_2">
+                        <!-- <input type="radio" value="2" ng-change="step = 1" ng-model="systemOs"> -->
                         <i class="icon"></i>
                         <span>苹果手机</span>
                     </label>
                 </div>
             </div>
-
-
             <div class="form_row">
                 <div class="tit">
                     <span>内容标题：</span>

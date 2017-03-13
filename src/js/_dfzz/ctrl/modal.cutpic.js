@@ -436,7 +436,7 @@ app.controller('cutGoodsAddNew', ['$scope','$http','$uibModalInstance','constant
             $(_this).Jcrop({
                 onChange: showPreview,
                 onSelect: showPreview,
-                aspectRatio: 2,
+                aspectRatio: 800/450,
                 setSelect: [0, 0, 800,800],
                 boxWidth: 800,
                 boxHeight:450
@@ -451,8 +451,8 @@ app.controller('cutGoodsAddNew', ['$scope','$http','$uibModalInstance','constant
 
         $scope.ok = function () {
             console.log(postData);
-            if(postData.width<400){
-                $scope.msg = "图片裁剪的最小宽度为 400 px";
+            if(postData.width<700){
+                $scope.msg = "图片裁剪的最小宽度为 700 px";
             }else{
                 $scope.msg = "";
                 $scope.loading = true;
@@ -476,7 +476,7 @@ app.controller('cutGoodsAddNew', ['$scope','$http','$uibModalInstance','constant
         };
     }
 ]);
-app.controller('cutGoodsAddNew1', ['$scope','$http','$uibModalInstance','constant','imgSrc','$timeout',
+app.controller('cutGoodsnohot', ['$scope','$http','$uibModalInstance','constant','imgSrc','$timeout',
     function ($scope,$http,$uibModalInstance,constant,imgSrc,$timeout) {
         $scope.loading = false;
         $scope.imgSrc = constant.APP_HOST + imgSrc;
@@ -492,10 +492,10 @@ app.controller('cutGoodsAddNew1', ['$scope','$http','$uibModalInstance','constan
             $(_this).Jcrop({
                 onChange: showPreview,
                 onSelect: showPreview,
-                aspectRatio: 2,
+                aspectRatio: 800/450,
                 setSelect: [0, 0, 800,800],
                 boxWidth: 800,
-                boxHeight:350
+                boxHeight:450
             });
         };
         function showPreview(c){
@@ -507,8 +507,8 @@ app.controller('cutGoodsAddNew1', ['$scope','$http','$uibModalInstance','constan
 
         $scope.ok = function () {
             console.log(postData);
-            if(postData.width<400){
-                $scope.msg = "图片裁剪的最小宽度为 400 px";
+            if(postData.width<700){
+                $scope.msg = "图片裁剪的最小宽度为 700 px";
             }else{
                 $scope.msg = "";
                 $scope.loading = true;

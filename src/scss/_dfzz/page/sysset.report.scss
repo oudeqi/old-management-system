@@ -2,7 +2,6 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-@import "../../helpers/app-phone";
 
 #sysset_report {
     .app-filter{
@@ -36,22 +35,10 @@
 
 
     .app-table {
-        tbody{
-            tr {
-                td {
-                   
-                }
-                .wrpct{
-                    width:200px;
-                            overflow:hidden;
-                            text-overflow:ellipsis;
-                            -o-text-overflow:ellipsis;
-                            -webkit-text-overflow:ellipsis;
-                            -moz-text-overflow:ellipsis;
-                            white-space:nowrap;
-                }
-            }
-        }
+        table-layout:fixed;
+    }
+    .item_content {
+        @include otw(); 
     }
 
 

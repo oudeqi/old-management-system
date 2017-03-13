@@ -26,7 +26,7 @@
             <thead>
                 <tr>
                     <th>用户名</th>
-                    <td>内容</td>
+                    <th>内容</th>
                     <th>类别</th>
                     <th>举报人</th>
                     <th>备注</th>
@@ -38,7 +38,7 @@
             <tbody>
                 <tr ng-repeat="item in list.data">
                     <td>{{item.nickName}}</td>
-                    <td ng-click="showMoreInfo(item.content)">{{item.content}}</td>
+                    <td class="item_content" ng-click="showMoreInfo(item.content)">{{item.content}}</td>
                     <td>{{item.busTypeName}}</td>
                     <td>{{item.uNames}}</td>
                     <td>{{item.reportType}}</td>
