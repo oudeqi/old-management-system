@@ -2,7 +2,6 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
-@import "../../helpers/_extend";
 #sysset_notification_new {
 .app-button-pubmy {
     width:138px;
@@ -38,8 +37,7 @@
             float: left;
             width: 550px;
             padding: 45px 0;
-            .phone{
-                @extend %phone_art;
+            .app-phone{
                 .post {
                     position:absolute;
                     left:33px;

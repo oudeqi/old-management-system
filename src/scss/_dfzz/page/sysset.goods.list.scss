@@ -5,11 +5,7 @@
 
 #sysset_goods_list {
 
-    .onelinex {
-        width:40%;
-    overflow:hidden;
 
-    }
 
 
 
@@ -52,6 +48,13 @@
 
     .app-pagination {
         background:none;
+    }
+    .app-table {
+        table-layout:fixed;
+    }
+    .onelinex {
+        @include otw(); 
+        max-width:300px;
     }
 
     .app-display-board{
