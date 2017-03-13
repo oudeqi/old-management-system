@@ -2,8 +2,9 @@
     <!-- <button type="button" name="button" ng-click="xx()">xx</button> -->
     <div class="tab" ng-show="putstep === 1">
         <div class="tab-head">
-            <div class="tab-head-item" ng-click="changeRpType(2)" ng-class="{'active':rp.vip===2}">手气红包</div>
-            <!--  ng-click="changeRpType(1)" -->
+            <!--  ng-click="changeRpType(2)" -->
+            <div class="tab-head-item not-allowed" ng-class="{'active':rp.vip===2}">手气红包</div>
+             <!-- ng-click="changeRpType(1)" -->
             <div class="tab-head-item not-allowed" ng-class="{'active':rp.vip===1}">VIP红包</div>
             <div class="tab-head-item" ng-click="changeRpType(0)" ng-class="{'active':rp.vip===0}">大众红包</div>
         </div>

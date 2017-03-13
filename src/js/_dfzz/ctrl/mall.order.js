@@ -56,25 +56,26 @@ app.controller('mall_order',['$scope','$http','constant','localStorageService','
         };
 
         //去发货
+        $scope.sendGoodsModalClicked = false;
         $scope.sendGoods = function(item){
-            $http.get(constant.APP_HOST+'/v1/aut/goods/deliver',{
+            if($scope.sendGoodsModalClicked){
+                return;
+            }
+            $scope.sendGoodsModalClicked = true;
+            $http.get(constant.APP_HOST+'/v1/aut/kuaidi/type',{
     			headers:{
     				'Authorization':localStorageService.get("token")
-    			},
-    			params:{
-    				id:item.goodsId,
-    				mailType:item.stageNo,
-                    mailNumber:item
     			}
     		}).success(function(data){
+                $scope.sendGoodsModalClicked = false;
                 console.log(data);
-                item.data = data.data;
+                item.logistics = data.data;
                 var modalInstance = $uibModal.open({
 					backdrop:'static',
 					animation: true,
                     windowClass: 'modal_sendgoods',
-					templateUrl: './tpl/_dfzz/modal.sendgoods.html',
-					controller: 'sendGoods',
+					templateUrl: './tpl/_dfzz/modal.sendgoods.order.html',
+					controller: 'sendGoods_order',
 					size: "lg",
 					resolve: {
 						sendGoodsInfo: function () {
@@ -87,32 +88,35 @@ app.controller('mall_order',['$scope','$http','constant','localStorageService','
 			    }, function () {
 			    	console.info('模态框取消: ' + new Date());
 			    });
-            }).error(function(data){});
+            }).error(function(data){
+                $scope.sendGoodsModalClicked = false;
+            });
         };
 
         //查看物流
+        $scope.logisticsModalClicked = false;
         $scope.checkLogistics = function(item){
-            $http.get(constant.APP_HOST+'/v1/aut/gem/view/road',{
+            if($scope.logisticsModalClicked){
+                return;
+            }
+            $scope.logisticsModalClicked = true;
+            $http.get(constant.APP_HOST+'/v1/aut/kuaidi/road',{
     			headers:{
     				'Authorization':localStorageService.get("token")
     			},
     			params:{
-    				id:item.gemSetId,
-    				stage:item.stageNo
+    				id:item.goodsId,
     			}
     		}).success(function(data){
+                $scope.logisticsModalClicked = false;
                 console.log(data);
                 if(!data.errMessage){
-                    data.data.id = item.gemSetId;
-    				data.data.stage = item.stageNo;
-                    data.data.type2 = data.data.type;
-                    data.data.number2 = data.data.number;
     				var modalInstance = $uibModal.open({
     			    	backdrop:'static',
     					animation: true,
                         windowClass: 'modal_checkLogistics',
-    					templateUrl: './tpl/_dfzz/modal.checklogistics.html',
-    					controller: 'checkLogistics',
+    					templateUrl: './tpl/_dfzz/modal.checklogistics.order.html',
+    					controller: 'checkLogistics_order',
     					size: "lg",
     					resolve: {
     						logisticsInfo: function () {
@@ -126,13 +130,9 @@ app.controller('mall_order',['$scope','$http','constant','localStorageService','
     			    	console.info('模态框取消: ' + new Date());
     			    });
                 }
-            }).error(function(data){});
+            }).error(function(data){
+                $scope.logisticsModalClicked = false;
+            });
         };
-
-
-
-
-
-
     }
 ]);

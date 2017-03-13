@@ -2,13 +2,12 @@ var app = angular.module('uoudo.index',[
     'ui.router',
     'LocalStorageModule',
     'angularFileUpload',
-    'tpl.index'
+    // 'tpl.index'
 ]);
 
 app.constant("constant",{
-    // APP_HOST:"http://localhost:8080/",
-  // APP_HOST : "http://192.168.10.254:8082/", //远程接口
-  APP_HOST : "http://partner.uoolle.com/",
+  APP_HOST : "http://192.168.10.254:8082/", //远程接口
+  // APP_HOST : "http://partner.uoolle.com/",
 });
 
 app.run(['$rootScope','$state',

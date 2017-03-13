@@ -11,7 +11,7 @@ app.controller('rp_put',['$scope','$uibModal','FileUploader','constant','localSt
         }else{
             $scope.rp = {
                 deleteId:null,
-                vip:2,//1vip，0大众 //2其他
+                vip:0,//1vip，0大众 //2其他 // 删除手气红包，u币红包
                 type:1,//红包类型  1为随机红包,2为平均红包
             	name:"",//投放品牌
             	logo:"",// 品牌标志
@@ -110,7 +110,7 @@ app.controller('rp_put',['$scope','$uibModal','FileUploader','constant','localSt
             $scope.removeCache();
             $scope.rp = {
                 deleteId:null,
-                vip:2,//1vip，0大众 //2其他
+                vip:0,//1vip，0大众 //2其他
                 type:1,//红包类型  1为随机红包,2为平均红包
             	name:"",//投放品牌
             	logo:"",// 品牌标志
@@ -154,7 +154,6 @@ app.controller('rp_put',['$scope','$uibModal','FileUploader','constant','localSt
         };
         uploadLogo.onSuccessItem  = function(item,response){
             console.log(response);
-            // TODO 上传后的图片不能再次上传
             if(item.isSuccess){
                 var modalInstance = $uibModal.open({
                     backdrop:'static',

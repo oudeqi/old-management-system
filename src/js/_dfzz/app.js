@@ -4,13 +4,12 @@ var app = angular.module('uoudo.dfzz',[
     'ui.router',
     'ui.bootstrap',
     'angularFileUpload',
-    'tpl.dfzz'
+    // 'tpl.dfzz'
 ]);
 
 app.constant("constant",{
-    // APP_HOST:"http://localhost:8080/",
-  // APP_HOST : "http://192.168.10.254:8082/", //远程接口
-  APP_HOST : "http://partner.uoolle.com/",
+  APP_HOST : "http://192.168.10.254:8082/", //远程接口
+  // APP_HOST : "http://partner.uoolle.com/",
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
               '<head>'+
@@ -58,6 +57,7 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
         // $rootScope.permission.menu_gem_verify = "1";
         // $rootScope.permission.menu_rp = "0";
+        $rootScope.permission.button_info_ucoin = "0"; //取消u币文章
 
         // 二级导航切换
         $rootScope.currNav = 30000000;

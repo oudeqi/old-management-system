@@ -1,4 +1,33 @@
 angular.module('uoudo.dfzz')
+.directive("fixed",["$document",function($document){
+    return {
+        restrict:"A",
+        link:function(scope,ele,attrs){
+            var offset = ele.offset();
+            var pOffset = ele.offsetParent().offset();
+            ele.css({
+                "position":"absolute",
+                "top": offset.top - pOffset.top + $document.scrollTop() + "px",
+                "left": offset.left - pOffset.left + "0px"
+            });
+            $document.on("scroll",function(e){
+                if((offset.top + ele.innerHeight()) > window.innerHeight){
+                    ele.css({
+                        "position":"relative",
+                        "top": "0px",
+                        "left": "0px"
+                    });
+                }else{
+                    ele.css({
+                        "position":"absolute",
+                        "top": offset.top - pOffset.top + $document.scrollTop() + "px",
+                        "left": offset.left - pOffset.left + "0px"
+                    });
+                }
+            });
+        }
+    };
+}])
 .directive("bgCover",function(){
     return {
         restrict: 'A',
@@ -24,13 +53,46 @@ angular.module('uoudo.dfzz')
         }
     };
 })
+
+.directive('contentEditable',["$timeout",function($timeout){
+    return {
+        restrict: 'E',
+        replace: true,
+        scope:{
+            currentValue:"=changeModel"
+        },
+        template:'<div><p class="content" contenteditable="true"></p>'+
+                 '<p class="placeholder" ng-click="editFocus()" ng-show="!currentValue">添加图片描述</p></div>',
+        link: function(scope,element, attrs){
+            element.find(".content").html(scope.currentValue);
+            scope.editFocus = function(){
+                element.find(".content").focus();
+            };
+            element.find(".content").bind("input",function(e){
+
+                scope.$apply(function(){
+                    scope.currentValue = element.find(".content").html();
+                });
+                var timer = null;
+                if(timer){
+                    return;
+                }
+                timer = $timeout(function(){
+                    scope.$emit("txtedit",element.find(".content").html());
+                    timer = null;
+                },150);
+
+            });
+        }
+    };
+}])
 .directive("multPicEdit",['constant','localStorageService','$http',function(constant,localStorageService,$http){
     return {
         restrict: 'E',
         replace: true,
         transclude: true,
         scope:{
-            arr:'=ngModel'
+            arr:'=multPic'
         },
         template: function(element, attrs) {
             var html = '';
@@ -41,8 +103,7 @@ angular.module('uoudo.dfzz')
             html +=             '<img ng-src="{{item.imgUrl}}" alt="">';
             html +=         '</div>';
             html +=         '<div class="editable">';
-            html +=             '<p class="content" contenteditable="true" ng-model="item.explain" change-model>{{item.explain}}</p>';
-            html +=             '<p class="placeholder" ng-click="editFocus()" ng-show="!item.explain">添加图片描述</p>';
+            html +=             '<content-editable change-model="item.explain"></content-editable>';
             html +=         '</div>';
             html +=     '</div>';
             html +=     '<div class="btn_cont">';
@@ -60,12 +121,17 @@ angular.module('uoudo.dfzz')
             return html;
         },
         link:function(scope,element, attrs, ctrl){
-            console.log(scope.arr);
-            scope.delPic = function(index){
-                scope.arr.splice(index,1);
+            scope.$on("txtedit",function(a,b){
+                storage();
+            });
+            function storage(){
                 var art = localStorageService.get('art.put');
                 art.multPic = scope.arr;
                 localStorageService.set('art.put',art);
+            }
+            scope.delPic = function(index){
+                scope.arr.splice(index,1);
+                storage();
             };
             scope.addPic = function(){
                 element.find('input[type="file"]').click();
@@ -84,9 +150,7 @@ angular.module('uoudo.dfzz')
                                   imgUrl: req.responseText,
                                   explain: ""
                               });
-                              var art = localStorageService.get('art.put');
-                              art.multPic = scope.arr;
-                              localStorageService.set('art.put',art);
+                              storage();
                           });
                      } else {
                           console.error(req);
@@ -94,27 +158,13 @@ angular.module('uoudo.dfzz')
                 };
                 req.send(fd);
             };
-            scope.editFocus = function(){
-                element.find(".content").focus();
-            };
             scope.testshow = function(){
                 console.log(scope.arr);
             };
         }
     };
 }])
-.directive('changeModel',function(){
-    return {
-        restrict: 'A',
-        require: '?ngModel',
-        link: function(scope,element, attrs, ctrl){
-            element.bind("input",function(e){
-                ctrl.$setViewValue(e.target.innerText);
-            });
 
-        }
-    };
-})
 .directive('switch', function(){
     return {
         restrict: 'AE',

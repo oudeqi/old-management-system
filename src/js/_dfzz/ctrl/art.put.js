@@ -3,15 +3,15 @@ var app = angular.module('uoudo.dfzz');
 app.controller('art_put',['$scope','$http','constant','localStorageService','FileUploader','$uibModal','$state','$timeout','$sce','$filter',
     function($scope,$http,constant,localStorageService,FileUploader,$uibModal,$state,$timeout,$sce,$filter){
 
-        $scope.step = 1;//当前显示页数
+        $scope.step = 1; //当前显示页数
         $scope.art = localStorageService.get('art.put');
         console.log($scope.art);
         if(!!$scope.art){
             $scope.artEdit = true;
             var content="",videoCon="";
-            if($scope.art.template == "1"){//视频
+            if($scope.art.template == "1"){ //视频
                 videoCon = $scope.art.content;
-            }else if($scope.art.template == "2"){//图文
+            }else if($scope.art.template == "2"){ //图文
                 content = $scope.art.content;
             }
             $scope.infoSet = {
@@ -31,7 +31,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             $scope.imageUrl = $scope.art.imageUrl;//视频封面图
             $scope.videoUrl = $scope.art.videoUrl;//视频地址
             $scope.multPic = $scope.art.multPic;//多图模板
-            console.log($scope.multPic);
+            // console.log($scope.multPic);
             $scope.pushTime = $filter('date')($scope.art.pushTime, "yyyy-MM-dd HH:mm");//发布时间
             if($scope.deleteId && $scope.deleteId !== 0){
                 $scope.artEdit = true;
@@ -85,7 +85,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             'pushTime',
             'multPic'
         ],function(){
-            console.log($scope.multPic);
+            // console.log($scope.multPic);
             var content = "";
             if($scope.infoSet.template == "1"){//视频
                 content = $scope.infoSet.videoCon;
@@ -162,11 +162,17 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         };
 
         $scope.getTpl = function(){
-            $http.get('http://m.miaopai.com/show/channel/c5748uW2GmYLewn0p2-XFw__?from=groupmessage&isappinstalled=1')
-            .success(function(data){
-                console.log(data);
-            })
-            .error(function(data){
+            $http.get(constant.APP_HOST + 'v1/aut/outer/html/content', {
+                headers: {
+                    'Authorization': localStorageService.get("token")
+                },
+                params:{
+                    str:$scope.url
+                }
+            }).success(function(data){
+                console.log(data.data);
+                console.log($(data.data)[40]);
+            }).error(function(data){
 
             });
         };
@@ -273,7 +279,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
-            console.log("x");
             if($scope.infoSet.template == "1" || $scope.type.id == '8'){//视频
                 if($scope.videoUrl){
                     $scope.noVideoUrl = false;
@@ -306,17 +311,20 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             var content = "",pushTime = null;
             if($scope.infoSet.template === "1"){ //视频模板
                 content = $scope.infoSet.videoCon;
-            }else{//图文模板
+            }else{ //图文模板
                 content = constant.UMEDITOR_CONTENT_HEADER + $scope.infoSet.content + constant.UMEDITOR_CONTENT_FOOTER;
-                // content = $scope.infoSet.content;
+            }
+            //文章分类视频
+            if($scope.type.id == '8'){
+                content = "";
             }
             if($scope.pushTime){
                 pushTime = $scope.pushTime + ":00";
                 pushTime = new Date(pushTime).getTime();
             }
-            if($scope.infoSet.template == "3"){//封面
+            if($scope.infoSet.template == "3"){ //封面
                 $scope.infoSet.top = 0;
-            }else if($scope.infoSet.template == "4"){//多图
+            }else if($scope.infoSet.template == "4"){ //多图
                 $scope.infoSet.top = 0;
             }
             $http.post(constant.APP_HOST+'/v1/aut/info/publish',{

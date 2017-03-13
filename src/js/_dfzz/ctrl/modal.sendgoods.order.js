@@ -1,11 +1,12 @@
 var app = angular.module('uoudo.dfzz');
-app.controller('sendGoods',['$scope','$uibModalInstance','sendGoodsInfo','$http','constant','localStorageService',
+app.controller('sendGoods_order',['$scope','$uibModalInstance','sendGoodsInfo','$http','constant','localStorageService',
     function($scope,$uibModalInstance,sendGoodsInfo,$http,constant,localStorageService){
 
         console.log(sendGoodsInfo);
+
         $scope.sendGoodsInfo = sendGoodsInfo;
         $scope.mailType = {};//物流类型
-        $scope.mailType.type = $scope.sendGoodsInfo.data.mailTypeList[0].type;
+        $scope.mailType.type = $scope.sendGoodsInfo.logistics[0].type;
         $scope.mailNumber = "";//运单号码
         $scope.selected = false;
         $scope.err = "";
@@ -13,7 +14,7 @@ app.controller('sendGoods',['$scope','$uibModalInstance','sendGoodsInfo','$http'
         $scope.mailName = "";
 
         $scope.$watch("mailType",function(n,o){
-            angular.forEach($scope.sendGoodsInfo.data.mailTypeList,function(i){
+            angular.forEach($scope.sendGoodsInfo.logistics,function(i){
                 if(n.type == i.type){
                     $scope.mailName = i.name;
                 }
@@ -34,9 +35,8 @@ app.controller('sendGoods',['$scope','$uibModalInstance','sendGoodsInfo','$http'
         };
 
         $scope.submit = function(){
-            $http.post(constant.APP_HOST+'/v1/aut/lucky/deliver',{
-                id:$scope.sendGoodsInfo.data.id,
-                stage:$scope.sendGoodsInfo.data.stage,
+            $http.post(constant.APP_HOST+'/v1/aut/goods/deliver',{
+                id:$scope.sendGoodsInfo.goodsId,
                 mailType:$scope.mailType.type,
                 mailNumber:$scope.mailNumber
             },{
