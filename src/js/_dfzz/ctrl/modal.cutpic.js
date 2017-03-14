@@ -451,8 +451,8 @@ app.controller('cutGoodsAddNew', ['$scope','$http','$uibModalInstance','constant
 
         $scope.ok = function () {
             console.log(postData);
-            if(postData.width<700){
-                $scope.msg = "图片裁剪的最小宽度为 700 px";
+            if(postData.width<400){
+                $scope.msg = "图片裁剪的最小宽度为 400 px";
             }else{
                 $scope.msg = "";
                 $scope.loading = true;
@@ -507,8 +507,8 @@ app.controller('cutGoodsnohot', ['$scope','$http','$uibModalInstance','constant'
 
         $scope.ok = function () {
             console.log(postData);
-            if(postData.width<700){
-                $scope.msg = "图片裁剪的最小宽度为 700 px";
+            if(postData.width<400){
+                $scope.msg = "图片裁剪的最小宽度为 400 px";
             }else{
                 $scope.msg = "";
                 $scope.loading = true;
