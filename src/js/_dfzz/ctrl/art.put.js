@@ -170,8 +170,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     str:$scope.url
                 }
             }).success(function(data){
-                console.log(data.data);
-                console.log($(data.data)[40]);
+                $scope.infoSet.content = data.data;
             }).error(function(data){
 
             });
