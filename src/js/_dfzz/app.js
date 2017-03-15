@@ -4,7 +4,7 @@ var app = angular.module('uoudo.dfzz',[
     'ui.router',
     'ui.bootstrap',
     'angularFileUpload',
-    // 'tpl.dfzz'
+    'tpl.dfzz'
 ]);
 
 app.constant("constant",{

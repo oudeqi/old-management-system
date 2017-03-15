@@ -29,6 +29,7 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
 
         $scope.title=null;
         $scope.content=null;
+        $scope.wwwsrc=null;
 
         $scope.search=null; //子搜索内容
         $scope.searchRes=[];
@@ -49,6 +50,9 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
             notiType:4,
             name:"任务",
 
+        },{
+            notiType:5,
+            name:"网页",
         }]
         $scope.sec={
             notiType:1,
@@ -109,11 +113,14 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
                 $scope.systemOs=null;
             }
             console.log($scope.notiType,$scope.systemOs,$scope.content,$scope.sidgo)
-            if($scope.notiType==null || $scope.systemOs==null || $scope.content==null || $scope.sidgo==null){
+            // if($scope.notiType==null || $scope.systemOs==null || $scope.content==null || $scope.sidgo==null){
+            //    $scope.golet("请填写必要的参数")
+            //     return;
+            // }
+             if($scope.notiType==null || $scope.systemOs==null || $scope.content==null){
                $scope.golet("请填写必要的参数")
                 return;
             }
-
 
             $http.post(constant.APP_HOST+'/v1/aut/push',{
                     busType:$scope.notiType,
@@ -121,13 +128,14 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
                     title:$scope.title,
                     content:$scope.content,
                     busId:$scope.sidgo, //内容id
+                    url:$scope.wwwsrc,
             },{
                 headers:{
                     'Authorization':localStorageService.get("token")
                 }, 
             }).success(function(data){
                 console.log(data);
-                if(data.errmsg){
+                if(data.errMessage){
                     $scope.golet("发布失败，请重试");
                 }else{
                     $scope.systemOs=1;
