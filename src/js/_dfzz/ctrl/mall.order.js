@@ -105,7 +105,7 @@ app.controller('mall_order',['$scope','$http','constant','localStorageService','
     				'Authorization':localStorageService.get("token")
     			},
     			params:{
-    				id:item.goodsId,
+    				id:item.id,
     			}
     		}).success(function(data){
                 $scope.logisticsModalClicked = false;

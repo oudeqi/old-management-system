@@ -29,6 +29,7 @@
                     <th>收货地址</th>
                     <th>售价</th>
                     <th>购买价格</th>
+                    <th>支付方式</th>
                     <th>数量</th>
                     <th>购买时间</th>
                     <th>操作</th>
@@ -42,6 +43,7 @@
                     <td>{{item.detailAddress}}</td>
                     <td>{{item.price | currency : "￥" : 2}}</td>
                     <td>{{item.money | currency : "￥" : 2}}</td>
+                    <td>{{item.payType}}</td>
                     <td>{{item.number | number : 0}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                     <td>
@@ -53,6 +55,7 @@
                 </tr>
             </tbody>
         </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
     </div>
     <div class="app-pagination">
         <ul uib-pagination

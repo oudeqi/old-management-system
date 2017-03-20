@@ -69,7 +69,6 @@ angular.module('uoudo.dfzz')
                 element.find(".content").focus();
             };
             element.find(".content").bind("input",function(e){
-
                 scope.$apply(function(){
                     scope.currentValue = element.find(".content").html();
                 });

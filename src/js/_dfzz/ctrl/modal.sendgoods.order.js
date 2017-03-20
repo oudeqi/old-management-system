@@ -36,7 +36,7 @@ app.controller('sendGoods_order',['$scope','$uibModalInstance','sendGoodsInfo','
 
         $scope.submit = function(){
             $http.post(constant.APP_HOST+'/v1/aut/goods/deliver',{
-                id:$scope.sendGoodsInfo.goodsId,
+                id:$scope.sendGoodsInfo.id,
                 mailType:$scope.mailType.type,
                 mailNumber:$scope.mailNumber
             },{

@@ -187,3 +187,18 @@ textarea{
         transform:translateY(-100px);
     }
 }
+
+// 抓取微信文章 修复样式
+@media screen and (min-width: 1024px){
+    .rich_media{
+        width: auto !important;
+    }
+}
+@media screen and (min-width: 1024px){
+    .rich_media_inner {
+        padding: 0 !important;
+    }
+}
+.rich_media_area_primary{
+    padding: 0 !important;
+}

@@ -223,11 +223,10 @@ gulp.task('inject:index', function() {
             relative: true
         }))
         .pipe(inject(gulp.src('./src/js/_index/**/*.js', {
-                read: true
-            })
-            .pipe(angularFilesort()), {
-                relative: true
-            }))
+            read: true
+        }).pipe(angularFilesort()), {
+            relative: true
+        }))
         .pipe(gulp.dest('./src'));
 });
 // 引入dfzz
@@ -239,12 +238,23 @@ gulp.task('inject:dfzz', function() {
             relative: true
         }))
         .pipe(inject(gulp.src('./src/js/_dfzz/**/*.js', {
-                read: true
-            })
-            .pipe(angularFilesort()), {
-                relative: true
-            }))
+            read: true
+        }), {
+            relative: true
+        }))
         .pipe(gulp.dest('./src'));
+    // return gulp.src('./src/dfzz.html')
+    //     .pipe(inject(gulp.src('./src/css/_dfzz/**/*.css', {
+    //         read: false
+    //     }), {
+    //         relative: true
+    //     }))
+    //     .pipe(inject(gulp.src('./src/js/_dfzz/**/*.js', {
+    //         read: true
+    //     }).pipe(angularFilesort()), {
+    //         relative: true
+    //     }))
+    //     .pipe(gulp.dest('./src'));
 });
 
 // 生成 index模板
