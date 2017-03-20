@@ -231,18 +231,6 @@ gulp.task('inject:index', function() {
 });
 // 引入dfzz
 gulp.task('inject:dfzz', function() {
-    return gulp.src('./src/dfzz.html')
-        .pipe(inject(gulp.src('./src/css/_dfzz/**/*.css', {
-            read: false
-        }), {
-            relative: true
-        }))
-        .pipe(inject(gulp.src('./src/js/_dfzz/**/*.js', {
-            read: true
-        }), {
-            relative: true
-        }))
-        .pipe(gulp.dest('./src'));
     // return gulp.src('./src/dfzz.html')
     //     .pipe(inject(gulp.src('./src/css/_dfzz/**/*.css', {
     //         read: false
@@ -251,10 +239,22 @@ gulp.task('inject:dfzz', function() {
     //     }))
     //     .pipe(inject(gulp.src('./src/js/_dfzz/**/*.js', {
     //         read: true
-    //     }).pipe(angularFilesort()), {
+    //     }), {
     //         relative: true
     //     }))
     //     .pipe(gulp.dest('./src'));
+    return gulp.src('./src/dfzz.html')
+        .pipe(inject(gulp.src('./src/css/_dfzz/**/*.css', {
+            read: false
+        }), {
+            relative: true
+        }))
+        .pipe(inject(gulp.src('./src/js/_dfzz/**/*.js', {
+            read: true
+        }).pipe(angularFilesort()), {
+            relative: true
+        }))
+        .pipe(gulp.dest('./src'));
 });
 
 // 生成 index模板

@@ -71,7 +71,7 @@
                     </div>
                     <button class="add_pic_btn" ng-show="!previewUrl" type="button" name="button" ng-click="clickAddFM()"></button>
                     <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadFM" nv-file-select="" uploader="uploadFM" />
-                    <span class="tip" ng-show="!uploadFM.queue[0].progress">支持jpg格式 大于700px</span>
+                    <span class="tip" ng-show="!uploadFM.queue[0].progress">支持jpg格式 大于400px</span>
                     <span class="tip" ng-show="!!uploadFM.queue[0].progress">{{uploadFM.queue[0].progress}} %</span>
                     <span class="err" ng-show="picUploadErr || noPreviewUrl">{{picUploadErr || "请上传文章封面图"}}</span>
                 </div>
@@ -91,7 +91,7 @@
                     </div>
                     <button class="add_pic_btn" type="button" name="button" ng-click="clickAddBanner()"></button>
                     <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadBanner" nv-file-select="" uploader="uploadBanner" />
-                    <span class="tip" ng-show="!uploadBanner.queue[0].progress">支持jpg格式 大于700px</span>
+                    <span class="tip" ng-show="!uploadBanner.queue[0].progress">支持jpg格式 大于400px</span>
                     <span class="tip" ng-show="!!uploadBanner.queue[0].progress">{{uploadBanner.queue[0].progress}} %</span>
                     <span class="err" ng-show="picUploadErr || noImgList">{{picUploadErr || "请上传轮播图"}}</span>
                 </div>
@@ -144,7 +144,7 @@
                     <span>图文信息：</span>
                 </div>
                 <div class="cont">
-                    <app-editor-mu ng-model="content" ng-click="step = 2"></app-editor-mu>
+                    <app-editor-mu ng-model="content"></app-editor-mu>
                 </div>
                 <p class="err_block" ng-show="noGoodsInfo">请编辑内容</p>
             </div>
