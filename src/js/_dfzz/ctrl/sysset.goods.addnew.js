@@ -141,11 +141,10 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
 
         $scope.content=''; //商品富文本
 
-
-        $scope.$watch("content",function(nv,ov){
-            console.log(nv);
-            // $scope.content = $sce.trustAsHtml(nv);
-        });
+        // $scope.relcontent='';
+        // $scope.$watch("content",function(nv,ov){
+        //     $scope.relcontent = $sce.trustAsHtml(nv);
+        // });
         $scope.$watch("sec",function(nv,ov){
             console.log(nv.id)
             $scope.goodsTypeId=nv.id;
@@ -162,6 +161,7 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
 
         // difanglianzongbu
         $scope.pubYes=function(){
+            console.log($scope.content)
             if($scope.previewUrl=='' || $scope.previewUrl==null){
                 $scope.golet('请上传封面')
                 return;
@@ -193,6 +193,10 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
                 $scope.golet('请输入库存');
                 return;
             }
+
+            
+
+
 
 
 
