@@ -4,12 +4,12 @@ var app = angular.module('uoudo.dfzz',[
     'ui.router',
     'ui.bootstrap',
     'angularFileUpload',
-    // 'tpl.dfzz'
+    'tpl.dfzz'
 ]);
 
 app.constant("constant",{
-  APP_HOST : "http://192.168.10.254:8082/", //远程接口
-  // APP_HOST : "http://partner.uoolle.com/",
+  // APP_HOST : "http://192.168.10.254:8082/", //远程接口
+  APP_HOST : "http://partner.uoolle.com/",
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
               '<head>'+
@@ -313,16 +313,6 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/sysset.notification.new.html",
             controller:"sysset_notification_new",
         })
-        .state('sysset_goods_addnew',{
-            url:"/sysset_goods_addnew",
-            templateUrl:"./tpl/_dfzz/sysset.goods.addnew.html",
-            controller:"sysset_goods_addnew",
-        })
-        .state('sysset_goods_list',{
-            url:"/sysset_goods_list",
-            templateUrl:"./tpl/_dfzz/sysset.goods.list.html",
-            controller:"sysset_goods_list",
-        })
         .state('finance_mgetout',{
             url:"/finance_mgetout",
             templateUrl:"./tpl/_dfzz/finance.mgetout.html",
@@ -342,6 +332,16 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/user_list",
             templateUrl:"./tpl/_dfzz/user.list.html",
             controller:"user_list"
+        })
+        .state('mall_goods_addnew',{
+            url:"/mall_goods_addnew",
+            templateUrl:"./tpl/_dfzz/sysset.goods.addnew.html",
+            controller:"sysset_goods_addnew",
+        })
+        .state('mall_goods_list',{
+            url:"/mall_goods_list",
+            templateUrl:"./tpl/_dfzz/sysset.goods.list.html",
+            controller:"sysset_goods_list",
         })
         .state('mall_order',{
             url:"/mall_order",

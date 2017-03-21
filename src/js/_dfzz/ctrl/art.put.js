@@ -113,6 +113,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                multPic: $scope.multPic,
                content: content
             };
+            console.log(art);
             localStorageService.set('art.put',art);
         });
         $http.get(constant.APP_HOST + '/v1/aut/info/type/list', {
@@ -162,20 +163,36 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         };
 
         $scope.getTpl = function(){
-            $http.get(constant.APP_HOST + 'v1/aut/outer/html/content', {
-                headers: {
-                    'Authorization': localStorageService.get("token")
-                },
-                params:{
-                    str:$scope.url
-                }
-            }).success(function(data){
-                $scope.infoSet.content = data.data;
-            }).error(function(data){
+            if($scope.url){
+                $http.get(constant.APP_HOST + 'v1/aut/outer/html/content', {
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    },
+                    params:{
+                        str:$scope.url
+                    }
+                }).success(function(data){
+                    $scope.infoSet.content = data.data;
+                    var msg_title = data.data.match(/(var msg_title = "){1}(.*)(";){1}/)[2];
+                    var nickname = data.data.match(/(var nickname = "){1}(.*)(";){1}/)[2];
+                    var msg_cdn_url = data.data.match(/(var msg_cdn_url = "){1}(.*)(";){1}/)[2];
 
-            });
+                    $scope.infoSet.title = msg_title;
+                    $scope.infoSet.sellerName = nickname;
+                    $scope.previewUrl = msg_cdn_url;
+
+                    console.log($scope.infoSet.title);
+                    console.log($scope.infoSet.sellerName);
+                    console.log($scope.previewUrl);
+
+                }).error(function(data){
+
+                });
+            }
         };
-
+        console.log($scope.infoSet.title);
+        console.log($scope.infoSet.sellerName);
+        console.log($scope.previewUrl);
         //视频地址
         $scope.clickBtnVideo = function(){
             document.getElementById("uploadVideo").click();
@@ -263,6 +280,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 $scope.noTit = true;
                 return;
             }
+
             if($scope.infoSet.sellerName){
                 $scope.noSellerName = false;
             }else{
@@ -278,6 +296,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
+console.log("http://mp.weixin.qq.com/s/sEDIvQc_ICQjEMwstHL9KA");
             if($scope.infoSet.template == "1" || $scope.type.id == '8'){//视频
                 if($scope.videoUrl){
                     $scope.noVideoUrl = false;
@@ -286,6 +305,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
+
             if($scope.infoSet.template == "2" && $scope.type.id != '8'){//图文模板
                 if($scope.infoSet.content){
                     $scope.noContent = false;

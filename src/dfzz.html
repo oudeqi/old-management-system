@@ -15,12 +15,6 @@
 
         <!-- build:css css/_dfzz/app/app.css -->
         <!-- inject:css -->
-        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
-        <link rel="stylesheet" href="css/_dfzz/base/base.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -55,6 +49,12 @@
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/switch.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
+        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
+        <link rel="stylesheet" href="css/_dfzz/base/base.css">
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
@@ -115,8 +115,9 @@
 
         <!-- build:js js/_dfzz/app.js -->
         <!-- inject:js -->
-        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
+        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
@@ -176,7 +177,6 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -288,7 +288,7 @@
                     <!--商城-->
                     <!--  -->
                     <li class="item" ng-if="permission.menu_mall=='1'">
-                        <a href="javascript:void(0);" ui-sref="mall_order" ng-class="{'active':mainNav==='mall'}" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()">
+                        <a href="javascript:void(0);" ui-sref="mall_goods_addnew" ng-class="{'active':mainNav==='mall'}" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-mall"></i>
                             <span class="txt">商城</span>
                         </a>
@@ -538,13 +538,13 @@
                </div>
                <ul class="list">
                    <li class="item">
-                        <a href="javascript:void(0);" ui-sref="sysset_goods_addnew" ui-sref-active="active">新增商品</a>
+                        <a href="javascript:void(0);" ui-sref="mall_goods_addnew" ui-sref-active="active">新增商品</a>
                     </li>
                      <li class="item">
-                        <a href="javascript:void(0);" ui-sref="sysset_goods_list" ui-sref-active="active">商品列表</a>
+                        <a href="javascript:void(0);" ui-sref="mall_goods_list" ui-sref-active="active">商品列表</a>
                     </li>
                    <li class="item">
-                        <a href="javascript:void(0);" ui-sref="mall_order" ui-sref-active="active">商城发货</a>
+                        <a href="javascript:void(0);" ui-sref="mall_order" ui-sref-active="active">订单管理</a>
                     </li>
                 </ul>
             </div>

@@ -22,12 +22,13 @@
             }
             .glyphicon-search {
                 color:#BFBFBF;
-            }   
+            }
             .dataaddon {
                 @include sprite($icon-date-addon);
             }
             .app-select {
-                margin:1px 12px 0 0;
+                line-height: normal;
+                margin-right:12px;
             }
         }
         .rx {
