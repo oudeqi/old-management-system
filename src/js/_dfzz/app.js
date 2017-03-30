@@ -9,6 +9,7 @@ var app = angular.module('uoudo.dfzz',[
 
 app.constant("constant",{
   // APP_HOST : "http://192.168.10.254:8082/", //远程接口
+  // APP_HOST : "http://192.168.10.30:8080/", //远程接口
   APP_HOST : "http://partner.uoolle.com/",
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
@@ -59,7 +60,7 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
         // }
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
         // $rootScope.permission.menu_gem_verify = "1";
-        // $rootScope.permission.menu_rp = "0";
+        // $rootScope.permission.menu_vote = "1";
         $rootScope.permission.button_info_ucoin = "0"; //取消u币文章
 
         // 二级导航切换
@@ -347,6 +348,31 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/mall_order",
             templateUrl:"./tpl/_dfzz/mall.order.html",
             controller:"mall_order"
+        })
+        .state('vote_put',{
+            url:"/vote_put",
+            templateUrl:"./tpl/_dfzz/vote.put.html",
+            controller:"vote_put"
+        })
+        .state('vote_list',{
+            url:"/vote_list",
+            templateUrl:"./tpl/_dfzz/vote.list.html",
+            controller:"vote_list"
+        })
+        .state('vote_player_list',{
+            url:"/vote_player_list/{id}",
+            templateUrl:"./tpl/_dfzz/vote.player.list.html",
+            controller:"vote_player_list"
+        })
+        .state('vote_detail',{
+            url:"/vote_detail/{id}",
+            templateUrl:"./tpl/_dfzz/vote.detail.html",
+            controller:"vote_detail"
+        })
+        .state('vote_player_detail',{
+            url:"/vote_player_detail/{voteId}/{id}",
+            templateUrl:"./tpl/_dfzz/vote.player.detail.html",
+            controller:"vote_player_detail"
         });
 
 

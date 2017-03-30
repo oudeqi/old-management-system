@@ -15,6 +15,12 @@
 
         <!-- build:css css/_dfzz/app/app.css -->
         <!-- inject:css -->
+        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
+        <link rel="stylesheet" href="css/_dfzz/base/base.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -49,12 +55,6 @@
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/switch.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
-        <link rel="stylesheet" href="css/_dfzz/base/animate.css">
-        <link rel="stylesheet" href="css/_dfzz/base/base.css">
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
@@ -90,6 +90,12 @@
         <link rel="stylesheet" href="css/_dfzz/page/treasure.put.css">
         <link rel="stylesheet" href="css/_dfzz/page/user.ctl.css">
         <link rel="stylesheet" href="css/_dfzz/page/user.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/vote.detail.css">
+        <link rel="stylesheet" href="css/_dfzz/page/vote.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/vote.player.detail.css">
+        <link rel="stylesheet" href="css/_dfzz/page/vote.player.list.css">
+        <link rel="stylesheet" href="css/_dfzz/page/vote.put.css">
+        <link rel="stylesheet" href="css/_dfzz/page/votejoin.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.css">
         <!-- endinject -->
@@ -115,12 +121,17 @@
 
         <!-- build:js js/_dfzz/app.js -->
         <!-- inject:js -->
-        <script src="js/_dfzz/app.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
+        <script src="js/_dfzz/app.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
+        <script src="js/_dfzz/ctrl/vote.put.js"></script>
+        <script src="js/_dfzz/ctrl/vote.player.list.js"></script>
+        <script src="js/_dfzz/ctrl/vote.player.detail.js"></script>
+        <script src="js/_dfzz/ctrl/vote.list.js"></script>
+        <script src="js/_dfzz/ctrl/vote.detail.js"></script>
         <script src="js/_dfzz/ctrl/user.list.js"></script>
         <script src="js/_dfzz/ctrl/user.ctl.js"></script>
         <script src="js/_dfzz/ctrl/treasure.put.js"></script>
@@ -277,6 +288,13 @@
                             <span class="txt">圈子管理</span>
                         </a>
                     </li>
+                    <!-- 投票 -->
+                    <li class="item" ng-if="permission.menu_vote=='1'">
+                        <a href="javascript:void(0);" ui-sref="vote_put" ng-class="{'active':mainNav==='vote'}" ng-mouseenter="navMouseover(1011)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-task"></i>
+                            <span class="txt">投票管理</span>
+                        </a>
+                    </li>
                     <!--夺宝管理-->
                     <li class="item" ng-if="permission.menu_gem=='1'">
                         <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(1008)" ng-mouseleave="navMouseleave()">
@@ -286,7 +304,6 @@
                     </li>
 
                     <!--商城-->
-                    <!--  -->
                     <li class="item" ng-if="permission.menu_mall=='1'">
                         <a href="javascript:void(0);" ui-sref="mall_goods_addnew" ng-class="{'active':mainNav==='mall'}" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-mall"></i>
@@ -300,6 +317,7 @@
                             <span class="txt">任务管理</span>
                         </a>
                     </li>
+
 
                     <!-- 用户管理 -->
                     <li class="item" ng-if="permission.menu_user">
@@ -546,6 +564,20 @@
                    <li class="item">
                         <a href="javascript:void(0);" ui-sref="mall_order" ui-sref-active="active">订单管理</a>
                     </li>
+                </ul>
+            </div>
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(1011)" ng-mouseleave="navMouseleave()" ng-show="currNav === 1011">
+               <div class="top-logo">
+                   <img src="img/subnav_logo.png" alt="" />
+               </div>
+               <ul class="list">
+                   <li class="item">
+                        <a href="javascript:void(0);" ui-sref="vote_put" ui-sref-active="active">新增投票</a>
+                    </li>
+                    <li class="item">
+                         <a href="javascript:void(0);" ui-sref="vote_list" ui-sref-active="active">活动列表</a>
+                     </li>
                 </ul>
             </div>
 

@@ -1,0 +1,40 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.vote_detail{
+    img{
+        max-width: 100%;
+    }
+    .app-filter{
+        background: #fff;
+        margin: 0;
+        padding: 20px;
+        .breadcrumb{
+            margin: 0;
+        }
+    }
+    .table-cont{
+        padding: 20px;
+        table{
+            margin: 0;
+        }
+        td{
+            background-color: #fff;
+            vertical-align: middle;
+        }
+    }
+    .detail-cont{
+        padding: 0 10px;
+        @include clearfix();
+        .col2{
+            float: left;
+            width: 50%;
+            box-sizing: border-box;
+            .inner{
+                margin: 0 10px;
+            }
+        }
+    }
+}

@@ -251,7 +251,7 @@ angular.module('uoudo.dfzz')
                     }
                     scope.nohot=na[1];
                     scope.showNow=na[2];
-                })
+                });
             if(scope.innc){
                 scope.myclass='show-msg-in';
             }else{
@@ -260,14 +260,14 @@ angular.module('uoudo.dfzz')
             scope.ngstylex={
                 'top':scope.intop+'vh',
                 'left':scope.inleft+'vw',
-            }
+            };
             // scope.nohot=elem[0].dataset.nt;
             scope.nohot=scope.inhtml;
             scope.showNow=scope.ruter;
 
         },
 
-    }
+    };
 })
 .directive('datePicker',function(){
     return {
@@ -382,3 +382,46 @@ angular.module('uoudo.dfzz')
         }
     };
 }]);
+
+// .directive('appEditorMu', ['$timeout', function($timeout) {
+//     return {
+//         restrict: 'E',
+//         replace: true,
+//         template: function(){
+//             return '<script type="text/plain"></script>';
+//         },
+//         scope: {
+//             tpl:"=ngModel"
+//         },
+//         link: function(scope, element, attrs) {
+//             var _editorId = "_editor" + (Date.now());
+//             element[0].id = _editorId;
+//             mueditor = UM.getEditor(_editorId,{
+//                 initialFrameWidth:420,
+//                 initialFrameHeight:480,
+//                 autoClearinitialContent:true,
+//                 autoClearEmptyNode : true,
+//             });
+//             angular.element(document).find("#"+_editorId).css({
+//                 "font-family":"微软雅黑",
+//                 "font-size":"14px",
+//                 "color":"#686868"
+//             });
+//             angular.element(document).find(".edui-container").css("box-shadow","0 0 0");
+//             angular.element(document).find(".edui-container").css("text-align","justify");
+//             angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
+//             angular.element(document).find(".edui-container .edui-body-container").css("width","100%");
+//
+//             mueditor.addListener("contentChange", function() {
+//                 angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
+//                 angular.element(document).find("#"+_editorId).find("img").css({"width":"100%"});
+//                 scope.tpl = mueditor.getContent();
+//             });
+//
+//             scope.$watch("tpl",function(nv,ov){
+//                 mueditor.setContent(nv);
+//             });
+//
+//         }
+//     };
+// }]);

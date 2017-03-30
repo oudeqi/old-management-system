@@ -67,9 +67,11 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         $scope.showInfo = function(){
             console.log(localStorageService.get('art.put'));
         };
+
         $scope.$watch("infoSet.content",function(nv,ov){
             $scope.artCon = $sce.trustAsHtml(nv);
         });
+
         $scope.artConPlace = $sce.trustAsHtml("<p>请编辑文章内容。</p>");
         $scope.$watchGroup([
             'infoSet.top',
@@ -113,7 +115,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                multPic: $scope.multPic,
                content: content
             };
-            console.log(art);
             localStorageService.set('art.put',art);
         });
         $http.get(constant.APP_HOST + '/v1/aut/info/type/list', {
@@ -171,28 +172,22 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     params:{
                         str:$scope.url
                     }
-                }).success(function(data){
-                    $scope.infoSet.content = data.data;
-                    var msg_title = data.data.match(/(var msg_title = "){1}(.*)(";){1}/)[2];
-                    var nickname = data.data.match(/(var nickname = "){1}(.*)(";){1}/)[2];
-                    var msg_cdn_url = data.data.match(/(var msg_cdn_url = "){1}(.*)(";){1}/)[2];
-
-                    $scope.infoSet.title = msg_title;
-                    $scope.infoSet.sellerName = nickname;
-                    $scope.previewUrl = msg_cdn_url;
-
-                    console.log($scope.infoSet.title);
-                    console.log($scope.infoSet.sellerName);
-                    console.log($scope.previewUrl);
+                }).success(function(res){
+                    console.log(res);
+                    $scope.infoSet.content = res.data.js_content;//模板内容
+                    $scope.infoSet.title = res.data.sellerTitle;//标题
+                    $scope.infoSet.sellerName = res.data.sellerName;//来源
+                    $scope.previewUrl = res.data.previewImg;//封面大图
+                    $scope.littleUrl = res.data.previewImg;//封面小图
+                    $scope.imageUrl = res.data.previewImg;//视频封面图
+                    $scope.shareImg = res.data.previewImg;//分享小图
 
                 }).error(function(data){
 
                 });
             }
         };
-        console.log($scope.infoSet.title);
-        console.log($scope.infoSet.sellerName);
-        console.log($scope.previewUrl);
+
         //视频地址
         $scope.clickBtnVideo = function(){
             document.getElementById("uploadVideo").click();
@@ -296,7 +291,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
-console.log("http://mp.weixin.qq.com/s/sEDIvQc_ICQjEMwstHL9KA");
+
             if($scope.infoSet.template == "1" || $scope.type.id == '8'){//视频
                 if($scope.videoUrl){
                     $scope.noVideoUrl = false;
