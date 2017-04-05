@@ -361,8 +361,11 @@
             line-height: 1.5;
             font-size: 15px;
             word-break: break-all;
+            iframe{
+                max-width: 100% !important;
+            }
             img{
-                width: 100%;
+                max-width: 100% !important;
                 height: auto;
             }
         }

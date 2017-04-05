@@ -67,9 +67,11 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         $scope.showInfo = function(){
             console.log(localStorageService.get('art.put'));
         };
+
         $scope.$watch("infoSet.content",function(nv,ov){
             $scope.artCon = $sce.trustAsHtml(nv);
         });
+
         $scope.artConPlace = $sce.trustAsHtml("<p>请编辑文章内容。</p>");
         $scope.$watchGroup([
             'infoSet.top',
@@ -162,18 +164,28 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
         };
 
         $scope.getTpl = function(){
-            $http.get(constant.APP_HOST + 'v1/aut/outer/html/content', {
-                headers: {
-                    'Authorization': localStorageService.get("token")
-                },
-                params:{
-                    str:$scope.url
-                }
-            }).success(function(data){
-                $scope.infoSet.content = data.data;
-            }).error(function(data){
+            if($scope.url){
+                $http.get(constant.APP_HOST + 'v1/aut/outer/html/content', {
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    },
+                    params:{
+                        str:$scope.url
+                    }
+                }).success(function(res){
+                    console.log(res);
+                    $scope.infoSet.content = res.data.js_content;//模板内容
+                    $scope.infoSet.title = res.data.sellerTitle;//标题
+                    $scope.infoSet.sellerName = res.data.sellerName;//来源
+                    $scope.previewUrl = res.data.previewImg;//封面大图
+                    $scope.littleUrl = res.data.previewImg;//封面小图
+                    $scope.imageUrl = res.data.previewImg;//视频封面图
+                    $scope.shareImg = res.data.previewImg;//分享小图
 
-            });
+                }).error(function(data){
+
+                });
+            }
         };
 
         //视频地址
@@ -263,6 +275,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 $scope.noTit = true;
                 return;
             }
+
             if($scope.infoSet.sellerName){
                 $scope.noSellerName = false;
             }else{
@@ -278,6 +291,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
+
             if($scope.infoSet.template == "1" || $scope.type.id == '8'){//视频
                 if($scope.videoUrl){
                     $scope.noVideoUrl = false;
@@ -286,6 +300,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     return;
                 }
             }
+
             if($scope.infoSet.template == "2" && $scope.type.id != '8'){//图文模板
                 if($scope.infoSet.content){
                     $scope.noContent = false;

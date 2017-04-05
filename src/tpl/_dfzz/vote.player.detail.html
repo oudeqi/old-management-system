@@ -1,0 +1,115 @@
+<div class="vote_player_detail">
+    <div class="app-filter">
+        <div class="l">
+            <ol class="breadcrumb">
+                <li><a ui-sref="vote_list">活动列表</a></li>
+                <li><a ui-sref="vote_player_list({id:{{voteId}}})">选手列表</a></li>
+                <li class="active">选手详情</li>
+            </ol>
+        </div>
+    </div>
+    <div class="detail_cont">
+        <div class="page-header">
+            <h1>{{data.name}}</h1>
+        </div>
+        <div class="baseinfo">
+            <table class="table" ng-if="tetail.status == 1 || tetail.status == 2">
+                <thead>
+                    <tr class="active">
+                        <th>ID</th>
+                        <th>编号</th>
+                        <th>状态</th>
+                        <th>当前票数</th>
+                        <th>得票基数</th>
+                        <th>当前排名</th>
+                        <th>当前占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{tetail.id}}</td>
+                        <td>{{tetail.seriaNumber}}</td>
+                        <td>
+                            <span ng-if="tetail.status == 1">已通过</span>
+                            <span ng-if="tetail.status == 2" class="text-danger">未通过</span>
+                        </td>
+                        <td>{{tetail.votes | number}}</td>
+                        <td>{{tetail.voteBaseline | number}}</td>
+                        <td>{{tetail.ranking}}</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" style="width:{{tetail.votes/tetail.totalVotes*100 | number:2}}%;min-width:0.5em;">
+                                    <span>{{tetail.votes/tetail.totalVotes*100 | number:2}}%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table" ng-if="tetail.status == 3">
+                <thead>
+                    <tr class="active">
+                        <th>ID</th>
+                        <th>编号</th>
+                        <th>状态</th>
+                        <th>取消理由</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{tetail.id}}</td>
+                        <td>{{tetail.seriaNumber}}</td>
+                        <td>
+                            <span class="text-danger">已被取消资格</span>
+                        </td>
+                        <td>{{tetail.rejectionReason}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel panel-default">
+                <div class="panel-heading">宣言</div>
+                <div class="panel-body">{{tetail.declaration}}</div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h3>相册</h3>
+        </div>
+        <ul class="photo-list">
+            <li ng-repeat="item in tetail.photos">
+                <!-- <button type="button" class="del">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button> -->
+                <a href="javascript:;" class="thumbnail">
+                    <img ng-src="{{item}}" alt="">
+                </a>
+            </li>
+        </ul>
+        <div class="page-header">
+            <h3>设置</h3>
+        </div>
+        <div class="set-cont">
+            <div class="form-inline" ng-show="tetail.status == 2 || tetail.status == 3">
+                <button type="button" class="btn btn-primary" ng-click="throughAudit('1')">通过审核</button>
+            </div>
+            <div class="form-inline" ng-show="tetail.status == 1">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">投票基数</div>
+                        <input type="text" class="form-control" ng-model="voteBaseline" placeholder="请输入整数">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="alterBaseline()">确定</button>
+            </div>
+            <div class="form-horizontal" ng-show="tetail.status == 1">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" placeholder="请输入取消的理由" ng-model="rejectionReason"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger" ng-click="throughAudit('3')">取消资格</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

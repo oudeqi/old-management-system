@@ -1,0 +1,26 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.vote_list{
+    .app-filter{
+        background: #fff;
+        margin: 0;
+        padding: 20px;
+    }
+    .app-table-box{
+        .app-table{
+            td{
+                vertical-align: middle;
+            }
+        }
+        .pic_view{
+            width: 100px;
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

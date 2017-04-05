@@ -8,11 +8,13 @@
     vertical-align: middle;
     border-radius: 3px;
     height: 38px;
+    line-height: 38px;
     color: #fff;
     border: 0;
     padding: 0 20px;
     &:hover{
         opacity: 0.8;
+        color: #fff;
     }
     &:disabled{
         cursor: not-allowed;
@@ -24,6 +26,7 @@
     vertical-align: middle;
     border-radius: 3px;
     height: 38px;
+    line-height: 38px;
     color: #555;
     border: 1px solid #bbb;
     padding: 0 20px;
