@@ -306,12 +306,12 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/sysset.report.html",
             controller:"sysset_report"
         })
-        .state('sysset_notification_list',{
+        .state('syssets_notification_list',{
             url:"/sysset_notification_list",
             templateUrl:"./tpl/_dfzz/sysset.notification.list.html",
             controller:"sysset_notification_list",
         })
-        .state('sysset_notification_new',{
+        .state('syssets_notification_new',{
             url:"/sysset_notification_new",
             templateUrl:"./tpl/_dfzz/sysset.notification.new.html",
             controller:"sysset_notification_new",
@@ -336,12 +336,12 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/user.list.html",
             controller:"user_list"
         })
-        .state('sysset_goods_addnew',{
+        .state('mall_goods_addnew',{
             url:"/mall_goods_addnew",
             templateUrl:"./tpl/_dfzz/sysset.goods.addnew.html",
             controller:"sysset_goods_addnew",
         })
-        .state('sysset_goods_list',{
+        .state('mall_goods_list',{
             url:"/mall_goods_list",
             templateUrl:"./tpl/_dfzz/sysset.goods.list.html",
             controller:"sysset_goods_list",

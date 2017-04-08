@@ -108,6 +108,9 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-mall {
                     @include sprite($icon-mall);
                 }
+                .icon-push {
+                    @include sprite($icon-icon-push);
+                }
                 .txt{
                     display: block;
                     width: 100%;
@@ -166,6 +169,9 @@ $nav-act-bg-color: #2d3237 !default;
                     }
                     .icon-mall{
                         @include sprite($icon-mall-active);
+                    }
+                    .icon-push {
+                        @include sprite($icon-icon-push-active);
                     }
                 }
                 &:hover{

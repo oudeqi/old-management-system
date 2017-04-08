@@ -16,7 +16,7 @@
 
 
         <div class="rx">
-        	<button class="app-button-primary rx-button" ui-sref="sysset_notification_new" type="button">新建推送</button>
+        	<button class="app-button-primary rx-button" ui-sref="syssets_notification_new" type="button">新建推送</button>
         </div>
 	</div>
 
@@ -24,7 +24,28 @@
     <div class="app-display-board" ng-show="true">
         <div class="l">
             <div class="inner">
+            	
+            	<div class="item">
+                    <a href="javascript:void(0);" ng-click="get_class(1)" ng-class="{'activex':notiType == 1}">
+                        <p class="t">{{top.paper}}</p>
+                        <p class="b">资讯文章</p>
+                    </a>
+                </div>
                 <div class="item">
+                    <a href="javascript:void(0);" ng-click="get_class(2)" ng-class="{'activex':notiType == 2}">
+                        <p class="t">{{top.bbs}}</p>
+                        <p class="b">活动</p>
+                    </a>
+                </div>
+                
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="get_class(0)" ng-class="{'activex':notiType == 0}">
+                        <p class="t">{{top.paper+top.bbs}}</p>
+                        <p class="b">全部</p>
+                    </a>
+                </div>
+                
+                <!--<div class="item">
                     <a href="javascript:void(0);" ng-click="get_class(1)" ng-class="{'activex':notiType == 1}">
                         <p class="t">{{top.paper}}</p>
                         <p class="b">资讯文章</p>
@@ -47,7 +68,7 @@
                         <p class="t">{{top.task}}</p>
                         <p class="b">任务</p>
                     </a>
-                </div>
+                </div>-->
              <!--    <div class="item">
                     <a href="javascript:void(0);" ng-click="get_class(0)" ng-class="{'activex':listParams.createType==0}">
                         <p class="t-show">红包</p>

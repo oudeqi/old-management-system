@@ -117,7 +117,10 @@
 
         <!-- build:js js/_dfzz/app.js -->
         <!-- inject:js -->
+        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
+        <script src="js/_dfzz/filter/filters.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
         <script src="js/_dfzz/ctrl/vote.put.js"></script>
@@ -181,9 +184,6 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
-        <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
-        <script src="js/_dfzz/filter/filters.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -284,6 +284,13 @@
                             <span class="txt">圈子管理</span>
                         </a>
                     </li>
+                    <!-- 投票 -->
+                    <li class="item" ng-if="permission.menu_vote=='1'">
+                        <a href="javascript:void(0);" ui-sref="vote_put" ng-class="{'active':mainNav==='vote'}" ng-mouseenter="navMouseover(1011)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-task"></i>
+                            <span class="txt">投票管理</span>
+                        </a>
+                    </li>
                     <!--夺宝管理-->
                     <li class="item" ng-if="permission.menu_gem=='1'">
                         <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(1008)" ng-mouseleave="navMouseleave()">
@@ -293,9 +300,8 @@
                     </li>
 
                     <!--商城-->
-                    <!--  -->
                     <li class="item" ng-if="permission.menu_mall=='1'">
-                        <a href="javascript:void(0);" ui-sref="mall_order" ng-class="{'active':mainNav==='mall'}" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()">
+                        <a href="javascript:void(0);" ui-sref="mall_goods_addnew" ng-class="{'active':mainNav==='mall'}" ng-mouseenter="navMouseover(1010)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-mall"></i>
                             <span class="txt">商城</span>
                         </a>
@@ -308,6 +314,7 @@
                         </a>
                     </li>
 
+
                     <!-- 用户管理 -->
                     <li class="item" ng-if="permission.menu_user">
                         <a href="javascript:void(0);" ui-sref="user_ctl" ng-class="{'active':mainNav==='user'}" ng-mouseenter="navMouseover(13)" ng-mouseleave="navMouseleave()">
@@ -315,7 +322,13 @@
                             <span class="txt">用户管理</span>
                         </a>
                     </li>
-
+                    <!--推送管理-->
+					<li class="item" ng-if="permission.menu_push">
+                        <a href="javascript:void(0);" ui-sref="syssets_notification_list" ng-class="{'active':mainNav==='syssets'}" ng-mouseenter="navMouseover(52001)" ng-mouseleave="navMouseleave()">
+                            <i class="icon icon-push"></i>
+                            <span class="txt">推送管理</span>
+                        </a>
+                    </li>
                     <!-- 系统设置 -->
                     <li class="item" ng-if="permission.menu_system">
                         <a href="javascript:void(0);" ui-sref="sysset_blacklist" ng-class="{'active':mainNav==='sysset'}" ng-mouseenter="navMouseover(14)" ng-mouseleave="navMouseleave()">
@@ -467,6 +480,21 @@
                     </li>
                 </ul>
             </div>
+            
+            
+             <div class="sub-nav-all" ng-mouseenter="navMouseover(52001)" ng-mouseleave="navMouseleave()" ng-show="currNav === 52001">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="syssets_notification_list" ui-sref-active="active">推送列表</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="syssets_notification_new" ui-sref-active="active">新增推送</a>
+                    </li>
+                </ul>
+            </div>
 
             <div class="sub-nav-all" ng-mouseenter="navMouseover(12)" ng-mouseleave="navMouseleave()" ng-show="currNav === 12">
                 <div class="top-logo">
@@ -514,10 +542,10 @@
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="sysset_report" ui-sref-active="active">举报管理</a>
                     </li>
-                    <li class="item">
+                    <!--<li class="item">
                         <a href="javascript:void(0);" ui-sref="sysset_notification_list" ui-sref-active="active">消息推送</a>
-                    </li>
-                    
+                    </li>-->
+
                 </ul>
             </div>
 
@@ -545,14 +573,28 @@
                </div>
                <ul class="list">
                    <li class="item">
-                        <a href="javascript:void(0);" ui-sref="sysset_goods_addnew" ui-sref-active="active">新增商品</a>
+                        <a href="javascript:void(0);" ui-sref="mall_goods_addnew" ui-sref-active="active">新增商品</a>
                     </li>
                      <li class="item">
-                        <a href="javascript:void(0);" ui-sref="sysset_goods_list" ui-sref-active="active">商品列表</a>
+                        <a href="javascript:void(0);" ui-sref="mall_goods_list" ui-sref-active="active">商品列表</a>
                     </li>
                    <li class="item">
-                        <a href="javascript:void(0);" ui-sref="mall_order" ui-sref-active="active">商城发货</a>
+                        <a href="javascript:void(0);" ui-sref="mall_order" ui-sref-active="active">订单管理</a>
                     </li>
+                </ul>
+            </div>
+
+            <div class="sub-nav-all" ng-mouseenter="navMouseover(1011)" ng-mouseleave="navMouseleave()" ng-show="currNav === 1011">
+               <div class="top-logo">
+                   <img src="img/subnav_logo.png" alt="" />
+               </div>
+               <ul class="list">
+                   <li class="item">
+                        <a href="javascript:void(0);" ui-sref="vote_put" ui-sref-active="active">新增投票</a>
+                    </li>
+                    <li class="item">
+                         <a href="javascript:void(0);" ui-sref="vote_list" ui-sref-active="active">活动列表</a>
+                     </li>
                 </ul>
             </div>
 

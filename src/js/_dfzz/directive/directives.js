@@ -225,7 +225,7 @@ angular.module('uoudo.dfzz')
         }
     };
 })
-.directive('showMsg',function($document,$timeout){
+.directive('showMsg',["$document","$timeout",function($document,$timeout){
     return {
         restrict:'E',
         scope:{
@@ -268,7 +268,7 @@ angular.module('uoudo.dfzz')
         },
 
     };
-})
+}])
 .directive('datePicker',function(){
     return {
         restrict:'A',

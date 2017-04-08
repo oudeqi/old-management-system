@@ -7,9 +7,12 @@
                 <select ng-model="busType" ng-change="changeType()">
                     <option value="36">超链接</option>
                     <option value="30">文章</option>
-                    <option value="15">夺宝</option>
+                    <option value="32">帖子</option>
+                    <option value="5">活动</option>
+                    
+                    <!--<option value="15">夺宝</option>
                     <option value="3">红包</option>
-                    <option value="2">任务</option>
+                    <option value="2">任务</option>-->
                 </select>
             </div>
         </div>
@@ -61,7 +64,7 @@
                         <td>{{item.title}}</td>
                         <td>
                             <label class="app-radio" ng-if="item.id">
-                                <input type="radio" name="x" ng-value="{{item.id}}" ng-model="busId" ng-click="changeBusId(item.id)">
+                                <input type="radio" name="x" ng-value="{{item.id}}" ng-model="busId" ng-click="changeBusId(item.id,item.url)">
                                 <span class="icon"></span>
                             </label>
                         </td>

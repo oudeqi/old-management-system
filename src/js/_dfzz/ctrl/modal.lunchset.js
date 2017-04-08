@@ -1,6 +1,6 @@
 angular.module('uoudo.dfzz')
-.controller('modal_lunchset',['$scope','$uibModalInstance','FileUploader','constant','localStorageService','$http','$timeout','$state',
-    function($scope,$uibModalInstance,FileUploader,constant,localStorageService,$http,$timeout,$state){
+.controller('modal_lunchset',['$scope','$uibModal','$uibModalInstance','FileUploader','constant','localStorageService','$http','$timeout','$state',
+    function($scope,$uibModal,$uibModalInstance,FileUploader,constant,localStorageService,$http,$timeout,$state){
 
         $scope.pushTime = "";
         $scope.image = "";
@@ -14,7 +14,7 @@ angular.module('uoudo.dfzz')
             document.getElementById("uploadLunchPic").click();
         };
         var uploadLunchPic = $scope.uploadLunchPic = new FileUploader({
-            url : constant.APP_HOST + "/v1/back/uploadImg",
+            url : constant.APP_HOST + "/v1/ad/adCoverImg",
             removeAfterUpload : true,
             formData :[{token:localStorageService.get('token')}]
         });
@@ -22,10 +22,43 @@ angular.module('uoudo.dfzz')
             fileItem.alias="file";
             $scope.uploadLunchPic.queue[0].upload();
         };
-        uploadLunchPic.onSuccessItem  = function(fileItem,response){
+        uploadLunchPic.onSuccessItem  = function(item,response){
             console.log(response);
-            $scope.image = response;
-            $scope.errMsg = "";
+//          $scope.image = response;
+//          $scope.errMsg = "";
+            if(item.isSuccess){
+                var modalInstance = $uibModal.open({
+                    backdrop:'static',
+                    animation: true,
+                    windowClass: 'modal-cutpic',
+                    templateUrl: './tpl/_dfzz/modal.cutpic.html',
+                    controller: 'cutHomeGpic',
+                    size: 'lg',
+                    resolve: {
+                        imgSrc: function () {
+                            return response;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (res) {
+                    console.log(res);
+                    $scope.image=res;
+                    $scope.errMsg="";
+//                  $scope.previewUrl = res[0].data.data;//封面大图
+//                  console.log($scope.previewUrl);
+//                  $scope.newTop.img=$scope.previewUrl;
+//                  $scope.littleUrl = res[1].data.data;//封面小图
+//                  $scope.imageUrl = res[2].data.data;//视频封面图
+//                  $scope.shareImg = res[3].data.data;//分享小图
+//                  $scope.step = 1;
+                }, function () {
+                    console.info('模态框取消: ' + new Date());
+                });
+            }else{
+                $scope.picUploadErr = "上传失败";
+            }
+
+
         };
         uploadLunchPic.onErrorItem = function(){
             $scope.errMsg = "图片上传失败";
@@ -49,7 +82,7 @@ angular.module('uoudo.dfzz')
 
         $scope.getList = function(){
             ///v1/start/ad/content?type=&search=GET
-            //type:  36  超链接   30 文章   15夺宝   3红包   2任务
+            //type:  36  超链接   30 文章   15夺宝   3红包   2任务 	32帖子
             $http.get(constant.APP_HOST + '/v1/start/ad/content', {
                 headers: {
                     'Authorization': localStorageService.get("token")
@@ -91,6 +124,7 @@ angular.module('uoudo.dfzz')
                     }
                     if(data.data.length > 0){
                         $scope.busId = $scope.list[0].id;
+                        $scope.url=$scope.list[0].url;
                     }
                 }else{
                     $scope.list = [{},{},{},{},{}];
@@ -100,8 +134,9 @@ angular.module('uoudo.dfzz')
             });
         };
 
-        $scope.changeBusId = function(id){
+        $scope.changeBusId = function(id,urlx){
             $scope.busId = id;
+            $scope.url = urlx;
         };
 
         $scope.checkurl = function(){
@@ -137,8 +172,15 @@ angular.module('uoudo.dfzz')
                 $scope.loading = false;
                 return;
             }
+            $scope.ntimen=null;
+            if($scope.pushTime==""){
+            	$scope.ntimen=null;
+            }else{
+            	$scope.ntimen=new Date($scope.pushTime+":00").getTime()
+            }
+            
             $http.post(constant.APP_HOST+'/v1/start/ad/publish',{
-                pushTime:new Date($scope.pushTime+":00").getTime(),
+                pushTime:$scope.ntimen,
                 image:$scope.image,
                 busType:$scope.busType,
                 busId:$scope.busId,

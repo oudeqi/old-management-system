@@ -40,20 +40,25 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
             notiType:1,
             name:"资讯文章",
         },{
-            notiType:2,
-            name:"社区文章",
-
-        },{
-            notiType:3,
-            name:"红包",
-        },{
-            notiType:4,
-            name:"任务",
-
-        },{
-            notiType:5,
-            name:"网页",
+        	notiType:2,
+            name:"活动",
         }]
+        
+//      {
+//          notiType:2,
+//          name:"社区文章",
+//
+//      },{
+//          notiType:3,
+//          name:"红包",
+//      },{
+//          notiType:4,
+//          name:"任务",
+//
+//      },{
+//          notiType:5,
+//          name:"网页",
+//      }]
         $scope.sec={
             notiType:1,
             name:'资讯文章',
@@ -65,7 +70,8 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
             ],function(na,nc){
                 console.log(na[0])
                 console.log(na[1])
-                $scope.notiType=na[0]
+                $scope.notiType=na[0];
+                $scope.getSearch();
                 // $scope.nowClass=na[1]
         }) 
 
@@ -81,8 +87,13 @@ app.controller('sysset_notification_new',['$scope','$uibModal','FileUploader','c
             }).success(function(data){
                 console.log(data.data);
                 // $scope.searchRes=[{},{},{},{},{}];
-                $scope.sidgo=data.data[0].id; //
+                if(data.data.length){
+//              	searchRes
+					$scope.sidgo=data.data[0].id;
+                	
+                }
                 $scope.searchRes=data.data;
+                
 
             })
 
