@@ -34,6 +34,11 @@ app.controller('vote_list',['$scope','$http','constant','localStorageService','F
         };
         $scope.getList();
 
+        $scope.changeType = function(){
+            $scope.currentPage = 1;
+            $scope.getList();
+        };
+
         $scope.search = function(e){
             if(e && e.keyCode !== 13){
                 return;
@@ -54,6 +59,38 @@ app.controller('vote_list',['$scope','$http','constant','localStorageService','F
             }
         };
 
+        $scope.setPosition = function(item){
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-setposition',
+                templateUrl: './tpl/_dfzz/modal.setvoteposition.html',
+                controller: 'setPosition',
+                size: 'lg',
+                resolve: {
+                    vote: function () {
+                        return item;
+                    }
+                }
+            });
+            modalInstance.result.then(function (data) {
+                console.info(data);
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+        };
 
+    }
+]);
+
+app.controller("setPosition",["$scope","vote","$uibModalInstance",
+    function($scope,vote,$uibModalInstance){
+        console.log(vote);
+        $scope.ok = function () {
+            $uibModalInstance.close();
+        };
+        $scope.cancel = function () {
+            $uibModalInstance.dismiss();
+        };
     }
 ]);

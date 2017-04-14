@@ -35,6 +35,11 @@ app.controller('vote_player_list',['$scope','$http','constant','localStorageServ
         };
         $scope.getList();
 
+        $scope.changeType = function(){
+            $scope.currentPage = 1;
+            $scope.getList();
+        };
+
         $scope.search = function(e){
             if(e && e.keyCode !== 13){
                 return;

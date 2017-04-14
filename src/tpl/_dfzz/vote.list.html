@@ -2,7 +2,7 @@
     <div class="app-filter">
         <div class="l">
             <div class="app-select">
-                <select ng-model="status">
+                <select ng-model="status" ng-change="changeType()">
                     <option value="0">全部</option>
                     <option value="1">报名未开始</option>
                     <option value="2">报名进行中</option>
@@ -52,6 +52,7 @@
                         <span ng-show="item.playerNumber===0">无</span>
                     </td>
                     <td>
+                        <a href="javascript:void(0);" ng-click="setPosition(item)">设置</a>
                         <a ui-sref="vote_detail({id:{{item.id}}})">详情</a>
                     </td>
                 </tr>

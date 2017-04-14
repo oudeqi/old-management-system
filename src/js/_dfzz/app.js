@@ -10,7 +10,7 @@ var app = angular.module('uoudo.dfzz',[
 app.constant("constant",{
   // APP_HOST : "http://192.168.10.254:8082/", //远程接口
   // APP_HOST : "http://192.168.10.30:8080/", //远程接口
-  APP_HOST : "http://partner.uoolle.com/",
+  APP_HOST : "http://partner.2tai.net/",
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
               '<head>'+
@@ -20,8 +20,9 @@ app.constant("constant",{
                   '<style type="text/css">'+
                       '*{margin: 0;padding: 0;}'+
                       'html {font-size: 16px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color:#595959;}'+
-                      'p{line-height: 1.5 !important;text-align: justify;word-break:break-all;white-space:normal;margin:10px 0 !important;padding:0 3% !important;overflow-x: hidden !important;}'+
-                      'p img{width: 106.4% !important;margin-left:-3.2% !important;height: auto;display: block;outline: 0;border: 0;}'+
+                      'p{line-height: 1.5 !important;text-align: justify;word-break:break-all;white-space:normal;margin:10px 0 !important;overflow-x: hidden !important;}'+
+                      'iframe{width: 100%;}img{max-width:100% !important;}'+
+                      '#custom_style{max-width: 640px;min-width: 320px;margin:0 auto;width:100%;}'+
                       '@media screen and (min-width: 1024px){.rich_media{width: auto !important;}}'+
                       '@media screen and (min-width: 1024px){.rich_media_inner {padding: 0 !important;}}'+
                       '.rich_media_area_primary{padding: 0 !important;}'+

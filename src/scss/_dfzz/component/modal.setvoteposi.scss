@@ -1,0 +1,21 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.modal-setposition {
+    .modal-dialog{
+        min-width: 1000px;
+        .modal-body{
+            .content{
+                padding: 20px;
+            }
+            .tit{
+                margin: 0;
+                padding-bottom: 10px;
+            }
+
+
+        }
+    }
+}

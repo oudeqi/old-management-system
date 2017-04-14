@@ -1,0 +1,30 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="content">
+        <h1 class="tit">投放位置设置</h1>
+        <div class="section">
+            <div class="row1">
+                <label>
+                    <input type="radio" name="" value="1">
+                    <i class="icon icon-checkbox"></i>
+                    <span>咨询首页</span>
+                </label>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row1">
+                <label>
+                    <input type="radio" name="" value="1">
+                    <i class="icon icon-checkbox"></i>
+                    <span>圈子</span>
+                </label>
+            </div>
+        </div>
+        <div class="btnBox">
+            <p class="msg" ng-show="succMsg">{{succMsg}}</p>
+            <p class="err" ng-show="errMsg">{{errMsg}}</p>
+            <button class="app-button-default" type="button" ng-click="cancel()" name="button">关闭</button>
+            <button class="app-button-primary" type="button" ng-click="ok()" name="button">确认</button>
+        </div>
+    </div>
+</div>

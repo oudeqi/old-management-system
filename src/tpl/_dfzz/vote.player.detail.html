@@ -39,7 +39,7 @@
                         <td>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-info" style="width:{{tetail.votes/tetail.totalVotes*100 | number:2}}%;min-width:0.5em;">
-                                    <span>{{tetail.votes/tetail.totalVotes*100 | number:2}}%</span>
+                                    <span ng-if="tetail.totalVotes!=0">{{tetail.votes/tetail.totalVotes*100 | number:2}}%</span>
                                 </div>
                             </div>
                         </td>

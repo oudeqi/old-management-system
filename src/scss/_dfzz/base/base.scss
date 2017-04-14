@@ -202,3 +202,11 @@ textarea{
 .rich_media_area_primary{
     padding: 0 !important;
 }
+.edui-container{
+    iframe{
+        width: 100% !important;
+    }
+    img{
+        max-width: 100% !important;
+    }
+}

@@ -7,7 +7,7 @@ var app = angular.module('uoudo.index',[
 
 app.constant("constant",{
   // APP_HOST : "http://192.168.10.30:8080/", //远程接口
-  APP_HOST : "http://partner.uoolle.com/",
+  APP_HOST : "http://partner.2tai.net/",
 });
 
 app.run(['$rootScope','$state',
