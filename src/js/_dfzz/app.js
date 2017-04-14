@@ -305,12 +305,12 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/sysset.report.html",
             controller:"sysset_report"
         })
-        .state('sysset_notification_list',{
+        .state('syssets_notification_list',{
             url:"/sysset_notification_list",
             templateUrl:"./tpl/_dfzz/sysset.notification.list.html",
             controller:"sysset_notification_list",
         })
-        .state('sysset_notification_new',{
+        .state('syssets_notification_new',{
             url:"/sysset_notification_new",
             templateUrl:"./tpl/_dfzz/sysset.notification.new.html",
             controller:"sysset_notification_new",

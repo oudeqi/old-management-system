@@ -3,7 +3,7 @@
 <div class="art_put_form">
     <div class="inner">
         <div class="l">
-            <div class="app-phone" style="background-image: url(../src/img/iphone_1.png);">     
+            <div class="app-phone" style="background-image: url(./img/iphone_1.png);">     
                     <div class="p_wrap">
                         <div class="p_title">{{title}}</div>
                         <div class="p_content">{{content}}</div>
@@ -79,7 +79,7 @@
             <div ng-show="notiType!=5">
             <div class="form_row">
                 <div class="tit">
-                    <span>链接内容：</span>
+                    <span>推送搜索：</span>
                 </div>
                 <div class="cont">
                 <div class="app-input-search">
@@ -104,7 +104,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in searchRes">
-                                <td>{{item.title}}{{item.id}}</td>
+                                <td>{{item.title}}</td>
                                 <td>
                                 <div class="cont" style="margin-left: 0;">
                                 <label class="radio_label">
@@ -126,11 +126,8 @@
                     </table>
                 </div>
             </div>
-        </div>
-
-
-           
-            <div class="form_row">
+            
+            <div class="form_row" style="float: left;">
                 <div class="cont" style="margin-left: 2.8rem;">
                     <!-- <button class="app-button-default app-button-pubmy" style="background-color: #F8F8F8; color: black;" ng-show="true" type="button" ng-click="pubPost()">取消</button> -->
                      <button class="app-button-default app-button-pubmy" ng-show="true" type="button" ng-click="pubNow()">发布</button>
@@ -139,7 +136,14 @@
                     <span class="succ" ng-show="succMsg">{{succMsg}}</span> -->
                 </div>
             </div>
+            
         </div>
+
+
+           
+
+        
+
     </div>
 </div>
 
