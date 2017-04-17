@@ -66,6 +66,7 @@
     background-color: $bg-color-default;
     @extend %app-button;
     height: 34px;
+    line-height: 34px;
     padding: 0 10px;
     font-size: 14px;
 }
@@ -73,6 +74,7 @@
     background-color: $bg-color-primary;
     @extend %app-button;
     height: 34px;
+    line-height: 34px;
     padding: 0 10px;
     font-size: 14px;
 }
@@ -80,6 +82,7 @@
     background-color: $bg-color-warning;
     @extend %app-button;
     height: 34px;
+    line-height: 34px;
     padding: 0 10px;
     font-size: 14px;
 }

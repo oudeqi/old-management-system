@@ -9,8 +9,8 @@ var app = angular.module('uoudo.dfzz',[
 
 app.constant("constant",{
   // APP_HOST : "http://192.168.10.254:8082/", //远程接口
-  // APP_HOST : "http://192.168.10.30:8080/", //远程接口
-  APP_HOST : "http://partner.2tai.net/",
+  APP_HOST : "http://192.168.10.48:8080/", //本地测试接口
+  // APP_HOST : "http://partner.2tai.net/", //线上接口
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
               '<head>'+

@@ -1,4 +1,7 @@
 <div class="vote_list">
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
     <div class="app-filter">
         <div class="l">
             <div class="app-select">
@@ -52,8 +55,9 @@
                         <span ng-show="item.playerNumber===0">无</span>
                     </td>
                     <td>
-                        <a href="javascript:void(0);" ng-click="setPosition(item)">设置</a>
+                        <!-- <a href="javascript:void(0);" ng-click="setPosition(item)">设置</a> -->
                         <a ui-sref="vote_detail({id:{{item.id}}})">详情</a>
+                        <a href="javascript:void(0);" ng-click="voteDel(item)">删除</a>
                     </td>
                 </tr>
             </tbody>

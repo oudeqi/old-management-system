@@ -21,6 +21,8 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
             orgSecondary:"",//协办单位
             undertaker:"",//承办单位
             originalLink:"",//原文链接
+            serviceWeixin:"",//客服微信
+            servicePhone:"",//客服手机
         };
 
         $scope.delCoverPhoto = function(){
@@ -212,6 +214,8 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
                 orgSecondary:$scope.votePost.orgSecondary,//协办单位
                 undertaker:$scope.votePost.undertaker,//承办单位
                 originalLink:$scope.votePost.originalLink,//原文链接
+                serviceWeixin:$scope.votePost.serviceWeixin,//原文链接
+                servicePhone:$scope.votePost.servicePhone,//原文链接
              },{
      			headers:{
      				'Authorization':localStorageService.get("token")

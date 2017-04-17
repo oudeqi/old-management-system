@@ -59,6 +59,60 @@ app.controller('vote_list',['$scope','$http','constant','localStorageService','F
             }
         };
 
+        $scope.voteDel = function(item){
+            console.log(item);
+            var confirm = {
+                tit : "确认删除吗？",
+                content : "删除后将不能恢复"
+            };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+            $scope.hasMsg = false;
+            $scope.warning = false;
+            modalInstance.result.then(function () {
+                // /v1/aut/info/delete?id=1  DELETE方法
+                $http.get(constant.APP_HOST + '/v1/aut/vote/delete?id='+item.id, {
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    }
+                }).success(function(data){
+                    console.log(data);
+                    $scope.hasMsg = true;
+                    if(!data.errMessage){
+                        $scope.msg = "删除成功！";
+                        $scope.warning = false;
+                        $scope.getList();
+                    }else{
+                        $scope.msg = "删除失败！";
+                        $scope.warning = true;
+                    }
+                    $timeout(function(){
+                        $scope.hasMsg = false;
+                    },1000);
+                }).error(function(data){
+                    $scope.hasMsg = true;
+                    $scope.warning = true;
+                    $scope.msg = "删除失败！";
+                    $timeout(function(){
+                        $scope.hasMsg = false;
+                    },1000);
+                });
+            }, function () {
+                console.info('模态框取消: ' + new Date());
+            });
+        };
+
         $scope.setPosition = function(item){
             var modalInstance = $uibModal.open({
                 backdrop:'static',

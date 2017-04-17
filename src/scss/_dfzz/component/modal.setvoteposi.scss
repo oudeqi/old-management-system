@@ -14,8 +14,32 @@
                 margin: 0;
                 padding-bottom: 10px;
             }
+            .row1{
+                .icon{
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .icon-checkbox{
+                    @include sprite($icon-checkbox-unchecked);
+                }
+                input{
+                    display: none;
+                    &:checked+.icon-checkbox{
+                        @include sprite($icon-checkbox-checked);
+                    }
+                }
+                span{
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 15px;
+                }
+            }
+            .row2{
 
+            }
+            .row3{
 
+            }
         }
     }
 }
