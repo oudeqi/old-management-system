@@ -38,7 +38,9 @@ var gulp = require('gulp'),
 gulp.task('useref:index', function() {
     return gulp.src('./src/index.html')
         .pipe(useref())
-        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.js', uglify().on("error",function(e){
+        	console.log(e)
+        })))
         .pipe(gulpif('*.css', minifyCss()))
         .pipe(gulp.dest('./dist'));
 });
