@@ -12,12 +12,45 @@
             }
             .tit{
                 margin: 0;
-                padding-bottom: 10px;
+                padding-bottom: 5px;
+                padding-top: 10px;
+                font-size: 36px;
+            }
+            .section{
+                margin: 20px 10px;
+                padding: 14px 10px;
+                background: #f0f0f0;
+            }
+            .btnBox{
+                text-align: right;
+                padding-right: 10px;
+                p{
+                    margin: 0;
+                }
+                .msg{
+                    display: inline-block;
+                    vertical-align: middle;
+                    color: #007cfb;
+                }
+                .err{
+                    display: inline-block;
+                    vertical-align: middle;
+                    color: $font-color-info;
+                }
+                button{
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0 4px;
+                }
             }
             .row1{
+                label{
+                    cursor: pointer;
+                }
                 .icon{
                     display: inline-block;
                     vertical-align: middle;
+                    margin-right: 2px;
                 }
                 .icon-checkbox{
                     @include sprite($icon-checkbox-unchecked);
@@ -35,10 +68,95 @@
                 }
             }
             .row2{
-
+                @include clearfix();
+                padding-left: 30px;
+                padding-top: 5px;
+                input{
+                    display: none;
+                }
+                .tit-cont{
+                    width: 90px;
+                    float: left;
+                    .row-tit{
+                        font-size: 16px;
+                        line-height: 44px;
+                        margin: 0;
+                    }
+                }
+                .pic-cont{
+                    height: auto;
+                    width: 50%;
+                    float: left;
+                    p{
+                        .tip{
+                            display: inline-block;
+                            vertical-align: middle;
+                            color: #999;
+                        }
+                        button{
+                            border: 0;
+                            display: inline-block;
+                            vertical-align: middle;
+                            @include sprite($icon-add-pic);
+                        }
+                    }
+                    .pic{
+                        position: relative;
+                        width: 50%;
+                        button{
+                            display: inline-block;
+                            vertical-align: middle;
+                            @include sprite($icon-delpic);
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            border: 0;
+                        }
+                        img{
+                            width: 100%;
+                            display: block;
+                        }
+                    }
+                }
             }
             .row3{
-
+                @include clearfix();
+                padding-left: 30px;
+                padding-top: 10px;
+                .tit-cont{
+                    width: 90px;
+                    float: left;
+                    .row-tit{
+                        font-size: 16px;
+                        line-height: normal;
+                        margin: 0;
+                    }
+                }
+                .input-cont{
+                    label{
+                        line-height: normal;
+                        font-weight: normal;
+                        font-size: 15px;
+                        margin-right: 15px;
+                        cursor: pointer;
+                        .icon{
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin-right: 2px;
+                            @include sprite($icon-checkbox-sm-unchecked);
+                        }
+                        input{
+                            display: none;
+                            &:checked+.icon{
+                                @include sprite($icon-checkbox-sm-checked);
+                            }
+                        }
+                        span{
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                }
             }
         }
     }

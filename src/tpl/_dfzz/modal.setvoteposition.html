@@ -5,51 +5,85 @@
         <div class="section">
             <div class="row1">
                 <label>
-                    <input type="radio" name="" value="1">
+                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.posi[0]">
                     <i class="icon icon-checkbox"></i>
                     <span>咨询首页</span>
                 </label>
             </div>
             <div class="row2">
-                <span class="row-tit">活动图片</span>
-                <input type="file" name="" value="">
-                <span>支持jpg/png格式，RGB模式，850*405 72dpi</span>
+                <div class="tit-cont">
+                    <h3 class="row-tit">活动图片：</h3>
+                </div>
+                <div class="pic-cont">
+                    <input type="file" clean-file-value accept="image/*" id="uploadIndexPic" nv-file-select="" uploader="uploadIndexPic" />
+                    <p ng-show="!position.indexPic">
+                        <button type="button" name="button" ng-click="addIndexPic()"></button>
+                        <span class="tip">支持jpg/png格式，RGB模式，850*405 72dpi</span>
+                    </p>
+                    <div class="pic" ng-show="position.indexPic">
+                        <button type="button" name="button" ng-click="delIndexPic()"></button>
+                        <img ng-src="{{position.indexPic}}" alt="">
+                    </div>
+                </div>
             </div>
-            <div class="row2">
-                <span class="row-tit">显示位置</span>
-                <label>
-                    <input type="checkbox" value="">
-                    <span>置顶</span>
-                </label>
+            <div class="row3">
+                <div class="tit-cont">
+                    <h3 class="row-tit">显示位置：</h3>
+                </div>
+                <div class="input-cont">
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.setTop">
+                        <i class="icon"></i>
+                        <span>置顶</span>
+                    </label>
+                </div>
             </div>
         </div>
         <div class="section">
             <div class="row1">
                 <label>
-                    <input type="radio" name="" value="1" checked>
+                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.posi[1]" ng-change="posiChange()">
                     <i class="icon icon-checkbox"></i>
                     <span>圈子</span>
                 </label>
             </div>
             <div class="row2">
-                <span class="row-tit">活动图片</span>
-                <input type="file" name="" value="">
-                <span>支持jpg/png格式，RGB模式，850*405 72dpi</span>
+                <div class="tit-cont">
+                    <h3 class="row-tit">活动图片：</h3>
+                </div>
+                <div class="pic-cont">
+                    <input type="file" clean-file-value accept="image/*" id="uploadCirclePic" nv-file-select="" uploader="uploadCirclePic" />
+                    <p ng-show="!position.circlePic">
+                        <button type="button" name="button" ng-click="addCirclePic()"></button>
+                        <span class="tip">支持jpg/png格式，RGB模式，850*405 72dpi</span>
+                    </p>
+                    <div class="pic" ng-show="position.circlePic">
+                        <button type="button" name="button" ng-click="delCirclePic()"></button>
+                        <img ng-src="{{position.circlePic}}" alt="">
+                    </div>
+                </div>
             </div>
-            <div class="row2">
-                <span class="row-tit">显示位置</span>
-                <label>
-                    <input type="checkbox" value="">
-                    <span>本地圈</span>
-                </label>
-                <label>
-                    <input type="checkbox" value="">
-                    <span>圈外圈</span>
-                </label>
-                <label>
-                    <input type="checkbox" value="">
-                    <span>朋友圈</span>
-                </label>
+            <div class="row3">
+                <div class="tit-cont">
+                    <h3 class="row-tit">显示位置：</h3>
+                </div>
+                <div class="input-cont">
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.circlePosi[0]" ng-change="circlePosiChange()">
+                        <i class="icon"></i>
+                        <span>本地圈</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.circlePosi[1]" ng-change="circlePosiChange()">
+                        <i class="icon"></i>
+                        <span>圈外圈</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.circlePosi[2]" ng-change="circlePosiChange()">
+                        <i class="icon"></i>
+                        <span>朋友圈</span>
+                    </label>
+                </div>
             </div>
         </div>
         <div class="btnBox">

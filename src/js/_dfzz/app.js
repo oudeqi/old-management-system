@@ -9,8 +9,8 @@ var app = angular.module('uoudo.dfzz',[
 
 app.constant("constant",{
   // APP_HOST : "http://192.168.10.254:8082/", //远程接口
-  APP_HOST : "http://192.168.10.48:8080/", //本地测试接口
-  // APP_HOST : "http://partner.2tai.net/", //线上接口
+  // APP_HOST : "http://192.168.10.48:8080/", //本地测试接口
+  APP_HOST : "http://partner.2tai.net/", //线上接口 18628973302
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
               '<head>'+
@@ -62,8 +62,10 @@ app.run(['$rootScope', '$state', '$stateParams','localStorageService',
         $rootScope.permission = localStorageService.get('userInfo').permission;//权限
         // $rootScope.permission.menu_gem_verify = "1";
         // $rootScope.permission.menu_vote = "1";
-        $rootScope.permission.button_info_ucoin = "0"; //取消u币文章
-
+        console.log(localStorageService.get('userInfo'));
+        if($rootScope.permission){
+            $rootScope.permission.button_info_ucoin = "0"; //取消u币文章
+        }
         // 二级导航切换
         $rootScope.currNav = 30000000;
         $rootScope.navMouseover = function(i){
