@@ -92,7 +92,7 @@
             <div class="form-inline" ng-show="tetail.status == 2 || tetail.status == 3">
                 <button type="button" class="btn btn-primary" ng-click="throughAudit('1')">通过审核</button>
             </div>
-            <div class="form-inline" ng-show="tetail.status == 1">
+            <!-- <div class="form-inline" ng-show="tetail.status == 1">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">投票基数</div>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" ng-click="alterBaseline()">确定</button>
-            </div>
+            </div> -->
             <div class="form-horizontal" ng-show="tetail.status == 1">
                 <div class="form-group">
                     <textarea class="form-control" rows="3" placeholder="请输入取消的理由" ng-model="rejectionReason"></textarea>
