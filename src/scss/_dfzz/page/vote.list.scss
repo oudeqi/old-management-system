@@ -4,10 +4,14 @@
 @import "../../helpers/_function";
 
 .vote_list{
+    padding-bottom: 2px;
     .app-filter{
         background: #fff;
         margin: 0;
         padding: 20px;
+        .app-input-search{
+            margin-right: 10px;
+        }
     }
     .app-table-box{
         .app-table{

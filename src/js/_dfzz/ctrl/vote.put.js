@@ -7,7 +7,8 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
             coverPhoto:"",//封面图片
             actProfile:"",//活动简介
             signUpRule:[],//报名规则
-            reward:[],
+            prizePhoto:"",//奖品图片
+            reward:[],//奖项设置
             signupStart:"",//报名开始时间
             signupEnd:"",//报名结束时间
             voteStart:"",//投票开始时间
@@ -21,10 +22,8 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
             orgSecondary:"",//协办单位
             undertaker:"",//承办单位
             originalLink:"",//原文链接
-        };
-
-        $scope.delCoverPhoto = function(){
-            $scope.votePost.coverPhoto = "";
+            serviceWeixin:"",//客服微信
+            servicePhone:"",//客服手机
         };
 
         //报名规则
@@ -74,6 +73,15 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
                 return false;
             }else{
                 $scope.coverPhotoInValid = false;
+                return true;
+            }
+        };
+        $scope.checkPrizePhoto = function(){
+            if(!$scope.votePost.prizePhoto){
+                $scope.prizePhotoInValid = true;
+                return false;
+            }else{
+                $scope.prizePhotoInValid = false;
                 return true;
             }
         };
@@ -178,7 +186,7 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
                 return;
             }
             $scope.clicked = true;
-            if(!$scope.checkTitle() || !$scope.checkCoverPhoto() || !$scope.checkActProfile() || !$scope.checkSignupEnd() || !$scope.checkVoteEnd()){
+            if(!$scope.checkTitle() || !$scope.checkCoverPhoto() || !$scope.checkActProfile() || !$scope.checkSignupEnd() || !$scope.checkVoteEnd() || !$scope.checkPrizePhoto()){
                 $scope.clicked = false;
                 return;
             }
@@ -199,6 +207,7 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
                 coverPhoto:$scope.votePost.coverPhoto,//封面图片
                 actProfile:$scope.votePost.actProfile,//活动简介
                 signUpRule:signUpRule,//报名规则
+                prizePhoto:$scope.votePost.prizePhoto,//奖品图片
                 reward:$scope.votePost.reward,//奖励设置
                 signupStart:new Date($scope.votePost.signupStart+":00").getTime(),//报名开始时间
                 signupEnd:new Date($scope.votePost.signupEnd+":00").getTime(),//报名结束时间
@@ -212,6 +221,8 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
                 orgSecondary:$scope.votePost.orgSecondary,//协办单位
                 undertaker:$scope.votePost.undertaker,//承办单位
                 originalLink:$scope.votePost.originalLink,//原文链接
+                serviceWeixin:$scope.votePost.serviceWeixin,//原文链接
+                servicePhone:$scope.votePost.servicePhone,//原文链接
              },{
      			headers:{
      				'Authorization':localStorageService.get("token")
@@ -246,8 +257,52 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
             });
         };
 
+        //上传奖品图片
+        $scope.delPrizePhoto = function(){
+            $scope.votePost.prizePhoto = "";
+        };
+        $scope.addPrizePhoto = function(){
+            document.getElementById("uploadPrizePhoto").click();
+        };
+        var uploadPrizePhoto = $scope.uploadPrizePhoto = new FileUploader({
+            url : constant.APP_HOST + "v1/ad/adCoverImg",
+            removeAfterUpload : true,
+            formData :[{token:localStorageService.get('token')}]
+        });
+        uploadPrizePhoto.onAfterAddingFile = function(fileItem) {
+            fileItem.alias="file";
+            $scope.uploadPrizePhoto.queue[0].upload();
+        };
+        uploadPrizePhoto.onSuccessItem  = function(item,response){
+            console.log(response);
+            if(item.isSuccess){
+                var modalInstance = $uibModal.open({
+                    backdrop:'static',
+                    animation: true,
+                    windowClass: 'modal-cutpic',
+                    templateUrl: './tpl/_dfzz/modal.cutpic.html',
+                    controller: 'cutVotePrizePhoto',
+                    size: 'lg',
+                    resolve: {
+                        imgSrc: function () {
+                            return response;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (res) {
+                    console.log(res);
+                    $scope.votePost.prizePhoto = res;
+                }, function () {
+                    console.info('模态框取消: ' + new Date());
+                });
+            }
+        };
+
 
         //上传封面图片
+        $scope.delCoverPhoto = function(){
+            $scope.votePost.coverPhoto = "";
+        };
         $scope.addCoverPhoto = function(){
             document.getElementById("uploadCoverPhoto").click();
         };
@@ -286,6 +341,62 @@ app.controller('vote_put',['$scope','$http','constant','localStorageService','Fi
         };
     }
 ]);
+app.controller('cutVotePrizePhoto', ['$scope','$http','$uibModalInstance','constant','imgSrc','$timeout',
+    function ($scope,$http,$uibModalInstance,constant,imgSrc,$timeout) {
+        $scope.loading = false;
+        $scope.imgSrc = constant.APP_HOST + imgSrc;
+    	var postData = {
+    		x:0,
+    		y:0,
+    		width:0,
+    		height:0,
+    		imgUrl:imgSrc
+    	};
+    	$scope.imgOnload = function(_this){
+            // $(_this).removeAttr("onload");
+            $(_this).Jcrop({
+                onChange: showPreview,
+                onSelect: showPreview,
+                setSelect: [0, 0, 800,800],
+                aspectRatio: 375/180,
+                boxWidth: 400,
+                boxHeight:400
+            });
+        };
+        function showPreview(c){
+            postData.x = c.x;
+            postData.y = c.y;
+            postData.width = c.w;
+            postData.height = c.h;
+        }
+    	$scope.ok = function () {
+            console.log(postData);
+            if(postData.width<80 || postData.height<80){
+                $scope.msg = "图片裁剪的最小尺寸为 400*400 px";
+            }else{
+                $scope.msg = "";
+                $scope.loading = true;
+    			$http.post(constant.APP_HOST + '/v1/uploade/cut',postData).success(function(data){
+                    $scope.loading = false;
+                    if(data.errMessage){
+                        $scope.msg = data.errMessage;
+                        return;
+                    }
+                    $scope.msg = "";
+                    $timeout(function(){
+                        $uibModalInstance.close(data.data);
+                    },300);
+    			}).error(function(a,b,c){
+                    $scope.loading = false;
+    			});
+    		}
+    	};
+    	$scope.cancel = function () {
+    		$uibModalInstance.dismiss();
+    	};
+    }
+]);
+
 app.controller('cutVoteCoverPhoto', ['$scope','$http','$uibModalInstance','constant','imgSrc','$timeout',
     function ($scope,$http,$uibModalInstance,constant,imgSrc,$timeout) {
         $scope.loading = false;

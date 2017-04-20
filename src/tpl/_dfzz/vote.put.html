@@ -28,7 +28,7 @@
             </div>
 
             <div class="form_row">
-                <div class="fow_label">活动介绍：</div>
+                <div class="fow_label">活动主题：</div>
                 <div class="fow_cont">
                     <textarea ng-class="{'ipt-error':actProfileInValid}" ng-keydown="checkActProfile()" placeholder="请输入活动介绍" ng-model="votePost.actProfile"></textarea>
                 </div>
@@ -79,6 +79,26 @@
                     <button type="button" class="additem" ng-click="addSignUpRule()">添加参选规则</button>
                 </div>
             </div>
+
+            <div class="form_row">
+                <div class="fow_label">奖项图片：</div>
+                <div class="fow_cont">
+                    <div ng-show="!votePost.prizePhoto">
+                        <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadPrizePhoto" nv-file-select="" uploader="uploadPrizePhoto" />
+                        <button class="addpic" ng-class="{'ipt-error':prizePhotoInValid}" type="button" ng-click="addPrizePhoto()"></button>
+                        <span class="tip">支持jpg/png格式，RGB模式，640*320 72dpi</span>
+                    </div>
+                    <div class="pic_view" ng-show="votePost.prizePhoto">
+                        <button type="button" ng-click="delPrizePhoto()">
+                            <i class="icon"></i>
+                        </button>
+                        <p class="pic">
+                            <img ng-src="{{votePost.prizePhoto}}" alt="">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <div class="form_row">
                 <div class="fow_label">奖项设置：</div>
                 <div class="fow_cont">
@@ -109,7 +129,7 @@
                     <textarea placeholder="投票方式编辑" ng-model="votePost.voteMethod"></textarea>
                 </div>
             </div>
-            <div class="form_row">
+            <!-- <div class="form_row">
                 <div class="fow_label">一票多投：</div>
                 <div class="fow_cont">
                     <label class="radio_label">
@@ -129,7 +149,7 @@
                 <div class="fow_cont">
                     <input class="form_ipt w250" type="text" ng-model="votePost.upperLimit" placeholder="每日被投票数上限 0 代表无上限">
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="form_row">
                 <div class="fow_label">浏览量：</div>
                 <div class="fow_cont">
@@ -148,6 +168,18 @@
                 <div class="fow_label">原文链接：</div>
                 <div class="fow_cont">
                     <input class="form_ipt" ng-model="votePost.originalLink" placeholder="http(s)://">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">客服微信：</div>
+                <div class="fow_cont clearfix">
+                    <input class="form_ipt_sm" type="text" ng-model="votePost.serviceWeixin" placeholder="请输入客服的微信号">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">客服手机：</div>
+                <div class="fow_cont clearfix">
+                    <input class="form_ipt_sm" type="text" ng-model="votePost.servicePhone" placeholder="请输入客服的手机号">
                 </div>
             </div>
             <div class="form_row">

@@ -19,6 +19,9 @@
         .baseinfo{
             padding-left: 22px;
             margin-bottom: 40px;
+            .progress{
+                background-color: #e9e9e9;
+            }
         }
         .page-header{
              margin-top: 0;
@@ -64,6 +67,9 @@
     .set-cont{
         padding-left: 22px;
         padding-bottom: 20px;
+        .form-group{
+            margin-right: 10px;
+        }
         .form-inline,.form-horizontal{
             margin: 20px 0;
         }

@@ -17,10 +17,6 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="css/_dfzz/base/animate.css">
         <link rel="stylesheet" href="css/_dfzz/base/base.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -40,6 +36,7 @@
         <link rel="stylesheet" href="css/_dfzz/component/modal.newword.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.rpcheck.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.sendgoods.css">
+        <link rel="stylesheet" href="css/_dfzz/component/modal.setvoteposi.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.show.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.showpic.css">
         <link rel="stylesheet" href="css/_dfzz/component/modal.table.css">
@@ -52,6 +49,10 @@
         <link rel="stylesheet" href="css/_dfzz/component/select.css">
         <link rel="stylesheet" href="css/_dfzz/component/switch.css">
         <link rel="stylesheet" href="css/_dfzz/component/table.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/page/ads.launch.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/art.put.css">
@@ -119,6 +120,7 @@
         <!-- inject:js -->
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
+        <script src="js/_dfzz/filter/filters.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
         <script src="js/_dfzz/ctrl/vote.put.js"></script>
@@ -182,7 +184,6 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
-        <script src="js/_dfzz/filter/filters.js"></script>
         <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
@@ -480,8 +481,23 @@
                     </li>
                 </ul>
             </div>
-            
-            
+
+
+             <div class="sub-nav-all" ng-mouseenter="navMouseover(52001)" ng-mouseleave="navMouseleave()" ng-show="currNav === 52001">
+                <div class="top-logo">
+                    <img src="img/subnav_logo.png" alt="" />
+                </div>
+                <ul class="list">
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="syssets_notification_list" ui-sref-active="active">推送列表</a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0);" ui-sref="syssets_notification_new" ui-sref-active="active">新增推送</a>
+                    </li>
+                </ul>
+            </div>
+
+
              <div class="sub-nav-all" ng-mouseenter="navMouseover(52001)" ng-mouseleave="navMouseleave()" ng-show="currNav === 52001">
                 <div class="top-logo">
                     <img src="img/subnav_logo.png" alt="" />

@@ -1,0 +1,96 @@
+<div class="modal-body">
+    <button class="modal-close" type="button" name="button" ng-click="cancel()"></button>
+    <div class="content">
+        <h1 class="tit">投放位置设置</h1>
+        <div class="section">
+            <div class="row1">
+                <label>
+                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.posi[0]">
+                    <i class="icon icon-checkbox"></i>
+                    <span>咨询首页</span>
+                </label>
+            </div>
+            <div class="row2">
+                <div class="tit-cont">
+                    <h3 class="row-tit">活动图片：</h3>
+                </div>
+                <div class="pic-cont">
+                    <input type="file" clean-file-value accept="image/*" id="uploadIndexPic" nv-file-select="" uploader="uploadIndexPic" />
+                    <p ng-show="!position.indexPic">
+                        <button type="button" name="button" ng-click="addIndexPic()"></button>
+                        <span class="tip">支持jpg/png格式，RGB模式，850*405 72dpi</span>
+                    </p>
+                    <div class="pic" ng-show="position.indexPic">
+                        <button type="button" name="button" ng-click="delIndexPic()"></button>
+                        <img ng-src="{{position.indexPic}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row3">
+                <div class="tit-cont">
+                    <h3 class="row-tit">显示位置：</h3>
+                </div>
+                <div class="input-cont">
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.setTop">
+                        <i class="icon"></i>
+                        <span>置顶</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="row1">
+                <label>
+                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.posi[1]" ng-change="posiChange()">
+                    <i class="icon icon-checkbox"></i>
+                    <span>圈子</span>
+                </label>
+            </div>
+            <div class="row2">
+                <div class="tit-cont">
+                    <h3 class="row-tit">活动图片：</h3>
+                </div>
+                <div class="pic-cont">
+                    <input type="file" clean-file-value accept="image/*" id="uploadCirclePic" nv-file-select="" uploader="uploadCirclePic" />
+                    <p ng-show="!position.circlePic">
+                        <button type="button" name="button" ng-click="addCirclePic()"></button>
+                        <span class="tip">支持jpg/png格式，RGB模式，850*405 72dpi</span>
+                    </p>
+                    <div class="pic" ng-show="position.circlePic">
+                        <button type="button" name="button" ng-click="delCirclePic()"></button>
+                        <img ng-src="{{position.circlePic}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row3">
+                <div class="tit-cont">
+                    <h3 class="row-tit">显示位置：</h3>
+                </div>
+                <div class="input-cont">
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.circlePosi[0]" ng-change="circlePosiChange()">
+                        <i class="icon"></i>
+                        <span>本地圈</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.circlePosi[1]" ng-change="circlePosiChange()">
+                        <i class="icon"></i>
+                        <span>圈外圈</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="position.circlePosi[2]" ng-change="circlePosiChange()">
+                        <i class="icon"></i>
+                        <span>朋友圈</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="btnBox">
+            <p class="msg" ng-show="succMsg">{{succMsg}}</p>
+            <p class="err" ng-show="errMsg">{{errMsg}}</p>
+            <button class="app-button-default" type="button" ng-click="cancel()" name="button">关闭</button>
+            <button class="app-button-primary" type="button" ng-click="ok()" name="button">确认</button>
+        </div>
+    </div>
+</div>

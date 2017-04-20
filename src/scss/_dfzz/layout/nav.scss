@@ -108,6 +108,9 @@ $nav-act-bg-color: #2d3237 !default;
                 .icon-mall {
                     @include sprite($icon-mall);
                 }
+                .icon-vote {
+                    @include sprite($icon-vote);
+                }
                 .icon-push {
                     @include sprite($icon-icon-push);
                 }
@@ -167,8 +170,11 @@ $nav-act-bg-color: #2d3237 !default;
                     .icon-sysset {
                         @include sprite($icon-sysset-act);
                     }
-                    .icon-mall{
+                    .icon-mall {
                         @include sprite($icon-mall-active);
+                    }
+                    .icon-vote {
+                        @include sprite($icon-vote-active);
                     }
                     .icon-push {
                         @include sprite($icon-icon-push-active);

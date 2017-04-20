@@ -43,7 +43,7 @@
         <div class="col2">
             <div class="inner">
                 <div class="panel panel-default">
-                    <div class="panel-heading">活动介绍</div>
+                    <div class="panel-heading">活动主题</div>
                     <div class="panel-body">{{detail.actProfile}}</div>
                 </div>
                 <div class="panel panel-default">
@@ -72,17 +72,22 @@
                         <img ng-src="{{detail.coverPhoto}}" alt="">
                     </div>
                 </div>
-
-            </div>
-        </div>
-        <div class="col2">
-            <div class="inner">
                 <div class="panel panel-default">
                     <div class="panel-heading">报名规则</div>
                     <div class="panel-body">
                         <ul>
                             <li ng-repeat="item in detail.signUpRule">{{item}}</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col2">
+            <div class="inner">
+                <div class="panel panel-default">
+                    <div class="panel-heading">奖品图片</div>
+                    <div class="panel-body">
+                        <img ng-src="{{detail.prizePhoto}}" alt="">
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -107,7 +112,15 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">原文链接</div>
-                    <div class="panel-body">{{detail.originalLink}}</div>
+                    <div class="panel-body">{{detail.originalLink || "无"}}</div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">客服微信</div>
+                    <div class="panel-body">{{detail.serviceWeixin|| "无"}}</div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">客服手机</div>
+                    <div class="panel-body">{{detail.servicePhone|| "无"}}</div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">基数设置</div>

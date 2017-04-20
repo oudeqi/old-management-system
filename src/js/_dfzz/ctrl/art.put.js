@@ -326,7 +326,15 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             if($scope.infoSet.template === "1"){ //视频模板
                 content = $scope.infoSet.videoCon;
             }else{ //图文模板
-                content = constant.UMEDITOR_CONTENT_HEADER + $scope.infoSet.content + constant.UMEDITOR_CONTENT_FOOTER;
+                if($scope.url){
+                	//现在是微信导入的文章
+                	content = constant.UMEDITOR_CONTENT_HEADER + $scope.infoSet.content + constant.UMEDITOR_CONTENT_FOOTER;
+                }else{
+                	content = constant.UMEDITOR_CONTENT_HEADER_CK + $scope.infoSet.content + constant.UMEDITOR_CONTENT_FOOTER;
+                }
+                
+                
+                
             }
             //文章分类视频
             if($scope.type.id == '8'){

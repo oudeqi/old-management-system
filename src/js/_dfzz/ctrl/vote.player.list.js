@@ -9,7 +9,7 @@ app.controller('vote_player_list',['$scope','$http','constant','localStorageServ
         $scope.keywords = "";
         $scope.currentPage = 1;
         $scope.pageSize = 20;
-        $scope.totalItems = 500;
+        $scope.totalItems = 0;
         $scope.list = [];
 
         $scope.getList = function(){
@@ -27,13 +27,18 @@ app.controller('vote_player_list',['$scope','$http','constant','localStorageServ
             }).success(function(res) {
                 console.log("获取选手列表：",res);
                 $scope.list = res.data;
-                $scope.totalItems = res.totalItems;
+                $scope.totalItems = res.rowCount;
                 $scope.currentPage = res.pageIndex;
             }).error(function(data) {
 
             });
         };
         $scope.getList();
+
+        $scope.changeType = function(){
+            $scope.currentPage = 1;
+            $scope.getList();
+        };
 
         $scope.search = function(e){
             if(e && e.keyCode !== 13){
