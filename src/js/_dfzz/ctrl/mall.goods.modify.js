@@ -113,7 +113,6 @@ app.controller('mall_goods_modify',['$scope','$http','constant','localStorageSer
             }
         };
 
-        //modify 修改商品
         $scope.clicked = false;
         $scope.modify = function(){
             console.log($scope.mallGoods);
@@ -125,51 +124,72 @@ app.controller('mall_goods_modify',['$scope','$http','constant','localStorageSer
                 $scope.clicked = false;
                 return;
             }
-            $http.post(constant.APP_HOST+'/v1/aut/goods/set',{
-                id:$scope.id,
-                goodsType:$scope.mallGoods.type,
-                previewUrl:$scope.mallGoods.coverPhoto,
-                title:$scope.mallGoods.title,
-                originalPrice:$scope.mallGoods.originalPrice*100,
-                price:$scope.mallGoods.nowPrice*100,
-                ucoin:$scope.mallGoods.uDiscount,
-                imgList:$scope.mallGoods.banner,
-                content:$scope.mallGoods.content,
-                remainNumber:$scope.mallGoods.stock,
-                top:$scope.mallGoods.isTop,
-                recommend:$scope.mallGoods.isRecommend
-             },{
-     			headers:{
-     				'Authorization':localStorageService.get("token")
-     			}
-     		}).success(function(res){
-                $scope.clicked = false;
-                console.log("修改商品",res);
-                if(!!res.data.id){
-                    $scope.success = "修改商品成功";
-                    $scope.error = "";
-                    $timeout(function () {
-                        // $state.go("mall_goods_modify",{},{reload:true});
-                    }, 2000);
-                }else{
+            var confirm = {
+                tit : "确认修改该商品吗？",
+                content : "商品修改后将立即生效"
+            };
+            var modalInstance = $uibModal.open({
+                backdrop:'static',
+                animation: true,
+                windowClass: 'modal-confirm',
+                templateUrl: './tpl/_dfzz/modal.confirm.html',
+                controller: 'modal_confirm',
+                size: 'sm',
+                resolve: {
+                    confirm: function () {
+                        return confirm;
+                    }
+                }
+            });
+            modalInstance.result.then(function () {
+                $http.post(constant.APP_HOST+'/v1/aut/goods/set',{
+                    id:$scope.id,
+                    goodsType:$scope.mallGoods.type,
+                    previewUrl:$scope.mallGoods.coverPhoto,
+                    title:$scope.mallGoods.title,
+                    originalPrice:$scope.mallGoods.originalPrice*100,
+                    price:$scope.mallGoods.nowPrice*100,
+                    ucoin:$scope.mallGoods.uDiscount,
+                    imgList:$scope.mallGoods.banner,
+                    content:$scope.mallGoods.content,
+                    remainNumber:$scope.mallGoods.stock,
+                    top:$scope.mallGoods.isTop,
+                    recommend:$scope.mallGoods.isRecommend
+                 },{
+         			headers:{
+         				'Authorization':localStorageService.get("token")
+         			}
+         		}).success(function(res){
+                    $scope.clicked = false;
+                    console.log("修改商品",res);
+                    if(!!res.data.id){
+                        $scope.success = "修改商品成功";
+                        $scope.error = "";
+                        $timeout(function () {
+                            $state.go("mall_goods_modify",{},{reload:true});
+                        }, 2000);
+                    }else{
+                        $scope.error = "修改商品失败，请重试";
+                        $scope.success = "";
+                        $timeout(function () {
+                            $scope.success = "";
+                            $scope.error = "";
+                        }, 1000);
+                    }
+                }).error(function(err){
+                    $scope.clicked = false;
                     $scope.error = "修改商品失败，请重试";
                     $scope.success = "";
                     $timeout(function () {
                         $scope.success = "";
                         $scope.error = "";
                     }, 1000);
-                }
-            }).error(function(err){
+                });
+            }, function () {
                 $scope.clicked = false;
-                $scope.error = "修改商品失败，请重试";
-                $scope.success = "";
-                $timeout(function () {
-                    $scope.success = "";
-                    $scope.error = "";
-                }, 1000);
+                console.info('模态框取消: ' + new Date());
             });
         };
-
 
         $scope.delBanner = function(index){
             console.log(index);

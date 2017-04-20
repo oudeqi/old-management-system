@@ -16,14 +16,10 @@
     padding-bottom: 50px;
     .breadcrumb-cont{
         padding-top: 20px;
+        padding-bottom: 50px;
         .breadcrumb{
             margin-bottom: 0;
         }
-    }
-    h1{
-        margin: 0;
-        padding: 35px 0;
-        text-align: center;
     }
     .ipt-error{
         border: 1px solid #fb4747 !important;
@@ -40,9 +36,6 @@
     }
     .warpper{
         @include clearfix();
-        .l{
-            padding-top: 15px;
-        }
         .l,.r{
             float: left;
             width: 50%;
