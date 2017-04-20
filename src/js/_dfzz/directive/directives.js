@@ -352,6 +352,7 @@ angular.module('uoudo.dfzz')
                 initialFrameHeight:480,
                 autoClearinitialContent:true,
                 autoClearEmptyNode : true,
+                autoFloatEnabled:false
             });
             angular.element(document).find("#"+_editorId).css({
                 "font-family":"微软雅黑",

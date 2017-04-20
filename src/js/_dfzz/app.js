@@ -366,6 +366,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/sysset.goods.list.html",
             controller:"sysset_goods_list",
         })
+        .state('mall_goods_modify',{
+            url:"/mall_goods_modify/{id}",
+            templateUrl:"./tpl/_dfzz/mall.goods.modify.html",
+            controller:"mall_goods_modify",
+        })
         .state('mall_order',{
             url:"/mall_order",
             templateUrl:"./tpl/_dfzz/mall.order.html",

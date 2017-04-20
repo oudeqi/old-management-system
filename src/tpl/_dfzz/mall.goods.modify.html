@@ -1,0 +1,134 @@
+<div class="mall-goods-modify-container">
+    <div class="breadcrumb-cont">
+        <ol class="breadcrumb">
+            <li><a ui-sref="mall_goods_list">商品列表</a></li>
+            <li class="active">修改商品</li>
+        </ol>
+    </div>
+    <h1>修改商品</h1>
+    <div class="warpper">
+        <div class="l">
+            <div class="form_row">
+                <div class="fow_label">商品分类：</div>
+                <div class="fow_cont clearfix">
+                    <div class="app-select">
+                        <select ng-model="mallGoods.type" ng-change="changeType()">
+                            <option value="1">联联特产</option>
+                            <option value="2">吃货馆</option>
+                            <option value="3">联联优品</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">商品标题：</div>
+                <div class="fow_cont">
+                    <input class="form_ipt" ng-class="{'ipt-error':titleInValid}" ng-keyup="checkTitle()" type="text" ng-model="mallGoods.title" placeholder="请输入任务标题">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">封面图片：</div>
+                <div class="fow_cont">
+                    <div class="addBanner-btn" ng-show="!mallGoods.coverPhoto">
+                        <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadCoverPhoto" nv-file-select="" uploader="uploadCoverPhoto" />
+                        <button type="button" ng-class="{'ipt-error':coverPhotoInValid}" ng-click="addCoverPhoto()">+ 添加封面图 </button>
+                    </div>
+                    <div class="pic_view nopadd" ng-show="mallGoods.coverPhoto">
+                        <button type="button" ng-click="delCoverPhoto()">
+                            <i class="icon"></i>
+                        </button>
+                        <p class="pic">
+                            <img ng-src="{{mallGoods.coverPhoto}}" alt="">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">轮播图片：</div>
+                <div class="fow_cont clearfix">
+                    <div class="pic_view" ng-repeat="item in mallGoods.banner">
+                        <button type="button" ng-click="delBanner($index)">
+                            <i class="icon"></i>
+                        </button>
+                        <p class="pic">
+                            <img ng-src="{{item}}" alt="">
+                        </p>
+                    </div>
+                    <div class="addBanner-btn">
+                        <input ng-show="false" type="file" clean-file-value accept="image/*" id="uploadBanner" nv-file-select="" uploader="uploadBanner" />
+                        <button type="button" ng-class="{'ipt-error':bannerInValid}" ng-click="addBanner()">+ 添加轮播图 </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">商品原价：</div>
+                <div class="fow_cont clearfix">
+                    <input class="form_ipt_sm" type="number" ng-model="mallGoods.originalPrice" ng-class="{'ipt-error':originalPriceInValid}" placeholder="请输入整数或者小数，单位元">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">商品现价：</div>
+                <div class="fow_cont clearfix">
+                    <input class="form_ipt_sm" type="number" ng-model="mallGoods.nowPrice" ng-class="{'ipt-error':nowPriceInValid}" placeholder="请输入整数或者小数，单位元">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">U币优惠：</div>
+                <div class="fow_cont clearfix">
+                    <input class="form_ipt_sm" type="number" ng-model="mallGoods.uDiscount" ng-class="{'ipt-error':uDiscountInValid}" placeholder="请输入整数">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">所有库存：</div>
+                <div class="fow_cont clearfix">
+                    <input class="form_ipt_sm" type="number" ng-model="mallGoods.stock" ng-class="{'ipt-error':stockInValid}" placeholder="请输入整数">
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">是否置顶：</div>
+                <div class="fow_cont">
+                    <label class="radio_label">
+                        <input type="radio" ng-model="mallGoods.isTop" value="0">
+                        <i class="icon"></i>
+                        <span>否</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" ng-model="mallGoods.isTop" value="1">
+                        <i class="icon"></i>
+                        <span>是</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_label">是否推荐：</div>
+                <div class="fow_cont">
+                    <label class="radio_label">
+                        <input type="radio" ng-model="mallGoods.isRecommend" value="0">
+                        <i class="icon"></i>
+                        <span>否</span>
+                    </label>
+                    <label class="radio_label">
+                        <input type="radio" ng-model="mallGoods.isRecommend" value="1">
+                        <i class="icon"></i>
+                        <span>是</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="r">
+            <div class="form_row">
+                <div class="fow_cont">
+                    <label class="editor-label">图文编辑：</label>
+                    <app-editor-mu ng-model="mallGoods.content"></app-editor-mu>
+                </div>
+            </div>
+            <div class="form_row">
+                <div class="fow_cont">
+                    <button class="app-button-primary" type="button" ng-click="modify()">确认修改</button>
+                </div>
+            </div>
+            <p class="put-success" ng-show="success">{{success}}</p>
+            <p class="put-error" ng-show="error">{{error}}</p>
+        </div>
+    </div>
+</div>

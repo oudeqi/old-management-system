@@ -1,0 +1,210 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+%ipt_focus{
+    outline: 0;
+    &:focus{
+        border:1px solid lighten($font-color-primary,25%);
+    }
+}
+
+.mall-goods-modify-container{
+    background: #fff;
+    padding: 0 40px;
+    padding-bottom: 50px;
+    .breadcrumb-cont{
+        padding-top: 20px;
+        .breadcrumb{
+            margin-bottom: 0;
+        }
+    }
+    h1{
+        margin: 0;
+        padding: 35px 0;
+        text-align: center;
+    }
+    .ipt-error{
+        border: 1px solid #fb4747 !important;
+    }
+    .put-success{
+        font-size: 30px;
+        padding-top: 20px;
+        color: #fd9e24;
+    }
+    .put-error{
+        font-size: 30px;
+        padding-top: 20px;
+        color: #fb4747;
+    }
+    .warpper{
+        @include clearfix();
+        .l{
+            padding-top: 15px;
+        }
+        .l,.r{
+            float: left;
+            width: 50%;
+            padding-left: 30px;
+            max-width: 680px;
+            min-width: 560px;
+        }
+        .pic_view{
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 15px;
+            width: 100px;
+            height: auto;
+            float: left;
+            margin-right: 10px;
+            &.nopadd{
+                padding: 0;
+            }
+            button{
+                position: absolute;
+                top: 0;
+                right: 0;
+                border: 0;
+                background-color: inherit;
+                margin: 0;
+                padding: 3px;
+                background-color: #ccc;
+                outline: 0;
+                opacity: 0.7;
+                .icon{
+                    display: block;
+                    @include sprite($icon-close);
+                }
+                &:hover{
+                    opacity: 1;
+                }
+                &:active{
+                    border: 1px solid #ddd;
+                }
+            }
+            .pic{
+                min-height: 50px;
+                border:1px solid #ddd;
+                border-radius: 3px;
+                padding: 4px;
+                margin: 0;
+                img{
+                    max-width: 100%;
+                    height: auto;
+                }
+            }
+        }
+        .form_row{
+            margin-bottom: 15px;
+            color:#2b333b;
+            @include clearfix();
+            .app-button-primary{
+                margin-top: 20px;
+            }
+            .fow_label{
+                float: left;
+                font-size: 15px;
+                line-height: 36px;
+                width: 86px;
+            }
+            .fow_cont{
+                font-size: 15px;
+                float: left;
+                margin-left: 10px;
+                width: 450px;
+                .addBanner-btn{
+                    clear: left;
+                    button{
+                        width: 220px;
+                        height: 36px;
+                        background: #F8F8F8;
+                        border: 1px dashed #EBEBEB;
+                        text-align: center;
+                        font-size: 15px;
+                        color: #bfbfbf;
+                        outline: 0;
+                        border-radius: 2px;
+                        &:hover{
+                            background-color: #eee;
+                            color: #aaa;
+                        }
+                    }
+                }
+                .editor-label{
+                    padding-bottom: 5px;
+                }
+                .addpic{
+                    vertical-align: middle;
+                    display: inline-block;
+                    border-radius: 5px;
+                    border: 0;
+                    @include sprite($icon-add-pic);
+                    margin-right: 10px;
+                }
+                .tip{
+                    font-size: 14px;
+                    color: #BFBFBF;
+                    letter-spacing: 0;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .form_ipt{
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 350px;
+                    height: 36px;
+                    border: 1px solid #d7d7d7;
+                    border-radius: 2px;
+                    padding: 0 5px;
+                    font-size: inherit;
+                    font-family: inherit;
+                    margin-right: 10px;
+                    @extend %ipt_focus;
+                    &.has_err{
+                        border: 1px solid $font-color-warning;
+                    }
+                }
+                .form_ipt_sm{
+                    display: block;
+                    width: 220px;
+                    height: 36px;
+                    border: 1px solid #d7d7d7;
+                    border-radius: 2px;
+                    padding: 0 5px;
+                    font-size: inherit;
+                    font-family: inherit;
+                    margin-right: 10px;
+                    @extend %ipt_focus;
+                    &.has_err{
+                        border: 1px solid $font-color-warning;
+                    }
+                }
+                .radio_label{
+                    margin-right: 20px;
+                    padding-top: 6px;
+                    padding-left: 4px;
+                    cursor: pointer;
+                    span{
+                        line-height: 18px;
+                        vertical-align: middle;
+                        font-weight: normal;
+                    }
+                    input[type="radio"]{
+                        display: none;
+                        & + .icon{
+                            @include sprite($icon-unchecked);
+                        }
+                    }
+                    input[type="radio"]:checked + .icon{
+                        @include sprite($icon-checked);
+                    }
+                    .icon{
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}

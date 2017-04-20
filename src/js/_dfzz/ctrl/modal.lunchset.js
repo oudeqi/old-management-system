@@ -167,18 +167,18 @@ angular.module('uoudo.dfzz')
                 $scope.loading = false;
                 return;
             }
-            if($scope.busType == '36' && !$scope.url){
-                $scope.urlMsg = "广告链接地址格式不正确";
-                $scope.loading = false;
-                return;
-            }
+            // if($scope.busType == '36' && !$scope.url){
+            //     $scope.urlMsg = "广告链接地址格式不正确";
+            //     $scope.loading = false;
+            //     return;
+            // }
             $scope.ntimen=null;
-            if($scope.pushTime==""){
+            if($scope.pushTime===""){
             	$scope.ntimen=null;
             }else{
-            	$scope.ntimen=new Date($scope.pushTime+":00").getTime()
+            	$scope.ntimen=new Date($scope.pushTime+":00").getTime();
             }
-            
+
             $http.post(constant.APP_HOST+'/v1/start/ad/publish',{
                 pushTime:$scope.ntimen,
                 image:$scope.image,
