@@ -1,16 +1,14 @@
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home {
-  width: $icon-home-width;
-}
-
-The large array-like variables contain all information about a single icon
-$icon-home: x y offset_x offset_y width height total_width total_height image_path;
-
-At the bottom of this section, we provide information about the spritesheet itself
-$spritesheet: width height image $spritesheet-sprites;
-*/
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
 $icon-add-pic-name: 'icon-add-pic';
 $icon-add-pic-x: 135px;
 $icon-add-pic-y: 144px;
@@ -1051,32 +1049,30 @@ $spritesheet-image: '../../../img/sprite.png';
 $spritesheet-sprites: ($icon-add-pic, $icon-addpic, $icon-android, $icon-app-back, $icon-app-read, $icon-app-read-gray, $icon-app-share, $icon-app-share-gray, $icon-arrow-l, $icon-arrow-r, $icon-back, $icon-bbs-act, $icon-bbs, $icon-bread-back, $icon-checkbox-checked, $icon-checkbox-sm-checked, $icon-checkbox-sm-unchecked, $icon-checkbox-unchecked, $icon-checkbox, $icon-checked, $icon-checked1, $icon-cir-act, $icon-cir, $icon-close, $icon-copy, $icon-date-addon, $icon-del-sm, $icon-del, $icon-delpic, $icon-dfzz, $icon-drop, $icon-ewm, $icon-ggz, $icon-gw, $icon-help, $icon-icon-push-active, $icon-icon-push, $icon-id-f, $icon-id-z, $icon-ios, $icon-like, $icon-liuyan, $icon-mall-active, $icon-mall, $icon-modal-close, $icon-mtz, $icon-nav-ads-act, $icon-nav-ads, $icon-nav-art-act, $icon-nav-art, $icon-nav-finance-act, $icon-nav-finance, $icon-nav-home-act, $icon-nav-home, $icon-nav-ly-act, $icon-nav-ly, $icon-nav-rp-act, $icon-nav-rp, $icon-nav-task-act, $icon-nav-task, $icon-nav-tgzx-act, $icon-nav-tgzx, $icon-nav-treasure-act, $icon-nav-treasure, $icon-next, $icon-opra-fail, $icon-opra-succ, $icon-people, $icon-people2, $icon-play, $icon-play-sm, $icon-pre, $icon-pwd, $icon-radio, $icon-sina, $icon-succ, $icon-sysset-act, $icon-sysset, $icon-tgs, $icon-unchecked, $icon-unchecked1, $icon-up-error-sm, $icon-up-succe-sm, $icon-user, $icon-userctl-act, $icon-userctl, $icon-vote-active, $icon-vote, $icon-warning, $icon-websiteman-act, $icon-websiteman, $icon-wechat, $icon-yzm, $icon-zz-upload, );
 $spritesheet: (414px, 372px, '../../../img/sprite.png', $spritesheet-sprites, );
 
-/*
-The provided mixins are intended to be used with the array-like variables
-
-.icon-home {
-  @include sprite-width($icon-home);
-}
-
-.icon-email {
-  @include sprite($icon-email);
-}
-
-Example usage in HTML:
-
-`display: block` sprite:
-<div class="icon-home"></div>
-
-To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
-
-// CSS
-.icon {
-  display: inline-block;
-}
-
-// HTML
-<i class="icon icon-home"></i>
-*/
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
 @mixin sprite-width($sprite) {
   width: nth($sprite, 5);
 }
@@ -1103,12 +1099,10 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   @include sprite-height($sprite);
 }
 
-/*
-The `sprites` mixin generates identical output to the CSS template
-  but can be overridden inside of SCSS
-
-@include sprites($spritesheet-sprites);
-*/
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
 @mixin sprites($sprites) {
   @each $sprite in $sprites {
     $sprite-name: nth($sprite, 10);
