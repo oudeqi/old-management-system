@@ -68,30 +68,24 @@
                 <tr>
                     <th>用户名</th>
                     <th>用户账号</th>
+                    <th>推荐人</th>
                     <th>性别</th>
                     <th>年龄</th>
-                    <th>身高</th>
-                    <th>星座</th>
-                    <th>魅力</th>
-                    <!-- <th>关注</th> -->
-                    <th>粉丝</th>
-
+                    <th>注册时间</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in list.data">
                     <td>{{item.nickName}}</td>
-                    <td>{{item.phoneNumber}}</td>
-
-                    <td ng-show="item.gender==2">女</td>
-                    <td ng-show="item.gender==1">男</td>
-                    <td ng-show="item.gender==0">未知</td>
-
+                    <td title="{{item.phoneNumber}}">{{item.phoneNumber}}</td>
+                    <td>{{item.inviteUser}}</td>
+                    <td>
+                        <span ng-show="item.gender==2">女</span>
+                        <span ng-show="item.gender==1">男</span>
+                        <span ng-show="item.gender==0">未知</span>
+                    </td>
                     <td>{{item.age?item.age:'未知'}}</td>
-                    <td>{{item.height?item.age:'未知'}}</td>
-                    <td>{{item.constellation}}</td>
-                    <td>{{item.charm}}</td>
-                    <td>{{item.fansCount}}</td>
+                    <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                 </tr>
             </tbody>
         </table>

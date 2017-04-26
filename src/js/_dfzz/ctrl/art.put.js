@@ -47,7 +47,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 template:"2",//模板类型 2图文1视频
                 sellerName:"",//来源
                 content:"",//正文
-                videoType:"0",//精彩视频推荐
+                videoType:"28",//精彩视频推荐
                 videoCon:""//视频正文
             };
             $scope.types = [];
@@ -332,9 +332,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 }else{
                 	content = constant.UMEDITOR_CONTENT_HEADER_CK + $scope.infoSet.content + constant.UMEDITOR_CONTENT_FOOTER;
                 }
-                
-                
-                
             }
             //文章分类视频
             if($scope.type.id == '8'){

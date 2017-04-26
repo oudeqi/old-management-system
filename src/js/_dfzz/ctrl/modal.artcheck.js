@@ -14,6 +14,7 @@ app.controller('art_check',['$scope','$uibModalInstance','art','$sce','$sceDeleg
         $scope.videoUrl = $sce.trustAsResourceUrl(art.videoUrl);
         $scope.top = art.top;
         $scope.content = $sce.trustAsHtml(art.content);
+        console.log(art.content);
 
         $scope.ok = function () {
         	$uibModalInstance.close();

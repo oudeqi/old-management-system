@@ -55,9 +55,14 @@
                         <p class="b">已下线</p>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="javascript:void(0);" ng-click="changeAll(0,'')" ng-class="{'active':type === '' && status === 0}">
+                        <span>显示全部</span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="r">
+        <!-- <div class="r">
             <div class="inner">
                 <div class="item">
                     <a href="javascript:void(0);" ng-click="changeType(0)" ng-class="{'active':type === 0}">
@@ -77,9 +82,8 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
-
     <div class="app-table-box">
         <table class="app-table">
             <thead>
@@ -89,7 +93,7 @@
                     <th>文章分类</th>
                     <th>创建时间</th>
                     <th>预约时间</th>
-                    <th>文章类型</th>
+                    <th>模板类型</th>
                     <th>阅读量</th>
                     <th>转发量</th>
                     <th>点赞数</th>
@@ -104,7 +108,12 @@
                     <td>{{item.infoTypeName || "无"}}</td>
                     <td>{{item.createDate | date:"yyyy/MM/dd HH:mm"}}</td>
                     <td>{{item.pushTime || "无" | date:"yyyy/MM/dd HH:mm"}}</td>
-                    <td>{{item.artType}}</td>
+                    <td>
+                        <span ng-if="item.template==1">视频模板</span>
+                        <span ng-if="item.template==2">图文模板</span>
+                        <span ng-if="item.template==3">封面模板</span>
+                        <span ng-if="item.template==4">多图模板</span>
+                    </td>
                     <td>{{item.readNumber | number : 0}}</td>
                     <td>{{item.receiveNumber | number : 0}}</td>
                     <td>{{item.likesNumber | number : 0}}</td>

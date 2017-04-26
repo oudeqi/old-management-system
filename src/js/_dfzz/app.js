@@ -291,8 +291,8 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/cir.list.info.html",
             controller:"cir_list_info"
         })
-        .state('user_ctl',{
-            url:"/user_ctl",
+        .state('tgtj_user',{
+            url:"/tgtj_user",
             templateUrl:"./tpl/_dfzz/user.ctl.html",
             controller:"user_ctl"
         })

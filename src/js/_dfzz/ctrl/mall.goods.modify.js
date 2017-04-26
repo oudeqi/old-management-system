@@ -15,7 +15,6 @@ app.controller('mall_goods_modify',['$scope','$http','constant','localStorageSer
             banner:[],//轮播图
             content:''
         };
-
         $scope.id = $state.params.id;
         $http.get(constant.APP_HOST + '/v1/aut/goods/detail', {
             headers: {
@@ -39,13 +38,13 @@ app.controller('mall_goods_modify',['$scope','$http','constant','localStorageSer
                 $scope.mallGoods.banner = res.data.imgList;
                 $timeout(function(){
                     $scope.mallGoods.content = res.data.content;
-                },0);
-                console.log($scope.mallGoods);
+                    console.log($scope.mallGoods);
+                },30);
+
             }
         }).error(function(data) {
 
         });
-
 
         $scope.checkTitle = function(){
             if(!$scope.mallGoods.title){
@@ -121,6 +120,10 @@ app.controller('mall_goods_modify',['$scope','$http','constant','localStorageSer
             }
             $scope.clicked = true;
             if(!$scope.checkTitle() || !$scope.checkCoverPhoto() || !$scope.checkBanner() || !$scope.checkOriginalPrice() || !$scope.checkNowPrice() || !$scope.checkUDiscount() || !$scope.checkStock()){
+                $scope.clicked = false;
+                return;
+            }
+            if(!$scope.mallGoods.content){
                 $scope.clicked = false;
                 return;
             }

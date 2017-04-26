@@ -26,10 +26,11 @@ $app-ipt-width: 200px !default;
     .app-display-board{
         .l{
             float: left;
-            width: 60%;
+            width: 100%;
             .inner{
+                margin: 0;
                 .item{
-                    width: 25%;
+                    width: 20%;
                 }
             }
         }
