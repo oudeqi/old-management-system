@@ -14,6 +14,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             }else if($scope.art.template == "2"){ //图文
                 content = $scope.art.content;
             }
+          
             $scope.infoSet = {
                 title:$scope.art.title,//标题
                 sellerName:$scope.art.sellerName,//来源
@@ -211,6 +212,37 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 $scope.videoUrl = "";
             }
         };
+        
+        //视频地址x2
+        $scope.clickBtnVideox = function(){
+        	console.log("点击视频地址x2")
+            document.getElementById("uploadVideox").click();
+        };
+        var uploadVideox = $scope.uploadVideox = new FileUploader({
+            url : constant.APP_HOST + "/v1/ad/adVideo",
+            removeAfterUpload : true,
+            formData :[{token:localStorageService.get('token')}]
+        });
+        uploadVideox.onAfterAddingFile = function(fileItem) {
+            fileItem.alias="file";
+            $scope.uploadVideox.queue[0].upload();
+        };
+        uploadVideox.onSuccessItem  = function(item,response){
+            console.log(response);
+            if(item.isSuccess){
+                $scope.videoUrlx = response;
+                mueditor.execCommand('insertvideo',{
+                	url:response,
+                	width:420,
+                	height:260
+                })
+                $scope.videoUploadErrx = "";
+            }else{
+                $scope.videoUploadErrx = "视频上传失败";
+                $scope.videoUrlx = "";
+            }
+        };
+        
 
         //裁剪图片
         $scope.clickBtnPic = function(){

@@ -22,7 +22,7 @@ app.constant("constant",{
                       'html {font-size: 16px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color:#595959;}'+
                       'p{line-height: 1.5 !important;text-align: justify;word-break:break-all;white-space:normal;margin:10px 0 !important;overflow-x: hidden !important;}'+
                       'iframe{width: 100%;}img{max-width:100% !important;}'+
-                      '#custom_style{max-width: 640px;min-width: 320px;margin:0 auto;width:100%;}'+
+                      '#custom_style{max-width: 640px;min-width: 250px;margin:0 auto;width:100%;}'+
                       '@media screen and (min-width: 1024px){.rich_media{width: auto !important;}}'+
                       '@media screen and (min-width: 1024px){.rich_media_inner {padding: 0 !important;}}'+
                       '.rich_media_area_primary{padding: 0 !important;}'+
@@ -40,11 +40,11 @@ app.constant("constant",{
                       'html {font-size: 16px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color:#595959;}'+
                       'p{line-height: 1.5 !important;text-align: justify;word-break:break-all;white-space:normal;margin:10px 0 !important;overflow-x: hidden !important;}'+
                       'iframe{width: 100%;}img{max-width:100% !important;}'+
-                      '#custom_style{max-width: 640px;min-width: 320px;margin:0 auto;width:100%;}'+
+                      '#custom_style{margin:0 auto;width:100%; font-size: 18px !important;color: #3b424c !important;line-height: 32px !important; width:100%; margin:0 auto;}'+
                       '@media screen and (min-width: 1024px){.rich_media{width: auto !important;}}'+
                       '@media screen and (min-width: 1024px){.rich_media_inner {padding: 0 !important;}}'+
                       '.rich_media_area_primary{padding: 0 !important;}'+
-                      'body{ font-size: 18px !important;color: #3b424c !important;line-height: 32px !important;margin: 0 15px 20px; width:calc(100% - 30px);}'+
+                      '#godiv{ font-size: 18px !important;color: #3b424c !important;line-height: 32px !important; width:100%; margin:0 auto;}'+
                   '</style>'+
               '</head>'+
           '<body id="custom_style">',
