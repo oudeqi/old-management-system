@@ -352,6 +352,7 @@ angular.module('uoudo.dfzz')
                 initialFrameHeight:480,
                 autoClearinitialContent:true,
                 autoClearEmptyNode : true,
+                autoFloatEnabled:false
             });
             angular.element(document).find("#"+_editorId).css({
                 "font-family":"微软雅黑",
@@ -381,47 +382,76 @@ angular.module('uoudo.dfzz')
             }
         }
     };
-}]);
+}])
 
-// .directive('appEditorMu', ['$timeout', function($timeout) {
-//     return {
-//         restrict: 'E',
-//         replace: true,
-//         template: function(){
-//             return '<script type="text/plain"></script>';
-//         },
-//         scope: {
-//             tpl:"=ngModel"
-//         },
-//         link: function(scope, element, attrs) {
-//             var _editorId = "_editor" + (Date.now());
-//             element[0].id = _editorId;
-//             mueditor = UM.getEditor(_editorId,{
-//                 initialFrameWidth:420,
-//                 initialFrameHeight:480,
-//                 autoClearinitialContent:true,
-//                 autoClearEmptyNode : true,
-//             });
-//             angular.element(document).find("#"+_editorId).css({
-//                 "font-family":"微软雅黑",
-//                 "font-size":"14px",
-//                 "color":"#686868"
-//             });
-//             angular.element(document).find(".edui-container").css("box-shadow","0 0 0");
-//             angular.element(document).find(".edui-container").css("text-align","justify");
-//             angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
-//             angular.element(document).find(".edui-container .edui-body-container").css("width","100%");
-//
-//             mueditor.addListener("contentChange", function() {
-//                 angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
-//                 angular.element(document).find("#"+_editorId).find("img").css({"width":"100%"});
-//                 scope.tpl = mueditor.getContent();
-//             });
-//
-//             scope.$watch("tpl",function(nv,ov){
-//                 mueditor.setContent(nv);
-//             });
-//
-//         }
-//     };
-// }]);
+.directive('editorMu', ['$timeout', function($timeout) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: function(){
+            return '<script type="text/plain"></script>';
+        },
+        scope: {
+            tpl:"="
+        },
+        // controller: ['$scope','$element',function($scope,$element){
+        //     var _editorId = "_editor" + (Date.now());
+        //     $element[0].id = _editorId;
+        //     mueditor = UM.getEditor(_editorId,{
+        //         initialFrameWidth:420,
+        //         initialFrameHeight:480,
+        //         autoClearinitialContent:true,
+        //         autoClearEmptyNode : true,
+        //     });
+        //     mueditor.setContent($scope.tpl);
+        //     angular.element(document).find("#"+_editorId).css({
+        //         "font-family":"微软雅黑",
+        //         "font-size":"14px",
+        //         "color":"#686868"
+        //     });
+        //     angular.element(document).find(".edui-container").css("box-shadow","0 0 0");
+        //     angular.element(document).find(".edui-container").css("text-align","justify");
+        //     angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
+        //     angular.element(document).find(".edui-container .edui-body-container").css("width","100%");
+        //     $scope.$watch("tpl",function(nv,ov){
+        //         mueditor.setContent(nv);
+        //     });
+        //     mueditor.addListener("contentChange", function() {
+        //         angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
+        //         angular.element(document).find("#"+_editorId).find("img").css({"width":"100%"});
+        //         $scope.tpl = mueditor.getContent();
+        //     });
+        // }],
+        link: function(scope,element,attrs){
+            var _editorId = "_editor" + (Date.now());
+            element[0].id = _editorId;
+            mueditor = UM.getEditor(_editorId,{
+                initialFrameWidth:420,
+                initialFrameHeight:480,
+                autoClearinitialContent:true,
+                autoClearEmptyNode : true,
+            });
+            mueditor.setContent(scope.tpl);
+            angular.element(document).find("#"+_editorId).css({
+                "font-family":"微软雅黑",
+                "font-size":"14px",
+                "color":"#686868"
+            });
+            angular.element(document).find(".edui-container").css("box-shadow","0 0 0");
+            angular.element(document).find(".edui-container").css("text-align","justify");
+            angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
+            angular.element(document).find(".edui-container .edui-body-container").css("width","100%");
+            scope.$watch("tpl",function(nv,ov){
+                mueditor.setContent(nv);
+            });
+            mueditor.addListener("afterSelectionChange", function() {
+                scope.tpl = mueditor.getContent();
+            });
+            mueditor.addListener("contentChange", function() {
+                mueditor.focus(true);
+                angular.element(document).find(".edui-container .edui-toolbar").css("box-shadow","0 0 0");
+                angular.element(document).find("#"+_editorId).find("img").css({"width":"100%"});
+            });
+        }
+    };
+}]);

@@ -4,11 +4,6 @@
 @import "../../helpers/_function";
 
 #sysset_goods_list {
-
-
-
-
-
     .app-filter{
         background-color: #fff;
         margin: 0;
@@ -17,7 +12,7 @@
         height: 81px;
         line-height: 80px;
         .r{
-            float:left;
+            float:right;
             .app-select {
                 margin:0px 16px 0 0;
             }
@@ -30,7 +25,10 @@
             }
             .glyphicon-search {
                 color:#BFBFBF;
-            }   
+            }
+            .app-button-primary{
+                margin-left: 10px;
+            }
             .dataaddon {
                 @include sprite($icon-date-addon);
             }
@@ -53,7 +51,7 @@
         table-layout:fixed;
     }
     .onelinex {
-        @include otw(); 
+        @include otw();
         max-width:300px;
     }
 

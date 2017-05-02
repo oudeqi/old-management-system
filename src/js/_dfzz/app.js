@@ -291,8 +291,8 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl:"./tpl/_dfzz/cir.list.info.html",
             controller:"cir_list_info"
         })
-        .state('user_ctl',{
-            url:"/user_ctl",
+        .state('tgtj_user',{
+            url:"/tgtj_user",
             templateUrl:"./tpl/_dfzz/user.ctl.html",
             controller:"user_ctl"
         })
@@ -365,6 +365,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/mall_goods_list",
             templateUrl:"./tpl/_dfzz/sysset.goods.list.html",
             controller:"sysset_goods_list",
+        })
+        .state('mall_goods_modify',{
+            url:"/mall_goods_modify/{id}",
+            templateUrl:"./tpl/_dfzz/mall.goods.modify.html",
+            controller:"mall_goods_modify",
         })
         .state('mall_order',{
             url:"/mall_order",

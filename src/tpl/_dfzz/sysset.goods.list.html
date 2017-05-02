@@ -1,15 +1,19 @@
 <div id="sysset_goods_list">
- <show-msg inn="1" ruter="showyes" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
-
+    <show-msg inn="1" ruter="showyes" innc="show" intop="40" inleft="45" inhtml='{{inhtml}}'></show-msg>
     <div class="app-filter">
-
-
-        <div class="rx">
-            <button class="app-button-primary rx-button" ui-sref="mall_goods_addnew" type="button">添加商品</button>
+        <div class="r">
+            <div class="app-input-search">
+                <input class="input" type="text" placeholder="输入关键字" ng-model="keywords" ng-keypress="search($event)">
+                <button class="input-addon" type="button" ng-click="search()">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+            <button class="app-button-primary" type="button" ui-sref="mall_goods_addnew" ng-click="treasurePut()">添加商品</button>
         </div>
+        <!-- <div class="rx">
+            <button class="app-button-primary rx-button" ui-sref="mall_goods_addnew" type="button">添加商品</button>
+        </div> -->
     </div>
-
-
     <!-- 表格 -->
     <div class="app-table-box">
         <table class="app-table">
@@ -21,39 +25,39 @@
                     <th>库存</th>
                     <th>销量</th>
                     <th class="itemx">操作</th>
-
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="item in list.data">
                     <td class="onelinex">{{item.title}}</td>
-                     <td>{{item.goodsType}}</td>
-                      <td>{{item.price}}</td>
-                       <td>{{item.remainNumber}}</td>
-                        <td>{{item.salesNumber}}</td>
-
-                        <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
+                    <td>{{item.goodsType}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.remainNumber}}</td>
+                    <td>{{item.salesNumber}}</td>
+                    <!-- <a href="javascript:void(0);" ui-sref="bbs_post_edit({postid:item.id,canedit:0})" ng-show="true">详情</a> -->
                     <td>
-                        <a href="javascript:void(0);" ng-click="del(item)" ng-show="true">删除</a>
+                        <a href="javascript:void(0);" ui-sref="mall_goods_modify({id:{{item.id}}})">修改</a>
+                        <a href="javascript:void(0);" ng-click="del(item)" ng-show="true">下线</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="app-pagination">
-        <ul uib-pagination
-        ng-change=""
-        items-per-page="list.pageSize"
-        num-pages="list.pageCount"
-        total-items="list.rowCount"
-        ng-model="pageIndex"
-        max-size="5"
-        boundary-links="true"
-        rotate="true"
-        first-text="&laquo;"
-        last-text="&raquo;"
-        previous-text="&lsaquo;"
-        next-text="&rsaquo;"></ul>
+        <ul
+            uib-pagination
+            ng-change=""
+            items-per-page="list.pageSize"
+            num-pages="list.pageCount"
+            total-items="list.rowCount"
+            ng-model="pageIndex"
+            max-size="5"
+            boundary-links="true"
+            rotate="true"
+            first-text="&laquo;"
+            last-text="&raquo;"
+            previous-text="&lsaquo;"
+            next-text="&rsaquo;"></ul>
         <div class="pageTo">
             <input type="number" placeholder="输入页数" ng-model="pageIndex">
         </div>

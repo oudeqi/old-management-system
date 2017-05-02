@@ -68,6 +68,7 @@
         <link rel="stylesheet" href="css/_dfzz/page/cir.pub.css">
         <link rel="stylesheet" href="css/_dfzz/page/finance.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/finance.mgetout.css">
+        <link rel="stylesheet" href="css/_dfzz/page/mall.goods.modify.css">
         <link rel="stylesheet" href="css/_dfzz/page/mall.order.css">
         <link rel="stylesheet" href="css/_dfzz/page/rp.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/rp.put.css">
@@ -121,7 +122,6 @@
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
         <script src="js/_dfzz/ctrl/vote.put.js"></script>
@@ -171,6 +171,7 @@
         <script src="js/_dfzz/ctrl/modal.artcheck.js"></script>
         <script src="js/_dfzz/ctrl/modal.addpromoter.js"></script>
         <script src="js/_dfzz/ctrl/mall.order.js"></script>
+        <script src="js/_dfzz/ctrl/mall.goods.modify.js"></script>
         <script src="js/_dfzz/ctrl/finance.mgetout.js"></script>
         <script src="js/_dfzz/ctrl/finance.list.js"></script>
         <script src="js/_dfzz/ctrl/cir.pub.js"></script>
@@ -186,6 +187,7 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -247,7 +249,7 @@
                         </a>
                     </li> -->
                     <li class="item" ng-if="permission.menu_invite == '1'">
-                        <a href="javascript:void(0);" ui-sref="tgtj_list" ng-class="{'active':mainNav==='tgtj'}"  ng-mouseenter="navMouseover(6)" ng-mouseleave="navMouseleave()">
+                        <a href="javascript:void(0);" ui-sref="tgtj_user" ng-class="{'active':mainNav==='tgtj'}"  ng-mouseenter="navMouseover(6)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-tgzx"></i>
                             <span class="txt">推广中心</span>
                         </a>
@@ -275,7 +277,7 @@
                     <li class="item" ng-if="permission.menu_group=='1'">
                         <a href="javascript:void(0);" ui-sref="bbs_pub" ng-class="{'active':mainNav==='bbs'}" ng-mouseenter="navMouseover(10)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-bbs"></i>
-                            <span class="txt">社区管理</span>
+                            <span class="txt">广场管理</span>
                         </a>
                     </li>
 
@@ -319,7 +321,7 @@
 
                     <!-- 用户管理 -->
                     <li class="item" ng-if="permission.menu_user">
-                        <a href="javascript:void(0);" ui-sref="user_ctl" ng-class="{'active':mainNav==='user'}" ng-mouseenter="navMouseover(13)" ng-mouseleave="navMouseleave()">
+                        <a href="javascript:void(0);" ui-sref="user_list" ng-class="{'active':mainNav==='user'}" ng-mouseenter="navMouseover(13)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-userctl"></i>
                             <span class="txt">用户管理</span>
                         </a>
@@ -435,8 +437,11 @@
                     <img src="img/subnav_logo.png" alt="" />
                 </div>
                 <ul class="list">
-                    <li class="item">
+                    <!-- <li class="item">
                         <a href="javascript:void(0);" ui-sref="tgtj_list" ui-sref-active="active">推广统计</a>
+                    </li> -->
+                    <li class="item" ng-if="permission.menu_user_site=='1'">
+                        <a href="javascript:void(0);" ui-sref="tgtj_user" ui-sref-active="active">站点用户</a>
                     </li>
                     <li class="item">
                         <a href="javascript:void(0);" ui-sref="tgtj_promoter" ui-sref-active="active">推广员管理</a>
@@ -539,9 +544,9 @@
                     <img src="img/subnav_logo.png" alt="" />
                 </div>
                 <ul class="list">
-                    <li class="item" ng-if="permission.menu_user_site=='1'">
+                    <!-- <li class="item" ng-if="permission.menu_user_site=='1'">
                         <a href="javascript:void(0);" ui-sref="user_ctl" ui-sref-active="active">站点用户</a>
-                    </li>
+                    </li> -->
                     <li class="item" ng-if="permission.menu_user_app=='1'">
                         <a href="javascript:void(0);" ui-sref="user_list" ui-sref-active="active">用户列表</a>
                     </li>

@@ -11,37 +11,44 @@ app.controller('sysset_goods_list',['$scope','$uibModal','FileUploader','constan
         //添加新商品
         $scope.addNewGoods=function(){
 
-        }
+        };
 
+        $scope.keywords = "";
+        $scope.search = function(e){
+            if(e && e.keyCode !== 13){
+                return;
+            }
+            $scope.pageIndex = 1;
+            $scope.getList();
+        };
 
-      
         // 获取list
         $scope.getList=function(){
             $http.get(constant.APP_HOST+'/v1/aut/goods/set',{
                 params:{
+                    search:$scope.keywords,
                     pageIndex:$scope.pageIndex,
                 },
                 headers: {
-                        'Authorization': localStorageService.get("token")
+                    'Authorization': localStorageService.get("token")
                 }
-
             }).success(function(data){
                 if(data.errMessage){
+
                 }else{
                     $scope.list=data.data;
-                    console.log($scope.list)
+                    console.log($scope.list);
                 }
-            })
-        }
+            });
+        };
         $scope.getList();
 
         $scope.$watch("pageIndex",function(a,b){
             $scope.getList();
-        })
+        });
 
         // 删除
         $scope.del = function(item){
-
             console.log(item);
             var confirm = {
                 tit : "确认删除该商品？",
@@ -79,12 +86,10 @@ app.controller('sysset_goods_list',['$scope','$uibModal','FileUploader','constan
                     }
                     $timeout(function() {
                         $scope.show=false;
-                    }, 3000); 
-
-
+                    }, 3000);
                 }).error(function(data){
                     $scope.inhtml='网络错误';
-                    $scope.show=true;   
+                    $scope.show=true;
                     $timeout(function(){
                         $scope.show=false;
                     },3000);

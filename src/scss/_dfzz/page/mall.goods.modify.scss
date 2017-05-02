@@ -10,40 +10,16 @@
     }
 }
 
-.vote_container{
+.mall-goods-modify-container{
     background: #fff;
     padding: 0 40px;
     padding-bottom: 50px;
     .breadcrumb-cont{
         padding-top: 20px;
-        margin-bottom: 40px;
+        padding-bottom: 50px;
         .breadcrumb{
             margin-bottom: 0;
         }
-    }
-    .w400{
-        width: 400px !important;
-    }
-    .w90{
-        width: 90px !important;
-    }
-    .w200{
-        width: 200px !important;
-    }
-    .w60{
-        width: 60px !important;
-    }
-    .w240{
-        width: 240px !important;
-    }
-    .w250{
-        width: 250px !important;
-    }
-    .w420{
-        width: 420px !important;
-    }
-    .mar_b10{
-        margin-bottom: 10px;
     }
     .ipt-error{
         border: 1px solid #fb4747 !important;
@@ -70,6 +46,14 @@
         .pic_view{
             position: relative;
             overflow: hidden;
+            padding-bottom: 15px;
+            width: 100px;
+            height: auto;
+            float: left;
+            margin-right: 10px;
+            &.nopadd{
+                padding: 0;
+            }
             button{
                 position: absolute;
                 top: 0;
@@ -77,22 +61,27 @@
                 border: 0;
                 background-color: inherit;
                 margin: 0;
-                padding: 10px;
+                padding: 3px;
                 background-color: #ccc;
                 outline: 0;
+                opacity: 0.7;
                 .icon{
                     display: block;
                     @include sprite($icon-close);
+                }
+                &:hover{
+                    opacity: 1;
                 }
                 &:active{
                     border: 1px solid #ddd;
                 }
             }
             .pic{
-                min-height: 200px;
+                min-height: 50px;
                 border:1px solid #ddd;
                 border-radius: 3px;
                 padding: 4px;
+                margin: 0;
                 img{
                     max-width: 100%;
                     height: auto;
@@ -117,6 +106,27 @@
                 float: left;
                 margin-left: 10px;
                 width: 450px;
+                .addBanner-btn{
+                    clear: left;
+                    button{
+                        width: 220px;
+                        height: 36px;
+                        background: #F8F8F8;
+                        border: 1px dashed #EBEBEB;
+                        text-align: center;
+                        font-size: 15px;
+                        color: #bfbfbf;
+                        outline: 0;
+                        border-radius: 2px;
+                        &:hover{
+                            background-color: #eee;
+                            color: #aaa;
+                        }
+                    }
+                }
+                .editor-label{
+                    padding-bottom: 5px;
+                }
                 .addpic{
                     vertical-align: middle;
                     display: inline-block;
@@ -132,22 +142,10 @@
                     display: inline-block;
                     vertical-align: middle;
                 }
-                textarea{
-                    width: 444px;
-                    min-height: 100px;
-                    padding: 4px;
-                    border: 1px solid #d7d7d7;
-                    border-radius: 2px;
-                    resize: vertical;
-                    @extend %ipt_focus;
-                    &.has_err{
-                        border: 1px solid $font-color-warning;
-                    }
-                }
                 .form_ipt{
                     display: inline-block;
                     vertical-align: middle;
-                    width: 444px;
+                    width: 350px;
                     height: 36px;
                     border: 1px solid #d7d7d7;
                     border-radius: 2px;
@@ -162,7 +160,7 @@
                 }
                 .form_ipt_sm{
                     display: block;
-                    width: 250px;
+                    width: 220px;
                     height: 36px;
                     border: 1px solid #d7d7d7;
                     border-radius: 2px;
@@ -197,60 +195,6 @@
                     .icon{
                         display: inline-block;
                         vertical-align: middle;
-                    }
-                }
-                .del{
-                    display: inline-block;
-                    vertical-align: middle;
-                    border: 0;
-                    background-color: transparent;
-                    @include sprite($icon-del-sm);
-                }
-                .additem{
-                    width: 420px;
-                    height: 36px;
-                    background: #F8F8F8;
-                    border: 1px dashed #EBEBEB;
-                    text-align: left;
-                    padding-left: 10px;
-                    font-size: 15px;
-                    color: #bfbfbf;
-                    outline: 0;
-                    border-radius: 2px;
-                    &:hover{
-                        background-color: #eee;
-                        color: #aaa;
-                    }
-                }
-                .to{
-                    font-size: 15px;
-                    color: #666;
-                    padding: 0 2px;
-                }
-                .form_date{
-                    display: inline-table;
-                    input{
-                        width: 172px;
-                        height: 36px;
-                        border: 1px solid #d7d7d7;
-                        border-right: 0;
-                        border-radius: 2px 0 0 2px;
-                        outline: 0;
-                        padding: 0 5px;
-                        font-size: inherit;
-                        font-family: inherit;
-                        vertical-align: middle;
-                        @extend %ipt_focus;
-                    }
-                    .ipt_addon{
-                        font-size: 15px;
-                        width: 36px;
-                        height: 36px;
-                        border: 1px solid #e0e0e0;
-                        border-radius: 0 2px 2px 0;
-                        background-color: #f0f0f0;
-                        vertical-align: middle;
-                        outline: 0;
                     }
                 }
             }

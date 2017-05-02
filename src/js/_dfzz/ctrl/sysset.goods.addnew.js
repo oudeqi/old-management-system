@@ -5,7 +5,7 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
 
         $scope.showyes=false;
         $scope.show=false;
-        $scope.inhtml='提交成功'
+        $scope.inhtml='提交成功';
 
        $scope.top=0; //是否置顶
        $scope.recommend=0; // 是否推荐
@@ -21,7 +21,7 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
        },{
             id:3,
             name:'联联优品',
-       }]; 
+       }];
        $scope.sec={
             id:1,
             name:'联联特产',
@@ -156,7 +156,7 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
                 $scope.show=true;
                 $timeout(function() {
                         $scope.show=false;
-                    }, 3000); 
+                    }, 3000);
         }
 
         // difanglianzongbu
@@ -194,7 +194,7 @@ app.controller('sysset_goods_addnew',['$scope','$http','constant','localStorageS
                 return;
             }
 
-            
+
 
 
 
