@@ -5,7 +5,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
 
         $scope.step = 1; //当前显示页数
         $scope.art = localStorageService.get('art.put');
-        console.log($scope.art);
+        console.log("缓存:",$scope.art);
         if(!!$scope.art){
             $scope.artEdit = true;
             var content="",videoCon="";
@@ -31,7 +31,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             $scope.imageUrl = $scope.art.imageUrl;//视频封面图
             $scope.videoUrl = $scope.art.videoUrl;//视频地址
             $scope.multPic = $scope.art.multPic;//多图模板
-            // console.log($scope.multPic);
+            console.log($scope.multPic);
             $scope.pushTime = $filter('date')($scope.art.pushTime, "yyyy-MM-dd HH:mm");//发布时间
             if($scope.deleteId && $scope.deleteId !== 0){
                 $scope.artEdit = true;
@@ -87,7 +87,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
             'pushTime',
             'multPic'
         ],function(){
-            // console.log($scope.multPic);
             var content = "";
             if($scope.infoSet.template == "1"){//视频
                 content = $scope.infoSet.videoCon;
@@ -115,6 +114,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                multPic: $scope.multPic,
                content: content
             };
+            console.log(art);
             localStorageService.set('art.put',art);
         });
         $http.get(constant.APP_HOST + '/v1/aut/info/type/list', {
@@ -122,8 +122,7 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                 'Authorization': localStorageService.get("token")
             }
         }).success(function(data) {
-            console.log("获取文章分类");
-            console.log(data);
+            console.log("获取文章分类:",data);
             if(!data.errMessage){
                 if(!!data.data.length){
                     $scope.types = data.data;
@@ -135,7 +134,6 @@ app.controller('art_put',['$scope','$http','constant','localStorageService','Fil
                     });
                     $scope.$watch("type",function(){
                         var artPut = localStorageService.get("art.put");
-                        console.log($scope.type);
                         artPut.infoTypeId = $scope.type.id;
                         localStorageService.set('art.put',artPut);
                     });

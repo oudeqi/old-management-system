@@ -196,7 +196,7 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
             });
         };
         $scope.modify = function(item){
-            console.log(item);
+            console.log("item:",item);
             /*
             title:$scope.infoSet.title,
             sellerName:$scope.infoSet.sellerName,
@@ -216,18 +216,20 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
              */
 
              var content = item.content;
-             var start = content.indexOf('<body id="custom_style">') + 24,
-                 end = content.indexOf("</body>");
-             if(start === 23){
-                 start = content.indexOf('<body>') + 6;
-                 if(start === 5){
-                     start = 0;
+             if(!!item.content){
+                 var start = content.indexOf('<body id="custom_style">') + 24,
+                     end = content.lastIndexOf("</body>");
+                 if(start === 23){
+                     start = content.indexOf('<body>') + 6;
+                     if(start === 5){
+                         start = 0;
+                     }
                  }
-             }
-             if(end === -1){
-                 content = content.substring(start);
-             }else{
-                 content = content.substring(start,end);
+                 if(end === -1){
+                     content = content.substring(start);
+                 }else{
+                     content = content.substring(start,end);
+                 }
              }
              var art = {
                 deleteId: item.id,
@@ -244,9 +246,10 @@ app.controller('art_list',['$scope','$state','$http','constant','localStorageSer
                 imageUrl: item.imageUrl,
                 videoUrl: item.videoUrl,
                 pushTime: item.pushTime,
+                multPic: item.infoImgsList || [],
                 content: content
              };
-             console.log(art);
+            //  console.log(art);
              localStorageService.set('art.put',art);
              $state.go("art_put",{},{reload:true});
         };

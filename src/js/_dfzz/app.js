@@ -4,12 +4,13 @@ var app = angular.module('uoudo.dfzz',[
     'ui.router',
     'ui.bootstrap',
     'angularFileUpload',
+    'ngDraggable',
     'tpl.dfzz'
 ]);
 
 app.constant("constant",{
   // APP_HOST : "http://192.168.10.254:8082/", //远程接口
-  // APP_HOST : "http://192.168.10.48:8080/", //本地测试接口
+  // APP_HOST : "http://192.168.10.14:8080/", //本地测试接口
   APP_HOST : "http://partner.2tai.net/", //线上接口 18628973302 13547822066
   UMEDITOR_CONTENT_HEADER : '<!DOCTYPE html>'+
           '<html lang="zh-CN">'+
@@ -23,6 +24,7 @@ app.constant("constant",{
                       'p{line-height: 1.5 !important;text-align: justify;word-break:break-all;white-space:normal;margin:10px 0 !important;overflow-x: hidden !important;}'+
                       'iframe{width: 100%;}img{max-width:100% !important;}'+
                       '#custom_style{max-width: 640px;min-width: 320px;margin:0 auto;width:100%;}'+
+                      '#custom_style *{max-width: 100%!important;box-sizing: border-box!important;-webkit-box-sizing: border-box!important;word-wrap: break-word!important;}'+
                       '@media screen and (min-width: 1024px){.rich_media{width: auto !important;}}'+
                       '@media screen and (min-width: 1024px){.rich_media_inner {padding: 0 !important;}}'+
                       '.rich_media_area_primary{padding: 0 !important;}'+
@@ -253,6 +255,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             url:"/bbs_post_edit",
             templateUrl:"./tpl/_dfzz/bbs.post.edit.html",
             controller:"bbs_post_edit"
+        })
+        .state('bbs_module_set',{
+            url:"/bbs_module_set",
+            templateUrl:"./tpl/_dfzz/bbs.module.set.html",
+            controller:"bbs_module_set"
         })
         .state('cir_pub',{
             url:"/cir_pub",
