@@ -19,6 +19,7 @@
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      * window.UMEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
+    window.UMEDITOR_HOME_URL="http://partner.2tai.net/editor/";
     var URL = window.UMEDITOR_HOME_URL || (function(){
 
         function PathStack() {
@@ -137,6 +138,7 @@
 
         //图片上传配置区
         ,imageUrl:URL+"jsp/imageUp.jsp"             //图片上传提交地址
+//		,imageUrl:"http://partner.2tai.net/editor/"+"jsp/imageUp.jsp"
         ,imagePath:""                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         ,imageFieldName:"upfile"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
 
@@ -146,8 +148,11 @@
             'undo redo | bold forecolor italic underline strikethrough | link unlink | backcolor | removeformat |',
             'insertorderedlist insertunorderedlist | selectall cleardoc |',
             'justifyleft justifycenter justifyright justifyjustify |',
-            'image ','video', 'horizontal', 'drafts'
+            'image ', 'horizontal', 'drafts'
         ]
+        ,labelMap:{
+        	'govideo':'插入mp4视频'
+        }
 
         //语言配置项,默认是zh-cn。有需要的话也可以使用如下这样的方式来自动多语言切换，当然，前提条件是lang文件夹下存在对应的语言文件：
         //lang值也可以通过自动获取 (navigator.language||navigator.browserLanguage ||navigator.userLanguage).toLowerCase()

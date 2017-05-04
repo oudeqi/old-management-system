@@ -219,6 +219,26 @@
                     <span class="err" ng-show="(picUploadErr || noPreviewUrl) && !shareImg">{{picUploadErr || "请上传文章封面图"}}</span>
                 </div>
             </div>
+            <div class="form_row" ng-show="infoSet.template == '2'">
+                <div class="tit">
+                    <span>插入视频：</span>
+                </div>
+                <div class="cont otw">
+                    <button class="add_video_btn" type="button" name="button" ng-click="clickBtnVideox()">
+                        <i class="play"></i>
+                        <span>插入视频</span>
+                    </button>
+                    <input type="file" clean-file-value ng-show="false" accept="video/*" nv-file-select="" id="uploadVideox" uploader="uploadVideox"/>
+                    <span class="tip" ng-show="!videoUploadErrx && !uploadVideox.queue[0].progress && !videoUrlx">支持mp4格式，40M以内</span>
+                    <span class="tip" ng-show="!!uploadVideox.queue[0].progress">{{uploadVideox.queue[0].progress}} %</span>
+                    <span class="tip" ng-show="videoUrlx">{{videoUrlx}}</span>
+                    <span class="err" ng-show="videoUploadErrx || noVideoUrlx">{{videoUploadErrx || "请上传视频"}}</span>
+                </div>
+            </div>
+            
+            
+            
+            
             <div class="form_row" ng-show="infoSet.template == '1' || type.id == '8'">
                 <div class="tit">
                     <span>上传视频：</span>
