@@ -44,6 +44,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             pushTime:null,
         }
 
+		$scope.url=null;
 
 
 
@@ -118,6 +119,37 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             }
             // console.log(data)
         })
+        
+        
+        $scope.getTpl = function(){
+            if($scope.url){
+                $http.get(constant.APP_HOST + 'v1/aut/outer/html/content', {
+                    headers: {
+                        'Authorization': localStorageService.get("token")
+                    },
+                    params:{
+                        str:$scope.url
+                    }
+                }).success(function(res){
+                    console.log(res);
+//                   $scope.pub={
+//			            id:null,
+//			            title:'',
+//			            groupTypeId:null,
+//			            top:0,
+//			            htmlContent:'',
+//			            imgList:[],
+//			            pushTime:null,
+//			        }
+                    $scope.pub.htmlContent = res.data.js_content;//模板内容
+                    $scope.pub.title = res.data.sellerTitle;//标题
+                   
+
+                }).error(function(data){
+
+                });
+            }
+        };
 
         // 发布文章
         $scope.pubPost=function(){
@@ -164,6 +196,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                         $scope.pub.title='';
                         $scope.pub.htmlContent='';
                         $scope.pushTime=null;
+                        $scope.url=null;
                     }
                 }).error(function(data){
                     $scope.inhtml="可能网络有错误";

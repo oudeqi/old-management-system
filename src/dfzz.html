@@ -17,6 +17,10 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="css/_dfzz/base/animate.css">
         <link rel="stylesheet" href="css/_dfzz/base/base.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
+        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <link rel="stylesheet" href="css/_dfzz/component/alert.css">
         <link rel="stylesheet" href="css/_dfzz/component/badge.css">
         <link rel="stylesheet" href="css/_dfzz/component/button.css">
@@ -100,10 +104,6 @@
         <link rel="stylesheet" href="css/_dfzz/page/votejoin.list.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.add.css">
         <link rel="stylesheet" href="css/_dfzz/page/websiteman.ctl.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/home.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/main.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/nav.css">
-        <link rel="stylesheet" href="css/_dfzz/layout/subnav.css">
         <!-- endinject -->
         <!-- endbuild -->
 
@@ -131,7 +131,6 @@
         <script src="js/_dfzz/tpl/dfzz.tpl.js"></script>
         <script src="js/_dfzz/app.js"></script>
         <script src="js/_dfzz/filter/filters.js"></script>
-        <script src="js/_dfzz/directive/directives.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.js"></script>
         <script src="js/_dfzz/ctrl/websiteman.ctl.add.js"></script>
         <script src="js/_dfzz/ctrl/vote.put.js"></script>
@@ -198,6 +197,7 @@
         <script src="js/_dfzz/ctrl/art.put.js"></script>
         <script src="js/_dfzz/ctrl/art.list.js"></script>
         <script src="js/_dfzz/ctrl/ads.launch.js"></script>
+        <script src="js/_dfzz/directive/directives.js"></script>
         <!-- endinject -->
         <!-- endbuild -->
     </head>
@@ -306,12 +306,12 @@
                         </a>
                     </li>
                     <!--夺宝管理-->
-                    <li class="item" ng-if="permission.menu_gem=='1'">
+                    <!--<li class="item" ng-if="permission.menu_gem=='1'">
                         <a href="javascript:void(0);" ui-sref="treasure_put" ng-class="{'active':mainNav==='treasure'}" ng-mouseenter="navMouseover(1008)" ng-mouseleave="navMouseleave()">
                             <i class="icon icon-treasure"></i>
                             <span class="txt">夺宝管理</span>
                         </a>
-                    </li>
+                    </li>-->
 
                     <!--商城-->
                     <li class="item" ng-if="permission.menu_mall=='1'">
