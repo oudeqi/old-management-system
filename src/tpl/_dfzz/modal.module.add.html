@@ -1,0 +1,17 @@
+<div class="modal-body">
+    <div class="tit">
+        <h2>增加模块</h2>
+    </div>
+    <div class="content">
+        <p class="msg">
+            <span class="succ" ng-show="status==1">修改成功</span>
+            <span class="err" ng-show="status==2">修改失败</span>
+            <span class="err" ng-show="status==0">{{msg}}</span>
+        </p>
+        <input type="text" ng-model="name" ng-change="checkName()" placeholder="最多4个字">
+    </div>
+    <div class="btnBox">
+        <button class="app-button-default" type="button" ng-click="cancel()" name="button">关闭</button>
+        <button class="app-button-primary" type="button" ng-click="ok()" name="button">确认</button>
+    </div>
+</div>

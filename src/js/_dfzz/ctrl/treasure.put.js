@@ -12,6 +12,7 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
     			$scope.types = [];
     		}else{
     			$scope.types = data.data;
+                $scope.treasure.treasureType = data.data[0];
     		}
     	}).error(function(data){});
 
@@ -25,10 +26,10 @@ app.controller('treasure_put',['$scope','$http','constant','localStorageService'
             $scope.treasure = {};
             $scope.treasure.id = null;
             $scope.treasure.goodsName = "";//夺宝名称
-            $scope.treasure.treasureType =  {//夺宝所属类别
-    			id:0,
-    			name:"全部"
-    		};
+            // $scope.treasure.treasureType =  {//夺宝所属类别
+    		// 	id:0,
+    		// 	name:"全部"
+    		// };
             $scope.treasure.stageNumber = "";//夺宝总期数
             $scope.treasure.previewUrl = "";//夺宝封面
             $scope.treasure.title = "";//夺宝标题

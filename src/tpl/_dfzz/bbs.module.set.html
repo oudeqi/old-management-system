@@ -1,0 +1,46 @@
+<div class="bbs-module-set">
+    <div class="app-alert" ng-class="{'active':hasMsg}">
+        <div class="inner">{{msg}}</div>
+    </div>
+    <div class="app-filter">
+        <div class="r">
+            <a class="app-button-primary" type="button" ng-click="itemAdd()">新增模块</a>
+        </div>
+    </div>
+    <!-- 排序 -->
+    <!-- <div class="item-cont" ng-drop="true" ng-drop-success="dropComplete($index,$data)" ng-repeat="item in list">
+        <li class="item-inner" ng-drag="true" ng-drag-data="item" >
+            姓名：{{item.name}}，年龄：{{item.age}}
+        </li>
+    </div> -->
+    <div class="app-table-box">
+        <table class="app-table">
+            <thead>
+                <tr>
+                    <th width="200">板块名称</th>
+                    <th>顺序</th>
+                    <th width="150">操作</th>
+                    <th width="150">拖动排序</th>
+                </tr>
+            </thead>
+            <tbody ng-class="{'even':$even,'odd':$odd}" ng-repeat="item in list" ng-drop="true" ng-drop-success="dropComplete($index,$data)">
+                <tr ng-drag="true" ng-drag-data="item" >
+                    <td>{{item.name}}</td>
+                    <td>{{$index+1}}</td>
+                    <td>
+                        <a href="javascript:void(0);" ng-click="itemModify(item)">修改名称</a>
+                        <a href="javascript:void(0);" ng-click="itemDel(item)">删除</a>
+                    </td>
+                    <td>
+                        <a class="drag-handle" href="javascript:void(0);">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-nodata" ng-show="!list.length">暂无数据</div>
+    </div>
+</div>
