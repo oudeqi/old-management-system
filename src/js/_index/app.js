@@ -2,7 +2,7 @@ var app = angular.module('uoudo.index',[
     'ui.router',
     'LocalStorageModule',
     'angularFileUpload',
-//  'tpl.index'
+    'tpl.index'
 ]);
 
 app.constant("constant",{

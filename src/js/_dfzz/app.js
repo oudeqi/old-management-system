@@ -5,7 +5,7 @@ var app = angular.module('uoudo.dfzz',[
     'ui.bootstrap',
     'angularFileUpload',
     'ngDraggable',
-//  'tpl.dfzz'
+    'tpl.dfzz'
 ]);
 
 app.constant("constant",{
