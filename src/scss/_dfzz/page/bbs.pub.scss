@@ -2,6 +2,7 @@
 @import "../../helpers/_mixin";
 @import "../../helpers/_sprite";
 @import "../../helpers/_function";
+$app-ipt-border-color: #d7d7d7 !default;
 #bbs_pub {
 .app-button-pubmy {
     width:138px;
@@ -110,6 +111,71 @@
                     margin-left: 140px;
                     font-size:14px;
                 }
+                .import_tpl_btn{
+                        display: inline-block;
+                        vertical-align: middle;
+                        background-color: #fff;
+                        border: 1px solid #007CFB;
+                        color: #007CFB;
+                        height: 38px;
+                        width: 100px;
+                        border-radius: 3px;
+                        margin-right: 10px;
+                        &:hover{
+                            box-shadow: 0 0 3px #007CFB;
+                        }
+                        &:focus{
+                            background-color: #fafafa;
+                        }
+                        span{
+                            display: inline-block;
+                            vertical-align: middle;
+                            font-size: 14px;
+                        }
+                    }
+                    .import_tpl_ipt{
+                        padding-bottom: 14px;
+                        overflow: auto;
+                        input{
+                            float: left;
+                            height: 38px;
+                            margin: 0;
+                            padding: 0;
+                            padding-left: 4px;
+                            width: 310px;
+                            display: inline-block;
+                            vertical-align: middle;
+                            border: 1px solid $app-ipt-border-color;
+                            border-right: 0;
+                            border-radius: 3px 0 0 3px;
+                            outline: 0;
+                            &:focus{
+                                border-color: lighten($font-color-primary,25%);
+                                border-right:1px solid lighten($font-color-primary,25%);
+                                & + button{
+                                    border-left: 0;
+                                }
+                            }
+                        }
+                        button{
+                            float: left;
+                            height: 38px;
+                            width: 109px;
+                            border-radius: 0 3px 3px 0;
+                            border: 1px solid $app-ipt-border-color;
+                            background-color: #fff;
+                            color: #666;
+                            font-size: 15px;
+                            outline: 0;
+                            &:focus{
+                                border-color: lighten($font-color-primary,25%);
+                                & + button{
+                                    border-right: 0;
+                                }
+                            }
+                        }
+                    }
+                
                 .cont{
                     margin: 0;
                     margin-left: 120px;
