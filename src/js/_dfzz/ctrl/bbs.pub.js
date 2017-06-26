@@ -42,6 +42,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
             htmlContent:'',
             imgList:[],
             pushTime:null,
+            readNumber1:0,
         }
 
 		$scope.url=null;
@@ -95,10 +96,12 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
 
         if($scope.allx){
             $scope.pub.title=$scope.allx.title;
+            $scope.pub.readNumber1=$scope.allx.readNumber1;
             $scope.pub.groupTypeId=$scope.allx.groupTypeId;
             $scope.sec.id=$scope.allx.groupTypeId;
             $scope.pub.top=$scope.allx.top;
             $scope.pub.htmlContent=$scope.allx.htmlContent;
+
             // $scope.
         }else{
             console.log('scope.allx 为空')
@@ -196,6 +199,7 @@ app.controller('bbs_pub',['$scope','$uibModal','FileUploader','constant','localS
                         $scope.pub.title='';
                         $scope.pub.htmlContent='';
                         $scope.pushTime=null;
+                        $scope.pub.readNumber1=0;
                         $scope.url=null;
                     }
                 }).error(function(data){
