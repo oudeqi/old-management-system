@@ -24,7 +24,7 @@ app.controller('cir_pub',['$scope','$uibModal','FileUploader','constant','localS
                         $scope.inhtml='发布失败，'+data.errMessage;
                     }else{
                         $scope.inhtml='发布成功';   
-                        $scope.newTop.recommandOrder=null;                     // 上传成功
+                        $scope.newTop.recommandOrder=null;// 上传成功
                         $scope.newTop.topic=null; 
                         $scope.newTop.content=null; 
                         $scope.newTop.img=null; 
