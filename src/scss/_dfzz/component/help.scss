@@ -1,0 +1,22 @@
+@import "../../helpers/_variable";
+@import "../../helpers/_mixin";
+@import "../../helpers/_sprite";
+@import "../../helpers/_function";
+
+.help-page{
+    padding: 30px;
+    min-height: 100%;
+    background-color: #fff;
+    .tab{
+        button{
+            margin-right: 10px;
+        }
+    }
+    .tab-content{
+        padding: 0 20px;
+        img{
+            max-width: 100%;
+            display: block;
+        }
+    }
+}

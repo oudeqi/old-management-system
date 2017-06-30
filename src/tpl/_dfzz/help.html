@@ -1,0 +1,12 @@
+<div class="help-page">
+    <div class="tab">
+        <button type="button" class="btn" ng-click="handleClick(1)" ng-class="{'btn-primary':current == 1}">如何设置开屏广告</button>
+        <button type="button" class="btn" ng-click="handleClick(2)" ng-class="{'btn-primary':current == 2}">如何新增咨询文章</button>
+    </div>
+    <div class="tab-content" ng-show='current == 1'>
+        <img src="./img/help-opening-screen-advertising.jpg" alt="">
+    </div>
+    <div class="tab-content" ng-show='current == 2'>
+        <img src="./img/help-add-articles.jpg" alt="">
+    </div>
+</div>

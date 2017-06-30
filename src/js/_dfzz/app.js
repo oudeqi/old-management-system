@@ -189,6 +189,11 @@ app.config(['$stateProvider','$urlRouterProvider',
             templateUrl: "./tpl/_dfzz/setting.html",
             controller: 'setting',
         })
+        .state('head_help', {
+            url: "/help",
+            templateUrl: "./tpl/_dfzz/help.html",
+            controller: 'help',
+        })
         .state('art_put', {
             url: "/art_put",
             templateUrl: "./tpl/_dfzz/art.put.html",
