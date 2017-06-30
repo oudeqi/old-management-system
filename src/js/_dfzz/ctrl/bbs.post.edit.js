@@ -9,6 +9,7 @@ app.controller('bbs_post_edit',['$scope','$uibModal','$timeout','FileUploader','
     	$scope.list=null;
     	$scope.htmlc=null;
         $scope.showyes=false;
+//      $scope.readNumber1=
 
 
             // 更改帖子
