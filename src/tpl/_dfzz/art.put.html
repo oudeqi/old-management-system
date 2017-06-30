@@ -125,7 +125,6 @@
                         <input type="checkbox" ng-model="infoSet.feeType" ng-false-value="0" ng-true-value="3">
                         <span>U币文章</span>
                     </label>
-                    <button type="button" class="btn btn-link" ui-sref="head_help">查看帮助？</button>
                 </div>
             </div>
             <div class="form_row">
@@ -135,7 +134,9 @@
                 <div class="cont">
                     <input class="form_ipt" type="text" ng-model="infoSet.title" ng-focus="step = 1" placeholder="请输入文章标题">
                     <span class="err" ng-show="noTit">请输入文章标题</span>
+                    <button type="button" class="btn btn-link" ui-sref="head_help">查看帮助？</button>
                 </div>
+
             </div>
             <div class="form_row">
                 <div class="tit">
