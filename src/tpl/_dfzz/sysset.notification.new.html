@@ -3,13 +3,13 @@
 <div class="art_put_form">
     <div class="inner">
         <div class="l">
-            <div class="app-phone" style="background-image: url(./img/iphone_1.png);">     
+            <div class="app-phone" style="background-image: url(./img/iphone_1.png);">
                     <div class="p_wrap">
                         <div class="p_title">{{title}}</div>
                         <div class="p_content">{{content}}</div>
                     </div>
             </div>
-            
+
         </div>
         <div class="r" style="padding: 8rem 0 30px 0">
 
@@ -52,6 +52,7 @@
                 <div class="cont">
                     <input required class="form_ipt" type="text" maxlength="20" ng-model="title" ng-focus="step = 1" placeholder="请输入内容标题">
                     <span class="err" ng-show="false">请输入内容标题</span>
+                    <button type="button" class="btn btn-link" ui-sref="head_help({id:4})">查看帮助？</button>
                 </div>
             </div>
 
@@ -90,7 +91,7 @@
                 </div>
             </div>
             </div>
-             
+
 
             <div class="form_row">
                 <div class="app-table-box">
@@ -113,8 +114,8 @@
                                 </label>
                                 </div>
 
-                                
-        
+
+
                                 </div>
                                    <!-- <label class="radio_label">
                                         <input type="radio" value="1" ng-change="step = 1" ng-model="pub.top">
@@ -126,7 +127,7 @@
                     </table>
                 </div>
             </div>
-            
+
             <div class="form_row" style="float: left;">
                 <div class="cont" style="margin-left: 2.8rem;">
                     <!-- <button class="app-button-default app-button-pubmy" style="background-color: #F8F8F8; color: black;" ng-show="true" type="button" ng-click="pubPost()">取消</button> -->
@@ -136,13 +137,13 @@
                     <span class="succ" ng-show="succMsg">{{succMsg}}</span> -->
                 </div>
             </div>
-            
+
         </div>
 
 
-           
 
-        
+
+
 
     </div>
 </div>

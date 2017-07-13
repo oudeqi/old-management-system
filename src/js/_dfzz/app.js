@@ -190,7 +190,7 @@ app.config(['$stateProvider','$urlRouterProvider',
             controller: 'setting',
         })
         .state('head_help', {
-            url: "/help",
+            url: "/help/:id",
             templateUrl: "./tpl/_dfzz/help.html",
             controller: 'help',
         })

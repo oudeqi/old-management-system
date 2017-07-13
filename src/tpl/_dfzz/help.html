@@ -1,12 +1,29 @@
 <div class="help-page">
+    <button type="button" class="btn btn-info" ng-click="back()">返回</button>
     <div class="tab">
         <button type="button" class="btn" ng-click="handleClick(1)" ng-class="{'btn-primary':current == 1}">如何设置开屏广告</button>
         <button type="button" class="btn" ng-click="handleClick(2)" ng-class="{'btn-primary':current == 2}">如何新增咨询文章</button>
+        <button type="button" class="btn" ng-click="handleClick(3)" ng-class="{'btn-primary':current == 3}">如何新增投票</button>
+        <button type="button" class="btn" ng-click="handleClick(4)" ng-class="{'btn-primary':current == 4}">如何推送消息</button>
+        <button type="button" class="btn" ng-click="handleClick(5)" ng-class="{'btn-primary':current == 5}">如何发帖爆料</button>
+        <button type="button" class="btn" ng-click="handleClick(6)" ng-class="{'btn-primary':current == 6}">如何发布圈子话题</button>
     </div>
     <div class="tab-content" ng-show='current == 1'>
         <img src="./img/help-opening-screen-advertising.jpg" alt="">
     </div>
     <div class="tab-content" ng-show='current == 2'>
         <img src="./img/help-add-articles.jpg" alt="">
+    </div>
+    <div class="tab-content" ng-show='current == 3'>
+        <img src="./img/help-vote.jpg" alt="">
+    </div>
+    <div class="tab-content" ng-show='current == 4'>
+        <img src="./img/help-msg.jpg" alt="">
+    </div>
+    <div class="tab-content" ng-show='current == 5'>
+        <img src="./img/help-post.jpg" alt="">
+    </div>
+    <div class="tab-content" ng-show='current == 6'>
+        <img src="./img/help-topic.jpg" alt="">
     </div>
 </div>
